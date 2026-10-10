@@ -24,7 +24,7 @@ var B = {
   c:function(cat,arms,u){ return {k:"c",cat:cat,arms:arms.map(function(a){ return {head:a[0],body:flat(a[1]||[])}; }),u:u||null}; },
   flat:flat
 };
-var UT = {lbl:"Libellé à confirmer dans votre MakeCode : fiez-vous à la couleur et à la forme.", val:"Valeur du fabricant : mesurez-la sur votre machine et notez-la sur cette page."};
+var UT = {lbl:"Libellé à confirmer dans ton MakeCode : fie-toi à la couleur et à la forme.", val:"Valeur du fabricant : mesure-la sur ta machine et note-la sur cette page."};
 var DRAWER = {base:"Base",input:"Entrées",loops:"Boucles",logic:"Logique",vars:"Variables",math:"Maths",ml:"Apprentissage automatique",wukong:"wuKong",sonar:"Sonarbit",radio:"Radio",pins:"Broches",music:"Musique",led:"LED",neo:"NeoPixel",minicar:"MiniCar"};
 function uAttr(u){ return u ? ' title="'+esc(UT[u]||u)+'"' : ""; }
 function partH(p){
@@ -58,14 +58,20 @@ function val(k){ var v=S.c[k]; return (v===undefined||v===null||v==="") ? null :
 function renderProg(el){
   var f=(P.progs||{})[el.getAttribute("data-prog")]; if(!f) return;
   var nodes=f(B,val);
-  el.innerHTML=(hasU(nodes)?'<p class="unsure-note">Pointillés jaunes : un mot qui peut varier dans votre MakeCode, ou une valeur à mesurer sur votre machine.</p>':'')+'<div class="ws">'+nodes.map(nodeH).join("")+'</div>';
+  el.innerHTML=(hasU(nodes)?'<p class="unsure-note">Pointillés jaunes : un mot qui peut varier dans ton MakeCode, ou une valeur à mesurer sur ta machine.</p>':'')+'<div class="ws">'+nodes.map(nodeH).join("")+'</div>';
+  marquerDefilement(el.querySelector(".ws"));
+}
+/* Un programme plus large que l'écran défile : on le rend atteignable au clavier */
+function marquerDefilement(ws){
+  if(!ws || ws.offsetParent===null) return;
+  if(ws.scrollWidth>ws.clientWidth+2){ ws.setAttribute("tabindex","0"); ws.setAttribute("role","region"); ws.setAttribute("aria-label","Programme (défile sur le côté)"); ws.classList.add("defile"); }
 }
 function renderNeeds(){
   document.querySelectorAll("[data-need]").forEach(function(el){
     var f=(P.needs||{})[el.getAttribute("data-need")]; if(!f) return;
     var nodes=f(B,val);
     el.innerHTML=nodes.map(function(n){ return '<figure>'+nodeH(n)+'<figcaption class="drawer" style="--cat:var(--c-'+n.cat+')">tiroir '+esc(DRAWER[n.cat]||n.cat)+'</figcaption></figure>'; }).join("")
-      +(hasU(nodes)?'<p class="unsure-note" style="flex-basis:100%">Pointillés jaunes : un mot qui peut varier dans votre MakeCode. Fiez-vous à la couleur et à la forme.</p>':'');
+      +(hasU(nodes)?'<p class="unsure-note" style="flex-basis:100%">Pointillés jaunes : un mot qui peut varier dans ton MakeCode. Fie-toi à la couleur et à la forme.</p>':'');
   });
 }
 function renderAllProgs(){ document.querySelectorAll("[data-prog]").forEach(renderProg); renderNeeds(); }
@@ -84,13 +90,52 @@ function bindCrew(){
   document.querySelectorAll("#crew input[name=pilot]").forEach(function(r){ r.addEventListener("change",function(){ S.pilot[P.id]=r.value; save(); renderCrew(); }); });
 }
 
-/* ---------- Réussi ---------- */
+/* ---------- Réussi : un état en haut, un seul geste en bas ---------- */
+function esc2(s){ return esc(s); }
 function renderDone(){
   var on=!!S.done[P.id];
-  document.querySelectorAll("[data-done-projet]").forEach(function(b){ b.setAttribute("aria-pressed",on?"true":"false"); b.textContent=on?"Projet réussi ✓":"Projet réussi ?"; });
+  document.querySelectorAll("[data-etat]").forEach(function(e){ e.textContent=on?"Réussi ✓":"À faire"; e.classList.toggle("ok",on); });
+  var fin=document.querySelector(".p-finish"); if(!fin) return;
+  var nx=fin.getAttribute("data-suivant"), nxt=fin.getAttribute("data-suivant-titre"), end=fin.getAttribute("data-fin"), endt=fin.getAttribute("data-fin-titre");
+  if(!on){
+    fin.innerHTML='<p class="pt">Fini ?</p><p>Quand la machine fait ce que demande la mission, et que tu as écrit ta phrase de résumé :</p>'
+      +'<div class="fin-btns"><button class="btn solid big" type="button" data-fini>'+(nx?'On a réussi ! Projet suivant →':'On a réussi !')+'</button></div>';
+  } else {
+    fin.innerHTML='<p class="pt ok">Projet réussi ✓</p>'
+      +'<div class="fin-btns">'+(nx?'<a class="btn solid big" href="'+esc2(nx)+'">Projet suivant : '+esc2(nxt)+' →</a>':'<a class="btn solid big" href="'+esc2(end)+'">Retour : '+esc2(endt)+'</a>')
+      +'<button class="linkish" type="button" data-annule>Pas encore réussi ? Annuler</button></div>';
+  }
 }
-function bindDone(){
-  document.querySelectorAll("[data-done-projet]").forEach(function(b){ b.addEventListener("click",function(){ S.done[P.id]=!S.done[P.id]; if(!S.done[P.id]) delete S.done[P.id]; save(); renderDone(); }); });
+document.addEventListener("click",function(e){
+  if(e.target.closest("[data-fini]")){
+    S.done[P.id]=true; save();
+    var nx=document.querySelector(".p-finish").getAttribute("data-suivant");
+    if(nx){ location.href=nx; return; }
+    renderDone(); return;
+  }
+  if(e.target.closest("[data-annule]")){ delete S.done[P.id]; save(); renderDone(); }
+});
+
+/* ---------- Ce qui attend la prédiction (data-apres) ---------- */
+function renderApres(){
+  document.querySelectorAll("[data-apres]").forEach(function(el){
+    var v=S.c[el.getAttribute("data-apres")]; el.hidden=(v===undefined||v===null||String(v).trim()==="");
+  });
+}
+
+/* ---------- Au résumé : rappeler la prédiction ---------- */
+var PREDK=P.id+"_pred", VERK=P.id+"_verdict";
+function renderRappel(){
+  var box=document.querySelector(".resume"); if(!box || !document.querySelector('[data-k="'+PREDK+'"]')) return;
+  var r=box.querySelector(".rappel");
+  if(!r){ r=document.createElement("div"); r.className="rappel"; box.insertBefore(r, box.querySelector("textarea")); }
+  var v=S.c[PREDK];
+  if(v===undefined||v===null||String(v).trim()===""){ r.innerHTML='<p class="small">Tu n\'avais pas noté de prédiction. La prochaine fois, prédis avant d\'essayer : c\'est en comparant qu\'on apprend.</p>'; return; }
+  var cur=S.c[VERK]||"";
+  r.innerHTML='<p>Ta prédiction : <q>'+esc(String(v))+'</q></p><p class="small">Elle était…</p>'
+    +'<span class="seg" role="radiogroup" aria-label="Ta prédiction était">'
+    +["juste","en partie","fausse"].map(function(o){ return '<label><input type="radio" name="verdict" value="'+o+'"'+(cur===o?' checked':'')+'><span>'+o+'</span></label>'; }).join("")+'</span>';
+  r.querySelectorAll("input").forEach(function(inp){ inp.addEventListener("change",function(){ S.c[VERK]=inp.value; save(); }); });
 }
 
 /* ---------- Champs du carnet ---------- */
@@ -108,7 +153,7 @@ function bindFields(){
       if(el.type==="radio"){ if(el.checked) S.c[k]=el.value; }
       else if(el.type==="number"){ var n=parseInt(el.value,10); var mn=el.min!==""?+el.min:-Infinity, mx=el.max!==""?+el.max:Infinity; S.c[k]=(isNaN(n)||n<mn||n>mx)?null:n; }
       else S.c[k]=el.value.slice(0,400);
-      save(); if(el.type==="radio") syncFields(); renderAllProgs(); renderSaved(el);
+      save(); if(el.type==="radio") syncFields(); renderAllProgs(); renderSaved(el); renderApres(); if(k===PREDK) renderRappel();
     });
   });
 }
@@ -126,35 +171,57 @@ document.addEventListener("click",function(e){
   try{ navigator.clipboard.writeText(text).then(function(){ b.textContent="Copié !"; setTimeout(function(){ b.textContent=label; },1800); }, selectIt); }catch(err){ selectIt(); }
 });
 
+/* ---------- Indices : on les ouvre dans l'ordre, la solution vient après ---------- */
+var hints=[].slice.call(document.querySelectorAll(".p-main details.hint"));
+var INDK=P.id+"_ind";
+function opened(){ var a=S.c[INDK]; return Array.isArray(a)?a:[]; }
+function allOpened(){ return hints.length===0 || hints.every(function(h,i){ return opened().indexOf(i)>=0; }); }
+hints.forEach(function(h,i){
+  h.addEventListener("toggle",function(){
+    if(!h.open) return;
+    var a=opened(); if(a.indexOf(i)<0){ a.push(i); S.c[INDK]=a; save(); }
+    renderLocks();
+  });
+});
+
 /* ---------- Verrou parent ---------- */
 function getCode(){ try{ return localStorage.getItem(CODEKEY)||""; }catch(e){ return ""; } }
-var unlocked=false;
+var unlocked=false, locks=[];
+function renderLocks(){
+  var ok=allOpened();
+  locks.forEach(function(L){
+    if(!L.body.hidden) return;
+    L.btn.disabled=!ok;
+    L.btn.textContent=ok?L.label:("Solution : ouvre d'abord les "+hints.length+" indices");
+  });
+}
 function bindLocks(){
-  var parents=document.body.getAttribute("data-racine")+"parents/";
   document.querySelectorAll(".lockbox").forEach(function(box){
     var btn=box.querySelector("[data-unlock]"), body=box.querySelector(".sol-body");
     if(!btn||!body) return;
-    var label=btn.textContent;
+    var L={btn:btn, body:body, label:btn.textContent}; locks.push(L);
     var form=document.createElement("div"); form.className="lockform"; form.hidden=true;
     form.innerHTML='<input class="textin short" type="password" autocomplete="off" aria-label="Code parent" placeholder="Code parent"><button class="btn solid" type="button">Ouvrir</button><span class="lockmsg" role="status"></span>';
     box.insertBefore(form, body);
     var input=form.querySelector("input"), go=form.querySelector("button"), msg=form.querySelector(".lockmsg");
-    function show(){ body.hidden=false; form.hidden=true; btn.textContent="Cacher la solution"; renderAllProgs(); }
+    function show(){ body.hidden=false; form.hidden=true; btn.disabled=false; btn.textContent="Cacher la solution"; renderAllProgs(); }
     function tryOpen(){ if(input.value && input.value===getCode()){ unlocked=true; input.value=""; msg.textContent=""; show(); } else msg.textContent="Ce n'est pas le bon code."; }
     btn.addEventListener("click",function(){
-      if(!body.hidden){ body.hidden=true; btn.textContent=label; return; }
+      if(!body.hidden){ body.hidden=true; renderLocks(); return; }
+      if(!allOpened()) return;
       if(unlocked){ show(); return; }
-      if(!getCode()){ form.hidden=false; input.hidden=true; go.hidden=true; msg.innerHTML='Pas encore de code parent. Un adulte peut en créer un sur la <a href="'+parents+'">page des parents</a>.'; return; }
-      input.hidden=false; go.hidden=false; msg.textContent=""; form.hidden=!form.hidden; if(!form.hidden) input.focus();
+      if(!getCode()){ form.hidden=false; input.hidden=true; go.hidden=true; msg.textContent="Demande à un adulte : la solution s'ouvre avec le code parent."; return; }
+      input.hidden=false; go.hidden=false; msg.textContent="Un adulte tape le code parent."; form.hidden=!form.hidden; if(!form.hidden) input.focus();
     });
     go.addEventListener("click",tryOpen);
     input.addEventListener("keydown",function(e){ if(e.key==="Enter") tryOpen(); });
   });
+  renderLocks();
 }
 
 renderAllProgs();
 bindCrew(); renderCrew();
-bindDone(); renderDone();
-syncFields(); bindFields();
+renderDone();
+syncFields(); bindFields(); renderApres(); renderRappel();
 bindLocks();
 })();

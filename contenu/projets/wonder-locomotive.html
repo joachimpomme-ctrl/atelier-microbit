@@ -4,7 +4,7 @@ titre: La locomotive
 resume: Une locomotive qui part, recule et s'arrête, avec un départ en gare.
 materiel: wonder
 niveau: 1
-aide: l1
+aide: l2
 duree: 45 min
 notions: moteurs, boutons, son, construire
 parcours: wonder
@@ -12,24 +12,33 @@ ordre: 123
 icone: train
 modele: 23
 -->
-<p class="goal"><b>Votre mission :</b> bouton A, la locomotive avance. Bouton B, elle recule. A et B ensemble, elle s'arrête.</p>
-<p class="small">Premier projet Wonder ? Commencez par <a href="../wonder-demarrer/">Bien démarrer avec le kit Wonder</a>, puis <a href="../wonder-helicoptere/">l'hélicoptère</a>.</p>
+<p class="goal"><b>Ta mission :</b> bouton A, la locomotive avance. Bouton B, elle recule. A et B ensemble, elle s'arrête.</p>
+<p class="small">Premier projet Wonder ? Commence par <a href="../wonder-demarrer/">Bien démarrer avec le kit Wonder</a>, puis <a href="../wonder-helicoptere/">l'hélicoptère</a>.</p>
 <div class="build">
   <p><b>Construire :</b> <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Wonder-Building-Kit-case-23.html" target="_blank" rel="noopener">la fiche de montage (modèle 23)</a>.</p>
   <div class="wire"><span>moteur → <b>M1</b></span></div>
   
 </div>
 <div class="predict">
-  <p class="pt">Prédisez d'abord</p>
+  <p class="pt">Prédis d'abord</p>
   <p>Une locomotive démarre-t-elle plus vite à vide ou en tirant des wagons ?</p>
-  <textarea data-k="@pred" rows="2" placeholder="Notre prédiction…"></textarea>
+  <textarea data-k="@pred" rows="2" placeholder="Ma prédiction…"></textarea>
 </div>
-<div class="challenge"><p class="pt">Votre défi en plus</p><h3>Le départ en gare</h3><p>Bouton A : l'écran affiche 3, 2, 1, la locomotive siffle (son sur la micro:bit V2), puis elle part.</p></div>
-<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Qu'est-ce qui se passe avant le départ, et dans quel ordre ?</p></div></details>
-<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Montrer nombre et pause (tiroir Base), un son ou une mélodie (tiroir Musique), puis le moteur.</p></div></details>
-<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Le chef de gare siffle avant le départ : le signal vient avant l'action.</p></div></details>
+<div class="m-part">
+  <h3>Le plan</h3>
+  <ol class="steps"><li>Construis la locomotive avec la fiche de montage, moteur sur M1.</li><li>Bouton A : avancer. Bouton B : reculer.</li><li>A et B ensemble : arrêter le moteur.</li><li>Teste la d'abord posée sur un bol, roues ou pattes dans le vide. Puis au sol, sur un espace dégagé.</li></ol>
+</div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Avant d'écrire le programme : avec 100, la locomotive avance ou recule ? Comment le vérifier sans qu'elle tombe de la table ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Teste-la posée sur un bol, roues dans le vide. Puis <span class="kw" style="--cat:var(--c-wukong)">Set motor M1 speed to …</span> dans A et dans B avec des signes opposés, et <span class="kw" style="--cat:var(--c-wukong)">Stop motor M1</span> dans A+B.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Avant de démarrer, un conducteur vérifie s'il est en marche avant ou en marche arrière.</p></div></details>
 <div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden>
+  <p>La mission : bouton A, le moteur M1 à une vitesse qui fait avancer ; bouton B, la même vitesse avec le signe opposé ; boutons A+B, arrêter le moteur M1.</p>
   <p>Pour le défi : trois « montrer nombre » séparés par des pauses d'une seconde, un son du tiroir Musique, puis le moteur M1.</p>
   <p class="small">Le programme du fabricant ELECFREAKS : <a href="https://makecode.microbit.org/_5WjDde1jAF6R" target="_blank" rel="noopener">programme officiel</a>. Il fait la mission de base, sans le défi.</p>
 </div></div>
-<div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+<div class="bonus">
+  <h3><span>Défi bonus</span>Le départ en gare</h3>
+  <p>Bouton A : l'écran affiche 3, 2, 1, la locomotive siffle (son sur la micro:bit V2), puis elle part.</p>
+  <details class="hint-defi"><summary>Un coup de pouce pour le défi</summary><div class="body"><p>Qu'est-ce qui se passe avant le départ, et dans quel ordre ?</p><p>Le chef de gare siffle avant le départ : le signal vient avant l'action.</p></div></details>
+</div>

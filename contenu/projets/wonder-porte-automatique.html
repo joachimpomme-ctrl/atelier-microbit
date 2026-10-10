@@ -12,22 +12,22 @@ ordre: 6
 icone: porte
 modele: 9
 -->
-<p class="goal"><b>Votre mission :</b> quand quelqu'un s'approche à moins de 8 cm, l'écran montre ✓, la porte s'ouvre, puis se referme toute seule après 5 secondes. Sinon, l'écran montre ✗ et la porte reste fermée.</p>
-<p class="tip">Avant de construire : réglez le servo avec <a href="../wonder-testeur-servo/">le testeur de servo</a>.</p>
+<p class="goal"><b>Ta mission :</b> quand quelqu'un s'approche à moins de 8 cm, l'écran montre ✓, la porte s'ouvre, puis se referme toute seule après 5 secondes. Sinon, l'écran montre ✗ et la porte reste fermée.</p>
+<p class="tip">Avant de construire : règle le servo avec <a href="../wonder-testeur-servo/">le testeur de servo</a>.</p>
 <div class="build">
   <p><b>Construire :</b> <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Case_09.html" target="_blank" rel="noopener">la fiche de montage de la porte automatique (modèle 9)</a>.</p>
   <div class="wire"><span>servo → <b>S0</b></span><span>ultrasons → <b>P1</b></span></div>
-  <p class="small">Attention : la fiche dit P1, mais le programme officiel lit P0. Le bloc doit lire la broche où vous avez vraiment branché le câble.</p>
+  <p class="small">Attention : la fiche dit P1, mais le programme officiel lit P0. Le bloc doit lire la broche où tu as vraiment branché le câble.</p>
 </div>
 <div class="predict">
-  <p class="pt">Prédisez d'abord</p>
+  <p class="pt">Prédis d'abord</p>
   <p>Quelqu'un reste planté devant la porte. Que va-t-il se passer après les 5 secondes ?</p>
-  <textarea data-k="@pred" rows="2" placeholder="Notre prédiction…"></textarea>
+  <textarea data-k="@pred" rows="2" placeholder="Ma prédiction…"></textarea>
 </div>
 <div class="m-part">
   <h3>Le plan</h3>
   <ol class="steps">
-    <li>Avec le testeur, trouvez l'angle « porte fermée » et l'angle « porte ouverte ». Notez-les.</li>
+    <li>Avec le testeur, trouve l'angle « porte fermée » et l'angle « porte ouverte ». Note-les.</li>
     <li>Dans <span class="kw" style="--cat:var(--c-base)">toujours</span> : si la distance est plus petite que 8, alors ✓, ouvrir, attendre 5 secondes, fermer.</li>
     <li>Sinon : ✗, porte fermée.</li>
   </ol>
@@ -40,13 +40,13 @@ modele: 9
   </div>
   <div class="q"><p>Le capteur à ultrasons est branché sur :</p>
     <span class="seg"><label><input type="radio" name="w_sonar" data-k="w_sonar" value="P0"><span>P0</span></label><label><input type="radio" name="w_sonar" data-k="w_sonar" value="P1"><span>P1</span></label><label><input type="radio" name="w_sonar" data-k="w_sonar" value="P2"><span>P2</span></label></span></div>
-  <p class="saved" hidden>Noté. La solution utilise vos réglages.</p>
+  <p class="saved" hidden>Noté. La solution utilise tes réglages.</p>
 </div>
-<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>La porte ne s'ouvre jamais ? Mettez un bloc qui affiche la distance mesurée. Quel nombre voyez-vous quand votre main est tout près ?</p></div></details>
-<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le bloc <span class="kw" style="--cat:var(--c-sonar)">Ultrasonic distance</span> est rond : il se glisse dans un comparateur du tiroir Logique. Vérifiez sa broche.</p></div></details>
-<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Dans l'atelier robot, le robot prudent s'arrêtait si la distance était plus petite que 15. Ici, c'est la même question, mais la réponse ouvre une porte au lieu d'arrêter des roues.</p></div></details>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>La porte ne s'ouvre jamais ? Mets un bloc qui affiche la distance mesurée. Quel nombre vois-tu quand ta main est tout près ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le bloc <span class="kw" style="--cat:var(--c-sonar)">Ultrasonic distance</span> est dans le tiroir de l'extension sonar:bit. Il est rond : il se glisse dans un comparateur du tiroir Logique. Vérifie sa broche.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Dans l'<a href="../../robot/#m6">atelier robot</a>, le robot prudent s'arrêtait si la distance était plus petite que 15. Ici, c'est la même question, mais la réponse ouvre une porte au lieu d'arrêter des roues.</p></div></details>
 <div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden><div class="prog" data-prog="sol"></div></div></div>
-<div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
 <div class="bonus">
   <h3><span>Défi bonus</span>Le compteur de visiteurs</h3>
   <p>La porte compte combien de fois elle s'est ouverte. Le bouton A affiche le total.</p>

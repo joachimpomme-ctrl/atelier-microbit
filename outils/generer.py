@@ -111,9 +111,23 @@ def remplir_icones(corps):
     return re.sub(r'<(span|div) class="led5" data-icon="([a-z-]+)"([^>]*)></\1>', rempl, corps)
 
 
+def typographie(corps):
+    """Espaces insécables avant ? ! : ; » et après « dans le texte (pas dans les balises ni les scripts)."""
+    morceaux = re.split(r"(<script.*?</script>)", corps, flags=re.S)
+    def texte(m):
+        t = m.group(1)
+        t = re.sub(r" ([?!:;»])", "\u00a0\\1", t)
+        t = re.sub(r"« ", "«\u00a0", t)
+        return ">" + t + "<"
+    return "".join(x if x.startswith("<script") else re.sub(r">([^<>]+)<", texte, x) for x in morceaux)
+
+
 def page_projet(p, tous):
     i = p["id"]
-    corps = remplir_icones(p["corps"]).replace('data-k="@', f'data-k="{i}_')
+    corps = remplir_icones(p["corps"]).replace('data-k="@', f'data-k="{i}_').replace('data-apres="@', f'data-apres="{i}_')
+    # Titres du corps : h2 (la page a un seul h1), avec l'apparence d'un h3
+    corps = corps.replace("<h3>", '<h2 class="h3">').replace("</h3>", "</h2>")
+    corps = typographie(corps)
     mat = MATERIELS[p["materiel"]]
     eyebrow = [mat["nom"], f'niveau {p["niveau"]} · {NIVEAUX[p["niveau"]]}']
     if p.get("duree"): eyebrow.append(p["duree"])
@@ -126,9 +140,10 @@ def page_projet(p, tous):
     v2 = ""
     if p.get("v2") == "oui":
         v2 = '<p class="tip">Ce projet a besoin d\'une carte <b>micro:bit V2</b> (logo doré sur la face avant).</p>'
-    notions = "".join(f"<li>{html.escape(n)}</li>" for n in p["notions"])
+    notions = "".join(f"<li>{html.escape(n)}</li>" for n in p["notions"] if n != "construire")
     # Précédent / suivant dans le parcours
-    nav = ""
+    nav, nxt = "", None
+    fin_parcours = ""
     if par:
         # ordre < 100 : les étapes du parcours ; 100 à 899 : les fiches libres (machines du kit…)
         etape = p["ordre"] < 100
@@ -140,23 +155,34 @@ def page_projet(p, tous):
             nxt = suite[k + 1] if k + 1 < len(suite) else None
             cells = []
             mot = "Étape" if etape else PARCOURS[par].get("fiche", "Projet")
-            if prev: cells.append(f'<a class="p-link" href="../{prev["id"]}/"><span class="eyebrow">← {mot} précédent{"e" if mot.endswith("e") and mot != "Projet" else ""}</span><b>{html.escape(prev["titre"])}</b></a>')
-            if nxt: cells.append(f'<a class="p-link next" href="../{nxt["id"]}/"><span class="eyebrow">{mot} suivant{"e" if mot.endswith("e") and mot != "Projet" else ""} →</span><b>{html.escape(nxt["titre"])}</b></a>')
+            fem = "e" if mot.endswith("e") else ""
+            if prev: cells.append(f'<a class="p-link" href="../{prev["id"]}/"><span class="eyebrow">← {mot} précédent{fem}</span><b>{html.escape(prev["titre"])}</b></a>')
+            if nxt: cells.append(f'<a class="p-link next" href="../{nxt["id"]}/"><span class="eyebrow">{mot} suivant{fem} →</span><b>{html.escape(nxt["titre"])}</b></a>')
             if cells:
                 quoi = f'étape {k + 1} sur {len(suite)}' if etape else f'{PARCOURS[par].get("fiches", "autres projets")} · {k + 1} sur {len(suite)}'
                 nav += f'<div class="p-seq"><p class="eyebrow">{html.escape(PARCOURS[par]["titre"])} · {html.escape(quoi)}</p><div class="p-links">{"".join(cells)}</div></div>'
-    # Projets proches : même matériel, notions en commun
+            if not nxt:
+                fin_parcours = f'../../{PARCOURS[par]["url"]}'
+    # Projets proches : même matériel, niveau égal ou voisin, notions en commun
     proches = []
     for q in tous:
-        if q["id"] == i: continue
-        score = len(set(q["notions"]) & set(p["notions"])) * 2 + (1 if q["materiel"] == p["materiel"] else 0)
-        if score >= 2: proches.append((score, -q["niveau"], q["titre"], q))
-    proches.sort(key=lambda t: (-t[0], t[1], t[2]))
+        if q["id"] == i or q["materiel"] != p["materiel"] or abs(q["niveau"] - p["niveau"]) > 1: continue
+        if nxt and q["id"] == nxt["id"]: continue
+        commun = len(set(q["notions"]) & set(p["notions"]) - {"construire"})
+        if commun: proches.append((-commun, abs(q["niveau"] - p["niveau"]), q["ordre"], q))
+    proches.sort(key=lambda t: t[:3])
     if proches:
         cards = "".join(
-            f'<a class="mini-card" href="../{q["id"]}/">{led(q.get("icone", DEFAUT_ICONE))}<span><b>{html.escape(q["titre"])}</b><small>{html.escape(MATERIELS[q["materiel"]]["court"])} · niveau {q["niveau"]}</small></span></a>'
-            for _, _, _, q in proches[:3])
+            f'<a class="mini-card" href="../{q["id"]}/">{led(q.get("icone", DEFAUT_ICONE))}<span><b>{html.escape(q["titre"])}</b><small>{html.escape(MATERIELS[q["materiel"]]["court"])} · niveau {q["niveau"]}{" · " + AIDES[q["aide"]] if q.get("aide") in AIDES else ""}</small></span></a>'
+            for *_, q in proches[:3])
         nav += f'<div class="p-related"><p class="eyebrow">Projets proches</p><div class="mini-cards">{cards}</div></div>'
+    # Fin de page : marquer réussi et passer au suivant en un seul geste
+    if nxt:
+        suivant = f'data-suivant="../{nxt["id"]}/" data-suivant-titre="{html.escape(nxt["titre"])}"'
+    elif fin_parcours:
+        suivant = f'data-fin="{fin_parcours}" data-fin-titre="{html.escape(PARCOURS[par]["titre"])}"'
+    else:
+        suivant = 'data-fin="../" data-fin-titre="la banque de projets"'
     titre = html.escape(p["titre"])
     return f'''<!doctype html>
 <html lang="fr">
@@ -174,14 +200,13 @@ def page_projet(p, tous):
 </head>
 <body data-racine="../../">
 <!-- Page générée par outils/generer.py à partir de contenu/projets/{i}.html : modifier la source, pas cette page. -->
-<div class="page proj">
+<main class="page proj">
   <nav class="crumbs" aria-label="Fil d'Ariane">{' <span aria-hidden="true">›</span> '.join(crumbs)}</nav>
   <header class="p-head">
     {led(p.get("icone", DEFAUT_ICONE), "led5 p-icon")}
     <div>
       <p class="eyebrow">{html.escape(" · ".join(eyebrow))}</p>
       <h1>{titre}</h1>
-      <p class="lead">{html.escape(p["resume"])}</p>
       <ul class="learn"><li class="lbl">Notions</li>{notions}</ul>
     </div>
   </header>
@@ -194,16 +219,20 @@ def page_projet(p, tous):
       </span>
       <span class="small">Copilote : <b id="copilot">Équipier 2</b></span>
     </div>
-    {f'<span class="lvl {aide}">{AIDES[aide]}</span>' if aide in AIDES else ""}
-    <button class="done-btn" type="button" data-done-projet aria-pressed="false">Projet réussi ?</button>
+    <div class="p-bar-r">
+      {f'<span class="lvl {aide}">{AIDES[aide]}</span>' if aide in AIDES else ""}
+      <span class="etat" data-etat>À faire</span>
+      <a class="btn mk" href="https://makecode.microbit.org/" target="_blank" rel="noopener">Ouvrir MakeCode <span aria-hidden="true">↗</span></a>
+    </div>
   </div>
   {v2}
-  <main class="p-main">
+  <div class="p-main">
 {corps}
-  </main>
+  </div>
+  <section class="p-finish" aria-label="Fin du projet" {suivant}></section>
   <nav class="p-nav" aria-label="Et après ?">{nav}</nav>
-  <footer class="p-foot small">Les prénoms se règlent sur l'<a href="../../">accueil</a>. Code parent, sécurité et remise à zéro : <a href="../../parents/">page des parents</a>.</footer>
-</div>
+  <footer class="p-foot small">Les prénoms se règlent sur l'<a href="../../">accueil</a>. Code parent, sécurité et sauvegarde : <a href="../../parents/">page des parents</a>.</footer>
+</main>
 <script src="../../assets/progression.js"></script>
 <script src="../../assets/blocs.js"></script>
 <script src="../../assets/projet.js"></script>
@@ -240,7 +269,7 @@ def main():
         entrees.append({k: p[k] for k in ("id", "titre", "resume", "materiel", "niveau", "notions", "ordre")} | {
             "duree": p.get("duree", ""), "parcours": p.get("parcours", ""), "url": f'projets/{p["id"]}/',
             "icone": ICONES.get(p.get("icone", DEFAUT_ICONE), ICONES[DEFAUT_ICONE]), "stockage": "banque",
-            "modele": p.get("modele", ""), "v2": p.get("v2") == "oui", "type": p.get("type", "projet")})
+            "modele": p.get("modele", ""), "v2": p.get("v2") == "oui", "type": p.get("type", "projet"), "aide": p.get("aide", "")})
     for e in externes:
         e = dict(e)
         e["icone"] = ICONES.get(e.get("icone", DEFAUT_ICONE), ICONES[DEFAUT_ICONE])
@@ -250,7 +279,7 @@ def main():
         for n in e["notions"]:
             compte[n] = compte.get(n, 0) + 1
     notions = sorted(compte, key=lambda n: (-compte[n], n))
-    catalogue = {"materiels": MATERIELS, "niveaux": NIVEAUX, "parcours": PARCOURS, "notions": notions, "projets": entrees}
+    catalogue = {"materiels": MATERIELS, "niveaux": NIVEAUX, "aides": AIDES, "parcours": PARCOURS, "notions": notions, "projets": entrees}
     with open(os.path.join(RACINE, "assets", "catalogue.js"), "w", encoding="utf-8") as f:
         f.write("/* Généré par outils/generer.py : ne pas modifier à la main. */\nwindow.CATALOGUE = ")
         json.dump(catalogue, f, ensure_ascii=False, indent=1)

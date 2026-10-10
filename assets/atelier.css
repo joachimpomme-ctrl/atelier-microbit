@@ -318,3 +318,60 @@ label.inline{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .board.wide{display:flex;flex-wrap:wrap;gap:5px;padding:7px 9px;border-radius:8px;background:var(--board);max-width:min(100%,330px)}
 .board.wide span{width:11px;height:11px;border-radius:3px;background:var(--board-off);box-shadow:none}
 .board.wide span.on{background:var(--led);box-shadow:0 0 8px var(--led)}
+
+/* ===== Lot 1 de l'audit UX : lisibilité, contrastes, pages projet ===== */
+:root{ --led-ink:#C8261E; --ok-ink:#0F6B47; --field-line:#7D8AA1; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --led-ink:#FF6B61; --ok-ink:#45C186; --field-line:#66749A; } }
+:root[data-theme="dark"]{ --led-ink:#FF6B61; --ok-ink:#45C186; --field-line:#66749A; }
+/* Champs : bord visible (3:1) */
+textarea,.textin,.numin,input[type=search],input[type=text]{border-color:var(--field-line)}
+/* Consignes clés lisibles : casse normale, 15 px */
+.pt{font:700 15px/1.3 var(--f-body);text-transform:none;letter-spacing:0;color:var(--ink)}
+.pt.ok{color:var(--ok-ink)}
+.eyebrow{font-size:13px}
+/* Badges d'aide : 13 px, contraste AA */
+.lvl{font:700 13px/1 var(--f-body);text-transform:none;letter-spacing:0;padding:6px 10px}
+.lvl.l3{color:var(--ok-ink)}
+/* Rouge LED utilisé comme texte */
+td.n{color:var(--led-ink)}
+.wire span b{color:#FF6B61}
+.bonus h3 span,.bonus h2 span{color:var(--led-ink)}
+/* Titres du corps des projets (h2 avec l'allure d'un h3) */
+.p-main h2.h3{font:700 18px/1.3 var(--f-body)}
+.bonus h2{font-family:var(--f-display);font-size:20px}
+.bonus h2 span{font:600 13px var(--f-mono);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:2px}
+details.hint-defi > summary{color:var(--ink-2)}
+.linkish{background:none;border:none;color:var(--accent);font:700 15px var(--f-body);cursor:pointer;padding:4px 0;text-decoration:underline;text-underline-offset:3px}
+/* En-tête de projet compact : la mission arrive plus haut */
+.p-head{gap:18px}
+.p-head h1{font-size:clamp(30px,5vw,48px)}
+.p-head .eyebrow{font:600 14px/1.35 var(--f-body);text-transform:none;letter-spacing:0}
+.p-head .learn{margin-top:10px}
+.led5.p-icon{--w:84px;--g:5px;--p:10px}
+@media (max-width:600px){ .p-head{grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start} .led5.p-icon{--w:52px;--g:2px;--p:6px;border-radius:9px} .p-head .learn{display:none} }
+.p-bar-r{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center}
+.etat{font:700 14px/1 var(--f-body);padding:8px 12px;border-radius:999px;border:1.5px solid var(--line);color:var(--ink-2)}
+.etat.ok{background:var(--ok);border-color:var(--ok);color:var(--on-ok)}
+.btn.mk{text-decoration:none;display:inline-flex;gap:6px;align-items:center}
+/* Fin de projet : un seul geste « réussi, suivant » */
+.p-finish{background:var(--panel);border:2px solid var(--ok);border-radius:14px;padding:18px 20px;display:grid;gap:10px}
+.p-finish:empty{display:none}
+.fin-btns{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.btn.big{font-size:17px;padding:14px 20px;text-decoration:none;display:inline-block}
+.btn:disabled{opacity:.55;cursor:not-allowed;border-style:dashed}
+/* Rappel de la prédiction au résumé */
+.rappel{display:grid;gap:6px}
+.rappel q{font-style:italic}
+/* Blocs longs : ils passent à la ligne au lieu d'être coupés */
+.ws .line{max-width:100%}
+.ws .blk{max-width:100%}
+.blk .row{flex-wrap:wrap;row-gap:4px}
+/* Cartes de la banque */
+.pcard{grid-template-rows:auto 1fr auto}
+.pcard .tags{align-content:flex-start}
+.pcard.has-badge .top{padding-right:78px}
+.pcard .meta{font-size:13px}
+.pcard .tags li{font-size:13px}
+.pcard .aide{font:600 13px/1.3 var(--f-body);color:var(--ink-2)}
+.pcard .res{display:grid;gap:4px;align-content:start}
+.ws.defile{box-shadow:inset -14px 0 12px -12px rgba(0,0,0,.35)}

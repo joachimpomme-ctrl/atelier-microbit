@@ -14,9 +14,10 @@ function card(p, racine, opts){
   var tags=p.notions.filter(function(n){return n!=="construire";}).slice(0,4).map(function(n){ return '<li>'+esc(n)+'</li>'; }).join("");
   var kind=p.type==="mission"?' · mission':(p.type==="guide"?' · guide':'');
   var step=opts.etape?'<p class="eyebrow">Étape '+opts.etape+'</p>':'';
-  return '<a class="pcard" href="'+esc(racine+p.url)+'">'+badge
+  var AIDES=C.aides||{}, aide=p.aide&&AIDES[p.aide]?'<p class="aide">Aide : '+esc(AIDES[p.aide])+'</p>':'';
+  return '<a class="pcard'+(badge?' has-badge':'')+'" href="'+esc(racine+p.url)+'">'+badge
     +'<div class="top"><div class="led5" aria-hidden="true">'+led(p.icone)+'</div><div>'+step+'<h3>'+esc(p.titre)+'</h3><p class="meta">'+esc(meta.join(" · "))+kind+' '+lvl(p.niveau)+'</p></div></div>'
-    +'<p class="res">'+esc(p.resume)+'</p>'
+    +'<div class="res"><p>'+esc(p.resume)+'</p>'+aide+'</div>'
     +(opts.sansTags?'':'<ul class="tags">'+tags+'</ul>')
     +'</a>';
 }

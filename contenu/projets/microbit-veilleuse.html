@@ -11,19 +11,19 @@ parcours: microbit
 ordre: 7
 icone: lune
 -->
-<p class="goal"><b>Votre mission :</b> quand il fait sombre, l'écran s'allume. Quand il fait clair, il s'éteint.</p>
+<p class="goal"><b>Ta mission :</b> quand il fait sombre, l'écran s'allume. Quand il fait clair, il s'éteint.</p>
 <p class="tip">Surprise : la carte n'a pas de capteur de lumière à part. Ce sont les lumières de l'écran qui mesurent aussi la lumière.</p>
 <div class="predict">
-  <p class="pt">Prédisez d'abord</p>
+  <p class="pt">Prédis d'abord</p>
   <p>La carte mesure la lumière de 0 à 255. Quel nombre donnera-t-elle dans le noir ? Et en plein jour ?</p>
-  <textarea data-k="@pred" rows="2" placeholder="Notre prédiction…"></textarea>
+  <textarea data-k="@pred" rows="2" placeholder="Ma prédiction…"></textarea>
 </div>
 <div class="m-part">
   <h3>Le plan</h3>
   <ol class="steps">
-    <li>D'abord mesurer : dans <span class="kw" style="--cat:var(--c-base)">toujours</span>, afficher le niveau de lumière. Notez les valeurs.</li>
-    <li>Choisissez un seuil entre les deux.</li>
-    <li>Ensuite : si la lumière est plus petite que le seuil, allumer l'écran, sinon l'éteindre.</li>
+    <li>D'abord mesurer : dans <span class="kw" style="--cat:var(--c-base)">toujours</span>, afficher le niveau de lumière. Note les valeurs.</li>
+    <li>Choisis un seuil entre les deux.</li>
+    <li>Ensuite : comparer la lumière au seuil, pour allumer l'écran quand il fait sombre et l'éteindre quand il fait clair.</li>
   </ol>
 </div>
 <div class="carnet-form">
@@ -31,17 +31,17 @@ icone: lune
   <div class="numrow">
     <label>Main posée sur l'écran : <input class="numin wide" type="number" min="0" max="255" data-k="@noir"></label>
     <label>Lumière de la pièce : <input class="numin wide" type="number" min="0" max="255" data-k="@jour"></label>
-    <label>Notre seuil : <input class="numin wide" type="number" min="0" max="255" data-k="@seuil"></label>
+    <label>Mon seuil : <input class="numin wide" type="number" min="0" max="255" data-k="@seuil"></label>
   </div>
 </div>
-<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>L'écran clignote tout seul quand il s'allume ? Que mesure le capteur quand l'écran lui-même est allumé ?</p></div></details>
-<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le niveau de lumière est un bloc rond du tiroir Entrées. Le comparateur est dans Logique.</p></div></details>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Ta carte doit choisir entre allumer et éteindre. Que regarde-t-elle pour choisir ? Et quand doit-elle regarder : une seule fois, ou sans arrêt ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le niveau de lumière est un bloc rond du tiroir Entrées. Le bloc <span class="kw" style="--cat:var(--c-logic)">si … alors … sinon</span> et le comparateur sont dans Logique. Pour tout éteindre, cherche dans le tiroir Base le bloc qui efface l'écran.</p></div></details>
 <details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Les lampadaires de la rue s'allument tout seuls le soir : un capteur compare la lumière à un seuil.</p></div></details>
-<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden><div class="prog" data-prog="sol"></div><p class="small">Comme l'écran sert aussi de capteur, la mesure peut être perturbée quand il est allumé. Choisir un seuil assez bas, ou allumer seulement quelques lumières, limite le clignotement.</p></div></div>
-<div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden><div class="prog" data-prog="sol"></div><p class="small" data-apres="@pred">Comme l'écran sert aussi de capteur, la mesure peut être perturbée quand il est allumé. Choisir un seuil assez bas, ou allumer seulement quelques lumières, limite le clignotement.</p></div></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
 <div class="bonus">
   <h3><span>Défi bonus</span>La veilleuse douce</h3>
-  <p>Plus il fait sombre, plus il y a de lumières allumées. Le bloc de graphique du tiroir LED peut vous aider.</p>
+  <p>Plus il fait sombre, plus il y a de lumières allumées. Le bloc de graphique du tiroir LED peut t'aider.</p>
 </div>
 <script>
 Object.assign(PROJET.progs, { "sol": function(B,v){ var s=v("microbit-veilleuse_seuil"); return [

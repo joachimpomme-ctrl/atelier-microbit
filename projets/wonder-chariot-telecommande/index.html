@@ -14,15 +14,14 @@
 </head>
 <body data-racine="../../">
 <!-- Page générée par outils/generer.py à partir de contenu/projets/wonder-chariot-telecommande.html : modifier la source, pas cette page. -->
-<div class="page proj">
+<main class="page proj">
   <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../../">Accueil</a> <span aria-hidden="true">›</span> <a href="../">Banque de projets</a> <span aria-hidden="true">›</span> <a href="../../wonder/">Parcours Wonder</a></nav>
   <header class="p-head">
     <div class="led5 p-icon" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span></div>
     <div>
       <p class="eyebrow">Kit Wonder · niveau 3 · Ingénieur · 2 h · modèle 12</p>
       <h1>Le chariot télécommandé</h1>
-      <p class="lead">Une deuxième carte devient la télécommande du chariot élévateur, par radio.</p>
-      <ul class="learn"><li class="lbl">Notions</li><li>moteurs</li><li>servo</li><li>radio</li><li>conditions</li><li>construire</li></ul>
+      <ul class="learn"><li class="lbl">Notions</li><li>moteurs</li><li>servo</li><li>radio</li><li>conditions</li></ul>
     </div>
   </header>
   <div class="p-bar">
@@ -34,44 +33,48 @@
       </span>
       <span class="small">Copilote : <b id="copilot">Équipier 2</b></span>
     </div>
-    <span class="lvl l1">Juste l'objectif</span>
-    <button class="done-btn" type="button" data-done-projet aria-pressed="false">Projet réussi ?</button>
+    <div class="p-bar-r">
+      <span class="lvl l1">Juste l'objectif</span>
+      <span class="etat" data-etat>À faire</span>
+      <a class="btn mk" href="https://makecode.microbit.org/" target="_blank" rel="noopener">Ouvrir MakeCode <span aria-hidden="true">↗</span></a>
+    </div>
   </div>
   
-  <main class="p-main">
-<p class="goal"><b>Votre mission :</b> une deuxième carte devient la télécommande. A : le chariot avance. B : il recule. A et B ensemble : il s'arrête. Et la fourche monte ou descend quand on penche la télécommande à droite ou à gauche.</p>
+  <div class="p-main">
+<p class="goal"><b>Ta mission :</b> une deuxième carte devient la télécommande. A : le chariot avance. B : il recule. A et B ensemble : il s'arrête. Et la fourche monte ou descend quand on penche la télécommande à droite ou à gauche.</p>
 <div class="build">
-  <p><b>Construire :</b> <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Case_12.html" target="_blank" rel="noopener">la fiche de montage du chariot élévateur (modèle 12)</a>. Pensez au <a href="../wonder-testeur-servo/">testeur de servo</a> avant de monter la fourche.</p>
+  <p><b>Construire :</b> <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Case_12.html" target="_blank" rel="noopener">la fiche de montage du chariot élévateur (modèle 12)</a>. Pense au <a href="../wonder-testeur-servo/">testeur de servo</a> avant de monter la fourche.</p>
   <div class="wire"><span>moteur → <b>M1</b></span><span>moteur → <b>M2</b></span><span>servo → <b>S0</b></span></div>
   <p class="small">La fiche officielle utilise une manette Joystick:bit, qui n'est pas dans le kit. Ici, une deuxième carte micro:bit la remplace.</p>
 </div>
 <div class="predict">
-  <p class="pt">Prédisez d'abord</p>
-  <p>Deux équipes jouent avec deux chariots dans la même pièce. Que va-t-il se passer ? Comment l'éviter ?</p>
-  <textarea data-k="wonder-chariot-telecommande_pred" rows="2" placeholder="Notre prédiction…"></textarea>
+  <p class="pt">Prédis d'abord</p>
+  <p>Deux équipes ont fait exactement les mêmes programmes. Elles jouent avec leurs deux chariots dans la même pièce. Une équipe appuie sur A : que va-t-il se passer ?</p>
+  <textarea data-k="wonder-chariot-telecommande_pred" rows="2" placeholder="Ma prédiction…"></textarea>
 </div>
 <div class="carnet-form">
   <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>Note dans le carnet</p>
   <div class="numrow">
-    <label>Fourche en bas : <input class="numin wide" type="number" min="0" max="360" data-k="w_f_bas"> °</label>
-    <label>Fourche en haut : <input class="numin wide" type="number" min="0" max="360" data-k="w_f_haut"> °</label>
-    <label>Groupe radio : <input class="numin" type="number" min="0" max="255" data-k="w_groupe"></label>
+    <label>Fourche en bas : <input class="numin wide" type="number" min="0" max="360" data-k="w_f_bas"> °</label>
+    <label>Fourche en haut : <input class="numin wide" type="number" min="0" max="360" data-k="w_f_haut"> °</label>
+    <label>Groupe radio : <input class="numin" type="number" min="0" max="255" data-k="w_groupe"></label>
   </div>
-  <p class="saved" hidden>Noté. La solution utilise vos réglages.</p>
+  <p class="small" data-apres="wonder-chariot-telecommande_pred">Deux équipes dans la même pièce : chacune choisit son propre groupe radio, le même sur sa télécommande et sur son chariot.</p>
+  <p class="saved" hidden>Noté. La solution utilise tes réglages.</p>
 </div>
-<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>La télécommande ne peut pas faire tourner les moteurs du chariot : elle peut seulement envoyer un message. Quel message, pour chaque bouton ? Un nombre différent par ordre, peut-être ?</p></div></details>
-<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le tiroir <span class="kw" style="--cat:var(--c-radio)">Radio</span> : un bloc pour choisir le groupe (le même sur les deux cartes), un bloc pour envoyer un nombre, un bloc qui réagit quand un nombre arrive. Pour pencher la carte : le bloc des gestes, dans Entrées.</p></div></details>
-<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Au restaurant, le serveur ne cuisine pas : il apporte un numéro de commande en cuisine, et le cuisinier sait quel plat préparer. La télécommande est le serveur, le chariot est le cuisinier.</p></div></details>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>La télécommande ne peut pas faire tourner les moteurs du chariot : elle peut seulement envoyer un message. Quel message, pour chaque bouton ? Un nombre différent par ordre, peut-être ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le tiroir <span class="kw" style="--cat:var(--c-radio)">Radio</span> : un bloc pour choisir le groupe (le même sur les deux cartes), un bloc pour envoyer un nombre, un bloc qui réagit quand un nombre arrive. Pour pencher la carte : le bloc des gestes, dans Entrées.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Au restaurant, le serveur ne cuisine pas : il apporte un numéro de commande en cuisine, et le cuisinier sait quel plat préparer. La télécommande est le serveur, le chariot est le cuisinier.</p></div></details>
 <div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden>
-  <p><b>Programme de la télécommande</b> (la deuxième carte, avec son boîtier de piles) :</p>
+  <p><b>Programme de la télécommande</b> (la deuxième carte, avec son boîtier de piles) :</p>
   <div class="prog" data-prog="tele"></div>
-  <p><b>Programme du chariot</b> (la carte plantée dans la Wukong) :</p>
+  <p><b>Programme du chariot</b> (la carte plantée dans la Wukong) :</p>
   <div class="prog" data-prog="chariot"></div>
 </div></div>
-<div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="wonder-chariot-telecommande_res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="wonder-chariot-telecommande_res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
 <div class="bonus">
-  <h3><span>Défi bonus</span>Tourner</h3>
-  <p>Ajoutez deux ordres : tourner à gauche et tourner à droite. Quels gestes ou quels boutons de la télécommande allez-vous utiliser ?</p>
+  <h2 class="h3"><span>Défi bonus</span>Tourner</h2>
+  <p>Ajoute deux ordres : tourner à gauche et tourner à droite. Quels gestes ou quels boutons de la télécommande vas-tu utiliser ?</p>
 </div>
 <script>
 Object.assign(PROJET.progs, {
@@ -96,10 +99,11 @@ Object.assign(PROJET.progs, {
 });
 </script>
 
-  </main>
-  <nav class="p-nav" aria-label="Et après ?"><div class="p-seq"><p class="eyebrow">Parcours Wonder · étape 10 sur 10</p><div class="p-links"><a class="p-link" href="../wonder-suiveur-de-ligne/"><span class="eyebrow">← Étape précédente</span><b>Le suiveur de ligne</b></a></div></div><div class="p-related"><p class="eyebrow">Projets proches</p><div class="mini-cards"><a class="mini-card" href="../wonder-bras-robot/"><div class="led5" aria-hidden="true"><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span></div><span><b>Le bras robot</b><small>Wonder · niveau 3</small></span></a><a class="mini-card" href="../wonder-camion-echelle/"><div class="led5" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span></div><span><b>Le camion à grande échelle</b><small>Wonder · niveau 3</small></span></a><a class="mini-card" href="../wonder-sechoir-pluie/"><div class="led5" aria-hidden="true"><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span></div><span><b>Le séchoir qui sent la pluie</b><small>Wonder · niveau 3</small></span></a></div></div></nav>
-  <footer class="p-foot small">Les prénoms se règlent sur l'<a href="../../">accueil</a>. Code parent, sécurité et remise à zéro : <a href="../../parents/">page des parents</a>.</footer>
-</div>
+  </div>
+  <section class="p-finish" aria-label="Fin du projet" data-fin="../../wonder/" data-fin-titre="Parcours Wonder"></section>
+  <nav class="p-nav" aria-label="Et après ?"><div class="p-seq"><p class="eyebrow">Parcours Wonder · étape 10 sur 10</p><div class="p-links"><a class="p-link" href="../wonder-suiveur-de-ligne/"><span class="eyebrow">← Étape précédente</span><b>Le suiveur de ligne</b></a></div></div><div class="p-related"><p class="eyebrow">Projets proches</p><div class="mini-cards"><a class="mini-card" href="../wonder-bras-robot/"><div class="led5" aria-hidden="true"><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span></div><span><b>Le bras robot</b><small>Wonder · niveau 3 · Juste l'objectif</small></span></a><a class="mini-card" href="../wonder-camion-echelle/"><div class="led5" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span></div><span><b>Le camion à grande échelle</b><small>Wonder · niveau 3 · Juste l'objectif</small></span></a><a class="mini-card" href="../wonder-sechoir-pluie/"><div class="led5" aria-hidden="true"><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span></div><span><b>Le séchoir qui sent la pluie</b><small>Wonder · niveau 3 · Juste l'objectif</small></span></a></div></div></nav>
+  <footer class="p-foot small">Les prénoms se règlent sur l'<a href="../../">accueil</a>. Code parent, sécurité et sauvegarde : <a href="../../parents/">page des parents</a>.</footer>
+</main>
 <script src="../../assets/progression.js"></script>
 <script src="../../assets/blocs.js"></script>
 <script src="../../assets/projet.js"></script>

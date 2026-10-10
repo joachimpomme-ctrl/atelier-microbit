@@ -29,7 +29,6 @@
 .more-notions[hidden]{display:none}
 .status{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between}
 .status strong{font:700 18px var(--f-display)}
-.linkish{background:none;border:none;color:var(--accent);font:700 15px var(--f-body);cursor:pointer;padding:4px 0;text-decoration:underline;text-underline-offset:3px}
 .group{display:grid;gap:12px}
 .group-head{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
 .group-head h2{font:700 26px/1.1 var(--f-display)}
@@ -39,18 +38,18 @@
 </style>
 </head>
 <body>
-<div class="page bank">
+<main class="page bank">
   <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../">Accueil</a> <span aria-hidden="true">›</span> <span>Banque de projets</span></nav>
   <header class="bank-head">
     <p class="eyebrow">micro:bit · robots · machines · IA</p>
     <h1>La banque de projets</h1>
-    <p class="lead">Tous les projets, rangés par matériel. Cherchez un mot, ou filtrez par niveau et par notion. Chaque projet a sa page, avec une prédiction, des indices et une solution chez les parents.</p>
+    <p class="lead">Tous les projets, rangés par matériel. Cherche un mot, ou filtre par niveau et par notion. Chaque projet a sa page : une prédiction, des indices, et une solution gardée par les parents.</p>
   </header>
 
   <section class="tools" aria-label="Recherche et filtres">
     <div class="search">
       <label class="sr" for="q">Chercher un projet</label>
-      <input id="q" type="search" placeholder="Chercher : radar, servo, musique, chien…" autocomplete="off">
+      <input id="q" type="search" placeholder="radar, servo, musique, chien…" autocomplete="off">
     </div>
     <div class="fgroups">
       <div class="fgroup" id="f-materiel"><span class="eyebrow">Matériel</span></div>
@@ -65,7 +64,7 @@
   </section>
 
   <div id="results" class="fgroups" style="gap:28px"></div>
-</div>
+</main>
 
 <script src="../assets/catalogue.js"></script>
 <script src="../assets/progression.js"></script>
@@ -80,10 +79,39 @@ var NOTIONS_VISIBLES=10;
 var state={q:"",materiel:[],niveau:[],notion:[],etat:"",parcours:""};
 
 function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
-function norm(s){ return String(s).normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase(); }
+function norm(s){ return String(s).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase(); }
 function led(pat){ return pat.replace(/,/g,"").split("").map(function(c){ return '<span'+(c==="#"?' class="on"':'')+'></span>'; }).join(""); }
+
+/* ---------- Recherche tolérante : petits mots ignorés, singulier/pluriel, synonymes ---------- */
+var VIDES="a au aux avec ce cette de des du en et je la le les mon ma mes moi ou par pour projet projets qui que sur te tu ton ta tes un une veux voudrais faire fait carte cartes".split(" ");
+var SYN={ "servomoteur":["servo"], "telecommande":["radio","telecommande"], "telecommander":["radio","telecommande"], "manette":["radio","telecommande"],
+  "musique":["musique","son","melodie","note","guitare"], "melodie":["musique","son","melodie"], "chanson":["musique","son","melodie"], "son":["son","musique","melodie"],
+  "lumiere":["lumiere","led","neopixel","veilleuse","phare"], "led":["led","lumiere","neopixel"], "lampe":["lumiere","led","veilleuse"],
+  "jeu":["jeu","jouer","partie"], "jouer":["jeu","jouer","partie"], "voiture":["voiture","moto","chariot","camion","vehicule","robot"],
+  "capteur":["capteur","ultrason","sonar","suivi","distance","lumiere","temperature"], "distance":["distance","ultrason","radar"], "radar":["radar","ultrason","distance"],
+  "ia":["ia","intelligence","apprentissage","createai"], "intelligence":["ia","intelligence"], "robot":["robot","minicar"], "animal":["chien","araignee","chenille"],
+  "temperature":["temperature","thermometre"], "boussole":["boussole","nord"], "hasard":["hasard"] };
+function stem(w){ return (w.length>3 && /[sx]$/.test(w)) ? w.slice(0,-1) : w; }
+function mots(t){ return norm(t).replace(/[^a-z0-9]+/g," ").split(" ").filter(Boolean).map(stem); }
+function requete(q){
+  var low=String(q).toLowerCase().replace(/intelligence artificielle/g,"ia");
+  return low.split(/[\s,;:!?.'’"()\-]+/).filter(Boolean).map(function(t){
+    var n=stem(norm(t)), accent=(t!==norm(t));
+    if(VIDES.indexOf(n)>=0 && !accent) return null;
+    return {n:n, brut:t, accent:accent, alts:(SYN[n]||[n]).map(stem)};
+  }).filter(Boolean);
+}
+/* un mot de 3 lettres ou moins doit être entier (avec ses accents s'il en a : « dé ») ; plus long, il suffit qu'il commence un mot */
+function trouve(p,tok){
+  return tok.alts.some(function(a){
+    if(a.length>3) return p._mots.some(function(w){ return w.indexOf(a)===0; });
+    if(a===tok.n && tok.accent) return p._brut.indexOf(tok.brut)>=0 || p._brut.indexOf(tok.brut.replace(/s$/,""))>=0;
+    return p._mots.indexOf(a)>=0;
+  });
+}
 function lvl(n){ var s=""; for(var i=1;i<=3;i++) s+='<i'+(i<=n?' class="on"':'')+'></i>'; return '<span class="lv" aria-hidden="true">'+s+'</span>'; }
-C.projets.forEach(function(p){ p._done=window.BANQUE_STORE.estReussi(p,S); p._txt=norm([p.titre,p.resume,p.notions.join(" "),MAT[p.materiel].nom,p.modele?("modele "+p.modele):""].join(" ")); });
+C.projets.forEach(function(p){ p._done=window.BANQUE_STORE.estReussi(p,S); var txt=[p.titre,p.resume,p.notions.join(" "),MAT[p.materiel].nom,p.modele?("modele "+p.modele):""].join(" "); p._mots=mots(txt); p._brut=txt.toLowerCase().split(/[\s,;:!?.'’"()\-]+/).filter(Boolean); });
+var modeOu=false;
 
 /* ---------- État dans l'adresse (#materiel=wonder&notion=radio) ---------- */
 function readHash(){
@@ -102,7 +130,8 @@ function writeHash(){
 
 /* ---------- Filtres ---------- */
 function match(p,skip){
-  if(state.q){ var words=norm(state.q).split(/\s+/).filter(Boolean); for(var i=0;i<words.length;i++) if(p._txt.indexOf(words[i])<0) return false; }
+  if(state.q){ var rq=requete(state.q);
+    if(rq.length){ if(modeOu){ if(!rq.some(function(a){ return trouve(p,a); })) return false; } else if(!rq.every(function(a){ return trouve(p,a); })) return false; } }
   if(skip!=="materiel" && state.materiel.length && state.materiel.indexOf(p.materiel)<0) return false;
   if(skip!=="niveau" && state.niveau.length && state.niveau.indexOf(String(p.niveau))<0) return false;
   if(skip!=="notion" && state.notion.length && !state.notion.every(function(n){ return p.notions.indexOf(n)>=0; })) return false;
@@ -134,7 +163,9 @@ function renderFilters(){
 function card(p){ return window.CARTES.card(p,"../"); }
 function render(){
   renderFilters();
+  modeOu=false;
   var list=C.projets.filter(function(p){ return match(p); });
+  if(!list.length && state.q && requete(state.q).length>1){ modeOu=true; list=C.projets.filter(function(p){ return match(p); }); }
   document.getElementById("count").textContent=list.length;
   document.getElementById("count-txt").textContent=list.length>1?" projets":" projet";
   var pa=document.getElementById("parcours-actif");
@@ -147,7 +178,9 @@ function render(){
     var dn=items.filter(function(p){return p._done;}).length;
     out+='<section class="group"><div class="group-head"><h2>'+esc(MAT[m].nom)+'</h2><p>'+esc(MAT[m].desc)+' '+items.length+' projet'+(items.length>1?"s":"")+(dn?', '+dn+' réussi'+(dn>1?"s":""):'')+'.</p></div><div class="cards">'+items.map(card).join("")+'</div></section>';
   });
-  document.getElementById("results").innerHTML=out||'<p class="empty">Aucun projet ne correspond. Essayez un autre mot, ou <button class="linkish" type="button" data-reset>tout afficher</button>.</p>';
+  var conseil=modeOu?'<p class="tip">Aucun projet n\'a tous ces mots. Voici ceux qui en ont au moins un.</p>':'';
+  var idees=["radio","servo","musique","moteurs","ultrasons","hasard"].map(function(n){ return '<button class="chip-f" type="button" data-idee="'+n+'">'+n+'</button>'; }).join(" ");
+  document.getElementById("results").innerHTML=out?conseil+out:'<div class="empty"><p>Aucun projet ne correspond. Essaie un autre mot, ou <button class="linkish" type="button" data-reset>tout afficher</button>.</p><p style="margin-top:10px">Des idées : '+idees+'</p></div>';
   writeHash();
 }
 
@@ -157,6 +190,8 @@ document.addEventListener("click",function(e){
     if(g==="etat") state.etat=(state.etat===v?"":v);
     else { var i=state[g].indexOf(v); if(i>=0) state[g].splice(i,1); else state[g].push(v); }
     render(); return; }
+  var idee=e.target.closest("[data-idee]");
+  if(idee){ state={q:idee.getAttribute("data-idee"),materiel:[],niveau:[],notion:[],etat:"",parcours:""}; document.getElementById("q").value=state.q; render(); return; }
   if(e.target.id==="more"){ document.getElementById("f-notion").classList.add("open"); render(); return; }
   if(e.target.id==="clear-parcours"){ state.parcours=""; render(); return; }
   if(e.target.id==="reset"||e.target.hasAttribute("data-reset")){ state={q:"",materiel:[],niveau:[],notion:[],etat:"",parcours:""}; document.getElementById("q").value=""; render(); }

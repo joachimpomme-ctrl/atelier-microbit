@@ -11,12 +11,12 @@ parcours: microbit
 ordre: 8
 icone: message
 -->
-<p class="goal"><b>Votre mission :</b> sur une carte, le bouton A envoie un cœur et le bouton B un sourire. L'autre carte affiche ce qu'elle reçoit. Et ça marche dans les deux sens.</p>
+<p class="goal"><b>Ta mission :</b> sur une carte, le bouton A envoie un cœur et le bouton B un sourire. L'autre carte affiche ce qu'elle reçoit. Et ça marche dans les deux sens.</p>
 <p class="small">Il faut deux cartes micro:bit, chacune avec son boîtier de piles.</p>
 <div class="predict">
-  <p class="pt">Prédisez d'abord</p>
+  <p class="pt">Prédis d'abord</p>
   <p>Faut-il écrire deux programmes différents, un pour chaque carte, ou un seul ?</p>
-  <textarea data-k="@pred" rows="2" placeholder="Notre prédiction…"></textarea>
+  <textarea data-k="@pred" rows="2" placeholder="Ma prédiction…"></textarea>
 </div>
 <div class="m-part">
   <h3>Le plan</h3>
@@ -24,7 +24,7 @@ icone: message
     <li>Au démarrage : choisir un groupe radio, le même sur les deux cartes.</li>
     <li>Bouton A : envoyer le nombre 1. Bouton B : envoyer le nombre 2.</li>
     <li>Quand un nombre arrive : si c'est 1, un cœur ; si c'est 2, un sourire.</li>
-    <li>Envoyez le même programme sur les deux cartes.</li>
+    <li data-apres="@pred">Envoie le même programme sur les deux cartes.</li>
   </ol>
 </div>
 <div class="carnet-form">
@@ -33,12 +33,12 @@ icone: message
 </div>
 <details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>On envoie un nombre, pas une image. Comment l'autre carte sait-elle quelle image afficher ?</p></div></details>
 <details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le tiroir <span class="kw" style="--cat:var(--c-radio)">Radio</span> : choisir le groupe, envoyer un nombre, réagir quand un nombre arrive.</p></div></details>
-<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Le code secret entre deux amis : « 1 » veut dire « viens jouer », « 2 » veut dire « à table ». Les deux connaissent le code à l'avance.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Un code secret entre deux amis : « 1 » veut dire « viens jouer », « 2 » veut dire « à table ». Quand ton ami reçoit « 2 », il sait tout de suite qu'il faut venir manger.</p></div></details>
 <div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden><div class="prog" data-prog="sol"></div></div></div>
-<div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
 <div class="bonus">
   <h3><span>Défi bonus</span>Les canaux secrets</h3>
-  <p>Changez de groupe radio avec A et B ensemble. Les messages d'une autre équipe n'arrivent plus.</p>
+  <p>Change de groupe radio avec A et B ensemble. Les messages d'une autre équipe n'arrivent plus.</p>
 </div>
 <script>
 Object.assign(PROJET.progs, { "sol": function(B){ return [

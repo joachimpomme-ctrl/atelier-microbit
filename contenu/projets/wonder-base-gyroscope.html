@@ -4,7 +4,7 @@ titre: La base à gyroscope
 resume: Une base qui fait tourner un gyroscope si vite qu'il tient debout tout seul.
 materiel: wonder
 niveau: 1
-aide: l1
+aide: l2
 duree: 45 min
 notions: moteurs, boutons, construire
 parcours: wonder
@@ -12,24 +12,33 @@ ordre: 103
 icone: gyro
 modele: 3
 -->
-<p class="goal"><b>Votre mission :</b> bouton B, le moteur démarre et lance le gyroscope posé sur les connecteurs jaunes. Quand il tourne assez vite, lâchez-le : il ne tombe pas. Bouton A, le moteur s'arrête.</p>
-<p class="small">Premier projet Wonder ? Commencez par <a href="../wonder-demarrer/">Bien démarrer avec le kit Wonder</a>, puis <a href="../wonder-helicoptere/">l'hélicoptère</a>.</p>
+<p class="goal"><b>Ta mission :</b> bouton B, le moteur démarre et lance le gyroscope posé sur les connecteurs jaunes. Quand il tourne assez vite, lâche-le : il ne tombe pas. Bouton A, le moteur s'arrête.</p>
+<p class="small">Premier projet Wonder ? Commence par <a href="../wonder-demarrer/">Bien démarrer avec le kit Wonder</a>, puis <a href="../wonder-helicoptere/">l'hélicoptère</a>.</p>
 <div class="build">
   <p><b>Construire :</b> <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Case_03.html" target="_blank" rel="noopener">la fiche de montage (modèle 3)</a>.</p>
   <div class="wire"><span>moteur → <b>M1</b></span></div>
   
 </div>
 <div class="predict">
-  <p class="pt">Prédisez d'abord</p>
+  <p class="pt">Prédis d'abord</p>
   <p>Pourquoi un gyroscope qui tourne vite ne tombe-t-il pas, alors qu'il tombe quand il est immobile ?</p>
-  <textarea data-k="@pred" rows="2" placeholder="Notre prédiction…"></textarea>
+  <textarea data-k="@pred" rows="2" placeholder="Ma prédiction…"></textarea>
 </div>
-<div class="challenge"><p class="pt">Votre défi en plus</p><h3>Le compte à rebours</h3><p>Bouton B : l'écran affiche 3, puis 2, puis 1, et seulement ensuite le moteur démarre.</p></div>
-<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Que doit afficher l'écran avant que le moteur démarre ? Combien de temps entre chaque chiffre ?</p></div></details>
-<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le bloc <span class="kw" style="--cat:var(--c-base)">montrer nombre</span> et le bloc <span class="kw" style="--cat:var(--c-base)">pause (ms)</span>, dans le tiroir Base.</p></div></details>
-<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Au départ d'une course : « à vos marques, prêts, partez ». Trois étapes, dans l'ordre, puis l'action.</p></div></details>
+<div class="m-part">
+  <h3>Le plan</h3>
+  <ol class="steps"><li>Construis la base avec la fiche de montage, moteur sur M1.</li><li>Bouton B : le moteur démarre.</li><li>Bouton A : le moteur s'arrête.</li><li>Teste d'abord sans le gyroscope. Puis pose-le sur les connecteurs jaunes et lance-le.</li></ol>
+</div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Deux boutons, deux ordres. Lequel lance le moteur, et lequel l'arrête ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Tiroir Entrées : un bloc <span class="kw" style="--cat:var(--c-input)">lorsque le bouton … est pressé</span> pour chaque bouton. Tiroir wuKong : <span class="kw" style="--cat:var(--c-wukong)">Set motor M1 speed to …</span> pour lancer, <span class="kw" style="--cat:var(--c-wukong)">Stop motor M1</span> pour arrêter.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Un mixeur de cuisine a un bouton pour lancer et un autre pour arrêter. Chaque bouton a un seul travail, comme dans <a href="../wonder-helicoptere/">l'hélicoptère</a>.</p></div></details>
 <div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden>
+  <p>La mission : bouton B, le moteur M1 à la vitesse 100 ; bouton A, arrêter le moteur M1.</p>
   <p>Pour le défi : dans le bouton B, trois fois « montrer nombre » suivi d'une pause de 1000 ms, puis le bloc du moteur M1 à vitesse 100.</p>
   <p class="small">Le programme du fabricant ELECFREAKS : <a href="https://makecode.microbit.org/_FFibega47Hwy" target="_blank" rel="noopener">programme officiel</a>. Il fait la mission de base, sans le défi.</p>
 </div></div>
-<div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+<div class="bonus">
+  <h3><span>Défi bonus</span>Le compte à rebours</h3>
+  <p>Bouton B : l'écran affiche 3, puis 2, puis 1, et seulement ensuite le moteur démarre.</p>
+  <details class="hint-defi"><summary>Un coup de pouce pour le défi</summary><div class="body"><p>Que doit afficher l'écran avant que le moteur démarre ? Combien de temps entre chaque chiffre ?</p><p>Au départ d'une course : « à vos marques, prêts, partez ». Trois étapes, dans l'ordre, puis l'action.</p></div></details>
+</div>

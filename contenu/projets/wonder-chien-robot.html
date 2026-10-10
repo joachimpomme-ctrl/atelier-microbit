@@ -4,7 +4,7 @@ titre: Le chien robot
 resume: Un chien qui marche au bouton A et s'arrête au bouton B, et qui aboie en bonus.
 materiel: wonder
 niveau: 1
-aide: l1
+aide: l2
 duree: 45 min
 notions: moteurs, boutons, son, construire
 parcours: wonder
@@ -12,24 +12,33 @@ ordre: 132
 icone: chien
 modele: 32
 -->
-<p class="goal"><b>Votre mission :</b> bouton A, le chien marche. Bouton B, il s'arrête.</p>
-<p class="small">Premier projet Wonder ? Commencez par <a href="../wonder-demarrer/">Bien démarrer avec le kit Wonder</a>, puis <a href="../wonder-helicoptere/">l'hélicoptère</a>.</p>
+<p class="goal"><b>Ta mission :</b> bouton A, le chien marche. Bouton B, il s'arrête.</p>
+<p class="small">Premier projet Wonder ? Commence par <a href="../wonder-demarrer/">Bien démarrer avec le kit Wonder</a>, puis <a href="../wonder-helicoptere/">l'hélicoptère</a>.</p>
 <div class="build">
   <p><b>Construire :</b> <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Wonder-Building-Kit-case-32.html" target="_blank" rel="noopener">la fiche de montage (modèle 32)</a>.</p>
   <div class="wire"><span>moteur → <b>M1</b></span></div>
   
 </div>
 <div class="predict">
-  <p class="pt">Prédisez d'abord</p>
+  <p class="pt">Prédis d'abord</p>
   <p>Comment un seul moteur peut-il faire marcher quatre pattes ?</p>
-  <textarea data-k="@pred" rows="2" placeholder="Notre prédiction…"></textarea>
+  <textarea data-k="@pred" rows="2" placeholder="Ma prédiction…"></textarea>
 </div>
-<div class="challenge"><p class="pt">Votre défi en plus</p><h3>Le chien obéissant</h3><p>Bouton A : il marche 3 secondes, s'arrête tout seul, puis aboie (son sur la micro:bit V2) ou remue la queue (une icône).</p></div>
-<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Qu'est-ce qui doit se passer, dans l'ordre, après un appui sur A ?</p></div></details>
-<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Moteur, puis pause de 3000 ms, puis arrêt, puis un son du tiroir Musique ou une icône.</p></div></details>
-<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Un dresseur dit « marche », compte, puis « stop » : les ordres arrivent les uns après les autres.</p></div></details>
+<div class="m-part">
+  <h3>Le plan</h3>
+  <ol class="steps"><li>Construis le chien avec la fiche de montage, moteur sur M1.</li><li>Bouton A : le moteur tourne et le chien marche.</li><li>Bouton B : le moteur s'arrête.</li><li>Teste-le sur une table dégagée, loin du bord.</li></ol>
+</div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Un seul moteur fait marcher les quatre pattes. Sur quelle prise est-il branché ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Tiroir wuKong : <span class="kw" style="--cat:var(--c-wukong)">Set motor M1 speed to …</span> dans le bouton A, <span class="kw" style="--cat:var(--c-wukong)">Stop motor M1</span> dans le bouton B.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Dans <a href="../wonder-helicoptere/">l'hélicoptère</a>, un bouton lançait l'hélice et un autre l'arrêtait. Ici, c'est un chien au lieu d'une hélice.</p></div></details>
 <div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden>
+  <p>La mission : bouton A, le moteur M1 à une vitesse ; bouton B, arrêter le moteur M1.</p>
   <p>Pour le défi : dans le bouton A, moteur M1 à 100, pause 3000 ms, arrêter le moteur M1, puis un son ou une icône.</p>
   <p class="small">Le programme du fabricant ELECFREAKS : <a href="https://makecode.microbit.org/_E5pWvtMr1CK1" target="_blank" rel="noopener">programme officiel</a>. Il fait la mission de base, sans le défi.</p>
 </div></div>
-<div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+<div class="bonus">
+  <h3><span>Défi bonus</span>Le chien obéissant</h3>
+  <p>Bouton A : il marche 3 secondes, s'arrête tout seul, puis aboie (son sur la micro:bit V2) ou remue la queue (une icône).</p>
+  <details class="hint-defi"><summary>Un coup de pouce pour le défi</summary><div class="body"><p>Qu'est-ce qui doit se passer, dans l'ordre, après un appui sur A ?</p><p>Un dresseur dit « marche », compte, puis « stop » : les ordres arrivent les uns après les autres.</p></div></details>
+</div>

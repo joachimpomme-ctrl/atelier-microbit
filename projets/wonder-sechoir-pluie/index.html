@@ -14,15 +14,14 @@
 </head>
 <body data-racine="../../">
 <!-- Page générée par outils/generer.py à partir de contenu/projets/wonder-sechoir-pluie.html : modifier la source, pas cette page. -->
-<div class="page proj">
+<main class="page proj">
   <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../../">Accueil</a> <span aria-hidden="true">›</span> <a href="../">Banque de projets</a> <span aria-hidden="true">›</span> <a href="../../wonder/">Parcours Wonder</a></nav>
   <header class="p-head">
     <div class="led5 p-icon" aria-hidden="true"><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span></div>
     <div>
       <p class="eyebrow">Kit Wonder · niveau 3 · Ingénieur · 2 h · modèle 20</p>
       <h1>Le séchoir qui sent la pluie</h1>
-      <p class="lead">Un séchoir à linge qui sort au soleil et rentre tout seul quand il pleut.</p>
-      <ul class="learn"><li class="lbl">Notions</li><li>moteurs</li><li>servo</li><li>capteurs</li><li>variables</li><li>conditions</li><li>construire</li></ul>
+      <ul class="learn"><li class="lbl">Notions</li><li>moteurs</li><li>servo</li><li>capteurs</li><li>variables</li><li>conditions</li></ul>
     </div>
   </header>
   <div class="p-bar">
@@ -34,37 +33,44 @@
       </span>
       <span class="small">Copilote : <b id="copilot">Équipier 2</b></span>
     </div>
-    <span class="lvl l1">Juste l'objectif</span>
-    <button class="done-btn" type="button" data-done-projet aria-pressed="false">Projet réussi ?</button>
+    <div class="p-bar-r">
+      <span class="lvl l1">Juste l'objectif</span>
+      <span class="etat" data-etat>À faire</span>
+      <a class="btn mk" href="https://makecode.microbit.org/" target="_blank" rel="noopener">Ouvrir MakeCode <span aria-hidden="true">↗</span></a>
+    </div>
   </div>
   
-  <main class="p-main">
-<p class="goal"><b>Votre mission :</b> bouton A, les fenêtres s'ouvrent et le séchoir sort. Bouton B, il rentre et les fenêtres se ferment. Et si le capteur sent de l'eau, le séchoir rentre tout seul.</p>
-<p class="small">Premier projet Wonder ? Commencez par <a href="../wonder-demarrer/">Bien démarrer avec le kit Wonder</a>, puis <a href="../wonder-helicoptere/">l'hélicoptère</a>.</p>
+  <div class="p-main">
+<p class="goal"><b>Ta mission :</b> bouton A, les fenêtres s'ouvrent et le séchoir sort. Bouton B, il rentre et les fenêtres se ferment. Et si le capteur sent de l'eau, le séchoir rentre tout seul.</p>
+<p class="small">Premier projet Wonder ? Commence par <a href="../wonder-demarrer/">Bien démarrer avec le kit Wonder</a>, puis <a href="../wonder-helicoptere/">l'hélicoptère</a>.</p>
 <div class="build">
-  <p><b>Construire :</b> <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Case_20.html" target="_blank" rel="noopener">la fiche de montage (modèle 20)</a>.</p>
+  <p><b>Construire :</b> <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Case_20.html" target="_blank" rel="noopener">la fiche de montage (modèle 20)</a>.</p>
   <div class="wire"><span>moteur → <b>M1</b></span><span>moteur → <b>M2</b></span><span>servo → <b>S1</b></span><span>niveau d'eau → <b>P1</b></span></div>
-  <p class="small"><b>Sécurité :</b> quelques gouttes d'eau sur le capteur seulement, avec un compte-gouttes ou un doigt mouillé. Jamais d'eau près de la carte Wukong ni de sa batterie.</p><p class="small">Le programme officiel lit le capteur avec un bloc qui donne une valeur de 0 à 100. Ouvrez le programme officiel avec un parent pour récupérer ce bloc. Sinon, le bloc de lecture analogique du tiroir Broches donne un nombre de 0 à 1023 : mesurez d'abord sec, puis mouillé.</p><p class="small">Réglez le servo avec <a href="../wonder-testeur-servo/">le testeur de servo</a> avant de monter les fenêtres.</p>
+  <p class="small"><b>Sécurité :</b> quelques gouttes d'eau sur le capteur seulement, avec un compte-gouttes ou un doigt mouillé. Jamais d'eau près de la carte Wukong ni de sa batterie.</p><p class="small">Le programme officiel lit le capteur avec un bloc qui donne une valeur de 0 à 100. Ouvre le programme officiel avec un parent pour récupérer ce bloc. Sinon, le bloc de lecture analogique du tiroir Broches donne un nombre de 0 à 1023 : mesure d'abord sec, puis mouillé.</p><p class="small">Règle le servo avec <a href="../wonder-testeur-servo/">le testeur de servo</a> avant de monter les fenêtres.</p>
 </div>
 <div class="predict">
-  <p class="pt">Prédisez d'abord</p>
-  <p>Il pleut pendant 10 minutes. Si le programme ne retient pas que le séchoir est déjà rentré, que va-t-il se passer ?</p>
-  <textarea data-k="wonder-sechoir-pluie_pred" rows="2" placeholder="Notre prédiction…"></textarea>
+  <p class="pt">Prédis d'abord</p>
+  <p>Il pleut pendant 10 minutes. Si le programme ne retient pas que le séchoir est déjà rentré, que va-t-il se passer ?</p>
+  <textarea data-k="wonder-sechoir-pluie_pred" rows="2" placeholder="Ma prédiction…"></textarea>
 </div>
-<div class="challenge"><p class="pt">Votre défi en plus</p><h3>Le séchoir intelligent</h3><p>Quand la pluie s'arrête, le séchoir ressort tout seul.</p></div>
-<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Le programme doit se souvenir si le séchoir est dehors ou rentré. Quel genre de variable sert à se souvenir d'un oui ou d'un non ?</p></div></details>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Le programme doit se souvenir si le séchoir est dehors ou rentré. Quel genre de variable sert à se souvenir d'un oui ou d'un non ?</p></div></details>
 <details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Une variable qui vaut vrai ou faux (tiroir Logique pour vrai et faux). On rentre le séchoir seulement s'il pleut <b>et</b> qu'il est dehors.</p></div></details>
-<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Un parapluie : on l'ouvre quand il commence à pleuvoir, pas à chaque goutte.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Un parapluie : on l'ouvre quand il commence à pleuvoir, pas à chaque goutte.</p></div></details>
 <div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden>
-  <p>Le programme officiel retient dans une variable si l'eau a déjà été détectée. Seuil : valeur plus grande que 10. Il rentre alors le séchoir (servo et moteurs pendant 500 ms) une seule fois.</p>
-  <p class="small">Le programme du fabricant ELECFREAKS : <a href="https://makecode.microbit.org/_diR3FMErAfWF" target="_blank" rel="noopener">programme officiel</a>. Il fait la mission de base, sans le défi.</p>
+  <p>Le programme officiel retient dans une variable si l'eau a déjà été détectée. Seuil : valeur plus grande que 10. Il rentre alors le séchoir (servo et moteurs pendant 500 ms) une seule fois.</p>
+  <p class="small">Le programme du fabricant ELECFREAKS : <a href="https://makecode.microbit.org/_diR3FMErAfWF" target="_blank" rel="noopener">programme officiel</a>. Il fait la mission de base, sans le défi.</p>
 </div></div>
-<div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="wonder-sechoir-pluie_res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
-
-  </main>
-  <nav class="p-nav" aria-label="Et après ?"><div class="p-seq"><p class="eyebrow">Parcours Wonder · toutes les machines · 15 sur 24</p><div class="p-links"><a class="p-link" href="../wonder-chenille/"><span class="eyebrow">← Machine précédente</span><b>La chenille</b></a><a class="p-link next" href="../wonder-araignee/"><span class="eyebrow">Machine suivante →</span><b>L&#x27;araignée marcheuse</b></a></div></div><div class="p-related"><p class="eyebrow">Projets proches</p><div class="mini-cards"><a class="mini-card" href="../wonder-bateau-pirate/"><div class="led5" aria-hidden="true"><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div><span><b>Le bateau pirate</b><small>Wonder · niveau 3</small></span></a><a class="mini-card" href="../wonder-chariot-telecommande/"><div class="led5" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span></div><span><b>Le chariot télécommandé</b><small>Wonder · niveau 3</small></span></a><a class="mini-card" href="../wonder-voiture-prudente/"><div class="led5" aria-hidden="true"><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span></div><span><b>La voiture prudente</b><small>Wonder · niveau 2</small></span></a></div></div></nav>
-  <footer class="p-foot small">Les prénoms se règlent sur l'<a href="../../">accueil</a>. Code parent, sécurité et remise à zéro : <a href="../../parents/">page des parents</a>.</footer>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="wonder-sechoir-pluie_res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+<div class="bonus">
+  <h2 class="h3"><span>Défi bonus</span>Le séchoir intelligent</h2>
+  <p>Quand la pluie s'arrête, le séchoir ressort tout seul.</p>
 </div>
+
+  </div>
+  <section class="p-finish" aria-label="Fin du projet" data-suivant="../wonder-araignee/" data-suivant-titre="L&#x27;araignée marcheuse"></section>
+  <nav class="p-nav" aria-label="Et après ?"><div class="p-seq"><p class="eyebrow">Parcours Wonder · toutes les machines · 15 sur 24</p><div class="p-links"><a class="p-link" href="../wonder-chenille/"><span class="eyebrow">← Machine précédente</span><b>La chenille</b></a><a class="p-link next" href="../wonder-araignee/"><span class="eyebrow">Machine suivante →</span><b>L&#x27;araignée marcheuse</b></a></div></div><div class="p-related"><p class="eyebrow">Projets proches</p><div class="mini-cards"><a class="mini-card" href="../wonder-chariot-telecommande/"><div class="led5" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span></div><span><b>Le chariot télécommandé</b><small>Wonder · niveau 3 · Juste l'objectif</small></span></a><a class="mini-card" href="../wonder-bateau-pirate/"><div class="led5" aria-hidden="true"><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div><span><b>Le bateau pirate</b><small>Wonder · niveau 3 · Juste l'objectif</small></span></a><a class="mini-card" href="../wonder-voiture-prudente/"><div class="led5" aria-hidden="true"><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span></div><span><b>La voiture prudente</b><small>Wonder · niveau 2 · Juste le plan</small></span></a></div></div></nav>
+  <footer class="p-foot small">Les prénoms se règlent sur l'<a href="../../">accueil</a>. Code parent, sécurité et sauvegarde : <a href="../../parents/">page des parents</a>.</footer>
+</main>
 <script src="../../assets/progression.js"></script>
 <script src="../../assets/blocs.js"></script>
 <script src="../../assets/projet.js"></script>

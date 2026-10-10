@@ -12,16 +12,16 @@ ordre: 9
 icone: chariot
 modele: 12
 -->
-<p class="goal"><b>Votre mission :</b> une deuxième carte devient la télécommande. A : le chariot avance. B : il recule. A et B ensemble : il s'arrête. Et la fourche monte ou descend quand on penche la télécommande à droite ou à gauche.</p>
+<p class="goal"><b>Ta mission :</b> une deuxième carte devient la télécommande. A : le chariot avance. B : il recule. A et B ensemble : il s'arrête. Et la fourche monte ou descend quand on penche la télécommande à droite ou à gauche.</p>
 <div class="build">
-  <p><b>Construire :</b> <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Case_12.html" target="_blank" rel="noopener">la fiche de montage du chariot élévateur (modèle 12)</a>. Pensez au <a href="../wonder-testeur-servo/">testeur de servo</a> avant de monter la fourche.</p>
+  <p><b>Construire :</b> <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Case_12.html" target="_blank" rel="noopener">la fiche de montage du chariot élévateur (modèle 12)</a>. Pense au <a href="../wonder-testeur-servo/">testeur de servo</a> avant de monter la fourche.</p>
   <div class="wire"><span>moteur → <b>M1</b></span><span>moteur → <b>M2</b></span><span>servo → <b>S0</b></span></div>
   <p class="small">La fiche officielle utilise une manette Joystick:bit, qui n'est pas dans le kit. Ici, une deuxième carte micro:bit la remplace.</p>
 </div>
 <div class="predict">
-  <p class="pt">Prédisez d'abord</p>
-  <p>Deux équipes jouent avec deux chariots dans la même pièce. Que va-t-il se passer ? Comment l'éviter ?</p>
-  <textarea data-k="@pred" rows="2" placeholder="Notre prédiction…"></textarea>
+  <p class="pt">Prédis d'abord</p>
+  <p>Deux équipes ont fait exactement les mêmes programmes. Elles jouent avec leurs deux chariots dans la même pièce. Une équipe appuie sur A : que va-t-il se passer ?</p>
+  <textarea data-k="@pred" rows="2" placeholder="Ma prédiction…"></textarea>
 </div>
 <div class="carnet-form">
   <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
@@ -30,7 +30,8 @@ modele: 12
     <label>Fourche en haut : <input class="numin wide" type="number" min="0" max="360" data-k="w_f_haut"> °</label>
     <label>Groupe radio : <input class="numin" type="number" min="0" max="255" data-k="w_groupe"></label>
   </div>
-  <p class="saved" hidden>Noté. La solution utilise vos réglages.</p>
+  <p class="small" data-apres="@pred">Deux équipes dans la même pièce : chacune choisit son propre groupe radio, le même sur sa télécommande et sur son chariot.</p>
+  <p class="saved" hidden>Noté. La solution utilise tes réglages.</p>
 </div>
 <details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>La télécommande ne peut pas faire tourner les moteurs du chariot : elle peut seulement envoyer un message. Quel message, pour chaque bouton ? Un nombre différent par ordre, peut-être ?</p></div></details>
 <details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le tiroir <span class="kw" style="--cat:var(--c-radio)">Radio</span> : un bloc pour choisir le groupe (le même sur les deux cartes), un bloc pour envoyer un nombre, un bloc qui réagit quand un nombre arrive. Pour pencher la carte : le bloc des gestes, dans Entrées.</p></div></details>
@@ -41,10 +42,10 @@ modele: 12
   <p><b>Programme du chariot</b> (la carte plantée dans la Wukong) :</p>
   <div class="prog" data-prog="chariot"></div>
 </div></div>
-<div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
 <div class="bonus">
   <h3><span>Défi bonus</span>Tourner</h3>
-  <p>Ajoutez deux ordres : tourner à gauche et tourner à droite. Quels gestes ou quels boutons de la télécommande allez-vous utiliser ?</p>
+  <p>Ajoute deux ordres : tourner à gauche et tourner à droite. Quels gestes ou quels boutons de la télécommande vas-tu utiliser ?</p>
 </div>
 <script>
 Object.assign(PROJET.progs, {

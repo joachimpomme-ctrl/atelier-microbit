@@ -13,19 +13,18 @@ icone: note
 modele: 14
 v2: oui
 -->
-<p class="goal"><b>Votre mission :</b> chaque distance entre la main et le capteur joue une note différente, comme une gamme.</p>
-<p class="small">Premier projet Wonder ? Commencez par <a href="../wonder-demarrer/">Bien démarrer avec le kit Wonder</a>, puis <a href="../wonder-helicoptere/">l'hélicoptère</a>.</p>
+<p class="goal"><b>Ta mission :</b> chaque distance entre la main et le capteur joue une note différente, comme une gamme.</p>
+<p class="small">Premier projet Wonder ? Commence par <a href="../wonder-demarrer/">Bien démarrer avec le kit Wonder</a>, puis <a href="../wonder-helicoptere/">l'hélicoptère</a>.</p>
 <div class="build">
   <p><b>Construire :</b> <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Case_14.html" target="_blank" rel="noopener">la fiche de montage (modèle 14)</a>.</p>
   <div class="wire"><span>ultrasons → <b>P1</b></span></div>
   <p class="small">Le son sort du haut-parleur de la micro:bit V2. Le programme officiel l'active au démarrage avec un bloc du tiroir Musique.</p>
 </div>
 <div class="predict">
-  <p class="pt">Prédisez d'abord</p>
+  <p class="pt">Prédis d'abord</p>
   <p>La main à 7 cm, puis à 19 cm : la deuxième note sera-t-elle plus aiguë ou plus grave ?</p>
-  <textarea data-k="@pred" rows="2" placeholder="Notre prédiction…"></textarea>
+  <textarea data-k="@pred" rows="2" placeholder="Ma prédiction…"></textarea>
 </div>
-<div class="challenge"><p class="pt">Votre défi en plus</p><h3>Votre air</h3><p>Notez les distances à jouer pour les premières notes d'« Au clair de la lune », puis jouez-le.</p></div>
 <details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Combien de notes dans une gamme do, ré, mi… ? Combien de tranches de distance faut-il ?</p></div></details>
 <details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Une variable pour la distance, puis un <span class="kw" style="--cat:var(--c-logic)">si … sinon si</span> avec une condition « et » par tranche. Le bloc qui joue une note est dans le tiroir Musique.</p></div></details>
 <details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Sur un piano, chaque touche à une place différente joue une note différente. Ici, les touches sont des distances.</p></div></details>
@@ -33,4 +32,8 @@ v2: oui
   <p>Le programme officiel découpe la distance en tranches de 2 cm, de 6 à 20 cm. Chaque tranche joue une note de la gamme aiguë pendant un temps.</p>
   <p class="small">Le programme du fabricant ELECFREAKS : <a href="https://makecode.microbit.org/_1YvYtE8RM8oL" target="_blank" rel="noopener">programme officiel</a>. Il fait la mission de base, sans le défi.</p>
 </div></div>
-<div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+<div class="bonus">
+  <h3><span>Défi bonus</span>Ton air</h3>
+  <p>Note les distances à jouer pour les premières notes d'« Au clair de la lune », puis joue-le.</p>
+</div>

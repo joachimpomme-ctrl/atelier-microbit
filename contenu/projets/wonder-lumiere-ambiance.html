@@ -12,19 +12,18 @@ ordre: 130
 icone: lumiere
 modele: 30
 -->
-<p class="goal"><b>Votre mission :</b> bouton A, les quatre LED de la carte Wukong s'allument. Chaque nouvel appui change la couleur. Bouton B, tout s'éteint.</p>
-<p class="small">Premier projet Wonder ? Commencez par <a href="../wonder-demarrer/">Bien démarrer avec le kit Wonder</a>, puis <a href="../wonder-helicoptere/">l'hélicoptère</a>.</p>
+<p class="goal"><b>Ta mission :</b> bouton A, les quatre LED de la carte Wukong s'allument. Chaque nouvel appui change la couleur. Bouton B, tout s'éteint.</p>
+<p class="small">Premier projet Wonder ? Commence par <a href="../wonder-demarrer/">Bien démarrer avec le kit Wonder</a>, puis <a href="../wonder-helicoptere/">l'hélicoptère</a>.</p>
 <div class="build">
   <p><b>Construire :</b> <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Wonder-Building-Kit-case-30.html" target="_blank" rel="noopener">la fiche de montage (modèle 30)</a>.</p>
   <div class="wire"><span>4 LED arc-en-ciel de la carte Wukong (broche <b>P16</b>)</span></div>
-  <p class="small">Les quatre LED sont soudées sur la carte Wukong, branchées sur la broche P16. On les pilote avec les blocs NeoPixel, qui arrivent normalement avec l'extension Wukong (probable). Sinon, ajoutez l'extension neopixel.</p>
+  <p class="small">Les quatre LED sont soudées sur la carte Wukong, branchées sur la broche P16. On les pilote avec les blocs NeoPixel, qui arrivent normalement avec l'extension Wukong (probable). Sinon, ajoute l'extension neopixel.</p>
 </div>
 <div class="predict">
-  <p class="pt">Prédisez d'abord</p>
+  <p class="pt">Prédis d'abord</p>
   <p>Les couleurs de l'arc-en-ciel sont rouge, orange, jaune, vert, bleu, indigo, violet. Après le violet, que doit faire le prochain appui ?</p>
-  <textarea data-k="@pred" rows="2" placeholder="Notre prédiction…"></textarea>
+  <textarea data-k="@pred" rows="2" placeholder="Ma prédiction…"></textarea>
 </div>
-<div class="challenge"><p class="pt">Votre défi en plus</p><h3>La veilleuse</h3><p>Mode doux : la couleur change toute seule toutes les 2 secondes, comme une veilleuse.</p></div>
 <details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Il faut se souvenir de la couleur actuelle. Avec quoi ?</p></div></details>
 <details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Au démarrage : créer la bande de 4 LED sur P16 (tiroir NeoPixel). Une variable i qui augmente à chaque appui, et un si … sinon si : i = 1 rouge, i = 2 orange…</p></div></details>
 <details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Un feu tricolore passe de couleur en couleur dans un ordre précis, puis recommence.</p></div></details>
@@ -32,4 +31,8 @@ modele: 30
   <p>Le programme officiel : au démarrage, une bande NeoPixel sur P16 avec 4 LED. Le bouton A ajoute 1 à i, le bouton B remet i à 0. Dans toujours : un si … sinon si sur i (1 rouge … 7 violet, 8 remet à 0, 0 éteint).</p>
   <p class="small">Le programme du fabricant ELECFREAKS : <a href="https://makecode.microbit.org/_hHDAH6Fz6YCb" target="_blank" rel="noopener">programme officiel</a>. Il fait la mission de base, sans le défi.</p>
 </div></div>
-<div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+<div class="bonus">
+  <h3><span>Défi bonus</span>La veilleuse</h3>
+  <p>Mode doux : la couleur change toute seule toutes les 2 secondes, comme une veilleuse.</p>
+</div>

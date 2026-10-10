@@ -14,14 +14,13 @@
 </head>
 <body data-racine="../../">
 <!-- Page générée par outils/generer.py à partir de contenu/projets/microbit-boussole.html : modifier la source, pas cette page. -->
-<div class="page proj">
+<main class="page proj">
   <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../../">Accueil</a> <span aria-hidden="true">›</span> <a href="../">Banque de projets</a> <span aria-hidden="true">›</span> <a href="../../projets/#parcours=microbit">Premiers pas micro:bit</a></nav>
   <header class="p-head">
     <div class="led5 p-icon" aria-hidden="true"><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span></div>
     <div>
       <p class="eyebrow">micro:bit seule · niveau 3 · Ingénieur · 1 h</p>
       <h1>La boussole</h1>
-      <p class="lead">La carte indique le nord, le sud, l&#x27;est et l&#x27;ouest, comme une vraie boussole.</p>
       <ul class="learn"><li class="lbl">Notions</li><li>capteurs</li><li>conditions</li><li>variables</li></ul>
     </div>
   </header>
@@ -34,26 +33,29 @@
       </span>
       <span class="small">Copilote : <b id="copilot">Équipier 2</b></span>
     </div>
-    <span class="lvl l1">Juste l'objectif</span>
-    <button class="done-btn" type="button" data-done-projet aria-pressed="false">Projet réussi ?</button>
+    <div class="p-bar-r">
+      <span class="lvl l1">Juste l'objectif</span>
+      <span class="etat" data-etat>À faire</span>
+      <a class="btn mk" href="https://makecode.microbit.org/" target="_blank" rel="noopener">Ouvrir MakeCode <span aria-hidden="true">↗</span></a>
+    </div>
   </div>
   
-  <main class="p-main">
-<p class="goal"><b>Votre mission :</b> la carte affiche N, E, S ou O selon la direction vers laquelle elle pointe.</p>
-<p class="tip">La première fois, la carte demande un réglage : elle affiche un message, puis il faut la pencher dans tous les sens pour allumer tout l'écran. C'est normal.</p>
+  <div class="p-main">
+<p class="goal"><b>Ta mission :</b> la carte affiche N, E, S ou O selon la direction vers laquelle elle pointe.</p>
+<p class="tip">La première fois, la carte demande un réglage : elle affiche un message, puis il faut la pencher dans tous les sens pour allumer tout l'écran. C'est normal.</p>
 <div class="predict">
-  <p class="pt">Prédisez d'abord</p>
-  <p>La boussole donne un angle de 0 à 359. Le nord, c'est 0. À quel angle se trouve l'est ? Le sud ? L'ouest ?</p>
-  <textarea data-k="microbit-boussole_pred" rows="2" placeholder="Notre prédiction…"></textarea>
+  <p class="pt">Prédis d'abord</p>
+  <p>La boussole donne un angle de 0 à 359. Le nord, c'est 0. À quel angle se trouve l'est ? Le sud ? L'ouest ?</p>
+  <textarea data-k="microbit-boussole_pred" rows="2" placeholder="Ma prédiction…"></textarea>
 </div>
-<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Le nord, c'est un angle exact, ou une zone autour de 0 ? Jusqu'où s'étend la zone du nord ?</p></div></details>
-<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>La direction est un bloc rond du tiroir Entrées. Rangez-la dans une variable, puis un si … sinon si avec quatre zones de 90 degrés. Pour le nord, il faut le bloc <span class="kw" style="--cat:var(--c-logic)">ou</span> : plus petit que 45 <b>ou</b> plus grand que 315.</p></div></details>
-<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Une horloge : « midi » ne dure pas une seconde, on dit « vers midi » pendant un moment. Chaque direction est une part de gâteau de 90 degrés.</p></div></details>
-<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden><div class="prog" data-prog="sol"></div><p class="small">Loin des aimants, des ordinateurs et des objets en fer : ils perturbent la boussole.</p></div></div>
-<div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="microbit-boussole_res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Le nord, c'est un angle exact, ou une zone autour de 0 ? Jusqu'où s'étend la zone du nord ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>La direction est un bloc rond du tiroir Entrées. Range-la dans une variable, avec le tiroir Variables. Le <span class="kw" style="--cat:var(--c-logic)">si … sinon si … sinon</span>, les comparaisons et le bloc <span class="kw" style="--cat:var(--c-logic)">ou</span> sont dans Logique.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>À midi moins deux, on dit déjà « il est midi ». Et à midi deux, on le dit encore. Midi, c'est une zone autour du 12, des deux côtés. Sur ta boussole, chaque lettre a sa zone.</p></div></details>
+<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden><div class="prog" data-prog="sol"></div><p class="small">Loin des aimants, des ordinateurs et des objets en fer : ils perturbent la boussole.</p></div></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="microbit-boussole_res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
 <div class="bonus">
-  <h3><span>Défi bonus</span>La chasse au trésor</h3>
-  <p>Cachez un objet. Écrivez le chemin en directions et en pas : « 10 pas au nord, 5 pas à l'est ». Un ami le suit avec la boussole.</p>
+  <h2 class="h3"><span>Défi bonus</span>La chasse au trésor</h2>
+  <p>Cache un objet. Écris le chemin en directions et en pas : « 10 pas au nord, 5 pas à l'est ». Un ami le suit avec la boussole.</p>
 </div>
 <script>
 Object.assign(PROJET.progs, { "sol": function(B){ var c=function(){ return K.vr(B,"cap"); }; return [
@@ -65,10 +67,11 @@ Object.assign(PROJET.progs, { "sol": function(B){ var c=function(){ return K.vr(
 ]; } });
 </script>
 
-  </main>
-  <nav class="p-nav" aria-label="Et après ?"><div class="p-seq"><p class="eyebrow">Premiers pas micro:bit · étape 9 sur 10</p><div class="p-links"><a class="p-link" href="../microbit-messager/"><span class="eyebrow">← Étape précédente</span><b>Le messager radio</b></a><a class="p-link next" href="../microbit-plus-rapide/"><span class="eyebrow">Étape suivante →</span><b>Le jeu du plus rapide</b></a></div></div><div class="p-related"><p class="eyebrow">Projets proches</p><div class="mini-cards"><a class="mini-card" href="../wonder-sechoir-pluie/"><div class="led5" aria-hidden="true"><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span></div><span><b>Le séchoir qui sent la pluie</b><small>Wonder · niveau 3</small></span></a><a class="mini-card" href="../microbit-plus-rapide/"><div class="led5" aria-hidden="true"><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span></div><span><b>Le jeu du plus rapide</b><small>micro:bit · niveau 3</small></span></a><a class="mini-card" href="../microbit-veilleuse/"><div class="led5" aria-hidden="true"><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span></div><span><b>La veilleuse</b><small>micro:bit · niveau 2</small></span></a></div></div></nav>
-  <footer class="p-foot small">Les prénoms se règlent sur l'<a href="../../">accueil</a>. Code parent, sécurité et remise à zéro : <a href="../../parents/">page des parents</a>.</footer>
-</div>
+  </div>
+  <section class="p-finish" aria-label="Fin du projet" data-suivant="../microbit-plus-rapide/" data-suivant-titre="Le jeu du plus rapide"></section>
+  <nav class="p-nav" aria-label="Et après ?"><div class="p-seq"><p class="eyebrow">Premiers pas micro:bit · étape 9 sur 10</p><div class="p-links"><a class="p-link" href="../microbit-messager/"><span class="eyebrow">← Étape précédente</span><b>Le messager radio</b></a><a class="p-link next" href="../microbit-plus-rapide/"><span class="eyebrow">Étape suivante →</span><b>Le jeu du plus rapide</b></a></div></div><div class="p-related"><p class="eyebrow">Projets proches</p><div class="mini-cards"><a class="mini-card" href="../microbit-pierre-feuille-ciseaux/"><div class="led5" aria-hidden="true"><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span></div><span><b>Pierre, feuille, ciseaux</b><small>micro:bit · niveau 2 · Juste le plan</small></span></a><a class="mini-card" href="../microbit-veilleuse/"><div class="led5" aria-hidden="true"><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span></div><span><b>La veilleuse</b><small>micro:bit · niveau 2 · Juste le plan</small></span></a><a class="mini-card" href="../microbit-podometre/"><div class="led5" aria-hidden="true"><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div><span><b>Le compteur de pas</b><small>micro:bit · niveau 2 · Juste le plan</small></span></a></div></div></nav>
+  <footer class="p-foot small">Les prénoms se règlent sur l'<a href="../../">accueil</a>. Code parent, sécurité et sauvegarde : <a href="../../parents/">page des parents</a>.</footer>
+</main>
 <script src="../../assets/progression.js"></script>
 <script src="../../assets/blocs.js"></script>
 <script src="../../assets/projet.js"></script>

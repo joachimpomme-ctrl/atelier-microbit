@@ -30,14 +30,14 @@
 </style>
 </head>
 <body>
-<div class="page parc">
+<main class="page parc">
   <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../">Accueil</a> <span aria-hidden="true">›</span> <a href="../projets/">Banque de projets</a> <span aria-hidden="true">›</span> <span>Parcours Wonder</span></nav>
   <header class="hero">
     <div>
       <p class="eyebrow">Kit Wonder 32 en 1 · carte Wukong · MakeCode</p>
       <h1>Le parcours Wonder</h1>
       <p class="who">Construire des machines, puis les programmer</p>
-      <p class="lead">Dix étapes pour apprendre le kit, de l'hélice au chariot télécommandé. Ensuite, toutes les autres machines du kit, dans l'ordre que vous voulez. Une page par machine.</p>
+      <p class="lead">Dix étapes pour apprendre le kit, de l'hélice au chariot télécommandé. Ensuite, toutes les autres machines du kit, dans l'ordre que tu veux. Une page par machine.</p>
       <div class="bars" aria-live="polite">
         <div class="progress"><div class="board" id="leds-steps" aria-hidden="true"></div><span>Étapes : <strong id="n-steps">0</strong></span></div>
         <div class="progress"><div class="board wide" id="leds-free" aria-hidden="true"></div><span>Autres machines : <strong id="n-free">0</strong></span></div>
@@ -56,8 +56,8 @@
     <div class="how">
       <div><b>Construire, brancher, programmer</b>Chaque machine se monte avec la fiche du fabricant, puis on branche ses moteurs et capteurs sur la carte Wukong.</div>
       <div><b>À deux</b>Le pilote assemble et tient la souris. Le copilote suit la fiche et vérifie les branchements. On échange à chaque machine.</div>
-      <div><b>L'aide diminue</b>Les premières étapes expliquent tout. Les dernières donnent juste l'objectif. Bloqués : trois indices, puis la solution chez les parents.</div>
-      <div><b>Le carnet suit la machine</b>Ce que vous mesurez sur une machine (sens des moteurs, angles) sert aux suivantes. Récapitulatif en bas de page.</div>
+      <div><b>L'aide diminue</b>Les premières étapes expliquent tout. Les dernières donnent juste l'objectif. Bloqué ? Trois indices, puis la solution, gardée par les parents.</div>
+      <div><b>Le carnet suit la machine</b>Ce que tu mesures sur une machine (sens des moteurs, angles) sert aux suivantes. Récapitulatif en bas de page.</div>
     </div>
   </section>
 
@@ -68,18 +68,18 @@
 
   <section class="sec" aria-labelledby="t-free">
     <div class="sec-head"><h2 id="t-free">Toutes les autres machines du kit</h2><p class="small">Classées par numéro de modèle. Pour trier par niveau ou par notion : <a href="../projets/#materiel=wonder">la banque de projets</a>.</p></div>
-    <p class="small">Conseil : faites d'abord les étapes 1 et 2. Toutes ces machines utilisent la carte Wukong comme l'hélicoptère.</p>
+    <p class="small">Conseil : fais d'abord les étapes 1 et 2. Toutes ces machines utilisent la carte Wukong comme l'hélicoptère.</p>
     <div class="cards" id="free"></div>
   </section>
 
   <section class="sec" aria-labelledby="t-reg">
-    <h2 id="t-reg">Nos réglages Wonder</h2>
-    <p>Ce que vous avez noté dans les carnets. Les solutions s'en servent. Pas encore mesuré : c'est la valeur du fabricant qui est utilisée, à vérifier sur votre machine.</p>
-    <div class="tbl-wrap"><table class="reg"><thead><tr><th>Réglage</th><th>Notre valeur</th><th>Où le mesurer</th></tr></thead><tbody id="reg"></tbody></table></div>
+    <h2 id="t-reg">Tes réglages Wonder</h2>
+    <p>Ce que tu as noté dans les carnets. Les solutions s'en servent. Pas encore mesuré : c'est la valeur du fabricant qui est utilisée, à vérifier sur ta machine.</p>
+    <div class="tbl-wrap"><table class="reg"><thead><tr><th>Réglage</th><th>Ta valeur</th><th>Où le mesurer</th></tr></thead><tbody id="reg"></tbody></table></div>
   </section>
 
   <footer class="p-foot small">Les prénoms se règlent sur l'<a href="../">accueil</a>. Code parent, sécurité et remise à zéro : <a href="../parents/">page des parents</a>.</footer>
-</div>
+</main>
 
 <script src="../assets/catalogue.js"></script>
 <script src="../assets/progression.js"></script>
@@ -113,7 +113,7 @@ if(cur>=0){
   nx.innerHTML='<div><p class="eyebrow">'+(nb(steps)?'Prochaine étape':'Pour commencer')+' · étape '+(cur+1)+' sur '+steps.length+'</p><b>'+esc(p.titre)+'</b><p>'+esc(p.resume)+'</p></div><a class="btn solid" href="../'+esc(p.url)+'">Ouvrir l\'étape '+(cur+1)+'</a>';
 } else {
   var f=free.filter(function(p){ return !p._done; })[0];
-  nx.innerHTML='<div><p class="eyebrow">Parcours terminé</p><b>Les 10 étapes sont réussies.</b><p>'+(f?'À vous de choisir une machine. Pourquoi pas '+esc(f.titre.charAt(0).toLowerCase()+f.titre.slice(1))+' ?':'Toutes les machines du kit sont réussies. Inventez la vôtre !')+'</p></div>'+(f?'<a class="btn solid" href="../'+esc(f.url)+'">Ouvrir</a>':'');
+  nx.innerHTML='<div><p class="eyebrow">Parcours terminé</p><b>Les 10 étapes sont réussies.</b><p>'+(f?'À toi de choisir une machine. Pourquoi pas '+esc(f.titre.charAt(0).toLowerCase()+f.titre.slice(1))+' ?':'Toutes les machines du kit sont réussies. Inventez la vôtre !')+'</p></div>'+(f?'<a class="btn solid" href="../'+esc(f.url)+'">Ouvrir</a>':'');
 }
 
 /* Réglages notés dans les carnets */

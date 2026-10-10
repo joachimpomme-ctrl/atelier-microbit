@@ -27,6 +27,11 @@ window.CATALOGUE = {
   "2": "Apprenti",
   "3": "Ingénieur"
  },
+ "aides": {
+  "l3": "Tout est expliqué",
+  "l2": "Juste le plan",
+  "l1": "Juste l'objectif"
+ },
  "parcours": {
   "microbit": {
    "titre": "Premiers pas micro:bit",
@@ -73,7 +78,7 @@ window.CATALOGUE = {
   {
    "id": "microbit-badge",
    "titre": "Le badge lumineux",
-   "resume": "Au démarrage, votre prénom défile. Bouton A, un cœur. Bouton B, un sourire.",
+   "resume": "Au démarrage, ton prénom défile. Bouton A, un cœur. Bouton B, un sourire.",
    "materiel": "microbit",
    "niveau": 1,
    "notions": [
@@ -88,7 +93,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l3"
   },
   {
    "id": "microbit-boite-a-musique",
@@ -108,7 +114,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "",
    "v2": true,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l3"
   },
   {
    "id": "microbit-boussole",
@@ -129,12 +136,13 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l1"
   },
   {
    "id": "microbit-de",
    "titre": "Le dé électronique",
-   "resume": "Secouez la carte : elle tire un nombre de 1 à 6. Puis une expérience sur le hasard.",
+   "resume": "Secoue la carte : elle tire un nombre de 1 à 6. Puis une expérience sur le hasard.",
    "materiel": "microbit",
    "niveau": 1,
    "notions": [
@@ -150,7 +158,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l3"
   },
   {
    "id": "microbit-messager",
@@ -171,12 +180,13 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l2"
   },
   {
    "id": "microbit-pierre-feuille-ciseaux",
    "titre": "Pierre, feuille, ciseaux",
-   "resume": "Secouez la carte : elle choisit au hasard pierre, feuille ou ciseaux, et affiche le dessin.",
+   "resume": "Secoue la carte : elle choisit au hasard pierre, feuille ou ciseaux, et affiche le dessin.",
    "materiel": "microbit",
    "niveau": 2,
    "notions": [
@@ -192,7 +202,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l2"
   },
   {
    "id": "microbit-plus-rapide",
@@ -214,12 +225,13 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l1"
   },
   {
    "id": "microbit-podometre",
    "titre": "Le compteur de pas",
-   "resume": "La carte dans la chaussette compte vos pas. Est-elle juste ?",
+   "resume": "La carte dans la chaussette compte tes pas. Est-elle juste ?",
    "materiel": "microbit",
    "niveau": 2,
    "notions": [
@@ -235,7 +247,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l2"
   },
   {
    "id": "microbit-thermometre",
@@ -255,7 +268,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l3"
   },
   {
    "id": "microbit-veilleuse",
@@ -276,7 +290,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l2"
   },
   {
    "id": "wonder-araignee",
@@ -297,7 +312,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "21",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l1"
   },
   {
    "id": "wonder-balayeuse",
@@ -319,7 +335,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "16",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l1"
   },
   {
    "id": "wonder-bascule",
@@ -340,7 +357,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "13",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l1"
   },
   {
    "id": "wonder-base-gyroscope",
@@ -361,7 +379,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "3",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l2"
   },
   {
    "id": "wonder-bateau-a-rames",
@@ -383,7 +402,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "10",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l2"
   },
   {
    "id": "wonder-bateau-pirate",
@@ -406,7 +426,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "26",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l1"
   },
   {
    "id": "wonder-batteur",
@@ -428,7 +449,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "25",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l1"
   },
   {
    "id": "wonder-bigfoot",
@@ -450,7 +472,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "6",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l2"
   },
   {
    "id": "wonder-bras-robot",
@@ -472,7 +495,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "8",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l1"
   },
   {
    "id": "wonder-camion-echelle",
@@ -494,7 +518,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "18",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l1"
   },
   {
    "id": "wonder-catapulte",
@@ -516,7 +541,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "29",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l1"
   },
   {
    "id": "wonder-chaises-volantes",
@@ -538,7 +564,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "5",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l1"
   },
   {
    "id": "wonder-chariot-telecommande",
@@ -561,7 +588,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "12",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l1"
   },
   {
    "id": "wonder-chenille",
@@ -582,7 +610,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "19",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l2"
   },
   {
    "id": "wonder-chien-robot",
@@ -604,7 +633,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "32",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l2"
   },
   {
    "id": "wonder-compteur-paniers",
@@ -626,7 +656,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "7",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l1"
   },
   {
    "id": "wonder-demarrer",
@@ -646,7 +677,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "",
    "v2": false,
-   "type": "guide"
+   "type": "guide",
+   "aide": ""
   },
   {
    "id": "wonder-essuie-glace",
@@ -668,7 +700,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "28",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l3"
   },
   {
    "id": "wonder-grande-roue",
@@ -689,7 +722,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "11",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l1"
   },
   {
    "id": "wonder-guitare-ultrasons",
@@ -712,7 +746,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "14",
    "v2": true,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l1"
   },
   {
    "id": "wonder-helicoptere",
@@ -733,12 +768,13 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "22",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l3"
   },
   {
    "id": "wonder-lanceur-toupie",
    "titre": "Le lanceur de toupie",
-   "resume": "Gardez A appuyé pour lancer la toupie, lâchez pour la libérer.",
+   "resume": "Garde A appuyé pour lancer la toupie, lâche pour la libérer.",
    "materiel": "wonder",
    "niveau": 2,
    "notions": [
@@ -755,7 +791,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "24",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l1"
   },
   {
    "id": "wonder-locomotive",
@@ -777,7 +814,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "23",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l2"
   },
   {
    "id": "wonder-lumiere-ambiance",
@@ -799,7 +837,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "30",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l1"
   },
   {
    "id": "wonder-machine-a-dessiner",
@@ -820,7 +859,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "31",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l2"
   },
   {
    "id": "wonder-moto",
@@ -841,7 +881,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "1",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l3"
   },
   {
    "id": "wonder-porte-automatique",
@@ -863,7 +904,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "9",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l2"
   },
   {
    "id": "wonder-poubelle",
@@ -885,7 +927,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "27",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l1"
   },
   {
    "id": "wonder-pousse-pousse",
@@ -907,7 +950,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "17",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l2"
   },
   {
    "id": "wonder-robot-marcheur",
@@ -929,7 +973,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "15",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l2"
   },
   {
    "id": "wonder-sechoir-pluie",
@@ -953,7 +998,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "20",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l1"
   },
   {
    "id": "wonder-suiveur-de-ligne",
@@ -975,7 +1021,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "2",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l1"
   },
   {
    "id": "wonder-testeur-servo",
@@ -996,7 +1043,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l3"
   },
   {
    "id": "wonder-voiture-prudente",
@@ -1019,7 +1067,8 @@ window.CATALOGUE = {
    "stockage": "banque",
    "modele": "4",
    "v2": false,
-   "type": "projet"
+   "type": "projet",
+   "aide": "l2"
   },
   {
    "id": "robot-m1",

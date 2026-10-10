@@ -11,38 +11,39 @@ parcours: wonder
 ordre: 5
 icone: outil
 -->
-<p class="goal"><b>Votre mission :</b> fabriquer un programme outil. Le bouton A tourne le servo de 10 degrés, le bouton B le ramène de 10 degrés, et l'écran affiche l'angle.</p>
+<p class="goal"><b>Ta mission :</b> fabriquer un programme outil. Le bouton A tourne le servo de 10 degrés, le bouton B le ramène de 10 degrés, et l'écran affiche l'angle.</p>
 <div class="build">
-  <p><b>Pourquoi ?</b> Le fabricant demande de régler le servo <b>avant</b> de le monter dans les briques. Sinon, il peut forcer contre une pièce et casser. Ce programme vous servira pour la porte automatique, le chariot élévateur et toutes les machines avec un servo.</p>
+  <p><b>Pourquoi ?</b> Le fabricant demande de régler le servo <b>avant</b> de le monter dans les briques. Sinon, il peut forcer contre une pièce et casser. Ce programme te servira pour la porte automatique, le chariot élévateur et toutes les machines avec un servo.</p>
   <div class="wire"><span>servo → <b>S0</b></span></div>
   <p class="small">Le servo est branché seul, sans briques autour.</p>
 </div>
 <div class="predict">
-  <p class="pt">Prédisez d'abord</p>
+  <p class="pt">Prédis d'abord</p>
   <p>Le servo démarre à 90°. Après 3 appuis sur A, à quel angle sera-t-il ?</p>
-  <label class="inline">Notre prédiction : <input class="numin wide" type="number" min="0" max="360" data-k="@pred"> °</label>
+  <label class="inline">Ma prédiction : <input class="numin wide" type="number" min="0" max="360" data-k="@pred"> °</label>
 </div>
 <div class="m-part">
   <h3>Le programme outil</h3>
-  <p>C'est le programme de réglage proposé par le fabricant. Construisez-le bloc par bloc.</p>
+  <p>C'est le programme de réglage proposé par le fabricant. Construis-le bloc par bloc.</p>
   <div class="prog" data-prog="testeur"></div>
 </div>
 <div class="m-part">
   <h3>Pas à pas</h3>
   <ol class="steps">
-    <li>Créez une variable <b>angle</b>. Au démarrage : <span class="kw" style="--cat:var(--c-vars)">définir angle à 90</span>, puis envoyez le servo à cet angle.</li>
+    <li>Crée une variable <b>angle</b>. Au démarrage : <span class="kw" style="--cat:var(--c-vars)">définir angle à 90</span>, puis envoie le servo à cet angle.</li>
     <li>Dans <span class="kw" style="--cat:var(--c-base)">toujours</span> : <span class="kw" style="--cat:var(--c-base)">montrer nombre angle</span>.</li>
     <li>Bouton A : ajouter 10 à angle, puis renvoyer le servo à l'angle.</li>
     <li>Bouton B : pareil avec -10.</li>
-    <li>Testez. Laissez le servo à <b>90</b> avant de le monter dans une machine.</li>
+    <li>Teste. Laisse le servo à <b>90</b> avant de le monter dans une machine.</li>
   </ol>
 </div>
-<details class="hint"><summary>Indice 1</summary><div class="body"><p>Le nombre change mais le servo ne bouge pas ? Après avoir changé la variable, qui dit au servo d'aller au nouvel angle ?</p></div></details>
-<details class="hint"><summary>Indice 2</summary><div class="body"><p>Dans chaque bouton, il faut deux blocs : un qui change le nombre, un qui envoie le servo à ce nombre.</p></div></details>
-<div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Le nombre change mais le servo ne bouge pas ? Après avoir changé la variable, qui dit au servo d'aller au nouvel angle ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le bloc <span class="kw" style="--cat:var(--c-vars)">modifier angle de</span> est dans le tiroir Variables. Le bloc <span class="kw" style="--cat:var(--c-wukong)">Set 360° servo S0 angle to</span> est dans le tiroir <span class="kw" style="--cat:var(--c-wukong)">wuKong</span> : glisse la variable <b>angle</b> dans son trou.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Dans l'essuie-glace, les boutons changeaient seulement le nombre rangé dans la variable <b>vitesse</b>. C'est un autre bloc qui donnait ce nombre au moteur. Ici aussi, changer le nombre ne fait pas bouger le servo tout seul.</p></div></details>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
 <div class="bonus">
   <h3><span>Défi bonus</span>Les limites</h3>
-  <p>Empêchez l'angle de descendre sous 0 et de dépasser 360, comme pour l'essuie-glace.</p>
+  <p>Empêche l'angle de descendre sous 0 et de dépasser 360, comme pour l'essuie-glace.</p>
 </div>
 <script>
 Object.assign(PROJET.progs, {

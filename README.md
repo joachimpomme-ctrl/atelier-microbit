@@ -68,17 +68,20 @@ icone: de
 
 ### Le corps
 
-Des blocs HTML avec les classes de `assets/atelier.css`, dans cet ordre :
+Les pages enfant tutoient l'enfant (« Ta mission », « Prédis d'abord », « Résume en une phrase »). Des blocs HTML avec les classes de `assets/atelier.css`, dans cet ordre :
 
-1. `<p class="goal">` : la mission en une phrase.
+1. `<p class="goal"><b>Ta mission :</b> …</p>` : la mission en une phrase.
 2. `<div class="build">` (projets à construire) : lien vers la fiche de montage, branchements dans `<div class="wire">`, consignes de sécurité.
-3. `<div class="predict">` : une question de prédiction, avec un champ `data-k="@pred"`.
+3. `<div class="predict">` : une question de prédiction, avec un champ `data-k="@pred"` (zone de texte ou boutons radio). La réponse ne doit apparaître nulle part sur la page avant que l'enfant ait répondu. Un élément qui la donne porte `data-apres="@pred"` : il reste caché tant que la prédiction est vide.
 4. Selon l'aide : `<div class="need" data-need="b">` (les blocs à utiliser), `<ol class="steps">` (le pas à pas ou le plan).
 5. `<div class="carnet-form">` si une mesure est utile.
-6. Trois indices `<details class="hint">` : une question, puis où chercher, puis un exemple sur un **autre** cas.
-7. `<div class="lockbox">` : la solution derrière le code parent, `<div class="prog" data-prog="sol">`.
-8. `<div class="resume">` avec `data-k="@res"`, puis un `<div class="bonus">` (défi bonus).
-9. Un `<script>` qui dessine les programmes.
+6. **Exactement trois indices**, sur la mission (pas sur le défi), avec ces titres : `Indice 1 · une question`, `Indice 2 · où chercher`, `Indice 3 · un exemple sur un autre cas`. Balise : `<details class="hint"><summary>…</summary><div class="body"><p>…</p></div></details>`. Aucun ne donne la solution complète.
+7. `<div class="lockbox">` : la solution, `<div class="prog" data-prog="sol">`. Le bouton ne s'active qu'une fois les indices ouverts, puis il demande le code parent.
+8. `<div class="resume">` avec `data-k="@res"`. La page y rappelle automatiquement la prédiction.
+9. `<div class="bonus"><h3><span>Défi bonus</span>Titre</h3>…</div>`, après le résumé. Un coup de pouce éventuel : `<details class="hint-defi">`.
+10. Un `<script>` qui dessine les programmes.
+
+La page ajoute seule l'en-tête, la barre (pilote, aide, état, « Ouvrir MakeCode »), le bouton de fin « On a réussi ! Projet suivant » et les projets proches.
 
 Les champs `data-k="@nom"` sont enregistrés pour ce projet (`@` devient `<id>_`). Un nom sans `@` est partagé entre projets : les réglages Wonder (`w_av`, `w_m1`, `w_porte_f`, `w_porte_o`, `w_sonar`, `w_p1`, `w_noir`, `w_f_bas`, `w_f_haut`, `w_groupe`) servent à toutes les machines.
 

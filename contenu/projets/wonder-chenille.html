@@ -4,7 +4,7 @@ titre: La chenille
 resume: Une chenille qui rampe, et une expérience : sur quel sol avance-t-elle le mieux ?
 materiel: wonder
 niveau: 1
-aide: l1
+aide: l2
 duree: 45 min
 notions: moteurs, expérience, construire
 parcours: wonder
@@ -12,22 +12,26 @@ ordre: 119
 icone: chenille
 modele: 19
 -->
-<p class="goal"><b>Votre mission :</b> bouton A, la chenille avance. Bouton B, elle s'arrête. Puis comparez trois sols.</p>
-<p class="small">Premier projet Wonder ? Commencez par <a href="../wonder-demarrer/">Bien démarrer avec le kit Wonder</a>, puis <a href="../wonder-helicoptere/">l'hélicoptère</a>.</p>
+<p class="goal"><b>Ta mission :</b> bouton A, la chenille avance. Bouton B, elle s'arrête. Puis compare trois sols.</p>
+<p class="small">Premier projet Wonder ? Commence par <a href="../wonder-demarrer/">Bien démarrer avec le kit Wonder</a>, puis <a href="../wonder-helicoptere/">l'hélicoptère</a>.</p>
 <div class="build">
   <p><b>Construire :</b> <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Case_19.html" target="_blank" rel="noopener">la fiche de montage (modèle 19)</a>.</p>
   <div class="wire"><span>moteur → <b>M1</b></span></div>
   
 </div>
 <div class="predict">
-  <p class="pt">Prédisez d'abord</p>
+  <p class="pt">Prédis d'abord</p>
   <p>Sur le carrelage, sur un tapis ou sur une feuille de papier : où avancera-t-elle le plus vite ?</p>
-  <textarea data-k="@pred" rows="2" placeholder="Notre prédiction…"></textarea>
+  <textarea data-k="@pred" rows="2" placeholder="Ma prédiction…"></textarea>
 </div>
-<div class="challenge"><p class="pt">Votre défi en plus</p><h3>Le banc d'essai</h3><p>Même vitesse, même durée (5 secondes), trois sols. Mesurez la distance parcourue sur chacun.</p></div>
+<div class="m-part">
+  <h3>Le plan</h3>
+  <ol class="steps"><li>Construis la chenille avec la fiche de montage, moteur sur M1.</li><li>Bouton A : avancer. Bouton B : arrêter le moteur.</li><li>Choisis trois sols : carrelage, tapis, papier.</li><li>Fais un essai sur chaque sol et note ce que tu observes dans le carnet.</li></ol>
+</div>
 <div class="carnet-form">
   <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
   <div class="tbl-wrap"><table><thead><tr><th>Sol</th><th>Prédiction</th><th>Résultat</th></tr></thead><tbody><tr><td class="n">carrelage</td><td><input class="textin" type="text" maxlength="60" data-k="@p1" aria-label="Prédiction, carrelage"></td><td><input class="textin" type="text" maxlength="60" data-k="@r1" aria-label="Résultat, carrelage"></td></tr><tr><td class="n">tapis</td><td><input class="textin" type="text" maxlength="60" data-k="@p2" aria-label="Prédiction, tapis"></td><td><input class="textin" type="text" maxlength="60" data-k="@r2" aria-label="Résultat, tapis"></td></tr><tr><td class="n">papier</td><td><input class="textin" type="text" maxlength="60" data-k="@p3" aria-label="Prédiction, papier"></td><td><input class="textin" type="text" maxlength="60" data-k="@r3" aria-label="Résultat, papier"></td></tr></tbody></table></div>
+  <p class="saved" hidden>Noté.</p>
 </div>
 <details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Pour que la comparaison soit juste, qu'est-ce qui doit rester pareil d'un essai à l'autre ?</p></div></details>
 <details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Un programme qui avance exactement 5 secondes puis s'arrête : moteur, pause de 5000 ms, arrêt.</p></div></details>
@@ -36,4 +40,8 @@ modele: 19
   <p>La même durée et la même vitesse à chaque essai : moteur M1 à vitesse 100, pause de 5000 ms, arrêt. Le sol qui accroche le mieux n'est pas toujours celui qu'on croit.</p>
   <p class="small">Le programme du fabricant ELECFREAKS : <a href="https://makecode.microbit.org/_289eegA6E7jP" target="_blank" rel="noopener">programme officiel</a>. Il fait la mission de base, sans le défi.</p>
 </div></div>
-<div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+<div class="bonus">
+  <h3><span>Défi bonus</span>Le banc d'essai</h3>
+  <p>Même vitesse, même durée (5 secondes), trois sols. Mesure la distance parcourue sur chacun.</p>
+</div>
