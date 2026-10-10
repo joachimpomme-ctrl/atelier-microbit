@@ -1,0 +1,1126 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Neuf missions pour programmer un robot micro:bit MiniCar avec les blocs de MakeCode.">
+<title>L'atelier robot micro:bit</title>
+<style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout : carnet d'ingénieur sur papier millimétré. Plan de route collant à gauche, colonne de missions à droite. */
+:root{
+  --paper:#F1F4F9; --panel:#FFFFFF; --soft:#E8EEF8; --ink:#162036; --ink-2:#4A5673; --line:#D2DAE6; --grid:#E1E7F0;
+  --accent:#2550B8; --on-accent:#FFFFFF; --led:#E5342B; --ok:#16845A; --on-ok:#FFFFFF; --ok-soft:#DCF2E7;
+  --tip-bg:#FFF2CC; --tip-ink:#674600; --tip-line:#EBCB6E; --ws:#E5EAF2; --unsure:#E0A100;
+  --board:#1B2030; --board-off:#353C50; --board-ink:#C9D0E0;
+  --c-base:#1E90FF; --c-input:#D400D4; --c-loops:#00A000; --c-logic:#00A4A6; --c-vars:#DC143C; --c-math:#9400D3; --c-minicar:#AA278D;
+  --blk-ink:#FFFFFF; --field:#FFFFFF; --field-ink:#1E1E1E; --dd-bg:rgba(0,0,0,.2); --dd-line:rgba(255,255,255,.4); --blk-edge:rgba(0,0,0,.28);
+  --f-display:"Chakra Petch","Trebuchet MS",sans-serif;
+  --f-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#0E1322; --panel:#151C2E; --soft:#1C2540; --ink:#E6EAF4; --ink-2:#A6B0C7; --line:#2A3450; --grid:#141B30;
+  --accent:#86A6FF; --on-accent:#0E1322; --led:#FF4B3E; --ok:#45C186; --on-ok:#0E1322; --ok-soft:#163A2B;
+  --tip-bg:#33290F; --tip-ink:#F3D68C; --tip-line:#6B5520; --ws:#1E263A; --unsure:#F2C230;
+  --board:#0A0D16; --board-off:#2A3045; --board-ink:#C9D0E0; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#0E1322; --panel:#151C2E; --soft:#1C2540; --ink:#E6EAF4; --ink-2:#A6B0C7; --line:#2A3450; --grid:#141B30;
+  --accent:#86A6FF; --on-accent:#0E1322; --led:#FF4B3E; --ok:#45C186; --on-ok:#0E1322; --ok-soft:#163A2B;
+  --tip-bg:#33290F; --tip-ink:#F3D68C; --tip-line:#6B5520; --ws:#1E263A; --unsure:#F2C230;
+  --board:#0A0D16; --board-off:#2A3045; --board-ink:#C9D0E0; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background-color:var(--paper);color:var(--ink);font:400 17px/1.55 var(--f-body);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px}
+a{color:var(--accent);text-underline-offset:3px}
+h1,h2,h3{text-wrap:balance;margin:0}
+h2{font:700 clamp(26px,3.4vw,32px)/1.15 var(--f-display);letter-spacing:.01em}
+h3{font:700 18px/1.3 var(--f-body)}
+p{margin:0}
+ol,ul{margin:0;padding-left:1.3em}
+li+li{margin-top:.35em}
+code,.mono{font-family:var(--f-mono);font-size:.9em}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+.eyebrow{font:600 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.1em;color:var(--ink-2)}
+
+.page{max-width:1220px;margin:0 auto;padding-inline:max(16px,3vw);padding-block:28px 72px}
+
+/* ---------- Hero ---------- */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:center;padding-block:12px 36px}
+.hero h1{font:700 clamp(44px,8vw,84px)/.95 var(--f-display);letter-spacing:-.01em}
+.hero .who{font:600 clamp(20px,2.6vw,28px)/1.2 var(--f-display);color:var(--ink-2);margin-top:8px}
+.hero .lead{max-width:56ch;margin-top:18px;font-size:18px}
+.hero-side{display:grid;gap:12px;justify-items:center}
+.cap{font:500 12px/1.3 var(--f-mono);color:var(--ink-2);text-align:center}
+.hero-bar{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;margin-top:24px}
+.progress{display:flex;align-items:center;gap:12px}
+.progress .board{display:flex;gap:6px;padding:8px 10px;border-radius:8px;background:var(--board)}
+.progress .board span{width:12px;height:12px;border-radius:3px;background:var(--board-off)}
+.progress .board span.on{background:var(--led);box-shadow:0 0 8px var(--led)}
+.progress strong{font:700 20px var(--f-display);font-variant-numeric:tabular-nums;white-space:nowrap}
+.pilot-pick{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.crew-set{display:flex;align-items:center;gap:8px 10px;flex-wrap:wrap}
+.namein input{width:12ch;font:700 15px/1.2 var(--f-body);padding:7px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--panel);color:var(--ink)}
+.namein input::placeholder{color:var(--ink-2);font-weight:400}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.back{display:inline-block;font:600 14px var(--f-body);margin-bottom:14px;text-decoration:none}
+.back:hover{text-decoration:underline}
+.local-note{font-size:13px;color:var(--ink-2);flex-basis:100%}
+
+/* ---------- 5x5 LED matrix ---------- */
+.led5{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--g,4px);padding:var(--p,8px);background:var(--board);border-radius:10px;width:var(--w,64px);flex:none}
+.led5 span{aspect-ratio:1;border-radius:2px;background:var(--board-off)}
+.led5 span.on{background:var(--led);box-shadow:0 0 6px var(--led)}
+.led5.big{--w:168px;--g:10px;--p:18px;border-radius:16px}
+.led5.big span{border-radius:4px}
+
+/* ---------- Layout ---------- */
+.layout{display:grid;gap:28px}
+.side{min-width:0}
+.side-title{font:600 12px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.1em;color:var(--ink-2);margin-bottom:10px}
+.nav{list-style:none;padding:0;margin:0;display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}
+.nav li{margin:0}
+.nav a{display:flex;align-items:center;gap:8px;white-space:nowrap;text-decoration:none;color:var(--ink);font-size:15px;padding:7px 12px;border-radius:8px;border:1px solid var(--line);background:var(--panel)}
+.nav a:hover{border-color:var(--accent)}
+.nav .dot{width:9px;height:9px;border-radius:2px;background:var(--line);flex:none}
+.nav .dot.on{background:var(--led);box-shadow:0 0 6px var(--led)}
+main{display:grid;gap:28px;min-width:0}
+@media (min-width:1000px){
+  .layout{grid-template-columns:210px minmax(0,1fr);gap:44px}
+  .side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 20px);align-self:start;max-height:calc(100vh - 40px);overflow:auto}
+  .nav{flex-direction:column;gap:2px;overflow:visible}
+  .nav a{border:none;background:transparent;padding:6px 8px}
+  .nav a:hover{background:var(--soft)}
+  .nav .sep{height:1px;background:var(--line);margin:8px 0}
+}
+@media (max-width:999px){ .nav .sep{display:none} }
+
+/* ---------- Sections ---------- */
+.sec{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:clamp(18px,3vw,32px);display:grid;gap:18px;min-width:0}
+.sec > *{min-width:0}
+.sec .intro{max-width:66ch}
+.cols{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.card{border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:8px;align-content:start;background:var(--panel)}
+.card h3{font-family:var(--f-display);font-size:20px}
+.tip{background:var(--tip-bg);color:var(--tip-ink);border:1px solid var(--tip-line);border-radius:10px;padding:12px 16px}
+.tip strong{color:inherit}
+.info{background:var(--soft);border-radius:10px;padding:14px 18px}
+.steps{display:grid;gap:4px}
+.steps li::marker{font-family:var(--f-display);font-weight:700;color:var(--accent)}
+.checklist{list-style:none;padding:0;display:grid;gap:8px}
+.checklist li{margin:0}
+.checklist label{display:flex;gap:12px;align-items:flex-start;cursor:pointer}
+.checklist input{width:20px;height:20px;margin-top:3px;accent-color:var(--ok);flex:none}
+.urlbox{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:6px}
+.urlbox code{background:var(--soft);padding:8px 12px;border-radius:8px;font-size:15px;word-break:break-all;user-select:all}
+
+.btn{font:700 15px/1 var(--f-body);padding:10px 14px;border-radius:9px;border:1.5px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer}
+.btn:hover{background:var(--soft)}
+.btn.solid{background:var(--accent);color:var(--on-accent)}
+.seg{display:inline-flex;flex-wrap:wrap;gap:6px}
+.seg label{position:relative}
+.seg input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.seg span{display:inline-block;padding:7px 12px;border-radius:8px;border:1.5px solid var(--line);font-weight:700;font-size:15px;background:var(--panel);cursor:pointer}
+.seg input:checked + span{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.seg input:focus-visible + span{outline:3px solid var(--accent);outline-offset:2px}
+
+/* ---------- Mission ---------- */
+.mission{gap:20px}
+.m-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px 18px;align-items:center}
+.m-head .eyebrow{margin-bottom:4px}
+.crew{font-size:14px;color:var(--ink-2);margin-top:6px}
+.crew b{color:var(--ink)}
+.done-btn{font:700 14px/1.15 var(--f-body);padding:10px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--panel);color:var(--ink-2);cursor:pointer;max-width:150px}
+.done-btn[aria-pressed="true"]{background:var(--ok);border-color:var(--ok);color:var(--on-ok)}
+@media (max-width:600px){ .m-head{grid-template-columns:auto minmax(0,1fr)} .done-btn{grid-column:1 / -1;justify-self:start;max-width:none} }
+.goal{font-size:19px;line-height:1.45;background:var(--soft);border-radius:10px;padding:14px 18px}
+.learn{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;align-items:center}
+.learn li{margin:0;font-size:14px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--ink-2)}
+.learn .lbl{border:none;padding:0;font:600 12px var(--f-mono);text-transform:uppercase;letter-spacing:.08em}
+.m-part{display:grid;gap:10px}
+.part-title{font:700 20px/1.2 var(--f-display);color:var(--ink)}
+details{border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+details > summary{cursor:pointer;list-style:none;padding:11px 16px;font-weight:700;display:flex;align-items:center;gap:10px}
+details > summary::-webkit-details-marker{display:none}
+details > summary::before{content:"";width:8px;height:8px;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(-45deg);transition:transform .15s;flex:none}
+details[open] > summary::before{transform:rotate(45deg)}
+details > .body{padding:0 16px 16px;display:grid;gap:12px}
+details.hint > summary{color:var(--accent)}
+details.sol > summary{color:var(--ink)}
+details.sol > summary small{font-weight:400;color:var(--ink-2)}
+.bonus{border-top:1px dashed var(--line);padding-top:18px;display:grid;gap:10px}
+.bonus h3{font-family:var(--f-display);font-size:20px}
+.bonus h3 span{font:600 12px var(--f-mono);text-transform:uppercase;letter-spacing:.1em;color:var(--led);display:block;margin-bottom:2px}
+.carnet-form{border:2px solid var(--ink);border-radius:12px;padding:16px 18px;display:grid;gap:14px;background:var(--panel)}
+.carnet-form .ct{display:flex;align-items:center;gap:10px;font:700 18px var(--f-display)}
+.q{display:grid;gap:6px}
+.q > p{font-weight:700}
+.numrow{display:flex;flex-wrap:wrap;gap:10px 18px}
+.numrow label{display:flex;align-items:center;gap:10px}
+.numin{width:5.5ch;font:600 18px var(--f-mono);padding:6px 8px;border-radius:8px;border:1.5px solid var(--line);background:var(--panel);color:var(--ink);text-align:center}
+.numin.wide{width:7ch}
+.saved{font-size:14px;color:var(--ok);font-weight:700}
+
+/* ---------- Kid-facing inline chips ---------- */
+.kw{background:var(--cat);color:var(--blk-ink);font:700 .86em/1.25 var(--f-body);padding:1px 7px;border-radius:5px;white-space:nowrap;display:inline-block}
+.drawer{display:inline-flex;align-items:center;gap:7px;font:600 13px var(--f-body);color:var(--ink-2)}
+.drawer::before{content:"";width:11px;height:11px;border-radius:3px;background:var(--cat);flex:none}
+
+/* ---------- MakeCode blocks ---------- */
+.ws{background:var(--ws);border:1px solid var(--line);border-radius:10px;padding:16px;overflow-x:auto;display:flex;flex-wrap:wrap;gap:22px;align-items:flex-start}
+.ws.mini{padding:12px;background:transparent;border:none;overflow-x:auto}
+.line{display:flex;align-items:center;gap:10px}
+.blk{color:var(--blk-ink);font:700 14px/1.2 var(--f-body);background:var(--cat);flex:none}
+.blk .row{display:flex;align-items:center;gap:6px;padding:7px 10px;white-space:nowrap}
+.blk .t{white-space:nowrap}
+.st{border-radius:5px;box-shadow:inset 0 -2px 0 var(--blk-edge)}
+.ev,.c{display:inline-flex;flex-direction:column;border-radius:5px;min-width:150px;box-shadow:inset 0 -2px 0 var(--blk-edge)}
+.ev{border-top-left-radius:18px;border-top-right-radius:8px}
+.ev > .row{padding-top:10px}
+.mouth{margin-left:14px;background:var(--ws);border-radius:4px 0 0 4px;padding:3px 0;min-height:30px;display:flex;flex-direction:column;gap:2px}
+.foot{height:12px}
+.rep{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 11px;white-space:nowrap}
+.bool{display:inline-flex;align-items:center;gap:6px;padding:4px 18px;white-space:nowrap;clip-path:polygon(11px 0,calc(100% - 11px) 0,100% 50%,calc(100% - 11px) 100%,11px 100%,0 50%)}
+.num{background:var(--field);color:var(--field-ink);border-radius:999px;padding:2px 9px;min-width:26px;text-align:center;font-weight:700}
+.dd{background:var(--dd-bg);border:1px solid var(--dd-line);border-radius:5px;padding:2px 7px;display:inline-flex;gap:5px;align-items:center}
+.dd i{font-style:normal;font-size:9px;opacity:.9}
+.unsure{outline:2.5px dashed var(--unsure);outline-offset:2px}
+.note{font:500 12px/1.2 var(--f-mono);color:var(--ink-2);white-space:nowrap}
+.unsure-note{font-size:14px;color:var(--ink-2);display:flex;gap:8px;align-items:center}
+.unsure-note::before{content:"";width:18px;height:12px;border:2.5px dashed var(--unsure);border-radius:3px;flex:none}
+.need{display:flex;flex-wrap:wrap;gap:16px 22px;align-items:flex-end;overflow-x:auto;padding-bottom:4px}
+.m-part,.m-part > *,.bonus,.bonus > *,details,details > .body,details > .body > *,.prog,.need,.need figure,.carnet-form,.carnet-form > *,.ref-item > *{min-width:0}
+details > summary{flex-wrap:wrap}
+.need figure{margin:0;display:grid;gap:6px;justify-items:start}
+.txt{background:transparent}
+.txt pre{margin:0;background:var(--ws);border-radius:8px;padding:12px;overflow-x:auto;font:500 13px/1.5 var(--f-mono);color:var(--ink)}
+
+/* ---------- Reference blocks ---------- */
+.ref{display:grid;gap:14px}
+.ref-item{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:8px 22px;align-items:center;border-top:1px solid var(--line);padding-top:14px}
+.ref-item:first-child{border-top:none;padding-top:0}
+@media (max-width:700px){ .ref-item{grid-template-columns:minmax(0,1fr)} }
+.ref-item .ws{padding:0}
+.shapes{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr))}
+.shape{border:1px solid var(--line);border-radius:10px;padding:14px;display:grid;gap:10px;align-content:start}
+.shape .ws{padding:0;min-height:44px;align-items:center}
+.shape h3{font-size:16px}
+.shape p{font-size:15px;color:var(--ink-2)}
+.drawers{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+.drawers li{margin:0;list-style:none;display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:baseline}
+.drawers ul{padding:0}
+.drawers .sw{width:14px;height:14px;border-radius:4px;background:var(--cat);transform:translateY(2px)}
+.drawers b{display:block}
+.drawers span.d{grid-column:2;font-size:14px;color:var(--ink-2)}
+.tbl-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:16px}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 12px var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-2)}
+td.n{font:700 18px var(--f-mono);font-variant-numeric:tabular-nums;color:var(--led)}
+
+/* ---------- Carnet summary ---------- */
+.log{display:grid;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.log-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 16px;padding:10px 14px;border-top:1px solid var(--line);align-items:center}
+.log-row:first-child{border-top:none}
+.log-row .v{font-weight:700;text-align:right}
+.log-row .src{display:block;font:500 12px var(--f-mono);color:var(--ink-2);text-align:right}
+.log-row .src.me{color:var(--ok)}
+
+.ideas{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
+.faq{display:grid;gap:8px}
+.foot-note{font-size:15px;color:var(--ink-2);display:grid;gap:10px}
+.confirm{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+@media (prefers-reduced-motion:reduce){ *{transition:none!important} }
+@media (max-width:640px){ .hero{grid-template-columns:minmax(0,1fr)} .hero-side{justify-items:start} .led5.big{--w:132px;--g:8px;--p:14px} }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header class="hero">
+    <div>
+      <a class="back" href="../">&larr; Tous les ateliers</a>
+      <p class="eyebrow">Robot micro:bit MiniCar · MakeCode</p>
+      <h1>L'atelier robot</h1>
+      <p class="who">Pour deux apprentis ingénieurs</p>
+      <p class="lead">Neuf missions pour programmer votre robot vous-mêmes, avec les blocs de MakeCode. On commence par allumer deux phares. On finit avec un robot qui suit une ligne noire tout seul.</p>
+      <div class="hero-bar">
+        <div class="progress" aria-live="polite">
+          <div class="board" id="progress-leds" aria-hidden="true"></div>
+          <span>Missions réussies : <strong id="progress-count">0 / 9</strong></span>
+        </div>
+        <div class="crew-set">
+          <span>L'équipe :</span>
+          <label class="namein"><span class="sr">Prénom de l'équipier 1</span><input type="text" id="name-1" maxlength="16" autocomplete="off" spellcheck="false" placeholder="Équipier 1"></label>
+          <label class="namein"><span class="sr">Prénom de l'équipier 2</span><input type="text" id="name-2" maxlength="16" autocomplete="off" spellcheck="false" placeholder="Équipier 2"></label>
+        </div>
+        <div class="pilot-pick">
+          <span>Pilote de la mission 1 :</span>
+          <span class="seg" role="radiogroup" aria-label="Pilote de la mission 1">
+            <label><input type="radio" name="first" id="first-1" value="1"><span id="first-1-l">Équipier 1</span></label>
+            <label><input type="radio" name="first" id="first-2" value="2"><span id="first-2-l">Équipier 2</span></label>
+          </span>
+        </div>
+        <p class="local-note">Les prénoms restent sur cet ordinateur, ils ne sont envoyés nulle part.</p>
+      </div>
+    </div>
+    <div class="hero-side" aria-hidden="true">
+      <div class="led5 big" data-icon="face"></div>
+      <p class="cap">l'écran du micro:bit<br>5 × 5 = 25 lumières</p>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="side" aria-label="Plan de route">
+      <p class="side-title">Plan de route</p>
+      <ul class="nav">
+        <li><a href="#atelier">Comment ça marche</a></li>
+        <li><a href="#preparer">Préparer l'atelier</a></li>
+        <li><a href="#blocs">Comprendre les blocs</a></li>
+        <li><a href="#carnet">Carnet de bord</a></li>
+        <li class="sep" aria-hidden="true"></li>
+        <li><a href="#m1"><span class="dot" data-dot="m1"></span>1. Les phares</a></li>
+        <li><a href="#m2"><span class="dot" data-dot="m2"></span>2. Qui est qui ?</a></li>
+        <li><a href="#m3"><span class="dot" data-dot="m3"></span>3. En avant !</a></li>
+        <li><a href="#m4"><span class="dot" data-dot="m4"></span>4. Le carré</a></li>
+        <li><a href="#m5"><span class="dot" data-dot="m5"></span>5. Le radar</a></li>
+        <li><a href="#m6"><span class="dot" data-dot="m6"></span>6. Le robot prudent</a></li>
+        <li><a href="#m7"><span class="dot" data-dot="m7"></span>7. L'explorateur</a></li>
+        <li><a href="#m8"><span class="dot" data-dot="m8"></span>8. Les yeux du dessous</a></li>
+        <li><a href="#m9"><span class="dot" data-dot="m9"></span>9. Le suiveur de ligne</a></li>
+        <li class="sep" aria-hidden="true"></li>
+        <li><a href="#defis">Défis libres</a></li>
+        <li><a href="#depannage">Dépannage</a></li>
+        <li><a href="#parents">Pour les parents</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <!-- ============ Comment ça marche ============ -->
+      <section class="sec" id="atelier">
+        <h2>Comment marche l'atelier</h2>
+        <p class="intro">Vous êtes deux, il y a un seul robot et une seule souris. Alors on se partage le travail, et on échange à chaque mission. Le nom du pilote est écrit en haut de chaque mission.</p>
+        <div class="cols">
+          <div class="card">
+            <h3>Le pilote</h3>
+            <p>Il tient la souris. Il construit le programme en glissant les blocs.</p>
+          </div>
+          <div class="card">
+            <h3>Le copilote</h3>
+            <p>Il lit la mission à voix haute. Il vérifie chaque bloc posé. Il s'occupe du robot : câble, interrupteur, piste.</p>
+          </div>
+        </div>
+        <div class="m-part">
+          <h3>La méthode du chercheur</h3>
+          <ol class="steps">
+            <li><b>Lire</b> la mission jusqu'au bout.</li>
+            <li><b>Deviner</b> quels blocs il faut, avant de toucher la souris.</li>
+            <li><b>Construire</b> le programme.</li>
+            <li><b>Tester</b> sur le robot et bien regarder ce qu'il fait.</li>
+            <li><b>Corriger</b> une seule chose à la fois, puis tester à nouveau.</li>
+          </ol>
+        </div>
+        <p class="tip"><strong>Un bug, c'est normal.</strong> Les ingénieurs passent leur vie à tester et à corriger. Quand le robot fait n'importe quoi, il fait en fait exactement ce que dit le programme. Votre travail : trouver l'endroit où le programme dit autre chose que ce que vous vouliez.</p>
+        <p>Bloqués ? Ouvrez l'<b>indice 1</b>. Toujours bloqués ? L'<b>indice 2</b>. La <b>solution</b>, c'est en dernier recours.</p>
+      </section>
+
+      <!-- ============ Préparer ============ -->
+      <section class="sec" id="preparer">
+        <h2>Préparer l'atelier</h2>
+        <ul class="checklist" id="prep-list">
+          <li><label><input type="checkbox" id="prep-1"><span>Un ordinateur avec <b>Chrome</b> ou <b>Edge</b>. Les autres navigateurs envoient mal les programmes au robot.</span></label></li>
+          <li><label><input type="checkbox" id="prep-2"><span>MakeCode ouvert à l'adresse <a href="https://makecode.microbit.org/" target="_blank" rel="noopener">makecode.microbit.org</a>.</span></label></li>
+          <li><label><input type="checkbox" id="prep-3"><span>Le câble USB, branché sur le micro:bit. Le micro:bit reste planté sur le robot.</span></label></li>
+          <li><label><input type="checkbox" id="prep-4"><span>Des piles chargées dans le robot.</span></label></li>
+          <li><label><input type="checkbox" id="prep-5"><span>Un grand bol ou une boîte, pour poser le robot <b>roues dans le vide</b> pendant les tests.</span></label></li>
+          <li><label><input type="checkbox" id="prep-6"><span>Pour les missions 8 et 9 : la piste de la boîte, ou du ruban adhésif noir collé sur une grande feuille blanche.</span></label></li>
+        </ul>
+
+        <div class="m-part" id="extension">
+          <h3>Installer les blocs du robot</h3>
+          <p class="intro">Au départ, MakeCode ne connaît pas votre robot. Il faut lui ajouter un tiroir de blocs spécial, qui s'appelle <span class="kw" style="--cat:var(--c-minicar)">MiniCar</span>.</p>
+          <ol class="steps">
+            <li>Dans MakeCode, cliquez sur <b>Nouveau projet</b> et donnez-lui un nom (par exemple « mission 1 »).</li>
+            <li>Tout en bas de la liste des tiroirs, cliquez sur <b>Extensions</b>.</li>
+            <li>Collez cette adresse dans la barre de recherche, puis appuyez sur Entrée :
+              <div class="urlbox"><code id="ext-url">https://github.com/keyestudio2019/MiniCar</code><button class="btn" type="button" data-copy="ext-url">Copier</button></div>
+            </li>
+            <li>Cliquez sur la case <b>Mini Car</b> qui apparaît.</li>
+            <li>Un nouveau tiroir violet, <span class="kw" style="--cat:var(--c-minicar)">MiniCar</span>, s'ajoute à la liste. C'est prêt.</li>
+          </ol>
+          <p class="tip"><strong>À refaire à chaque nouveau projet.</strong> Si le tiroir MiniCar a disparu, c'est que vous avez ouvert un nouveau projet. Un autre tiroir (télécommande infrarouge) peut aussi apparaître : on ne s'en sert pas.</p>
+        </div>
+
+        <div class="m-part">
+          <h3>Envoyer un programme au robot</h3>
+          <ol class="steps">
+            <li>Le câble USB relie l'ordinateur et le micro:bit.</li>
+            <li>Cliquez sur le bouton <b>Télécharger</b>, en bas à gauche de MakeCode.</li>
+            <li>La première fois, MakeCode propose de connecter le micro:bit. Suivez les étapes et choisissez « BBC micro:bit » dans la liste.</li>
+            <li>La petite lumière au dos du micro:bit clignote : le programme arrive. Quand elle s'arrête, c'est prêt.</li>
+          </ol>
+          <p class="info"><b>Plan B</b> si ça ne marche pas : MakeCode enregistre un fichier <code>.hex</code> sur l'ordinateur. Glissez ce fichier sur le lecteur <b>MICROBIT</b>, comme sur une clé USB.</p>
+        </div>
+
+        <div class="m-part" id="rituel">
+          <h3>Le rituel du test au sol</h3>
+          <p>Pour toutes les missions où le robot roule :</p>
+          <ol class="steps">
+            <li>Envoyez le programme avec l'interrupteur POWER du robot sur <b>OFF</b>.</li>
+            <li>Débranchez le câble USB.</li>
+            <li>Posez le robot par terre, avec de la place devant lui.</li>
+            <li>Mettez l'interrupteur POWER sur <b>ON</b>. Le programme démarre.</li>
+            <li>Pour recommencer : le bouton au dos du micro:bit, ou OFF puis ON.</li>
+          </ol>
+          <p class="tip"><strong>Jamais de robot qui roule sur une table.</strong> Il ne voit pas le bord, il tombe.</p>
+        </div>
+      </section>
+
+      <!-- ============ Blocs ============ -->
+      <section class="sec" id="blocs">
+        <h2>Comprendre les blocs</h2>
+        <p class="intro">Un programme MakeCode, c'est une pile de blocs. Le robot les lit de haut en bas, comme une recette. Chaque bloc a une forme, et la forme dit à quoi il sert.</p>
+
+        <div class="m-part">
+          <h3>Cinq formes, cinq rôles</h3>
+          <div class="shapes">
+            <div class="shape"><div class="prog" data-prog="shape-ev" data-plain></div><h3>Le départ</h3><p>Il commence un programme. Les autres blocs se rangent dedans.</p></div>
+            <div class="shape"><div class="prog" data-prog="shape-st" data-plain></div><h3>L'action</h3><p>Il fait quelque chose. Les actions s'empilent et s'exécutent de haut en bas.</p></div>
+            <div class="shape"><div class="prog" data-prog="shape-rep" data-plain></div><h3>La valeur</h3><p>Bloc rond. Il donne un nombre. Tout seul, il ne fait rien : il se glisse dans un trou rond.</p></div>
+            <div class="shape"><div class="prog" data-prog="shape-bool" data-plain></div><h3>La question</h3><p>Bloc pointu. Sa réponse est vrai ou faux. Il se glisse dans le trou d'un bloc « si ».</p></div>
+            <div class="shape"><div class="prog" data-prog="shape-c" data-plain></div><h3>La boîte</h3><p>En forme de C. Elle contient d'autres blocs : pour les répéter, ou pour les faire seulement si…</p></div>
+          </div>
+        </div>
+
+        <div class="m-part">
+          <h3>Une couleur par tiroir</h3>
+          <p>Chaque bloc a la couleur de son tiroir. Pour retrouver un bloc, cherchez d'abord la couleur.</p>
+          <ul class="drawers">
+            <li style="--cat:var(--c-base)"><span class="sw"></span><b>Base</b><span class="d">au démarrage, toujours, pause, montrer nombre</span></li>
+            <li style="--cat:var(--c-input)"><span class="sw"></span><b>Entrées</b><span class="d">les boutons A et B du micro:bit</span></li>
+            <li style="--cat:var(--c-loops)"><span class="sw"></span><b>Boucles</b><span class="d">répéter</span></li>
+            <li style="--cat:var(--c-logic)"><span class="sw"></span><b>Logique</b><span class="d">si, sinon, comparer, et</span></li>
+            <li style="--cat:var(--c-vars)"><span class="sw"></span><b>Variables</b><span class="d">ranger un nombre dans une boîte</span></li>
+            <li style="--cat:var(--c-math)"><span class="sw"></span><b>Maths</b><span class="d">le hasard</span></li>
+            <li style="--cat:var(--c-minicar)"><span class="sw"></span><b>MiniCar</b><span class="d">tout ce qui est sur le robot</span></li>
+          </ul>
+          <p class="info"><b>Astuces.</b> Tapez le nom d'un bloc dans la case <b>Rechercher</b>, en haut des tiroirs. Pour supprimer un bloc, glissez-le vers les tiroirs. Pour copier un bloc, clic droit puis <b>Dupliquer</b>. Si un mot est un peu différent dans votre MakeCode, fiez-vous à la couleur et à la forme.</p>
+        </div>
+
+        <div class="m-part">
+          <h3>Le tiroir MiniCar</h3>
+          <p>Les blocs du robot sont écrits en anglais. Voici ce qu'ils veulent dire.</p>
+          <div class="ref">
+            <div class="ref-item"><div class="prog" data-prog="ref-motor" data-plain></div><p>Fait tourner <b>une seule roue</b>. <b>A</b> ou <b>B</b> : quelle roue. <b>Forward</b> : en avant. <b>Backward</b> : en arrière. <b>speed</b> : la vitesse, de 0 à 255. Il n'y a pas de bloc « stop » : pour arrêter une roue, on met sa vitesse à <b>0</b>.</p></div>
+            <div class="ref-item"><div class="prog" data-prog="ref-rgb" data-plain></div><p>Allume un phare d'une couleur. <b>LED_L</b> : phare gauche (L comme <i>left</i>). <b>LED_R</b> : phare droit (R comme <i>right</i>). « Turn off LED » éteint le phare.</p></div>
+            <div class="ref-item"><div class="prog" data-prog="ref-off" data-plain></div><p>Éteint les deux phares d'un coup.</p></div>
+            <div class="ref-item"><div class="prog" data-prog="ref-ultra" data-plain></div><p>Le radar. Bloc rond : il donne la distance de l'objet devant le robot, en centimètres.</p></div>
+            <div class="ref-item"><div class="prog" data-prog="ref-line" data-plain></div><p>Les yeux du dessous. Bloc rond : il donne un chiffre de 0 à 3 selon ce que voient les deux capteurs sous le robot. La mission 8 explique le code.</p></div>
+          </div>
+          <p class="intro" style="font-size:15px;color:var(--ink-2)">Le tiroir contient aussi des blocs pour des capteurs de lumière (LDR) et pour un servomoteur. On ne s'en sert pas dans ces missions.</p>
+        </div>
+
+        <div class="m-part">
+          <h3>Petit dictionnaire</h3>
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>Dans le bloc</th><th>En français</th></tr></thead>
+              <tbody>
+                <tr><td>motor</td><td>moteur</td></tr>
+                <tr><td>Direction</td><td>sens</td></tr>
+                <tr><td>Forward / Backward</td><td>en avant / en arrière</td></tr>
+                <tr><td>speed</td><td>vitesse (0 à 255)</td></tr>
+                <tr><td>color</td><td>couleur</td></tr>
+                <tr><td>red, green, blue</td><td>rouge, vert, bleu</td></tr>
+                <tr><td>yellow, white, purple, cyan</td><td>jaune, blanc, violet, bleu clair</td></tr>
+                <tr><td>Turn off LED</td><td>éteindre la lumière</td></tr>
+                <tr><td>Ultrasonic</td><td>ultrasons (le radar)</td></tr>
+                <tr><td>Line Tracking</td><td>suivi de ligne</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ Carnet ============ -->
+      <section class="sec" id="carnet">
+        <h2>Le carnet de bord du robot</h2>
+        <p class="intro">La notice du robot donne des réglages de départ. Mais au montage, deux fils peuvent avoir été inversés, et chaque sol glisse un peu différemment. Pendant les missions 2, 4 et 8, vous testez votre robot et vous notez les résultats. Les solutions de cette page s'adaptent ensuite à <b>votre</b> robot.</p>
+        <div class="log" id="log"></div>
+      </section>
+
+      <!-- ============ Mission 1 ============ -->
+      <section class="sec mission" id="m1">
+        <header class="m-head">
+          <div class="led5" data-icon="phares" aria-hidden="true"></div>
+          <div><p class="eyebrow">Mission 1</p><h2>Les phares</h2><p class="crew" data-crew="1"></p></div>
+          <button class="done-btn" type="button" data-done="m1" aria-pressed="false">Mission réussie ?</button>
+        </header>
+        <p class="goal"><b>Votre mission :</b> au démarrage du robot, ses deux phares s'allument en vert.</p>
+        <ul class="learn"><li class="lbl">Vous apprenez</li><li>ce qu'est un programme</li><li>le bloc au démarrage</li><li>envoyer au robot</li></ul>
+        <div class="m-part"><h3>Les blocs à utiliser</h3><div class="need" data-need="m1"></div></div>
+        <div class="m-part">
+          <h3>Pas à pas</h3>
+          <ol class="steps">
+            <li>Nouveau projet, puis <a href="#extension">ajoutez l'extension MiniCar</a>.</li>
+            <li>Les blocs <span class="kw" style="--cat:var(--c-base)">au démarrage</span> et <span class="kw" style="--cat:var(--c-base)">toujours</span> sont déjà là. Laissez <span class="kw" style="--cat:var(--c-base)">toujours</span> vide.</li>
+            <li>Ouvrez le tiroir MiniCar. Glissez le bloc <span class="kw" style="--cat:var(--c-minicar)">RGB</span> à l'intérieur de <span class="kw" style="--cat:var(--c-base)">au démarrage</span>. Il s'aimante tout seul.</li>
+            <li>Cliquez sur <b>red</b> et choisissez <b>green</b>.</li>
+            <li>Ajoutez un deuxième bloc <span class="kw" style="--cat:var(--c-minicar)">RGB</span> juste en dessous. Cliquez sur <b>LED_L</b> et choisissez l'autre phare.</li>
+            <li>Envoyez au robot. Pour cette mission, le câble USB suffit.</li>
+          </ol>
+        </div>
+        <details class="hint"><summary>Indice 1</summary><div class="body"><p>Il faut deux blocs RGB, un par phare : LED_L et LED_R.</p></div></details>
+        <details class="sol"><summary>Voir la solution <small>(essayez d'abord !)</small></summary><div class="body"><div class="prog" data-prog="m1" data-js></div></div></details>
+        <div class="bonus">
+          <h3><span>Défi bonus</span>Le gyrophare</h3>
+          <p>Faites clignoter les phares comme une voiture de police : bleu à gauche et rouge à droite, une petite pause, puis l'inverse, une petite pause. Cette fois, on utilise <span class="kw" style="--cat:var(--c-base)">toujours</span> : il répète son contenu sans jamais s'arrêter. La <span class="kw" style="--cat:var(--c-base)">pause (ms)</span> est dans le tiroir Base.</p>
+          <p>Et vérifiez au passage : LED_L allume-t-il bien le phare de gauche ?</p>
+          <details class="sol"><summary>Solution du bonus</summary><div class="body"><div class="prog" data-prog="m1b" data-js></div></div></details>
+        </div>
+      </section>
+
+      <!-- ============ Mission 2 ============ -->
+      <section class="sec mission" id="m2">
+        <header class="m-head">
+          <div class="led5" data-icon="question" aria-hidden="true"></div>
+          <div><p class="eyebrow">Mission 2</p><h2>Qui est qui ?</h2><p class="crew" data-crew="2"></p></div>
+          <button class="done-btn" type="button" data-done="m2" aria-pressed="false">Mission réussie ?</button>
+        </header>
+        <p class="goal"><b>Votre mission :</b> quand on appuie sur le bouton A du micro:bit, la roue A tourne 1 seconde puis s'arrête. Pareil avec le bouton B pour la roue B. Ensuite, vous vérifiez ce que dit la notice.</p>
+        <ul class="learn"><li class="lbl">Vous apprenez</li><li>les boutons</li><li>les moteurs</li><li>la pause</li><li>vitesse 0 = arrêt</li></ul>
+        <p class="tip"><strong>Robot sur le bol, roues dans le vide.</strong> Interrupteur POWER sur ON : les roues ont besoin des piles.</p>
+        <div class="m-part"><h3>Les blocs à utiliser</h3><div class="need" data-need="m2"></div></div>
+        <div class="m-part">
+          <h3>Pas à pas</h3>
+          <ol class="steps">
+            <li>Nouveau projet et extension MiniCar. Laissez <span class="kw" style="--cat:var(--c-base)">au démarrage</span> et <span class="kw" style="--cat:var(--c-base)">toujours</span> vides.</li>
+            <li>Tiroir Entrées : posez <span class="kw" style="--cat:var(--c-input)">lorsque le bouton A est pressé</span> n'importe où. Ce bloc vit tout seul, il ne va dans aucun autre.</li>
+            <li>Dedans, mettez un <span class="kw" style="--cat:var(--c-minicar)">motor</span>. Réglez : <b>A</b>, <b>Forward</b>, speed <b>150</b>.</li>
+            <li>En dessous, une <span class="kw" style="--cat:var(--c-base)">pause (ms)</span> de <b>1000</b>. 1000 millisecondes = 1 seconde.</li>
+            <li>En dessous, un deuxième <span class="kw" style="--cat:var(--c-minicar)">motor</span> : A, Forward, speed <b>0</b>. Vitesse 0 = la roue s'arrête.</li>
+            <li>Clic droit sur <span class="kw" style="--cat:var(--c-input)">lorsque le bouton A est pressé</span>, puis <b>Dupliquer</b>. Dans la copie, changez A en B partout : le bouton et les deux moteurs.</li>
+            <li>Envoyez au robot. Appuyez sur A, puis sur B. Regardez bien.</li>
+          </ol>
+        </div>
+        <details class="hint"><summary>Indice 1</summary><div class="body"><p>Sans le bloc à vitesse 0, la roue ne s'arrête jamais. Le robot fait ce qu'on lui dit, rien de plus.</p></div></details>
+        <details class="hint"><summary>Indice 2</summary><div class="body"><p>Le bouton A de la mission, c'est le bouton A du micro:bit (sur la face avant, à gauche de l'écran).</p></div></details>
+        <details class="sol"><summary>Voir la solution <small>(essayez d'abord !)</small></summary><div class="body"><div class="prog" data-prog="m2" data-js></div></div></details>
+
+        <div class="carnet-form">
+          <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
+          <p>D'après la notice : la roue A est la <b>gauche</b>, et avec <b>Forward</b>, les deux roues font avancer le robot. Vérifiez sur le vôtre. Gauche et droite, c'est vu de derrière le robot, comme si vous étiez assis dedans.</p>
+          <div class="q"><p>Bouton A : quelle roue tourne ?</p>
+            <span class="seg"><label><input type="radio" name="aSide" id="c-aSide-G" value="G"><span>la gauche</span></label><label><input type="radio" name="aSide" id="c-aSide-D" value="D"><span>la droite</span></label></span></div>
+          <div class="q"><p>Avec Forward, la roue A pousse le robot…</p>
+            <span class="seg"><label><input type="radio" name="aFwd" id="c-aFwd-avance" value="avance"><span>vers l'avant</span></label><label><input type="radio" name="aFwd" id="c-aFwd-recule" value="recule"><span>vers l'arrière</span></label></span></div>
+          <div class="q"><p>Avec Forward, la roue B pousse le robot…</p>
+            <span class="seg"><label><input type="radio" name="bFwd" id="c-bFwd-avance" value="avance"><span>vers l'avant</span></label><label><input type="radio" name="bFwd" id="c-bFwd-recule" value="recule"><span>vers l'arrière</span></label></span></div>
+          <p class="saved" data-saved="m2" hidden>Noté. Les solutions des missions suivantes utilisent ces réponses.</p>
+        </div>
+
+        <div class="bonus">
+          <h3><span>Défi bonus</span>Les deux roues ensemble</h3>
+          <p>Ajoutez un bloc <span class="kw" style="--cat:var(--c-input)">lorsque le bouton A+B est pressé</span> (choisissez A+B dans le petit menu) qui fait tourner les deux roues pendant 1 seconde. Appuyez sur A et B en même temps.</p>
+          <details class="sol"><summary>Solution du bonus</summary><div class="body"><div class="prog" data-prog="m2b" data-js></div></div></details>
+        </div>
+      </section>
+
+      <!-- ============ Mission 3 ============ -->
+      <section class="sec mission" id="m3">
+        <header class="m-head">
+          <div class="led5" data-icon="avant" aria-hidden="true"></div>
+          <div><p class="eyebrow">Mission 3</p><h2>En avant !</h2><p class="crew" data-crew="3"></p></div>
+          <button class="done-btn" type="button" data-done="m3" aria-pressed="false">Mission réussie ?</button>
+        </header>
+        <p class="goal"><b>Votre mission :</b> quand on appuie sur le bouton A, le robot roule tout droit pendant 2 secondes, puis s'arrête.</p>
+        <ul class="learn"><li class="lbl">Vous apprenez</li><li>faire travailler deux moteurs ensemble</li></ul>
+        <div class="m-part"><h3>Les blocs à utiliser</h3><p>Les mêmes qu'à la mission 2 : <span class="kw" style="--cat:var(--c-input)">lorsque le bouton A est pressé</span>, <span class="kw" style="--cat:var(--c-minicar)">motor</span> et <span class="kw" style="--cat:var(--c-base)">pause (ms)</span>.</p></div>
+        <div class="m-part">
+          <h3>Pas à pas</h3>
+          <ol class="steps">
+            <li>Dans <span class="kw" style="--cat:var(--c-input)">lorsque le bouton A est pressé</span> : un <span class="kw" style="--cat:var(--c-minicar)">motor</span> pour la roue gauche, un autre pour la roue droite. Les deux en avant, vitesse <b>100</b>. Le <a href="#carnet">carnet de bord</a> dit quelle lettre et quel sens choisir.</li>
+            <li>Une <span class="kw" style="--cat:var(--c-base)">pause (ms)</span> de <b>2000</b>.</li>
+            <li>Deux <span class="kw" style="--cat:var(--c-minicar)">motor</span> à vitesse <b>0</b> pour arrêter les deux roues.</li>
+            <li><a href="#rituel">Rituel du test au sol</a>, puis appuyez sur A.</li>
+          </ol>
+        </div>
+        <details class="hint"><summary>Indice 1</summary><div class="body"><p>Il faut 4 blocs motor en tout : 2 pour démarrer, 2 pour arrêter.</p></div></details>
+        <details class="hint"><summary>Indice 2</summary><div class="body"><p>Le robot tourne sur lui-même au lieu d'avancer ? Une roue tourne à l'envers : vérifiez Forward et Backward avec le carnet. Il dévie un peu ? C'est normal, deux moteurs ne sont jamais tout à fait pareils. Baissez un peu la vitesse de la roue la plus rapide.</p></div></details>
+        <details class="sol"><summary>Voir la solution <small>(essayez d'abord !)</small></summary><div class="body"><div class="prog" data-prog="m3" data-js></div></div></details>
+        <div class="bonus">
+          <h3><span>Défi bonus</span>L'aller-retour et le mètre</h3>
+          <p>Le robot avance 2 secondes, puis recule 2 secondes. Revient-il pile à son point de départ ?</p>
+          <p>Posez un mètre par terre. Combien de centimètres le robot parcourt-il en 2 secondes à vitesse 100 ? Et à 200 ? Est-ce deux fois plus loin ?</p>
+          <details class="sol"><summary>Solution du bonus</summary><div class="body"><div class="prog" data-prog="m3b" data-js></div></div></details>
+        </div>
+      </section>
+
+      <!-- ============ Mission 4 ============ -->
+      <section class="sec mission" id="m4">
+        <header class="m-head">
+          <div class="led5" data-icon="carre" aria-hidden="true"></div>
+          <div><p class="eyebrow">Mission 4</p><h2>Le carré</h2><p class="crew" data-crew="4"></p></div>
+          <button class="done-btn" type="button" data-done="m4" aria-pressed="false">Mission réussie ?</button>
+        </header>
+        <p class="goal"><b>Votre mission :</b> le robot dessine un carré par terre. Un côté tout droit, un quart de tour, et ainsi de suite, quatre fois.</p>
+        <ul class="learn"><li class="lbl">Vous apprenez</li><li>tourner sur place</li><li>la boucle répéter</li><li>régler par essais</li></ul>
+
+        <div class="m-part">
+          <p class="part-title">Étape 1 : trouver le quart de tour</p>
+          <p>Pour tourner sur place, une roue avance pendant que l'autre recule. Le robot pivote comme une toupie. C'est la durée de la pause qui décide de l'angle.</p>
+          <ol class="steps">
+            <li>Sur le bouton A : roue gauche en avant, roue droite en arrière, les deux à vitesse <b>100</b>.</li>
+            <li>Une pause de <b>400</b>, puis on arrête les deux roues.</li>
+            <li>Testez au sol. Le robot n'a pas assez tourné ? Augmentez la pause. Trop tourné ? Diminuez-la.</li>
+            <li>Recommencez jusqu'à obtenir un quart de tour bien net. Notez la pause dans le carnet.</li>
+          </ol>
+          <details class="hint"><summary>Le programme du pivot</summary><div class="body"><div class="prog" data-prog="m4a" data-js></div></div></details>
+          <div class="carnet-form">
+            <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
+            <div class="numrow"><label for="c-quart">Notre quart de tour à vitesse 100 dure</label><span><input class="numin wide" type="number" id="c-quart" min="50" max="3000" step="10" inputmode="numeric" placeholder="400"> ms</span></div>
+            <p class="saved" data-saved="m4" hidden>Noté. La solution du carré utilise votre durée.</p>
+          </div>
+        </div>
+
+        <div class="m-part">
+          <p class="part-title">Étape 2 : le carré</p>
+          <div class="need" data-need="m4"></div>
+          <ol class="steps">
+            <li>Sur le bouton A, posez un bloc <span class="kw" style="--cat:var(--c-loops)">répéter 4 fois</span> (tiroir Boucles).</li>
+            <li>Dedans : avancer, pause de <b>1000</b>, pivoter, pause du quart de tour.</li>
+            <li>Après la boucle, sous le bloc répéter : arrêter les deux roues.</li>
+          </ol>
+        </div>
+        <details class="hint"><summary>Indice 1</summary><div class="body"><p>Un carré, c'est 4 fois la même chose : un côté tout droit, puis un quart de tour.</p></div></details>
+        <details class="hint"><summary>Indice 2</summary><div class="body"><p>Tout ce qui se répète va <b>dans</b> le bloc répéter. L'arrêt va <b>après</b>, collé sous le bloc répéter.</p></div></details>
+        <details class="sol"><summary>Voir la solution <small>(essayez d'abord !)</small></summary><div class="body"><div class="prog" data-prog="m4" data-js></div></div></details>
+        <div class="bonus">
+          <h3><span>Défi bonus</span>Le triangle</h3>
+          <p>Un triangle a 3 côtés. À chaque coin, le robot tourne d'un tiers de tour. Quelle pause faut-il ? Indice : un quart de tour, c'est 90 degrés ; un tiers de tour, c'est 120 degrés.</p>
+          <p>Le carré n'est jamais parfait ? Normal : les roues glissent un peu et les piles s'usent. Les vrais robots corrigent leur trajectoire avec des capteurs.</p>
+        </div>
+      </section>
+
+      <!-- ============ Mission 5 ============ -->
+      <section class="sec mission" id="m5">
+        <header class="m-head">
+          <div class="led5" data-icon="radar" aria-hidden="true"></div>
+          <div><p class="eyebrow">Mission 5</p><h2>Le radar</h2><p class="crew" data-crew="5"></p></div>
+          <button class="done-btn" type="button" data-done="m5" aria-pressed="false">Mission réussie ?</button>
+        </header>
+        <p class="goal"><b>Votre mission :</b> l'écran du micro:bit affiche sans arrêt la distance entre le robot et l'objet devant lui, en centimètres.</p>
+        <ul class="learn"><li class="lbl">Vous apprenez</li><li>lire un capteur</li><li>la boucle toujours</li><li>les blocs ronds</li></ul>
+        <p class="info">Le radar, ce sont les deux « yeux » à l'avant du robot. Le premier envoie un son trop aigu pour nos oreilles : un ultrason. Le second écoute l'écho. Plus l'écho revient vite, plus l'objet est près. La chauve-souris fait pareil pour voler dans le noir.</p>
+        <div class="m-part"><h3>Les blocs à utiliser</h3><div class="need" data-need="m5"></div></div>
+        <div class="m-part">
+          <h3>Pas à pas</h3>
+          <ol class="steps">
+            <li>Dans <span class="kw" style="--cat:var(--c-base)">toujours</span>, mettez <span class="kw" style="--cat:var(--c-base)">montrer nombre</span>.</li>
+            <li>Glissez <span class="kw" style="--cat:var(--c-minicar)">Ultrasonic</span> dans le trou du 0. C'est un bloc rond : il ne fait rien tout seul, il donne un nombre.</li>
+            <li>Interrupteur POWER sur ON (le radar a besoin des piles), puis envoyez au robot.</li>
+            <li>Approchez doucement votre main. Le nombre baisse.</li>
+          </ol>
+        </div>
+        <p class="tip"><strong>Si l'écran affiche 0</strong>, le radar n'a rien vu : objet trop loin, trop petit ou trop sur le côté. Retenez-le, ça servira à la mission 6.</p>
+        <details class="hint"><summary>Indice 1</summary><div class="body"><p>Le trou rond de montrer nombre accepte n'importe quel bloc rond.</p></div></details>
+        <details class="sol"><summary>Voir la solution <small>(essayez d'abord !)</small></summary><div class="body"><div class="prog" data-prog="m5" data-js></div></div></details>
+        <div class="bonus">
+          <h3><span>Défi bonus</span>Les expériences du radar</h3>
+          <ul>
+            <li>Jusqu'à quelle distance voit-il ? Vérifiez avec un mètre.</li>
+            <li>Que se passe-t-il quand l'objet est à moins de 4 cm ?</li>
+            <li>Voit-il une vitre ? Un coussin ? Un pull ? Le tissu mou avale le son, alors l'écho revient mal.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ Mission 6 ============ -->
+      <section class="sec mission" id="m6">
+        <header class="m-head">
+          <div class="led5" data-icon="stop" aria-hidden="true"></div>
+          <div><p class="eyebrow">Mission 6</p><h2>Le robot prudent</h2><p class="crew" data-crew="6"></p></div>
+          <button class="done-btn" type="button" data-done="m6" aria-pressed="false">Mission réussie ?</button>
+        </header>
+        <p class="goal"><b>Votre mission :</b> le robot avance avec les phares verts. Si un obstacle est à moins de 15 cm, il s'arrête et ses phares passent au rouge.</p>
+        <ul class="learn"><li class="lbl">Vous apprenez</li><li>les variables</li><li>la condition si / sinon</li></ul>
+        <div class="cols">
+          <p class="info"><b>Une variable</b>, c'est une boîte avec une étiquette. Ici, la boîte s'appelle <b>distance</b>. On y range la mesure du radar, puis on peut la regarder autant qu'on veut.</p>
+          <p class="info"><b>Le bloc si</b> pose une question. Si la réponse est vraie, il fait ce qui est dans « alors ». Sinon, il fait ce qui est dans « sinon ». Avec toujours, le robot pose la question des dizaines de fois par seconde.</p>
+        </div>
+        <div class="m-part"><h3>Les blocs à utiliser</h3><div class="need" data-need="m6"></div></div>
+        <div class="m-part">
+          <h3>Pas à pas</h3>
+          <ol class="steps">
+            <li>Tiroir Variables : <b>Créer une variable…</b> et appelez-la <b>distance</b>.</li>
+            <li>Dans <span class="kw" style="--cat:var(--c-base)">toujours</span> : <span class="kw" style="--cat:var(--c-vars)">définir distance à</span>, avec <span class="kw" style="--cat:var(--c-minicar)">Ultrasonic</span> dans le trou.</li>
+            <li>En dessous : <span class="kw" style="--cat:var(--c-logic)">si … alors … sinon</span> (tiroir Logique).</li>
+            <li>Dans le trou pointu du si : le comparateur <span class="kw" style="--cat:var(--c-logic)">0 &lt; 0</span>. À gauche, glissez la variable <span class="kw" style="--cat:var(--c-vars)">distance</span>. À droite, tapez <b>15</b>.</li>
+            <li>Dans « alors » : arrêtez les deux roues et passez les phares au rouge.</li>
+            <li>Dans « sinon » : avancez à vitesse 100 et passez les phares au vert.</li>
+            <li><a href="#rituel">Rituel du test au sol</a>. Posez un livre devant le robot, ou votre main.</li>
+          </ol>
+        </div>
+        <details class="hint"><summary>Indice 1</summary><div class="body"><p>Lisez le programme à voix haute : « Toujours : mesure la distance. Si la distance est plus petite que 15, alors stop. Sinon, en avant. »</p></div></details>
+        <details class="hint"><summary>Indice 2</summary><div class="body"><p>Les blocs ronds vont dans les trous ronds. Le bloc pointu <b>distance &lt; 15</b> va dans le trou du si.</p></div></details>
+        <details class="sol"><summary>Voir la solution <small>(essayez d'abord !)</small></summary><div class="body"><div class="prog" data-prog="m6" data-js></div></div></details>
+        <div class="bonus">
+          <h3><span>Défi bonus</span>Le bug mystère</h3>
+          <p>Votre robot s'arrête parfois alors qu'il n'y a rien devant lui ? Souvenez-vous de la mission 5 : 0 veut dire « rien vu ». Et 0 est plus petit que 15 ! Réparez avec le bloc <span class="kw" style="--cat:var(--c-logic)">et</span> du tiroir Logique : la distance doit être plus grande que 0 <b>et</b> plus petite que 15.</p>
+          <details class="sol"><summary>Solution du bonus</summary><div class="body"><div class="prog" data-prog="m6b" data-js></div></div></details>
+        </div>
+      </section>
+
+      <!-- ============ Mission 7 ============ -->
+      <section class="sec mission" id="m7">
+        <header class="m-head">
+          <div class="led5" data-icon="explo" aria-hidden="true"></div>
+          <div><p class="eyebrow">Mission 7</p><h2>L'explorateur</h2><p class="crew" data-crew="7"></p></div>
+          <button class="done-btn" type="button" data-done="m7" aria-pressed="false">Mission réussie ?</button>
+        </header>
+        <p class="goal"><b>Votre mission :</b> au lieu de s'arrêter devant un obstacle, le robot recule un peu, tourne, puis repart. Il explore la pièce tout seul.</p>
+        <ul class="learn"><li class="lbl">Vous apprenez</li><li>enchaîner plusieurs actions dans un si</li><li>améliorer un programme existant</li></ul>
+        <div class="m-part">
+          <h3>Pas à pas</h3>
+          <ol class="steps">
+            <li>Repartez de votre programme de la mission 6, avec la réparation du bug mystère.</li>
+            <li>Dans « alors », remplacez l'arrêt par : reculer à vitesse 100, pause de <b>300</b>, pivoter comme à la mission 4, pause du quart de tour.</li>
+            <li>Le « sinon » ne change pas : on avance.</li>
+          </ol>
+        </div>
+        <details class="hint"><summary>Indice 1</summary><div class="body"><p>Après le virage, inutile d'ajouter « avancer ». Le bloc toujours recommence, le radar mesure à nouveau, et le sinon fait repartir le robot.</p></div></details>
+        <details class="sol"><summary>Voir la solution <small>(essayez d'abord !)</small></summary><div class="body"><div class="prog" data-prog="m7" data-js></div></div></details>
+        <div class="bonus">
+          <h3><span>Défi bonus</span>Pile ou face</h3>
+          <p>À chaque obstacle, le robot choisit au hasard de quel côté tourner. Le bloc <span class="kw" style="--cat:var(--c-math)">choisir au hasard vrai ou faux</span> (tiroir Maths) se glisse dans le trou d'un si.</p>
+          <details class="sol"><summary>Solution du bonus</summary><div class="body"><div class="prog" data-prog="m7b" data-js></div></div></details>
+        </div>
+      </section>
+
+      <!-- ============ Mission 8 ============ -->
+      <section class="sec mission" id="m8">
+        <header class="m-head">
+          <div class="led5" data-icon="yeux" aria-hidden="true"></div>
+          <div><p class="eyebrow">Mission 8</p><h2>Les yeux du dessous</h2><p class="crew" data-crew="8"></p></div>
+          <button class="done-btn" type="button" data-done="m8" aria-pressed="false">Mission réussie ?</button>
+        </header>
+        <p class="goal"><b>Votre mission :</b> afficher sur l'écran ce que voient les deux capteurs sous le robot, puis décoder les chiffres dans le carnet.</p>
+        <ul class="learn"><li class="lbl">Vous apprenez</li><li>un capteur noir et blanc</li><li>tester avant de programmer</li></ul>
+        <p class="info">Sous le robot, deux petits capteurs envoient une lumière invisible vers le sol. Le blanc la renvoie, le noir l'avale. Le bloc <span class="kw" style="--cat:var(--c-minicar)">Line Tracking</span> résume ce que voient les deux capteurs en un seul chiffre : 0, 1, 2 ou 3. À vous de trouver quel chiffre veut dire quoi.</p>
+        <div class="m-part">
+          <h3>Préparer la piste</h3>
+          <p>La piste de la boîte, ou du ruban adhésif noir (environ 2 cm de large) collé sur une grande feuille blanche ou un sol clair. Faites des virages doux. Pas en plein soleil : le soleil éblouit les capteurs.</p>
+          <p class="tip"><strong>Si les capteurs voient mal :</strong> posez le robot sur du blanc. Avec un petit tournevis plat, tournez doucement les deux petites vis de réglage, sur le dessus du robot, jusqu'à ce que la petite lumière à côté de chaque vis s'allume. Soulevez le robot : elles doivent s'éteindre. Demandez de l'aide à un adulte si besoin.</p>
+        </div>
+        <div class="m-part"><h3>Les blocs à utiliser</h3><div class="need" data-need="m8"></div></div>
+        <div class="m-part">
+          <h3>Pas à pas</h3>
+          <ol class="steps">
+            <li>Dans <span class="kw" style="--cat:var(--c-base)">toujours</span> : <span class="kw" style="--cat:var(--c-base)">montrer nombre</span>, avec <span class="kw" style="--cat:var(--c-minicar)">Line Tracking</span> dans le trou.</li>
+            <li>Interrupteur POWER sur ON, puis envoyez au robot.</li>
+            <li>Faites les 4 tests du carnet et notez le chiffre affiché à chaque fois.</li>
+          </ol>
+        </div>
+        <details class="sol"><summary>Voir la solution <small>(essayez d'abord !)</small></summary><div class="body"><div class="prog" data-prog="m8" data-js></div></div></details>
+        <div class="carnet-form">
+          <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
+          <p>Gauche et droite : vus de derrière le robot, comme pour les roues. D'après la notice, vous devriez trouver 0, 3, 2 et 1. Vérifiez !</p>
+          <div class="numrow">
+            <label for="c-lt-blanc"><input class="numin" type="number" id="c-lt-blanc" min="0" max="3" inputmode="numeric" placeholder="?"> les deux capteurs sur le blanc</label>
+            <label for="c-lt-noir"><input class="numin" type="number" id="c-lt-noir" min="0" max="3" inputmode="numeric" placeholder="?"> les deux capteurs sur le noir</label>
+            <label for="c-lt-gauche"><input class="numin" type="number" id="c-lt-gauche" min="0" max="3" inputmode="numeric" placeholder="?"> seulement le capteur gauche sur le noir</label>
+            <label for="c-lt-droite"><input class="numin" type="number" id="c-lt-droite" min="0" max="3" inputmode="numeric" placeholder="?"> seulement le capteur droit sur le noir</label>
+          </div>
+          <p class="saved" data-saved="m8" hidden>Noté. Le suiveur de ligne utilise vos chiffres.</p>
+        </div>
+        <div class="bonus">
+          <h3><span>Défi bonus</span>Le détecteur de ligne</h3>
+          <p>Les phares s'allument en bleu quand les deux capteurs sont sur le noir, et s'éteignent sinon. Pour comparer deux nombres, il y a un comparateur avec <b>=</b> dans le tiroir Logique.</p>
+          <details class="sol"><summary>Solution du bonus</summary><div class="body"><div class="prog" data-prog="m8b" data-js></div></div></details>
+        </div>
+      </section>
+
+      <!-- ============ Mission 9 ============ -->
+      <section class="sec mission" id="m9">
+        <header class="m-head">
+          <div class="led5" data-icon="ligne" aria-hidden="true"></div>
+          <div><p class="eyebrow">Mission 9</p><h2>Le suiveur de ligne</h2><p class="crew" data-crew="9"></p></div>
+          <button class="done-btn" type="button" data-done="m9" aria-pressed="false">Mission réussie ?</button>
+        </header>
+        <p class="goal"><b>Votre mission :</b> le robot suit la ligne noire tout seul, du début à la fin de la piste.</p>
+        <ul class="learn"><li class="lbl">Vous apprenez</li><li>si / sinon si / sinon</li><li>régler un robot</li></ul>
+        <div class="m-part">
+          <h3>Le plan</h3>
+          <p>Quatre situations possibles. Pour chacune, le robot doit faire quelque chose de différent. Les chiffres viennent de votre carnet.</p>
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>Les capteurs voient</th><th>Chiffre</th><th>Le robot doit</th></tr></thead>
+              <tbody>
+                <tr><td>les deux sur le noir</td><td class="n" data-lt="noir"></td><td>aller tout droit</td></tr>
+                <tr><td>seulement le gauche sur le noir</td><td class="n" data-lt="gauche"></td><td>tourner à gauche : la ligne part à gauche</td></tr>
+                <tr><td>seulement le droit sur le noir</td><td class="n" data-lt="droite"></td><td>tourner à droite</td></tr>
+                <tr><td>les deux sur le blanc</td><td class="n" data-lt="blanc"></td><td>s'arrêter : il a perdu la ligne</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="m-part"><h3>Les blocs à utiliser</h3><div class="need" data-need="m9"></div></div>
+        <div class="m-part">
+          <h3>Pas à pas</h3>
+          <ol class="steps">
+            <li>Créez une variable <b>ligne</b>. Dans <span class="kw" style="--cat:var(--c-base)">toujours</span> : <span class="kw" style="--cat:var(--c-vars)">définir ligne à</span> <span class="kw" style="--cat:var(--c-minicar)">Line Tracking</span>.</li>
+            <li>Posez un <span class="kw" style="--cat:var(--c-logic)">si … alors … sinon</span>. Cliquez sur le petit <b>+</b> en bas du bloc si pour ajouter des « sinon si ». Il en faut deux.</li>
+            <li>Dans chaque trou pointu, un comparateur <b>ligne = chiffre</b>. Choisissez <b>=</b> dans le petit menu du comparateur.</li>
+            <li>Dans chaque partie, les bons moteurs : tout droit, pivot à gauche, pivot à droite, et stop dans le dernier sinon.</li>
+            <li>Commencez lentement : vitesse <b>70</b>.</li>
+            <li>Posez le robot sur la ligne, interrupteur sur ON.</li>
+          </ol>
+        </div>
+        <details class="hint"><summary>Indice 1</summary><div class="body"><p>Pour tourner à gauche sur place : roue gauche en arrière, roue droite en avant. Pour tourner à droite, c'est l'inverse.</p></div></details>
+        <details class="hint"><summary>Indice 2</summary><div class="body"><p>Le robot sort de la piste dans les virages ? Baissez la vitesse. Il zigzague trop ? Pour tourner, essayez d'arrêter une roue (vitesse 0) au lieu de la faire reculer.</p></div></details>
+        <details class="sol"><summary>Voir la solution <small>(essayez d'abord !)</small></summary><div class="body"><div class="prog" data-prog="m9" data-js></div></div></details>
+        <div class="bonus">
+          <h3><span>Défi bonus</span>Le chrono</h3>
+          <p>Chronométrez un tour de piste. Chacun règle les vitesses à sa façon, sans que le robot sorte de la ligne. Le meilleur temps gagne.</p>
+          <p>Et pour finir : ouvrez dans MakeCode le programme de la notice, le fichier <b>3.6.6 Line-Tracking-Robot-Car</b>. Qu'est-ce qui ressemble au vôtre ? Qu'est-ce qui est différent ?</p>
+        </div>
+      </section>
+
+      <!-- ============ Défis ============ -->
+      <section class="sec" id="defis">
+        <div style="display:flex;gap:16px;align-items:center"><div class="led5" data-icon="etoile" aria-hidden="true"></div><div><p class="eyebrow">Après la mission 9</p><h2>Défis libres</h2></div></div>
+        <p class="intro">Plus de pas à pas : vous avez tous les blocs qu'il faut. Choisissez un défi, faites un plan sur papier, puis programmez.</p>
+        <div class="ideas">
+          <div class="card"><h3>Le robot timide</h3><p>Il recule quand une main s'approche à moins de 10 cm.</p><p class="cap" style="text-align:left">Piste : la mission 6, avec reculer au lieu de stop.</p></div>
+          <div class="card"><h3>Le robot chien</h3><p>Il suit votre main en gardant ses distances.</p><p class="cap" style="text-align:left">Piste : trois cas. Main loin, il avance. Main trop près, il recule. Entre les deux, il s'arrête.</p></div>
+          <div class="card"><h3>Le parking parfait</h3><p>Il s'arrête le plus près possible d'un mur, sans le toucher.</p><p class="cap" style="text-align:left">Concours : qui se gare le plus près ?</p></div>
+          <div class="card"><h3>La danse</h3><p>Le bouton A+B lance une chorégraphie de 10 secondes avec pivots et phares.</p><p class="cap" style="text-align:left">Piste : répéter, pivots, pauses, couleurs.</p></div>
+          <div class="card"><h3>Le klaxon</h3><p>Il joue un son quand un obstacle est trop près.</p><p class="cap" style="text-align:left">Seulement si votre micro:bit a un haut-parleur (V2). Tiroir Musique.</p></div>
+          <div class="card"><h3>Votre idée</h3><p>Inventez une mission pour l'autre équipe, écrivez-la sur une feuille, et échangez.</p></div>
+        </div>
+      </section>
+
+      <!-- ============ Dépannage ============ -->
+      <section class="sec" id="depannage">
+        <h2>Dépannage</h2>
+        <div class="faq">
+          <details><summary>Le bouton Télécharger ne marche pas</summary><div class="body"><p>Utilisez Chrome ou Edge. Sinon, plan B : glissez le fichier <code>.hex</code> que MakeCode a enregistré sur le lecteur MICROBIT.</p></div></details>
+          <details><summary>Le tiroir MiniCar a disparu</summary><div class="body"><p>Vous êtes dans un nouveau projet. Ajoutez à nouveau l'extension (voir <a href="#extension">Installer les blocs du robot</a>).</p></div></details>
+          <details><summary>Les roues ne tournent pas</summary><div class="body"><p>Interrupteur POWER sur ON ? Piles chargées ? Vitesse au-dessus de 0 ? Avez-vous appuyé sur le bon bouton ?</p></div></details>
+          <details><summary>Le robot ne s'arrête jamais</summary><div class="body"><p>Il manque les blocs motor à vitesse 0 à la fin. Le robot garde la dernière vitesse qu'on lui a donnée.</p></div></details>
+          <details><summary>Le robot tourne au lieu d'aller tout droit</summary><div class="body"><p>Une roue tourne à l'envers. Refaites le test de la mission 2 et corrigez le carnet de bord.</p></div></details>
+          <details><summary>Le radar affiche 0 ou des chiffres bizarres</summary><div class="body"><p>0 = rien vu. L'objet est peut-être trop loin, trop petit, trop sur le côté, à moins de 4 cm, ou en tissu mou.</p></div></details>
+          <details><summary>Le suiveur ne voit pas la ligne</summary><div class="body"><p>Réglez les deux petites vis (mission 8). Vérifiez les piles. Évitez le plein soleil. Le ruban doit être bien noir et pas brillant.</p></div></details>
+          <details><summary>Un bloc ne veut pas s'emboîter</summary><div class="body"><p>Regardez sa forme. Les blocs ronds vont dans les trous ronds. Les blocs pointus vont dans le trou du si. Les blocs d'action s'empilent.</p></div></details>
+          <details><summary>L'écran montre un visage triste et des chiffres</summary><div class="body"><p>Le programme s'est planté. Débranchez, rebranchez, renvoyez le programme. Souvent, ce sont les piles qui faiblissent.</p></div></details>
+          <details><summary>Rien ne se passe</summary><div class="body"><p>Le programme est-il bien arrivé (la lumière au dos a clignoté) ? Si le programme démarre sur un bouton, avez-vous appuyé dessus ? Essayez le bouton au dos du micro:bit pour relancer.</p></div></details>
+        </div>
+      </section>
+
+      <!-- ============ Parents ============ -->
+      <section class="sec" id="parents">
+        <h2>Pour les parents</h2>
+        <div class="foot-note">
+          <p>Les blocs dessinés ici reprennent les couleurs et les libellés français de MakeCode. Un mot peut varier légèrement selon la version : la couleur et la forme suffisent à retrouver le bloc.</p>
+          <p>Les réglages de départ (roue A à gauche, « Forward » vers l'avant, codes 0, 3, 2 et 1 du suivi de ligne) viennent des programmes officiels Keyestudio fournis avec le kit (3.6.2 et 3.6.6). Le carnet de bord sert à vérifier que le robot a été câblé pareil au montage.</p>
+          <p>Chaque solution a une version texte. Collée dans l'onglet JavaScript de MakeCode, elle redevient des blocs. L'extension MiniCar doit être installée avant.</p>
+          <p>La progression, le carnet et les prénoms sont enregistrés dans ce navigateur seulement.</p>
+          <p>Sources : <a href="https://docs.keyestudio.com/projects/KS4036/fr/latest/docs/4.MakecodeTutorial.html" target="_blank" rel="noopener">notice MakeCode KS4036F</a> · <a href="https://github.com/keyestudio2019/MiniCar" target="_blank" rel="noopener">extension MiniCar</a> · <a href="https://makecode.microbit.org/" target="_blank" rel="noopener">MakeCode micro:bit</a></p>
+          <div class="confirm">
+            <button class="btn" type="button" id="reset">Tout effacer (progression et carnet)</button>
+            <span id="reset-confirm" hidden><span>Sûr ?</span> <button class="btn solid" type="button" id="reset-yes">Oui, tout effacer</button> <button class="btn" type="button" id="reset-no">Annuler</button></span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+var KEY = "atelier-robot-v1";
+var DEF_LT = {blanc:0, noir:3, gauche:2, droite:1};
+function defaults(){ return {aSide:null,aFwd:null,bFwd:null,quart:null,lt:{blanc:null,noir:null,gauche:null,droite:null},done:{},prep:{},first:"1",names:{"1":"","2":""}}; }
+function load(){
+  var d = defaults();
+  try{ var raw = localStorage.getItem(KEY); if(raw){ var o = JSON.parse(raw);
+    ["aSide","aFwd","bFwd","quart","first"].forEach(function(k){ if(o[k]!==undefined && o[k]!==null) d[k]=o[k]; });
+    if(o.lt) Object.keys(d.lt).forEach(function(k){ if(typeof o.lt[k]==="number") d.lt[k]=o.lt[k]; });
+    if(o.done) d.done=o.done; if(o.prep) d.prep=o.prep;
+    if(o.names && typeof o.names==="object") ["1","2"].forEach(function(k){ if(typeof o.names[k]==="string") d.names[k]=o.names[k].slice(0,16); });
+    if(d.first!=="1" && d.first!=="2") d.first="1"; } }catch(e){}
+  return d;
+}
+var S = load();
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+function flat(a){ var out=[]; (function f(x){ x.forEach(function(y){ if(Array.isArray(y)) f(y); else if(y) out.push(y); }); })(a); return out; }
+
+/* ---------- Block model ---------- */
+var UT = {m4:"Remplacez par votre quart de tour (carnet, mission 4)."};
+function dd(v,u){ return {f:"dd",v:v,u:u||null}; }
+function num(v,u){ return {f:"num",v:v,u:u||null}; }
+function jsOf(p){ if(p===null||p===undefined) return ""; if(typeof p!=="object") return String(p); if(p.f) return String(p.v); return p.js; }
+function ev(cat,head,body,open,close){ return {k:"ev",cat:cat,head:head,body:flat(body),open:open,close:close}; }
+function onStart(){ return ev("base",["au démarrage"],[].slice.call(arguments),null,null); }
+function forever(){ return ev("base",["toujours"],[].slice.call(arguments),"basic.forever(function () {","})"); }
+function onBtn(b){ var body=[].slice.call(arguments,1); return ev("input",["lorsque le bouton",dd(b),"est pressé"],body,"input.onButtonPressed(Button."+(b==="A+B"?"AB":b)+", function () {","})"); }
+function st(cat,parts,js,note){ return {k:"st",cat:cat,parts:parts,js:js,note:note}; }
+function rep(cat,parts,js){ return {k:"rep",cat:cat,parts:parts,js:js}; }
+function bool(cat,parts,js){ return {k:"bool",cat:cat,parts:parts,js:js}; }
+function pause(ms){ var p=(typeof ms==="object")?ms:num(ms); return st("base",["pause (ms)",p],"basic.pause("+jsOf(p)+")"); }
+function showNum(r){ return st("base",["montrer nombre",r],"basic.showNumber("+jsOf(r)+")"); }
+function ultra(){ return rep("minicar",["Ultrasonic"],"MiniCar.ultra()"); }
+function lineT(){ return rep("minicar",["Line Tracking"],"MiniCar.LineTracking()"); }
+function v(n){ return rep("vars",[n],n); }
+function setVar(n,r){ return st("vars",["définir",dd(n),"à",r],n+" = "+jsOf(r)); }
+function TRUE(){ return bool("logic",["vrai"],"true"); }
+function cmp(a,op,b){ return bool("logic",[a,dd(op),b],jsOf(a)+" "+(op==="="?"==":op)+" "+jsOf(b)); }
+function and(a,b){ return bool("logic",[a,"et",b],jsOf(a)+" && "+jsOf(b)); }
+function randBool(){ return bool("math",["choisir au hasard vrai ou faux"],"Math.randomBoolean()"); }
+function ifc(arms,elseBody){
+  var out = arms.map(function(a,i){ return {head:[i?"sinon si":"si",a[0],"alors"],cond:a[0],body:flat(a[1])}; });
+  if(elseBody) out.push({head:["sinon"],body:flat(elseBody),isElse:true});
+  return {k:"c",cat:"logic",arms:out};
+}
+function repeat(n){ var body=[].slice.call(arguments,1); return {k:"c",cat:"loops",arms:[{head:["répéter",num(n),"fois"],body:flat(body)}],n:n}; }
+var COL = {red:["red","red1"],green:["green","green1"],blue:["blue","blue1"],yellow:["yellow","yellow"],white:["white","white"],purple:["purple","purple"],cyan:["cyan","cyan"]};
+function rgb(side,c){ var s=side==="L"?"LED_L":"LED_R"; return st("minicar",["RGB =",dd(s),"color =",dd(COL[c][0])],"MiniCar.led_rgb(LED_rgb_L_R."+s+", LED_color."+COL[c][1]+")"); }
+function ledOff(){ return st("minicar",["LED OFF"],"MiniCar.LED_OFF()"); }
+function motorRaw(L,D,sp,note){ return st("minicar",["motor =",dd(L),"Direction =",dd(D),"speed =",num(sp)],"MiniCar.motor(Motorlist."+(L==="A"?"M1":"M2")+", Direction1."+D+", "+sp+")",note); }
+
+/* Robot settings: carnet value if tested, otherwise the official Keyestudio programs */
+function aSide(){ return S.aSide || "G"; }
+function letterFor(side){ return aSide()==="G" ? (side==="G"?"A":"B") : (side==="G"?"B":"A"); }
+function dirFor(L,sens){ var f=(L==="A"?S.aFwd:S.bFwd)||"avance"; var fw=f==="recule"?"Backward":"Forward"; var bw=fw==="Forward"?"Backward":"Forward"; return sens==="avant"?fw:bw; }
+function wheel(side,sens,sp){ var L=letterFor(side); return motorRaw(L,dirFor(L,sens),sp,side==="G"?"roue gauche":"roue droite"); }
+function halt(side){ return motorRaw(letterFor(side),"Forward",0,side==="G"?"roue gauche : stop":"roue droite : stop"); }
+function avancer(sp){ return [wheel("G","avant",sp),wheel("D","avant",sp)]; }
+function reculer(sp){ return [wheel("G","arriere",sp),wheel("D","arriere",sp)]; }
+function pivotD(sp){ return [wheel("G","avant",sp),wheel("D","arriere",sp)]; }
+function pivotG(sp){ return [wheel("G","arriere",sp),wheel("D","avant",sp)]; }
+function stop(){ return [halt("G"),halt("D")]; }
+function phares(c){ return [rgb("L",c),rgb("R",c)]; }
+function quart(){ return num(S.quart!=null?S.quart:400, S.quart!=null?null:"m4"); }
+function ltv(k){ return num(S.lt[k]!=null?S.lt[k]:DEF_LT[k]); }
+function farEnough(){ return and(cmp(v("distance"),">",num(0)),cmp(v("distance"),"<",num(15))); }
+
+var PROGS = {
+  "shape-ev": function(){ return [forever()]; },
+  "shape-st": function(){ return [pause(1000)]; },
+  "shape-rep": function(){ return [ultra()]; },
+  "shape-bool": function(){ return [cmp(v("distance"),"<",num(15))]; },
+  "shape-c": function(){ return [repeat(4)]; },
+  "ref-motor": function(){ return [motorRaw("A","Forward",150)]; },
+  "ref-rgb": function(){ return [rgb("L","red")]; },
+  "ref-off": function(){ return [ledOff()]; },
+  "ref-ultra": function(){ return [ultra()]; },
+  "ref-line": function(){ return [lineT()]; },
+  m1: function(){ return [onStart(phares("green"))]; },
+  m1b: function(){ return [forever(rgb("L","blue"),rgb("R","red"),pause(300),rgb("L","red"),rgb("R","blue"),pause(300))]; },
+  m2: function(){ return [onBtn("A",motorRaw("A","Forward",150),pause(1000),motorRaw("A","Forward",0)), onBtn("B",motorRaw("B","Forward",150),pause(1000),motorRaw("B","Forward",0))]; },
+  m2b: function(){ return [onBtn("A+B",motorRaw("A","Forward",150),motorRaw("B","Forward",150),pause(1000),motorRaw("A","Forward",0),motorRaw("B","Forward",0))]; },
+  m3: function(){ return [onBtn("A",avancer(100),pause(2000),stop())]; },
+  m3b: function(){ return [onBtn("A",avancer(100),pause(2000),reculer(100),pause(2000),stop())]; },
+  m4a: function(){ return [onBtn("A",pivotD(100),pause(400),stop())]; },
+  m4: function(){ return [onBtn("A",repeat(4,avancer(100),pause(1000),pivotD(100),pause(quart())),stop())]; },
+  m5: function(){ return [forever(showNum(ultra()))]; },
+  m6: function(){ return [forever(setVar("distance",ultra()), ifc([[cmp(v("distance"),"<",num(15)),[stop(),phares("red")]]],[avancer(100),phares("green")]))]; },
+  m6b: function(){ return [forever(setVar("distance",ultra()), ifc([[farEnough(),[stop(),phares("red")]]],[avancer(100),phares("green")]))]; },
+  m7: function(){ return [forever(setVar("distance",ultra()), ifc([[farEnough(),[phares("red"),reculer(100),pause(300),pivotD(100),pause(quart())]]],[phares("green"),avancer(100)]))]; },
+  m7b: function(){ return [forever(setVar("distance",ultra()), ifc([[farEnough(),[phares("red"),reculer(100),pause(300),ifc([[randBool(),[pivotG(100)]]],[pivotD(100)]),pause(quart())]]],[phares("green"),avancer(100)]))]; },
+  m8: function(){ return [forever(showNum(lineT()))]; },
+  m8b: function(){ return [forever(ifc([[cmp(lineT(),"=",ltv("noir")),[phares("blue")]]],[ledOff()]))]; },
+  m9: function(){ return [forever(setVar("ligne",lineT()), ifc([[cmp(v("ligne"),"=",ltv("noir")),[avancer(70)]],[cmp(v("ligne"),"=",ltv("gauche")),[pivotG(70)]],[cmp(v("ligne"),"=",ltv("droite")),[pivotD(70)]]],[stop()]))]; }
+};
+var NEEDS = {
+  m1: function(){ return [onStart(), rgb("L","red")]; },
+  m2: function(){ return [onBtn("A"), motorRaw("A","Forward",150), pause(100)]; },
+  m4: function(){ return [repeat(4)]; },
+  m5: function(){ return [forever(), showNum(num(0)), ultra()]; },
+  m6: function(){ return [setVar("distance",num(0)), v("distance"), ifc([[TRUE(),[]]],[]), cmp(num(0),"<",num(0)), rgb("L","red"), motorRaw("A","Forward",100)]; },
+  m8: function(){ return [forever(), showNum(num(0)), lineT()]; },
+  m9: function(){ return [setVar("ligne",num(0)), lineT(), ifc([[TRUE(),[]],[TRUE(),[]],[TRUE(),[]]],[]), cmp(v("ligne"),"=",num(0))]; }
+};
+var DRAWER = {base:"Base",input:"Entrées",loops:"Boucles",logic:"Logique",vars:"Variables",math:"Maths",minicar:"MiniCar"};
+
+/* ---------- HTML rendering ---------- */
+function partH(p){
+  if(typeof p==="string") return '<span class="t">'+esc(p)+'</span>';
+  if(p.f==="dd") return '<span class="dd'+(p.u?' unsure':'')+'"'+(p.u?' title="'+esc(UT[p.u])+'"':'')+'>'+esc(p.v)+'<i aria-hidden="true">▾</i></span>';
+  if(p.f==="num") return '<span class="num'+(p.u?' unsure':'')+'"'+(p.u?' title="'+esc(UT[p.u])+'"':'')+'>'+esc(p.v)+'</span>';
+  return nodeH(p);
+}
+function row(parts){ return '<div class="row">'+parts.map(partH).join("")+'</div>'; }
+function nodeH(n){
+  var style = ' style="--cat:var(--c-'+n.cat+')"';
+  if(n.k==="st") return '<div class="line"><div class="blk st"'+style+'>'+row(n.parts)+'</div>'+(n.note?'<span class="note">'+esc(n.note)+'</span>':'')+'</div>';
+  if(n.k==="rep") return '<span class="blk rep"'+style+'>'+n.parts.map(partH).join("")+'</span>';
+  if(n.k==="bool") return '<span class="blk bool"'+style+'>'+n.parts.map(partH).join("")+'</span>';
+  if(n.k==="ev") return '<div class="line"><div class="blk ev"'+style+'>'+row(n.head)+'<div class="mouth">'+n.body.map(nodeH).join("")+'</div><div class="foot"></div></div></div>';
+  if(n.k==="c") return '<div class="line"><div class="blk c"'+style+'>'+n.arms.map(function(a){ return row(a.head)+'<div class="mouth">'+a.body.map(nodeH).join("")+'</div>'; }).join("")+'<div class="foot"></div></div></div>';
+  return "";
+}
+function collectU(nodes,set){
+  nodes.forEach(function(n){
+    function parts(ps){ ps.forEach(function(p){ if(p && typeof p==="object"){ if(p.f){ if(p.u) set[p.u]=1; } else collectU([p],set); } }); }
+    if(n.parts) parts(n.parts);
+    if(n.head) parts(n.head);
+    if(n.body) collectU(n.body,set);
+    if(n.arms) n.arms.forEach(function(a){ parts(a.head); collectU(a.body,set); });
+  });
+  return set;
+}
+/* ---------- JavaScript text (pastes back into MakeCode as blocks) ---------- */
+function jsList(list,ind){ return list.map(function(n){ return jsNode(n,ind); }).join("\n"); }
+function jsNode(n,ind){
+  var p = new Array(ind+1).join("    ");
+  if(n.k==="st") return p+n.js;
+  if(n.k==="ev"){ if(!n.open) return jsList(n.body,ind); return p+n.open+"\n"+jsList(n.body,ind+1)+"\n"+p+n.close; }
+  if(n.k==="c"){
+    if(n.cat==="loops") return p+"for (let index = 0; index < "+n.n+"; index++) {\n"+jsList(n.arms[0].body,ind+1)+"\n"+p+"}";
+    var s="";
+    n.arms.forEach(function(a,i){
+      if(a.isElse) s+=" else {\n"; else s+=(i?" else if (":p+"if (")+jsOf(a.cond)+") {\n";
+      s+=jsList(a.body,ind+1)+"\n"+p+"}";
+    });
+    return s;
+  }
+  return p+n.js;
+}
+function varsOf(nodes){ var seen={}; (function walk(ns){ ns.forEach(function(n){ if(n.k==="st" && n.parts[0]==="définir") seen[n.parts[1].v]=1; if(n.body) walk(n.body); if(n.arms) n.arms.forEach(function(a){ walk(a.body); }); }); })(nodes); return Object.keys(seen); }
+function progJs(nodes){
+  var decl = varsOf(nodes).map(function(name){ return "let "+name+" = 0"; });
+  var main = nodes.filter(function(n){return n.k==="ev" && !n.open;}).concat(nodes.filter(function(n){return !(n.k==="ev" && !n.open);}));
+  return decl.concat(main.map(function(n){ return jsNode(n,0); })).join("\n");
+}
+function renderProg(el){
+  var key = el.getAttribute("data-prog"); var f = PROGS[key]; if(!f) return;
+  var nodes = f();
+  var html = "";
+  var u = collectU(nodes,{});
+  if(Object.keys(u).length) html += '<p class="unsure-note">Les cases en pointillés jaunes dépendent de votre robot : '+Object.keys(u).map(function(k){return esc(UT[k]);}).join(" ")+'</p>';
+  html += '<div class="ws'+(el.hasAttribute("data-plain")?" mini":"")+'">'+nodes.map(nodeH).join("")+'</div>';
+  if(el.hasAttribute("data-js")){
+    html += '<details class="txt"><summary>Version texte (JavaScript)</summary><div class="body"><p style="font-size:14px;color:var(--ink-2)">Pour les grands : avec l\'extension MiniCar installée, collez ce texte dans l\'onglet JavaScript de MakeCode, puis revenez sur Blocs.</p><pre><code id="js-'+key+'">'+esc(progJs(nodes))+'</code></pre><div><button class="btn" type="button" data-copy="js-'+key+'">Copier le texte</button></div></div></details>';
+  }
+  var wasOpen = el.querySelector("details.txt[open]");
+  el.innerHTML = html;
+  if(wasOpen){ var d = el.querySelector("details.txt"); if(d) d.open = true; }
+}
+function renderNeeds(){
+  document.querySelectorAll("[data-need]").forEach(function(el){
+    var f = NEEDS[el.getAttribute("data-need")]; if(!f) return;
+    el.innerHTML = f().map(function(n){ return '<figure>'+nodeH(n)+'<figcaption class="drawer" style="--cat:var(--c-'+n.cat+')">tiroir '+DRAWER[n.cat]+'</figcaption></figure>'; }).join("");
+  });
+}
+function renderAllProgs(){ document.querySelectorAll("[data-prog]").forEach(renderProg); }
+
+/* ---------- LED icons ---------- */
+var ICONS = {
+  face:     ".....,.#.#.,.....,#...#,.###.",
+  phares:   "#...#,.....,##.##,##.##,.....",
+  question: ".###.,#...#,..##.,.....,..#..",
+  avant:    "..#..,.###.,#.#.#,..#..,..#..",
+  carre:    "#####,#...#,#...#,#...#,#####",
+  radar:    "###..,...#.,##..#,..#.#,#.#.#",
+  stop:     "..#..,..#..,..#..,.....,..#..",
+  explo:    "..#..,.#...,..#..,...#.,..#..",
+  yeux:     "..#..,..#..,#.#.#,..#..,..#..",
+  ligne:    "..##.,.#...,..#..,...#.,.##..",
+  etoile:   "..#..,#####,.###.,.#.#.,#...#",
+  carnet:   "####.,#..#.,####.,#..#.,####."
+};
+document.querySelectorAll(".led5[data-icon]").forEach(function(el){
+  var pat = (ICONS[el.getAttribute("data-icon")]||"").replace(/,/g,"");
+  el.innerHTML = pat.split("").map(function(c){ return '<span'+(c==="#"?' class="on"':'')+'></span>'; }).join("");
+});
+
+/* ---------- Carnet ---------- */
+function renderLog(){
+  function rowH(label,val,mine,todo){ return '<div class="log-row"><span>'+label+'</span><span class="v">'+val+'<span class="src'+(mine?' me':'')+'">'+(mine?'vérifié par vous':todo)+'</span></span></div>'; }
+  var side = aSide()==="G" ? "la roue gauche" : "la roue droite";
+  var other = aSide()==="G" ? "la roue droite" : "la roue gauche";
+  var aF = (S.aFwd||"avance")==="avance" ? "vers l'avant" : "vers l'arrière";
+  var bF = (S.bFwd||"avance")==="avance" ? "vers l'avant" : "vers l'arrière";
+  var lt = function(k){ return S.lt[k]!=null ? S.lt[k] : DEF_LT[k]; };
+  var ltMine = Object.keys(S.lt).every(function(k){ return S.lt[k]!=null; });
+  var html = "";
+  html += rowH("Roue A", side, !!S.aSide, "d'après la notice, à vérifier (mission 2)");
+  html += rowH("Roue B", other, !!S.aSide, "d'après la notice, à vérifier (mission 2)");
+  html += rowH("Avec Forward, la roue A pousse", aF, !!S.aFwd, "d'après la notice, à vérifier (mission 2)");
+  html += rowH("Avec Forward, la roue B pousse", bF, !!S.bFwd, "d'après la notice, à vérifier (mission 2)");
+  html += rowH("Quart de tour à vitesse 100", (S.quart!=null?S.quart:400)+" ms", S.quart!=null, "valeur de départ, à mesurer (mission 4)");
+  html += rowH("Suivi de ligne : blanc · noir · gauche · droite", lt("blanc")+" · "+lt("noir")+" · "+lt("gauche")+" · "+lt("droite"), ltMine, "d'après la notice, à vérifier (mission 8)");
+  document.getElementById("log").innerHTML = html;
+  document.querySelectorAll("[data-lt]").forEach(function(td){ td.textContent = lt(td.getAttribute("data-lt")); });
+}
+function syncForm(){
+  ["aSide","aFwd","bFwd"].forEach(function(k){ document.querySelectorAll('input[name="'+k+'"]').forEach(function(r){ r.checked = (S[k]===r.value); }); });
+  var q = document.getElementById("c-quart"); if(q) q.value = S.quart!=null ? S.quart : "";
+  Object.keys(S.lt).forEach(function(k){ var el=document.getElementById("c-lt-"+k); if(el) el.value = S.lt[k]!=null ? S.lt[k] : ""; });
+  document.querySelector('[data-saved="m2"]').hidden = !(S.aSide && S.aFwd && S.bFwd);
+  document.querySelector('[data-saved="m4"]').hidden = S.quart==null;
+  document.querySelector('[data-saved="m8"]').hidden = !Object.keys(S.lt).every(function(k){ return S.lt[k]!=null; });
+}
+function refresh(){ save(); renderLog(); renderAllProgs(); syncForm(); }
+["aSide","aFwd","bFwd"].forEach(function(k){
+  document.querySelectorAll('input[name="'+k+'"]').forEach(function(r){ r.addEventListener("change",function(){ S[k]=r.value; refresh(); }); });
+});
+document.getElementById("c-quart").addEventListener("change",function(e){ var n=parseInt(e.target.value,10); S.quart = (isNaN(n)||n<50||n>3000) ? null : n; refresh(); });
+Object.keys(S.lt).forEach(function(k){
+  document.getElementById("c-lt-"+k).addEventListener("change",function(e){ var n=parseInt(e.target.value,10); S.lt[k] = (isNaN(n)||n<0||n>3) ? null : n; refresh(); });
+});
+
+/* ---------- Crew & progress ---------- */
+function crewName(i){ var v = (S.names[i]||"").trim(); return v || ("Équipier "+i); }
+function renderCrew(){
+  var a = S.first==="2" ? "2" : "1", b = a==="1" ? "2" : "1";
+  var na = esc(crewName(a)), nb = esc(crewName(b));
+  document.querySelectorAll("[data-crew]").forEach(function(el){ var n=+el.getAttribute("data-crew"); var p=n%2?na:nb, c=n%2?nb:na; el.innerHTML = 'Pilote : <b>'+p+'</b> · Copilote : <b>'+c+'</b>'; });
+  document.getElementById("first-1").checked = a==="1"; document.getElementById("first-2").checked = a==="2";
+  document.getElementById("first-1-l").textContent = crewName("1"); document.getElementById("first-2-l").textContent = crewName("2");
+}
+document.querySelectorAll('input[name="first"]').forEach(function(r){ r.addEventListener("change",function(){ S.first=r.value; save(); renderCrew(); }); });
+["1","2"].forEach(function(i){ var inp=document.getElementById("name-"+i); inp.value=S.names[i]||""; inp.addEventListener("input",function(){ S.names[i]=inp.value.slice(0,16); save(); renderCrew(); }); });
+function renderProgress(){
+  var n=0, leds="";
+  for(var i=1;i<=9;i++){ var on=!!S.done["m"+i]; if(on) n++; leds += '<span'+(on?' class="on"':'')+'></span>'; }
+  document.getElementById("progress-leds").innerHTML = leds;
+  document.getElementById("progress-count").textContent = n+" / 9";
+  document.querySelectorAll("[data-done]").forEach(function(b){ var on=!!S.done[b.getAttribute("data-done")]; b.setAttribute("aria-pressed",on?"true":"false"); b.textContent = on ? "Mission réussie ✓" : "Mission réussie ?"; });
+  document.querySelectorAll("[data-dot]").forEach(function(d){ d.classList.toggle("on", !!S.done[d.getAttribute("data-dot")]); });
+}
+document.querySelectorAll("[data-done]").forEach(function(b){ b.addEventListener("click",function(){ var k=b.getAttribute("data-done"); S.done[k]=!S.done[k]; save(); renderProgress(); }); });
+document.querySelectorAll("#prep-list input").forEach(function(c){ c.checked = !!S.prep[c.id]; c.addEventListener("change",function(){ S.prep[c.id]=c.checked; save(); }); });
+
+/* ---------- Copy ---------- */
+document.addEventListener("click",function(e){
+  var b = e.target.closest("[data-copy]"); if(!b) return;
+  var el = document.getElementById(b.getAttribute("data-copy")); if(!el) return;
+  var text = el.textContent, label = b.textContent;
+  function selectIt(){ try{ var r=document.createRange(); r.selectNodeContents(el); var s=window.getSelection(); s.removeAllRanges(); s.addRange(r); }catch(err){} b.textContent="Sélectionné : Ctrl+C"; setTimeout(function(){ b.textContent=label; },2200); }
+  try{ navigator.clipboard.writeText(text).then(function(){ b.textContent="Copié !"; setTimeout(function(){ b.textContent=label; },1800); }, selectIt); }catch(err){ selectIt(); }
+});
+
+/* ---------- Reset ---------- */
+var rc = document.getElementById("reset-confirm");
+document.getElementById("reset").addEventListener("click",function(){ rc.hidden=false; });
+document.getElementById("reset-no").addEventListener("click",function(){ rc.hidden=true; });
+document.getElementById("reset-yes").addEventListener("click",function(){
+  var first = S.first, names = S.names; S = defaults(); S.first = first; S.names = names; rc.hidden = true;
+  document.querySelectorAll("#prep-list input").forEach(function(c){ c.checked=false; });
+  refresh(); renderProgress();
+});
+
+renderNeeds(); renderCrew(); renderProgress(); renderLog(); renderAllProgs(); syncForm();
+})();
+</script>
+
+</body></html>

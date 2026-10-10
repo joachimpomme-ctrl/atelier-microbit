@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Des missions pour apprendre à programmer une carte micro:bit avec MakeCode.">
+<title>Les ateliers micro:bit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Chakra+Petch:wght@600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Même charte que les ateliers : carnet d'ingénieur sur papier millimétré. */
+:root{
+  --paper:#F1F4F9; --panel:#FFFFFF; --soft:#E8EEF8; --ink:#162036; --ink-2:#4A5673; --line:#D2DAE6; --grid:#E1E7F0;
+  --accent:#2550B8; --on-accent:#FFFFFF; --led:#E5342B; --ok:#16845A;
+  --tip-bg:#FFF2CC; --tip-ink:#674600; --tip-line:#EBCB6E;
+  --board:#1B2030; --board-off:#353C50;
+  --f-display:"Chakra Petch","Trebuchet MS",sans-serif;
+  --f-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#0E1322; --panel:#151C2E; --soft:#1C2540; --ink:#E6EAF4; --ink-2:#A6B0C7; --line:#2A3450; --grid:#141B30;
+  --accent:#86A6FF; --on-accent:#0E1322; --led:#FF4B3E; --ok:#45C186;
+  --tip-bg:#33290F; --tip-ink:#F3D68C; --tip-line:#6B5520;
+  --board:#0A0D16; --board-off:#2A3045; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#0E1322; --panel:#151C2E; --soft:#1C2540; --ink:#E6EAF4; --ink-2:#A6B0C7; --line:#2A3450; --grid:#141B30;
+  --accent:#86A6FF; --on-accent:#0E1322; --led:#FF4B3E; --ok:#45C186;
+  --tip-bg:#33290F; --tip-ink:#F3D68C; --tip-line:#6B5520;
+  --board:#0A0D16; --board-off:#2A3045; color-scheme:dark }
+
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background-color:var(--paper);color:var(--ink);font:400 17px/1.55 var(--f-body);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px}
+a{color:var(--accent);text-underline-offset:3px}
+h1,h2,h3{text-wrap:balance;margin:0}
+p{margin:0}
+ol,ul{margin:0;padding-left:1.3em}
+li+li{margin-top:.35em}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+.eyebrow{font:600 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.1em;color:var(--ink-2)}
+.page{max-width:1080px;margin:0 auto;padding-inline:max(16px,3vw);padding-block:28px 72px;display:grid;gap:28px}
+
+/* Écran 5 x 5 */
+.led5{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--g,4px);padding:var(--p,8px);background:var(--board);border-radius:10px;width:var(--w,64px);flex:none}
+.led5 span{aspect-ratio:1;border-radius:2px;background:var(--board-off)}
+.led5 span.on{background:var(--led);box-shadow:0 0 6px var(--led)}
+.led5.big{--w:168px;--g:10px;--p:18px;border-radius:16px}
+.led5.big span{border-radius:4px}
+
+.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:center;padding-block:12px 8px}
+.hero h1{font:700 clamp(44px,8vw,80px)/.95 var(--f-display);letter-spacing:-.01em;margin-top:6px}
+.hero .lead{max-width:56ch;margin-top:18px;font-size:18px}
+@media (max-width:640px){ .hero{grid-template-columns:minmax(0,1fr)} .led5.big{--w:120px;--g:7px;--p:12px} }
+
+.sec{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:clamp(18px,3vw,32px);display:grid;gap:18px;min-width:0}
+.sec h2{font:700 clamp(24px,3.2vw,30px)/1.15 var(--f-display)}
+
+.ateliers{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.atelier{border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:12px;align-content:start;background:var(--panel)}
+.atelier .top{display:flex;gap:16px;align-items:center}
+.atelier h3{font:700 24px/1.15 var(--f-display)}
+.atelier .meta{font:500 13px/1.3 var(--f-mono);color:var(--ink-2);margin-top:4px}
+.atelier .desc{color:var(--ink)}
+.progress{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.progress .board{display:flex;gap:5px;padding:7px 9px;border-radius:8px;background:var(--board)}
+.progress .board span{width:11px;height:11px;border-radius:3px;background:var(--board-off)}
+.progress .board span.on{background:var(--led);box-shadow:0 0 8px var(--led)}
+.progress strong{font:700 18px var(--f-display);font-variant-numeric:tabular-nums;white-space:nowrap}
+.btn{justify-self:start;display:inline-block;font:700 16px/1 var(--f-body);padding:12px 16px;border-radius:9px;border:1.5px solid var(--accent);background:var(--accent);color:var(--on-accent);text-decoration:none}
+.btn:hover{filter:brightness(1.08)}
+.atelier.soon{border-style:dashed;background:transparent}
+.atelier.soon h3,.atelier.soon .desc{color:var(--ink-2)}
+.chip{justify-self:start;font:600 12px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;padding:7px 10px;border-radius:999px;border:1px solid var(--line);color:var(--ink-2)}
+
+.steps{display:grid;gap:4px}
+.steps li::marker{font-family:var(--f-display);font-weight:700;color:var(--accent)}
+.tip{background:var(--tip-bg);color:var(--tip-ink);border:1px solid var(--tip-line);border-radius:10px;padding:12px 16px}
+.parents p+p{margin-top:8px}
+.parents ul{display:grid;gap:4px}
+.small{font-size:15px;color:var(--ink-2)}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="hero">
+    <div>
+      <p class="eyebrow">micro:bit · MakeCode</p>
+      <h1>Les ateliers micro:bit</h1>
+      <p class="lead">Des missions pour apprendre à programmer et à construire. Chaque atelier se fait avec une carte micro:bit V2 et les blocs de MakeCode, une mission après l'autre.</p>
+    </div>
+    <div class="led5 big" data-icon="face" aria-hidden="true"></div>
+  </header>
+
+  <section class="sec" aria-labelledby="t-ateliers">
+    <h2 id="t-ateliers">Choisis ton atelier</h2>
+    <div class="ateliers">
+      <article class="atelier">
+        <div class="top">
+          <div class="led5" data-icon="robot" aria-hidden="true"></div>
+          <div>
+            <h3>L'atelier robot</h3>
+            <p class="meta">Robot MiniCar · 9 missions</p>
+          </div>
+        </div>
+        <p class="desc">Allumer les phares, rouler, mesurer avec le radar, puis faire suivre une ligne noire au robot, tout seul.</p>
+        <div class="progress" aria-live="polite">
+          <div class="board" id="robot-leds" aria-hidden="true"></div>
+          <span>Missions réussies : <strong id="robot-count">0 / 9</strong></span>
+        </div>
+        <a class="btn" href="robot/">Ouvrir l'atelier robot</a>
+      </article>
+
+      <article class="atelier soon">
+        <div class="top">
+          <div class="led5" data-icon="ia" aria-hidden="true"></div>
+          <div>
+            <h3>L'atelier IA</h3>
+            <p class="meta">micro:bit CreateAI</p>
+          </div>
+        </div>
+        <p class="desc">Apprendre à la carte à reconnaître tes mouvements, et comprendre pourquoi elle se trompe parfois.</p>
+        <span class="chip">En préparation</span>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="t-methode">
+    <h2 id="t-methode">La méthode du chercheur</h2>
+    <p>Elle marche pour tous les ateliers.</p>
+    <ol class="steps">
+      <li>Lire la mission jusqu'au bout.</li>
+      <li>Deviner quels blocs il faut, avant de toucher la souris.</li>
+      <li>Construire le programme.</li>
+      <li>Tester et bien regarder ce qui se passe.</li>
+      <li>Corriger une seule chose à la fois, puis tester à nouveau.</li>
+    </ol>
+    <p class="tip">Un bug, c'est normal. La carte fait exactement ce que dit le programme. Ton travail : trouver l'endroit où le programme dit autre chose que ce que tu voulais.</p>
+  </section>
+
+  <section class="sec parents" aria-labelledby="t-parents">
+    <h2 id="t-parents">Pour les parents</h2>
+    <ul>
+      <li>Matériel : une carte micro:bit V2 et un ordinateur avec Chrome ou Edge. Chaque atelier précise le reste.</li>
+      <li>Montages à piles ou en USB uniquement. Jamais rien relié au secteur.</li>
+      <li>La progression, le carnet de bord et les prénoms sont enregistrés dans le navigateur de l'ordinateur utilisé. Rien n'est envoyé.</li>
+    </ul>
+    <p class="small">Outils utilisés : <a href="https://makecode.microbit.org/">MakeCode pour micro:bit</a> · <a href="https://createai.microbit.org/">micro:bit CreateAI</a></p>
+  </section>
+</div>
+
+<script>
+(function(){
+"use strict";
+var ICONS = {
+  face:  ".....,.#.#.,.....,#...#,.###.",
+  robot: ".###.,#.#.#,#####,.#.#.,##.##",
+  ia:    "..#..,.#.#.,#.#.#,.#.#.,..#.."
+};
+document.querySelectorAll(".led5[data-icon]").forEach(function(el){
+  var pat = (ICONS[el.getAttribute("data-icon")]||"").replace(/,/g,"");
+  el.innerHTML = pat.split("").map(function(c){ return '<span'+(c==="#"?' class="on"':'')+'></span>'; }).join("");
+});
+
+/* Progression de l'atelier robot, lue dans ce navigateur */
+var done = {};
+try{ var raw = localStorage.getItem("atelier-robot-v1"); if(raw){ var o = JSON.parse(raw); if(o && o.done) done = o.done; } }catch(e){}
+var n = 0, leds = "";
+for(var i=1;i<=9;i++){ var on = !!done["m"+i]; if(on) n++; leds += '<span'+(on?' class="on"':'')+'></span>'; }
+document.getElementById("robot-leds").innerHTML = leds;
+document.getElementById("robot-count").textContent = n+" / 9";
+})();
+</script>
+</body>
+</html>
