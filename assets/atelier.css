@@ -260,3 +260,7 @@ label.inline{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .phrases li{margin:0}
 
 #atelier .cols{align-items:start}
+
+/* Blocs longs : le bloc au-dessus, l explication en dessous */
+#blocs .ref-item{grid-template-columns:minmax(0,1fr)}
+#blocs .ref-item .ws{padding:0}

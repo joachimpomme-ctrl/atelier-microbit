@@ -38,7 +38,7 @@ var B = {
   flat:flat
 };
 window.ATELIER_BLOCKS = B;
-var UT = {lbl:"Libellé à confirmer dans votre MakeCode : fiez-vous à la couleur et à la forme.", val:"Valeur à régler sur votre machine."};
+var UT = {lbl:"Libellé à confirmer dans votre MakeCode : fiez-vous à la couleur et à la forme.", val:"Valeur du fabricant : mesurez-la sur votre machine et notez-la dans le carnet."};
 var DRAWER = {base:"Base",input:"Entrées",loops:"Boucles",logic:"Logique",vars:"Variables",math:"Maths",ml:"Apprentissage automatique",wukong:"wuKong",sonar:"Sonarbit",radio:"Radio",pins:"Broches",minicar:"MiniCar"};
 
 function uAttr(u){ return u ? ' title="'+esc(UT[u]||u)+'"' : ""; }
@@ -71,15 +71,15 @@ function hasU(nodes){
 }
 function renderProg(el){
   var f = A.progs[el.getAttribute("data-prog")]; if(!f) return;
-  var nodes = f(B);
-  el.innerHTML = (hasU(nodes)?'<p class="unsure-note">Les pointillés jaunes : un mot peut varier dans votre MakeCode. Fiez-vous à la couleur et à la forme.</p>':'')+'<div class="ws">'+nodes.map(nodeH).join("")+'</div>';
+  var nodes = f(B, val);
+  el.innerHTML = (hasU(nodes)?'<p class="unsure-note">Pointillés jaunes : un mot qui peut varier dans votre MakeCode, ou une valeur à mesurer sur votre machine.</p>':'')+'<div class="ws">'+nodes.map(nodeH).join("")+'</div>';
 }
 function renderNeeds(){
   document.querySelectorAll("[data-need]").forEach(function(el){
     var f = (A.needs||{})[el.getAttribute("data-need")]; if(!f) return;
-    var nodes = f(B);
+    var nodes = f(B, val);
     el.innerHTML = nodes.map(function(n){ return '<figure>'+nodeH(n)+'<figcaption class="drawer" style="--cat:var(--c-'+n.cat+')">tiroir '+esc(DRAWER[n.cat]||n.cat)+'</figcaption></figure>'; }).join("")
-      + (hasU(nodes)?'<p class="unsure-note" style="flex-basis:100%">Pointillés jaunes : un mot peut varier dans votre MakeCode.</p>':'');
+      + (hasU(nodes)?'<p class="unsure-note" style="flex-basis:100%">Pointillés jaunes : un mot qui peut varier dans votre MakeCode. Fiez-vous à la couleur et à la forme.</p>':'');
   });
 }
 
@@ -135,7 +135,7 @@ function bindFields(){
       if(el.type==="radio"){ if(el.checked) S.c[k]=el.value; }
       else if(el.type==="number"){ var n=parseInt(el.value,10); var mn=el.min!==""?+el.min:-Infinity, mx=el.max!==""?+el.max:Infinity; S.c[k]=(isNaN(n)||n<mn||n>mx)?null:n; }
       else S.c[k]=el.value.slice(0,400);
-      save(); renderLog();
+      save(); if(el.type==="radio") syncFields(); renderLog(); renderAllProgs();
     });
   });
 }
@@ -145,7 +145,9 @@ function renderLog(){
   var rows = A.log(val);
   el.innerHTML = rows.map(function(r){
     var has = r.v!==null && r.v!==undefined && r.v!=="";
-    return '<div class="log-row"><span>'+esc(r.label)+'</span><span class="v'+(has?'':' muted')+'">'+(has?esc(r.v):'à remplir')+(r.src?'<span class="src'+(has?' me':'')+'">'+esc(r.src)+'</span>':'')+'</span></div>';
+    var shown = has ? r.v : (r.def!==undefined ? r.def : "à remplir");
+    var src = has ? (r.src||"") : (r.def!==undefined ? (r.defsrc||"valeur du fabricant, à vérifier") : (r.src||""));
+    return '<div class="log-row"><span>'+esc(r.label)+'</span><span class="v'+(has?'':' muted')+'">'+esc(shown)+(src?'<span class="src'+(has?' me':'')+'">'+esc(src)+'</span>':'')+'</span></div>';
   }).join("");
   var ph=document.getElementById("phrases");
   if(ph){
@@ -153,6 +155,17 @@ function renderLog(){
     ph.innerHTML = items.length ? items.join("") : '<li class="small">Vos phrases de résumé apparaîtront ici.</li>';
   }
 }
+
+function renderAllProgs(){ document.querySelectorAll("[data-prog]").forEach(renderProg); renderNeeds(); }
+
+/* ---------- Copier ---------- */
+document.addEventListener("click",function(e){
+  var b=e.target.closest("[data-copy]"); if(!b) return;
+  var el=document.getElementById(b.getAttribute("data-copy")); if(!el) return;
+  var text=el.textContent, label=b.textContent;
+  function selectIt(){ try{ var r=document.createRange(); r.selectNodeContents(el); var s=window.getSelection(); s.removeAllRanges(); s.addRange(r); }catch(err){} b.textContent="Sélectionné : Ctrl+C"; setTimeout(function(){ b.textContent=label; },2200); }
+  try{ navigator.clipboard.writeText(text).then(function(){ b.textContent="Copié !"; setTimeout(function(){ b.textContent=label; },1800); }, selectIt); }catch(err){ selectIt(); }
+});
 
 /* ---------- Verrou parent ---------- */
 function getCode(){ try{ return localStorage.getItem(CODEKEY)||""; }catch(e){ return ""; } }
@@ -199,13 +212,12 @@ function bindReset(){
   document.getElementById("reset-yes").addEventListener("click",function(){
     var first=S.first, names=S.names; S=defaults(); S.first=first; S.names=names; save(); rc.hidden=true;
     document.querySelectorAll("#prep-list input").forEach(function(c){ c.checked=false; });
-    syncFields(); renderProgress(); renderLog();
+    syncFields(); renderProgress(); renderLog(); renderAllProgs();
   });
 }
 
 renderIcons();
-document.querySelectorAll("[data-prog]").forEach(renderProg);
-renderNeeds();
+renderAllProgs();
 bindCrew(); renderCrew();
 bindProgress(); renderProgress();
 syncFields(); bindFields(); renderLog();
