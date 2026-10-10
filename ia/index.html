@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Huit missions pour apprendre à une carte micro:bit V2 à reconnaître des mouvements avec micro:bit CreateAI et MakeCode.">
+<title>L'atelier IA micro:bit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="../assets/atelier.css">
+</head>
+<body>
+<div class="page">
+  <header class="hero">
+    <div>
+      <a class="back" href="../">&larr; Tous les ateliers</a>
+      <p class="eyebrow">micro:bit V2 · CreateAI · MakeCode</p>
+      <h1>L'atelier IA</h1>
+      <p class="who">Apprendre à une machine</p>
+      <p class="lead">Huit missions pour apprendre à votre carte à reconnaître vos mouvements. Vous n'allez pas écrire les règles : vous allez donner des exemples, et la machine va trouver les règles toute seule.</p>
+      <div class="hero-bar">
+        <div class="progress" aria-live="polite">
+          <div class="board" id="progress-leds" aria-hidden="true"></div>
+          <span>Missions réussies : <strong id="progress-count">0 / 8</strong></span>
+        </div>
+        <div class="crew-set">
+          <span>L'équipe :</span>
+          <label class="namein"><span class="sr">Prénom de l'équipier 1</span><input type="text" id="name-1" maxlength="16" autocomplete="off" spellcheck="false" placeholder="Équipier 1"></label>
+          <label class="namein"><span class="sr">Prénom de l'équipier 2</span><input type="text" id="name-2" maxlength="16" autocomplete="off" spellcheck="false" placeholder="Équipier 2"></label>
+        </div>
+        <div class="pilot-pick">
+          <span>Pilote de la mission 1 :</span>
+          <span class="seg" role="radiogroup" aria-label="Pilote de la mission 1">
+            <label><input type="radio" name="first" id="first-1" value="1"><span id="first-1-l">Équipier 1</span></label>
+            <label><input type="radio" name="first" id="first-2" value="2"><span id="first-2-l">Équipier 2</span></label>
+          </span>
+        </div>
+        <p class="local-note">Les prénoms restent sur cet ordinateur, ils ne sont envoyés nulle part.</p>
+      </div>
+    </div>
+    <div class="hero-side" aria-hidden="true">
+      <div class="led5 big" data-icon="onde"></div>
+      <p class="cap">la carte apprend<br>par l'exemple</p>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="side" aria-label="Plan de route">
+      <p class="side-title">Plan de route</p>
+      <ul class="nav">
+        <li><a href="#atelier">Comment ça marche</a></li>
+        <li><a href="#preparer">Préparer l'atelier</a></li>
+        <li><a href="#deux-facons">Deux façons de programmer</a></li>
+        <li><a href="#mots">Les mots de l'IA</a></li>
+        <li><a href="#carnet">Carnet de bord</a></li>
+        <li class="sep" aria-hidden="true"></li>
+        <li><a href="#m1"><span class="dot" data-dot="m1"></span>1. Les courbes</a></li>
+        <li><a href="#m2"><span class="dot" data-dot="m2"></span>2. Coucou et bravo</a></li>
+        <li><a href="#m3"><span class="dot" data-dot="m3"></span>3. Plus d'exemples</a></li>
+        <li><a href="#m4"><span class="dot" data-dot="m4"></span>4. Le piège</a></li>
+        <li><a href="#m5"><span class="dot" data-dot="m5"></span>5. Ne rien faire</a></li>
+        <li><a href="#m6"><span class="dot" data-dot="m6"></span>6. L'IA des autres</a></li>
+        <li><a href="#m7"><span class="dot" data-dot="m7"></span>7. L'IA dans la carte</a></li>
+        <li><a href="#m8"><span class="dot" data-dot="m8"></span>8. Le compteur de sauts</a></li>
+        <li class="sep" aria-hidden="true"></li>
+        <li><a href="#defis">Défis libres</a></li>
+        <li><a href="#depannage">Dépannage</a></li>
+        <li><a href="#parents">Pour les parents</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <!-- ============ Comment ça marche ============ -->
+      <section class="sec" id="atelier">
+        <h2>Comment marche l'atelier</h2>
+        <p class="intro">Vous êtes deux. On se partage le travail, et on échange à chaque mission. Le nom du pilote est écrit en haut de chaque mission.</p>
+        <div class="cols">
+          <div class="card"><h3>Le pilote</h3><p>Il porte la carte au poignet. Il fait les mouvements.</p></div>
+          <div class="card"><h3>Le copilote</h3><p>Il tient la souris. Il lance les enregistrements, il compte les essais et il remplit le carnet.</p></div>
+          <div class="card">
+            <h3>La méthode du chercheur</h3>
+            <ol class="steps">
+              <li>Lire la mission jusqu'au bout.</li>
+              <li>Prédire : écrire ce que vous pensez qu'il va se passer.</li>
+              <li>Faire l'expérience.</li>
+              <li>Comparer avec votre prédiction.</li>
+              <li>Résumer en une phrase ce que vous avez appris.</li>
+            </ol>
+          </div>
+        </div>
+        <p class="tip">Une prédiction fausse, ce n'est pas une erreur. C'est le moment où on apprend le plus.</p>
+        <div class="cols">
+          <div class="info">
+            <h3>L'aide diminue au fil des missions</h3>
+            <ul class="levels">
+              <li><span class="lvl l3">Tout est expliqué</span> missions 1 à 3</li>
+              <li><span class="lvl l2">Juste le plan</span> missions 4 à 6</li>
+              <li><span class="lvl l1">Juste l'objectif</span> missions 7 et 8</li>
+            </ul>
+            <p style="margin-top:10px">C'est normal : vous devenez plus forts. Le mode d'emploi des outils reste toujours expliqué.</p>
+          </div>
+          <div class="info">
+            <h3>Bloqués ?</h3>
+            <p>Ouvrez les indices un par un, et seulement si vous en avez besoin.</p>
+            <ol class="steps" style="margin-top:8px">
+              <li><b>Indice 1</b> : une question pour réfléchir.</li>
+              <li><b>Indice 2</b> : où chercher.</li>
+              <li><b>Indice 3</b> : un exemple sur un autre cas.</li>
+            </ol>
+            <p style="margin-top:8px">La solution est rangée chez les parents, avec un code.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ Préparer ============ -->
+      <section class="sec" id="preparer">
+        <h2>Préparer l'atelier</h2>
+        <ul class="checklist" id="prep-list">
+          <li><label><input type="checkbox" id="prep-v2"><span>Une carte <b>micro:bit V2</b>. On la reconnaît à son logo doré, sur la face avant, sous l'écran. Une V1 ne peut pas faire tourner l'IA toute seule.</span></label></li>
+          <li><label><input type="checkbox" id="prep-nav"><span>Un ordinateur avec <b>Chrome</b> ou <b>Edge</b>. Une tablette Android ou un iPad marchent aussi, avec l'application CreateAI.</span></label></li>
+          <li><label><input type="checkbox" id="prep-usb"><span>Un câble USB qui transporte les données, pas seulement le courant.</span></label></li>
+          <li><label><input type="checkbox" id="prep-piles"><span>Un boîtier de 2 piles AAA pour la carte.</span></label></li>
+          <li><label><input type="checkbox" id="prep-bracelet"><span>De quoi tenir la carte au poignet : un bracelet pour micro:bit, un élastique large ou une bande à scratch. Rien de collé sur la carte.</span></label></li>
+          <li><label><input type="checkbox" id="prep-site"><span>Le site <b>createai.microbit.org</b> ouvert dans le navigateur.</span></label></li>
+        </ul>
+        <h3>Deux façons de se connecter</h3>
+        <div class="cols">
+          <div class="card"><h3>Avec le Bluetooth</h3><p>Si l'ordinateur a le Bluetooth : <b>une seule carte</b> suffit.</p></div>
+          <div class="card"><h3>Avec la radio</h3><p>Sans Bluetooth : <b>deux cartes V2</b>. La carte 1 se porte au poignet. La carte 2 reste branchée à l'ordinateur et sert de relais radio.</p></div>
+        </div>
+        <p>Dans les deux cas, cliquez sur <span class="ui">Se connecter</span> et suivez les étapes à l'écran. CreateAI vous guide.</p>
+        <p class="tip">L'écran est en anglais ? CreateAI existe en français : cherchez le menu <b>Language</b> (Langue) et choisissez Français.</p>
+      </section>
+
+      <!-- ============ Deux façons ============ -->
+      <section class="sec" id="deux-facons">
+        <h2>Deux façons de programmer</h2>
+        <div class="compare">
+          <div class="card">
+            <p class="eyebrow">Le programme classique</p>
+            <h3>Vous écrivez la règle</h3>
+            <p>Dans l'atelier robot, vous avez écrit : « si la distance est plus petite que 15, alors stop ». La machine obéit à votre règle, exactement, sans rien deviner.</p>
+          </div>
+          <div class="card">
+            <p class="eyebrow">L'apprentissage automatique</p>
+            <h3>Vous montrez des exemples</h3>
+            <p>« Ça, c'est un coucou. Ça aussi. Ça, c'est un bravo. » La machine cherche toute seule ce qui les distingue. Elle fabrique ses propres règles : c'est le <b>modèle</b>.</p>
+          </div>
+        </div>
+        <p class="tip"><b>La règle d'or de l'atelier :</b> de mauvais exemples donnent une mauvaise IA. Toutes les missions tournent autour de cette idée.</p>
+        <p>Le saviez-vous ? MakeCode sait déjà reconnaître quand on secoue la carte (tiroir Entrées). Pour ça, des ingénieurs ont écrit la règle à la main. Avec CreateAI, c'est vous qui apprenez à la carte des mouvements que personne n'avait prévus.</p>
+      </section>
+
+      <!-- ============ Les mots ============ -->
+      <section class="sec" id="mots">
+        <h2>Les mots de l'IA</h2>
+        <div class="tbl-wrap"><table>
+          <thead><tr><th>Le mot</th><th>Ce qu'il veut dire</th></tr></thead>
+          <tbody>
+            <tr><td><b>Accéléromètre</b></td><td>Le capteur de la carte qui sent les mouvements. Il mesure dans trois directions, appelées x, y et z.</td></tr>
+            <tr><td><b>Action</b></td><td>Un mouvement que la carte doit apprendre : faire coucou, applaudir, sauter.</td></tr>
+            <tr><td><b>Échantillon</b></td><td>Un exemple : une seconde de mouvement enregistrée.</td></tr>
+            <tr><td><b>Entraîner</b></td><td>Donner tous les échantillons à la machine pour qu'elle trouve ses règles.</td></tr>
+            <tr><td><b>Modèle</b></td><td>Les règles trouvées par la machine pendant l'entraînement.</td></tr>
+            <tr><td><b>Action estimée</b></td><td>Ce que la carte pense que vous faites, en ce moment.</td></tr>
+            <tr><td><b>Certitude</b></td><td>À quel point la carte est sûre d'elle, de 0 à 100 %.</td></tr>
+            <tr><td><b>Point de reconnaissance</b></td><td>La certitude minimale pour que la carte dise « c'est ça ». En dessous, elle ne choisit rien.</td></tr>
+          </tbody>
+        </table></div>
+        <details class="hint"><summary>Petit dictionnaire anglais-français</summary><div class="body">
+          <p>Si CreateAI ou MakeCode s'affichent en anglais, voici les mots à repérer.</p>
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>En anglais</th><th>En français</th></tr></thead>
+            <tbody>
+              <tr><td>Connect</td><td>Se connecter</td></tr>
+              <tr><td>Add action</td><td>Ajouter une action</td></tr>
+              <tr><td>Record</td><td>Enregistrer</td></tr>
+              <tr><td>Train model</td><td>Entraîner le modèle</td></tr>
+              <tr><td>Testing model</td><td>Test du modèle</td></tr>
+              <tr><td>Estimated action</td><td>Action estimée</td></tr>
+              <tr><td>Certainty</td><td>Certitude</td></tr>
+              <tr><td>Recognition point</td><td>Point de reconnaissance</td></tr>
+              <tr><td>Edit data samples</td><td>Modifier les échantillons de données</td></tr>
+              <tr><td>Edit in MakeCode</td><td>Modifier dans MakeCode</td></tr>
+              <tr><td>Machine Learning (tiroir)</td><td>Apprentissage automatique</td></tr>
+              <tr><td>on ML … start</td><td>au démarrage de ML …</td></tr>
+              <tr><td>on ML … stop</td><td>à l'arrêt de ML …</td></tr>
+              <tr><td>is ML … detected</td><td>ML … détecté</td></tr>
+              <tr><td>certainty (%) ML …</td><td>certitude (%) ML …</td></tr>
+              <tr><td>unknown</td><td>inconnu</td></tr>
+            </tbody>
+          </table></div>
+        </div></details>
+      </section>
+
+      <!-- ============ Carnet ============ -->
+      <section class="sec" id="carnet">
+        <h2>Le carnet de bord de l'IA</h2>
+        <p class="intro">Tout ce que vous notez pendant les missions arrive ici. À la fin, vous verrez comment votre IA a progressé, et pourquoi.</p>
+        <div class="log" id="log"></div>
+        <h3>Ce que nous avons appris</h3>
+        <ol class="phrases" id="phrases"></ol>
+      </section>
+
+      <!-- ============ Mission 1 ============ -->
+      <section class="sec mission" id="m1">
+        <header class="m-head">
+          <div class="led5" data-icon="courbe" aria-hidden="true"></div>
+          <div><p class="eyebrow">Mission 1 · <span class="lvl l3">Tout est expliqué</span></p><h2>Les courbes du mouvement</h2><p class="crew" data-crew="1"></p></div>
+          <button class="done-btn" type="button" data-done="m1" aria-pressed="false">Mission réussie ?</button>
+        </header>
+        <p class="goal"><b>Votre mission :</b> connecter la carte à CreateAI, puis regarder ce que la carte « voit » quand vous bougez.</p>
+        <ul class="learn"><li class="lbl">Vous apprenez</li><li>l'accéléromètre</li><li>les données</li></ul>
+        <div class="predict">
+          <p class="pt">Prédisez d'abord</p>
+          <p>Si la carte reste posée sur la table, à quoi ressembleront les courbes ? Et si on la secoue ?</p>
+          <textarea data-k="m1_pred" rows="2" placeholder="Notre prédiction…"></textarea>
+        </div>
+        <div class="m-part">
+          <h3>Pas à pas</h3>
+          <ol class="steps">
+            <li>Sur createai.microbit.org, commencez un <span class="ui">Nouveau projet</span>.</li>
+            <li>Cliquez sur <span class="ui">Se connecter</span> et suivez les étapes à l'écran.</li>
+            <li>Une fois la carte connectée, un graphique bouge en direct : ce sont les mesures de l'accéléromètre, sur trois axes (x, y, z).</li>
+            <li>Posez la carte sur la table. Regardez les courbes.</li>
+            <li>Secouez la carte. Puis tournez-la doucement. Regardez encore.</li>
+          </ol>
+        </div>
+        <details class="hint"><summary>Indice 1</summary><div class="body"><p>Les courbes ne bougent pas du tout, même quand vous secouez ? Qu'est-ce qui relie la carte à l'ordinateur en ce moment ?</p></div></details>
+        <details class="hint"><summary>Indice 2</summary><div class="body"><p>Regardez si CreateAI affiche que la carte est connectée. Sinon, reprenez <span class="ui">Se connecter</span>, et lisez la partie <a href="#depannage">Dépannage</a>.</p></div></details>
+        <div class="carnet-form">
+          <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
+          <div class="q"><p>Carte posée sur la table, les courbes sont…</p>
+            <span class="seg"><label><input type="radio" name="m1_pose" data-k="m1_pose" value="plates"><span>plates</span></label><label><input type="radio" name="m1_pose" data-k="m1_pose" value="agitées"><span>agitées</span></label></span></div>
+          <div class="q"><p>Carte secouée, les courbes sont…</p>
+            <span class="seg"><label><input type="radio" name="m1_secoue" data-k="m1_secoue" value="plates"><span>plates</span></label><label><input type="radio" name="m1_secoue" data-k="m1_secoue" value="agitées"><span>agitées</span></label></span></div>
+        </div>
+        <div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="m1_res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+        <div class="bonus">
+          <h3><span>Défi bonus</span>Une seule courbe</h3>
+          <p>Trouvez un mouvement qui fait bouger surtout une seule des trois courbes. Indice : bougez la carte en ligne droite, d'avant en arrière.</p>
+        </div>
+      </section>
+
+      <!-- ============ Mission 2 ============ -->
+      <section class="sec mission" id="m2">
+        <header class="m-head">
+          <div class="led5" data-icon="main" aria-hidden="true"></div>
+          <div><p class="eyebrow">Mission 2 · <span class="lvl l3">Tout est expliqué</span></p><h2>Coucou et bravo</h2><p class="crew" data-crew="2"></p></div>
+          <button class="done-btn" type="button" data-done="m2" aria-pressed="false">Mission réussie ?</button>
+        </header>
+        <p class="goal"><b>Votre mission :</b> apprendre à la carte deux mouvements, faire coucou et applaudir. Puis vérifier qu'elle les reconnaît.</p>
+        <ul class="learn"><li class="lbl">Vous apprenez</li><li>action et échantillon</li><li>entraîner un modèle</li><li>la certitude</li></ul>
+        <div class="predict">
+          <p class="pt">Prédisez d'abord</p>
+          <p>Avec seulement 3 exemples de chaque mouvement, sur 10 essais, combien de fois la carte trouvera-t-elle le bon ?</p>
+          <label class="inline">Notre prédiction : <input class="numin" type="number" min="0" max="10" data-k="m2_pred"> / 10</label>
+        </div>
+        <div class="m-part">
+          <h3>Pas à pas</h3>
+          <ol class="steps">
+            <li>Attachez la carte au poignet du pilote, piles branchées.</li>
+            <li>Première action : dans <span class="ui">Nom de l'action</span>, écrivez <b>coucou</b>, et choisissez une icône.</li>
+            <li>Le copilote clique sur <span class="ui">Enregistrer</span>. Un compte à rebours démarre, puis la carte enregistre <b>une seconde</b>. Pendant cette seconde, le pilote fait coucou. Astuce : le bouton B de la carte lance aussi l'enregistrement.</li>
+            <li>Recommencez pour avoir <b>3 échantillons</b> de coucou.</li>
+            <li>Cliquez sur <span class="ui">Ajouter une action</span>. Appelez-la <b>bravo</b> : le pilote applaudit. Encore 3 échantillons.</li>
+            <li>Cliquez sur <span class="ui">Entraîner le modèle</span>. Attendez la fin.</li>
+            <li>Sur la page <span class="ui">Test du modèle</span>, le pilote fait coucou, puis bravo. Regardez <span class="ui">Action estimée</span> et <span class="ui">Certitude</span>.</li>
+            <li>Faites 10 essais : le copilote annonce un mouvement au hasard, le pilote le fait, et on compte les bonnes réponses.</li>
+          </ol>
+        </div>
+        <details class="hint"><summary>Indice 1</summary><div class="body"><p>Le bouton <span class="ui">Entraîner le modèle</span> ne marche pas ? Combien d'échantillons a chaque action ?</p></div></details>
+        <details class="hint"><summary>Indice 2</summary><div class="body"><p>Il faut au moins <b>2 actions</b>, et au moins <b>3 échantillons</b> par action.</p></div></details>
+        <div class="carnet-form">
+          <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
+          <div class="numrow">
+            <label>Bonnes réponses : <input class="numin" type="number" min="0" max="10" data-k="m2_score"> / 10</label>
+            <label>Certitude pour coucou : <input class="numin wide" type="number" min="0" max="100" data-k="m2_c1"> %</label>
+            <label>Certitude pour bravo : <input class="numin wide" type="number" min="0" max="100" data-k="m2_c2"> %</label>
+          </div>
+          <p class="small">Pour la certitude, notez à peu près ce que vous voyez le plus souvent.</p>
+        </div>
+        <div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="m2_res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+        <div class="bonus">
+          <h3><span>Défi bonus</span>Dans la main ou au poignet ?</h3>
+          <p>Applaudissez avec la carte tenue dans la main, au lieu du poignet. La carte reconnaît-elle encore bravo ? Prédisez avant d'essayer.</p>
+        </div>
+      </section>
+
+      <!-- ============ Mission 3 ============ -->
+      <section class="sec mission" id="m3">
+        <header class="m-head">
+          <div class="led5" data-icon="plus" aria-hidden="true"></div>
+          <div><p class="eyebrow">Mission 3 · <span class="lvl l3">Tout est expliqué</span></p><h2>Plus d'exemples</h2><p class="crew" data-crew="3"></p></div>
+          <button class="done-btn" type="button" data-done="m3" aria-pressed="false">Mission réussie ?</button>
+        </header>
+        <p class="goal"><b>Votre mission :</b> rendre la carte plus sûre d'elle, en lui donnant 10 exemples de chaque mouvement au lieu de 3.</p>
+        <ul class="learn"><li class="lbl">Vous apprenez</li><li>la quantité de données</li><li>réentraîner</li><li>repérer un mauvais exemple</li></ul>
+        <div class="predict">
+          <p class="pt">Prédisez d'abord</p>
+          <p>Avec 10 exemples au lieu de 3, la certitude va monter, baisser ou rester pareille ?</p>
+          <span class="seg"><label><input type="radio" name="m3_pred" data-k="m3_pred" value="monter"><span>monter</span></label><label><input type="radio" name="m3_pred" data-k="m3_pred" value="baisser"><span>baisser</span></label><label><input type="radio" name="m3_pred" data-k="m3_pred" value="pareille"><span>pareille</span></label></span>
+        </div>
+        <div class="m-part">
+          <h3>Pas à pas</h3>
+          <ol class="steps">
+            <li>Cliquez sur <span class="ui">Modifier les échantillons de données</span>.</li>
+            <li>Pour coucou : ouvrez le petit menu à trois points du bouton <span class="ui">Enregistrer</span>, puis <span class="ui">Enregistrer 10 échantillons</span>. Chaque échantillon a son propre compte à rebours.</li>
+            <li>Variez un peu à chaque fois : plus vite, plus lentement, bras plus haut, plus bas.</li>
+            <li>Pareil pour bravo.</li>
+            <li>Regardez les petites courbes de chaque échantillon. Si l'une est toute plate ou très différente des autres, supprimez-la avec sa croix.</li>
+            <li><span class="ui">Entraîner le modèle</span>, puis refaites les 10 essais de la mission 2.</li>
+          </ol>
+        </div>
+        <details class="hint"><summary>Indice 1</summary><div class="body"><p>Un échantillon a une courbe toute plate. Que faisait le pilote pendant cette seconde-là ?</p></div></details>
+        <details class="hint"><summary>Indice 2</summary><div class="body"><p>Un échantillon raté apprend une erreur à la machine. Supprimez-le, puis réentraînez.</p></div></details>
+        <div class="carnet-form">
+          <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
+          <div class="numrow">
+            <label>Bonnes réponses : <input class="numin" type="number" min="0" max="10" data-k="m3_score"> / 10</label>
+            <label>Certitude pour coucou : <input class="numin wide" type="number" min="0" max="100" data-k="m3_c1"> %</label>
+            <label>Certitude pour bravo : <input class="numin wide" type="number" min="0" max="100" data-k="m3_c2"> %</label>
+          </div>
+        </div>
+        <div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="m3_res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+        <div class="bonus">
+          <h3><span>Défi bonus</span>L'intrus</h3>
+          <p>Le pilote enregistre exprès un « faux » coucou : il applaudit pendant l'enregistrement de coucou. Réentraînez. Que devient la certitude ? Supprimez ensuite l'intrus, et vérifiez que tout revient.</p>
+        </div>
+      </section>
+
+      <!-- ============ Mission 4 ============ -->
+      <section class="sec mission" id="m4">
+        <header class="m-head">
+          <div class="led5" data-icon="question" aria-hidden="true"></div>
+          <div><p class="eyebrow">Mission 4 · <span class="lvl l2">Juste le plan</span></p><h2>Le piège</h2><p class="crew" data-crew="4"></p></div>
+          <button class="done-btn" type="button" data-done="m4" aria-pressed="false">Mission réussie ?</button>
+        </header>
+        <p class="goal"><b>Votre mission :</b> ajouter un troisième mouvement qui ressemble beaucoup à coucou. La carte va se tromper. Trouvez pourquoi, et réparez.</p>
+        <ul class="learn"><li class="lbl">Vous apprenez</li><li>pourquoi une IA se trompe</li><li>des données qui se ressemblent</li></ul>
+        <div class="predict">
+          <p class="pt">Prédisez d'abord</p>
+          <p>Le nouveau mouvement : <b>essuyer une vitre</b>, la main à plat, de gauche à droite. La carte va-t-elle le confondre avec coucou ? Souvent, parfois, jamais ?</p>
+          <textarea data-k="m4_pred" rows="2" placeholder="Notre prédiction…"></textarea>
+        </div>
+        <div class="m-part">
+          <h3>Le plan</h3>
+          <ol class="steps">
+            <li>Ajoutez l'action <b>vitre</b>, avec 10 échantillons.</li>
+            <li>Entraînez, puis testez : 10 coucous, et comptez combien la carte prend pour vitre.</li>
+            <li>Comparez les courbes de coucou et de vitre.</li>
+            <li>Changez quelque chose, réentraînez, et refaites le test.</li>
+          </ol>
+        </div>
+        <details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Faites les deux mouvements côte à côte, lentement. Qu'est-ce que le poignet fait pareil dans les deux ?</p></div></details>
+        <details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>La carte ne voit pas votre main. Elle ne voit que les courbes, pendant une seconde. Regardez quelques échantillons de chaque action : se ressemblent-ils ?</p></div></details>
+        <details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Deux jumeaux habillés pareil sont difficiles à distinguer. Pour y arriver, il faut un détail qui change, comme la coiffure. Cherchez le détail qui change entre vos deux mouvements, et rendez-le plus visible.</p></div></details>
+        <div class="lockbox" data-sol="m4">
+          <button class="btn" type="button" data-unlock>Solution (code parent)</button>
+          <div class="sol-body" hidden>
+            <p>La carte ne voit que l'accélération du poignet pendant une seconde. Un coucou et un essuie-vitre font tous les deux un aller-retour du poignet sur le côté : leurs courbes se ressemblent, donc le modèle hésite.</p>
+            <p>Deux réparations possibles. Rendre les mouvements vraiment différents à l'enregistrement : essuyer la vitre en faisant des cercles, par exemple. Ou choisir un autre mouvement. Ajouter des exemples ne suffit pas quand deux mouvements se ressemblent vraiment.</p>
+          </div>
+        </div>
+        <div class="carnet-form">
+          <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
+          <div class="numrow">
+            <label>Coucous pris pour vitre, avant : <input class="numin" type="number" min="0" max="10" data-k="m4_avant"> / 10</label>
+            <label>Après la réparation : <input class="numin" type="number" min="0" max="10" data-k="m4_apres"> / 10</label>
+          </div>
+          <div class="q"><p>Ce qui se ressemble entre les deux mouvements :</p><input class="textin" type="text" maxlength="120" data-k="m4_why"></div>
+        </div>
+        <div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="m4_res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+        <div class="bonus">
+          <h3><span>Défi bonus</span>Le mouvement le plus différent</h3>
+          <p>Inventez le mouvement le plus différent possible de coucou et de bravo. Prouvez-le avec la certitude.</p>
+        </div>
+      </section>
+
+      <!-- ============ Mission 5 ============ -->
+      <section class="sec mission" id="m5">
+        <header class="m-head">
+          <div class="led5" data-icon="zzz" aria-hidden="true"></div>
+          <div><p class="eyebrow">Mission 5 · <span class="lvl l2">Juste le plan</span></p><h2>Ne rien faire, c'est une action</h2><p class="crew" data-crew="5"></p></div>
+          <button class="done-btn" type="button" data-done="m5" aria-pressed="false">Mission réussie ?</button>
+        </header>
+        <p class="goal"><b>Votre mission :</b> quand le pilote ne bouge pas, la carte ne doit reconnaître aucun mouvement.</p>
+        <ul class="learn"><li class="lbl">Vous apprenez</li><li>apprendre « rien »</li><li>le point de reconnaissance</li></ul>
+        <div class="predict">
+          <p class="pt">Prédisez d'abord</p>
+          <p>Le pilote reste immobile, bras le long du corps. Que va afficher <span class="ui">Action estimée</span> ?</p>
+          <textarea data-k="m5_pred" rows="2" placeholder="Notre prédiction…"></textarea>
+        </div>
+        <div class="m-part">
+          <h3>Le plan</h3>
+          <ol class="steps">
+            <li>Testez d'abord : le pilote reste immobile. Notez ce que dit la carte.</li>
+            <li>Trouvez comment apprendre à la carte que « ne rien faire » existe.</li>
+            <li>Enregistrez dans plusieurs positions : debout, assis, bras posé sur la table.</li>
+            <li>Entraînez, et refaites le test.</li>
+          </ol>
+        </div>
+        <details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Combien de réponses la carte connaît-elle ? Peut-elle répondre « rien » si personne ne le lui a appris ?</p></div></details>
+        <details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le bouton <span class="ui">Ajouter une action</span>. Une action peut s'appeler <b>immobile</b>.</p></div></details>
+        <details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Un jeu de devinettes où l'on n'a le droit de répondre que « chat » ou « chien ». On montre une souris : la réponse sera fausse quand même, parce que « autre chose » n'est pas une réponse permise.</p></div></details>
+        <div class="lockbox" data-sol="m5">
+          <button class="btn" type="button" data-unlock>Solution (code parent)</button>
+          <div class="sol-body" hidden>
+            <p>Sans action « immobile », le modèle doit choisir parmi les actions qu'il connaît. Il prend la plus proche, même quand ça ne ressemble à rien. Une action <b>immobile</b>, enregistrée dans plusieurs positions, lui donne une réponse pour « rien ».</p>
+            <p>Le point de reconnaissance aide aussi : quand aucune action n'atteint ce seuil, la carte ne choisit rien. Dans MakeCode, ce cas s'appelle <b>inconnu</b>.</p>
+          </div>
+        </div>
+        <div class="carnet-form">
+          <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
+          <div class="q"><p>Immobile, la carte disait, avant :</p><input class="textin" type="text" maxlength="60" data-k="m5_avant"></div>
+          <div class="q"><p>Et après :</p><input class="textin" type="text" maxlength="60" data-k="m5_apres"></div>
+        </div>
+        <div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="m5_res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+        <div class="bonus">
+          <h3><span>Défi bonus</span>Le curseur</h3>
+          <p>Sur la page de test, montez le curseur <span class="ui">Point de reconnaissance</span> tout en haut, puis tout en bas. Prédisez d'abord : que va faire la carte dans chaque cas ?</p>
+        </div>
+      </section>
+
+      <!-- ============ Mission 6 ============ -->
+      <section class="sec mission" id="m6">
+        <header class="m-head">
+          <div class="led5" data-icon="deux" aria-hidden="true"></div>
+          <div><p class="eyebrow">Mission 6 · <span class="lvl l2">Juste le plan</span></p><h2>L'IA des autres</h2><p class="crew" data-crew="6"></p></div>
+          <button class="done-btn" type="button" data-done="m6" aria-pressed="false">Mission réussie ?</button>
+        </header>
+        <p class="goal"><b>Votre mission :</b> vérifier si votre IA marche avec quelqu'un d'autre, puis la rendre bonne pour tout le monde.</p>
+        <ul class="learn"><li class="lbl">Vous apprenez</li><li>la diversité des exemples</li><li>le mot « biais »</li></ul>
+        <div class="predict">
+          <p class="pt">Prédisez d'abord</p>
+          <p>Votre IA a appris avec le bras du pilote. Marchera-t-elle aussi bien au poignet du copilote ? D'un adulte ? Au poignet gauche ?</p>
+          <textarea data-k="m6_pred" rows="2" placeholder="Notre prédiction…"></textarea>
+        </div>
+        <div class="m-part">
+          <h3>Le plan</h3>
+          <ol class="steps">
+            <li>Une autre personne porte la carte : 10 essais, comptez les bonnes réponses.</li>
+            <li>Ajoutez quelques échantillons de cette personne dans chaque action.</li>
+            <li>Réentraînez. Refaites 10 essais avec elle, puis 10 avec le pilote.</li>
+          </ol>
+        </div>
+        <details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Est-ce que tout le monde fait coucou exactement pareil ? Regardez la vitesse, la hauteur du bras, la main utilisée.</p></div></details>
+        <details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le guide officiel de CreateAI conseille de collecter des exemples auprès de plusieurs personnes, qui font le même mouvement chacune à sa façon.</p></div></details>
+        <details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Un programme qui apprendrait à lire l'écriture seulement avec vos cahiers lirait mal l'écriture de votre prof.</p></div></details>
+        <div class="lockbox" data-sol="m6">
+          <button class="btn" type="button" data-unlock>Solution (code parent)</button>
+          <div class="sol-body" hidden>
+            <p>Le modèle a appris un seul coucou : celui du pilote. Chaque personne bouge différemment. Avec des exemples venant de plusieurs personnes, le modèle apprend ce qui est commun à tous les coucous.</p>
+            <p>C'est pareil pour les vraies IA : si les exemples viennent toujours du même genre de personnes, l'IA marche moins bien pour les autres. On appelle ça un <b>biais</b>.</p>
+          </div>
+        </div>
+        <div class="carnet-form">
+          <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
+          <div class="numrow">
+            <label>L'autre personne, avant : <input class="numin" type="number" min="0" max="10" data-k="m6_avant"> / 10</label>
+            <label>Après : <input class="numin" type="number" min="0" max="10" data-k="m6_apres"> / 10</label>
+            <label>Le pilote, après : <input class="numin" type="number" min="0" max="10" data-k="m6_pilote"> / 10</label>
+          </div>
+        </div>
+        <div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="m6_res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+        <div class="bonus">
+          <h3><span>Défi bonus</span>Le test à l'aveugle</h3>
+          <p>Le pilote fait des mouvements au hasard, sans les annoncer. Le copilote regarde seulement l'écran de CreateAI et note la réponse de la carte. Score sur 20 ?</p>
+        </div>
+      </section>
+
+      <!-- ============ Mission 7 ============ -->
+      <section class="sec mission" id="m7">
+        <header class="m-head">
+          <div class="led5" data-icon="puce" aria-hidden="true"></div>
+          <div><p class="eyebrow">Mission 7 · <span class="lvl l1">Juste l'objectif</span></p><h2>L'IA dans la carte</h2><p class="crew" data-crew="7"></p></div>
+          <button class="done-btn" type="button" data-done="m7" aria-pressed="false">Mission réussie ?</button>
+        </header>
+        <p class="goal"><b>Votre mission :</b> faire tourner votre IA dans la carte, sans ordinateur. Puis ajouter une réaction : quand on appuie sur le bouton A, la carte affiche sa certitude pour coucou.</p>
+        <ul class="learn"><li class="lbl">Vous apprenez</li><li>le tiroir Apprentissage automatique</li><li>lire un programme avant de le lancer</li></ul>
+        <div class="m-part">
+          <h3>Mode d'emploi de l'outil</h3>
+          <ol class="steps">
+            <li>Dans CreateAI, cliquez sur <span class="ui">Modifier dans MakeCode</span>. MakeCode s'ouvre avec votre modèle à l'intérieur.</li>
+            <li>Un nouveau tiroir est apparu : <span class="kw" style="--cat:var(--c-ml)">Apprentissage automatique</span>.</li>
+            <li>Le simulateur ne sent pas vos vrais mouvements. Il propose un petit menu pour choisir une action à la main.</li>
+            <li>Pour mettre le programme dans la carte : <span class="ui">Télécharger</span>, puis suivez les étapes. Débranchez, mettez les piles, testez.</li>
+            <li>Attention : envoyer le programme dans la carte de collecte la déconnecte de CreateAI. Pour revenir, il faudra se reconnecter.</li>
+          </ol>
+        </div>
+        <div class="m-part">
+          <h3>D'abord, lisez sans lancer</h3>
+          <p>MakeCode s'ouvre avec un programme déjà écrit par CreateAI. Il ressemble à ceci, avec vos actions et vos icônes :</p>
+          <div class="prog" data-prog="m7-depart"></div>
+          <div class="predict">
+            <p class="pt">Prédisez d'abord</p>
+            <p>Lisez-le à voix haute. Que fera la carte quand vous applaudissez ? Et quand vous ne bougez pas ? Une fois débranchée de l'ordinateur, saura-t-elle encore reconnaître vos mouvements ?</p>
+            <textarea data-k="m7_pred" rows="2" placeholder="Notre prédiction…"></textarea>
+          </div>
+        </div>
+        <details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Votre ajout doit réagir à quoi : à un mouvement, ou à un bouton ? Et il doit montrer quoi : une icône, ou un nombre ?</p></div></details>
+        <details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le bouton est dans le tiroir <span class="kw" style="--cat:var(--c-input)">Entrées</span>. Le nombre à montrer est dans <span class="kw" style="--cat:var(--c-base)">Base</span>. La certitude est un bloc rond du tiroir <span class="kw" style="--cat:var(--c-ml)">Apprentissage automatique</span>.</p></div></details>
+        <details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Dans l'atelier robot, le radar était un bloc rond, et vous l'avez glissé dans le trou de <span class="kw" style="--cat:var(--c-base)">montrer nombre</span>. La certitude marche pareil.</p><div class="prog" data-prog="m7-exemple"></div></div></details>
+        <div class="lockbox" data-sol="m7">
+          <button class="btn" type="button" data-unlock>Solution (code parent)</button>
+          <div class="sol-body" hidden>
+            <p>On garde le programme de CreateAI, et on ajoute un seul bloc :</p>
+            <div class="prog" data-prog="m7"></div>
+            <p>La carte affiche un pourcentage de 0 à 100. Le modèle est bien dans la carte : il marche sans ordinateur.</p>
+          </div>
+        </div>
+        <div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="m7_res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+        <div class="bonus">
+          <h3><span>Défi bonus</span>L'écran qui se repose</h3>
+          <p>Quand un mouvement s'arrête, l'écran s'efface. Cherchez dans le tiroir Apprentissage automatique le bloc qui réagit à la fin d'un mouvement.</p>
+          <div class="lockbox" data-sol="m7b">
+            <button class="btn" type="button" data-unlock>Solution du bonus (code parent)</button>
+            <div class="sol-body" hidden><div class="prog" data-prog="m7b"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ Mission 8 ============ -->
+      <section class="sec mission" id="m8">
+        <header class="m-head">
+          <div class="led5" data-icon="saut" aria-hidden="true"></div>
+          <div><p class="eyebrow">Mission 8 · <span class="lvl l1">Juste l'objectif</span></p><h2>Le compteur de sauts</h2><p class="crew" data-crew="8"></p></div>
+          <button class="done-btn" type="button" data-done="m8" aria-pressed="false">Mission réussie ?</button>
+        </header>
+        <p class="goal"><b>Votre mission :</b> la carte compte vos sauts toute seule. Quand on appuie sur A, elle affiche le nombre de sauts.</p>
+        <ul class="learn"><li class="lbl">Vous apprenez</li><li>tout l'atelier</li><li>une IA dans un vrai programme</li></ul>
+        <p class="tip">Sautez sur un sol dégagé, en chaussures, loin des meubles. La carte et ses piles doivent être bien attachées.</p>
+        <div class="predict">
+          <p class="pt">Prédisez d'abord</p>
+          <p>Le pilote fait 10 sauts. La carte en comptera combien ?</p>
+          <label class="inline">Notre prédiction : <input class="numin" type="number" min="0" max="99" data-k="m8_pred"></label>
+        </div>
+        <details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Pour compter, il faut se souvenir d'un nombre qui grandit. Dans l'atelier robot, où rangiez-vous la distance pour la garder ?</p></div></details>
+        <details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Il faut un nouveau modèle, avec au moins deux actions : <b>saut</b> et <b>immobile</b>. Dans MakeCode : le tiroir <span class="kw" style="--cat:var(--c-vars)">Variables</span> pour le compteur, le tiroir <span class="kw" style="--cat:var(--c-ml)">Apprentissage automatique</span> pour réagir quand un saut commence.</p></div></details>
+        <details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Pour compter des tours de piste à la main, on fait un trait à chaque tour, puis on compte les traits à la fin. Ici, le trait, c'est « ajouter 1 à la variable ». Et le tour, c'est un saut reconnu par l'IA.</p></div></details>
+        <div class="lockbox" data-sol="m8">
+          <button class="btn" type="button" data-unlock>Solution (code parent)</button>
+          <div class="sol-body" hidden>
+            <div class="prog" data-prog="m8"></div>
+            <p>Si la carte compte trop de sauts, regardez la mission 5. Si elle en compte trop peu, regardez les missions 3 et 6.</p>
+          </div>
+        </div>
+        <div class="carnet-form">
+          <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
+          <div class="numrow">
+            <label>Pour 10 vrais sauts, la carte en a compté : <input class="numin" type="number" min="0" max="99" data-k="m8_compte"></label>
+          </div>
+        </div>
+        <div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="m8_res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+        <div class="bonus">
+          <h3><span>Défi bonus</span>Le juge de squats</h3>
+          <p>Ajoutez une action <b>squat</b> et un deuxième compteur. Le bouton A montre les sauts, le bouton B les squats. La carte arrive-t-elle à ne pas les confondre ?</p>
+        </div>
+      </section>
+
+      <!-- ============ Défis libres ============ -->
+      <section class="sec" id="defis">
+        <div style="display:flex;gap:16px;align-items:center"><div class="led5" data-icon="etoile" aria-hidden="true"></div><div><p class="eyebrow">Après la mission 8</p><h2>Défis libres</h2></div></div>
+        <p class="intro">Plus de plan : vous savez entraîner une IA et la mettre dans la carte. Choisissez un défi, faites un plan sur papier, prédisez, puis lancez-vous.</p>
+        <div class="ideas">
+          <div class="card"><h3>Le minuteur de sport</h3><p>La carte mesure combien de temps vous avez couru. Piste : un bloc du tiroir Apprentissage automatique donne la durée d'un mouvement quand il s'arrête.</p></div>
+          <div class="card"><h3>Pierre, feuille, ciseaux</h3><p>Trois gestes, trois icônes. La carte arbitre la partie.</p></div>
+          <div class="card"><h3>La baguette magique</h3><p>Un son différent pour chaque geste. Le haut-parleur de la carte V2 et le tiroir Musique.</p></div>
+          <div class="card"><h3>Le pont avec les robots</h3><p>Vous faites coucou, le robot MiniCar ou un robot Wonder avance. Il faut deux cartes : celle du poignet envoie un message, celle du robot le reçoit. Piste : le tiroir Radio, et la mission 8 de l'atelier Wonder.</p></div>
+          <div class="card"><h3>Le détecteur de chute</h3><p>Une peluche tombe de la table : la carte sonne l'alerte. Quels exemples faut-il pour qu'elle ne sonne pas quand on la pose doucement ?</p></div>
+          <div class="card"><h3>Votre idée</h3><p>Inventez une mission pour l'autre équipe. Écrivez la mission, prédisez ce qui sera difficile, et échangez.</p></div>
+        </div>
+      </section>
+
+      <!-- ============ Dépannage ============ -->
+      <section class="sec" id="depannage">
+        <h2>Dépannage</h2>
+        <div class="faq">
+          <details class="hint"><summary>CreateAI ne trouve pas la carte</summary><div class="body"><p>Utilisez Chrome ou Edge. Vérifiez que le câble transporte les données. Pendant le branchement en USB, débranchez le boîtier de piles.</p></div></details>
+          <details class="hint"><summary>La carte ne passe pas en mode Bluetooth</summary><div class="body"><p>Appuyez trois fois sur le bouton de réinitialisation, au dos. Ou maintenez A et B, puis appuyez sur ce bouton. La carte affiche une icône Bluetooth.</p></div></details>
+          <details class="hint"><summary>Le bouton Entraîner le modèle ne marche pas</summary><div class="body"><p>Il faut au moins 2 actions, et au moins 3 échantillons par action.</p></div></details>
+          <details class="hint"><summary>Les courbes restent plates</summary><div class="body"><p>La carte n'est plus connectée. Cliquez sur <span class="ui">Se reconnecter</span> ou reprenez <span class="ui">Se connecter</span>.</p></div></details>
+          <details class="hint"><summary>La carte se trompe tout le temps</summary><div class="body"><p>Trois causes fréquentes : pas assez d'exemples (mission 3), des mouvements qui se ressemblent (mission 4), pas d'action « immobile » (mission 5).</p></div></details>
+          <details class="hint"><summary>Après le téléchargement, CreateAI ne voit plus la carte</summary><div class="body"><p>C'est normal : la carte fait maintenant tourner votre programme. Reconnectez-la à CreateAI pour continuer à entraîner.</p></div></details>
+          <details class="hint"><summary>Le simulateur de MakeCode ne réagit pas quand on bouge</summary><div class="body"><p>C'est normal : il ne sent pas les vrais mouvements. Choisissez l'action à la main dans son petit menu, ou testez sur la vraie carte.</p></div></details>
+          <details class="hint"><summary>Les blocs sont en anglais</summary><div class="body"><p>Voir le <a href="#mots">petit dictionnaire</a>. Fiez-vous aussi à la couleur et à la forme des blocs.</p></div></details>
+          <details class="hint"><summary>Le projet a disparu</summary><div class="body"><p>CreateAI enregistre le projet dans le navigateur, et il peut s'effacer. Pour le garder pour de bon, utilisez <span class="ui">Enregistrer</span> en haut de CreateAI : vous obtenez un fichier .hex, à rouvrir plus tard avec <span class="ui">Importer</span>.</p></div></details>
+        </div>
+      </section>
+
+      <!-- ============ Parents ============ -->
+      <section class="sec" id="parents">
+        <h2>Pour les parents</h2>
+        <div class="foot-note">
+          <p><b>L'idée de l'atelier.</b> Dans un programme classique, l'enfant écrit les règles. En apprentissage automatique, la machine les déduit des exemples. Toutes les missions ramènent à la même phrase : de mauvais exemples donnent une mauvaise IA.</p>
+          <p><b>La pédagogie.</b> Chaque mission commence par une prédiction et finit par une phrase de résumé. L'aide diminue : tout expliqué (missions 1 à 3), le plan (4 à 6), l'objectif seul (7 et 8). Les indices vont du plus léger au plus précis. Votre rôle : poser des questions plutôt que donner les réponses.</p>
+          <p><b>Les solutions</b> sont derrière un code que vous choisissez. Ce n'est pas un coffre-fort, seulement un temps d'arrêt avant de regarder.</p>
+          <p><b>Sécurité.</b> Piles AAA ou USB uniquement, jamais rien relié au secteur. Pour la mission 8, un sol dégagé et des chaussures.</p>
+          <p><b>Les libellés.</b> Les noms des boutons de CreateAI et des blocs du tiroir Apprentissage automatique viennent des fichiers de traduction officiels. Les blocs entourés de pointillés jaunes n'ont pas pu être vérifiés : un mot peut varier, la couleur et la forme suffisent à les retrouver.</p>
+          <p><b>Données.</b> La progression, le carnet, les prénoms et le code parent sont enregistrés dans ce navigateur seulement.</p>
+        </div>
+        <div class="codebox" id="codebox">
+          <h3>Le code parent</h3>
+          <div id="code-none">
+            <p>Choisissez un code. Il sert à ouvrir les solutions, dans tous les ateliers de cet ordinateur.</p>
+            <div class="urlbox"><label class="sr" for="code-new">Nouveau code</label><input class="textin short" type="password" id="code-new" autocomplete="new-password" placeholder="Votre code"><button class="btn solid" type="button" id="code-set">Enregistrer le code</button></div>
+          </div>
+          <div id="code-some" hidden>
+            <p>Un code parent est en place.</p>
+            <div class="urlbox"><label class="sr" for="code-old">Code actuel</label><input class="textin short" type="password" id="code-old" autocomplete="current-password" placeholder="Code actuel"><label class="sr" for="code-new2">Nouveau code</label><input class="textin short" type="password" id="code-new2" autocomplete="new-password" placeholder="Nouveau code"><button class="btn" type="button" id="code-change">Changer le code</button></div>
+          </div>
+          <p class="saved" id="code-msg" role="status"></p>
+        </div>
+        <p class="small">Sources : <a href="https://microbit.org/get-started/user-guide/microbit-createai/">guide de micro:bit CreateAI</a> · <a href="https://github.com/microbit-foundation/pxt-microbit-ml">extension MakeCode Apprentissage automatique</a> · <a href="https://github.com/microbit-foundation/ml-trainer">code source de CreateAI</a></p>
+        <div><button class="btn" type="button" id="reset">Tout effacer (progression et carnet)</button>
+          <span id="reset-confirm" hidden> Sûr ? <button class="btn solid" type="button" id="reset-yes">Oui, tout effacer</button> <button class="btn" type="button" id="reset-no">Annuler</button></span></div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script>
+window.ATELIER = {
+  key: "atelier-ia-v1",
+  missions: 8,
+  icons: {
+    onde:     "..#..,.#.#.,#...#,.#.#.,..#..",
+    courbe:   ".....,.#...,#.#.#,...#.,.....",
+    main:     "#.#.#,#.#.#,#####,.###.,..#..",
+    plus:     "..#..,..#..,#####,..#..,..#..",
+    question: ".###.,#...#,..##.,.....,..#..",
+    zzz:      "#####,...#.,..#..,.#...,#####",
+    deux:     ".#.#.,#####,.#.#.,#.#.#,#.#.#",
+    puce:     "#####,#...#,#.#.#,#...#,#####",
+    saut:     "..#..,.###.,#.#.#,..#..,..#..",
+    etoile:   "..#..,#####,.###.,.#.#.,#...#",
+    carnet:   "####.,#..#.,####.,#..#.,####."
+  },
+  progs: {
+    "m7-depart": function(B){ return [
+      B.ev("ml",["au démarrage de ML",B.dd("coucou")],[B.st("base",["montrer l'icône",B.dd("heureux")],"lbl")]),
+      B.ev("ml",["au démarrage de ML",B.dd("bravo")],[B.st("base",["montrer l'icône",B.dd("cœur")],"lbl")]),
+      B.ev("ml",["au démarrage de ML",B.dd("immobile")],[B.st("base",["montrer l'icône",B.dd("endormi")],"lbl")])
+    ]; },
+    "m7-exemple": function(B){ return [
+      B.ev("base",["toujours"],[B.st("base",["montrer nombre",B.rep("minicar",["Ultrasonic"])])])
+    ]; },
+    "m7": function(B){ return [
+      B.ev("input",["lorsque le bouton",B.dd("A"),"est pressé"],[B.st("base",["montrer nombre",B.rep("ml",["certitude (%) ML",B.dd("coucou")])])])
+    ]; },
+    "m7b": function(B){ return [
+      B.ev("ml",["à l'arrêt de ML",B.dd("coucou")],[B.st("base",["effacer l'écran"],"lbl")]),
+      B.ev("ml",["à l'arrêt de ML",B.dd("bravo")],[B.st("base",["effacer l'écran"],"lbl")])
+    ]; },
+    "m8": function(B){ return [
+      B.ev("base",["au démarrage"],[B.st("vars",["définir",B.dd("sauts"),"à",B.num(0)])]),
+      B.ev("ml",["au démarrage de ML",B.dd("saut")],[B.st("vars",["modifier",B.dd("sauts"),"de",B.num(1)],"lbl")]),
+      B.ev("input",["lorsque le bouton",B.dd("A"),"est pressé"],[B.st("base",["montrer nombre",B.rep("vars",["sauts"])])])
+    ]; }
+  },
+  needs: {},
+  log: function(v){
+    function pair(a,b,u){ u=u||""; if(a===null&&b===null) return null; return (a===null?"?":a+u)+" → "+(b===null?"?":b+u); }
+    function frac(a){ return a===null?null:a+" / 10"; }
+    function two(a,b){ if(a===null&&b===null) return null; return (a===null?"?":a+" %")+" et "+(b===null?"?":b+" %"); }
+    return [
+      {label:"Mission 1 · carte posée, les courbes sont", v:v("m1_pose")},
+      {label:"Mission 1 · carte secouée, les courbes sont", v:v("m1_secoue")},
+      {label:"Mission 2 · bonnes réponses avec 3 exemples", v:frac(v("m2_score")), src: v("m2_pred")!==null ? "prédiction : "+v("m2_pred")+" / 10" : null},
+      {label:"Mission 2 · certitude coucou et bravo", v:two(v("m2_c1"),v("m2_c2"))},
+      {label:"Mission 3 · bonnes réponses avec 10 exemples", v:frac(v("m3_score")), src: v("m3_pred")!==null ? "prédiction : la certitude va "+v("m3_pred") : null},
+      {label:"Mission 3 · certitude coucou et bravo", v:two(v("m3_c1"),v("m3_c2"))},
+      {label:"Mission 4 · coucous pris pour vitre, avant → après", v:pair(v("m4_avant"),v("m4_apres")," / 10")},
+      {label:"Mission 4 · ce qui se ressemble", v:v("m4_why")},
+      {label:"Mission 5 · immobile, la carte disait (avant → après)", v:pair(v("m5_avant"),v("m5_apres"))},
+      {label:"Mission 6 · l'autre personne, avant → après", v:pair(v("m6_avant"),v("m6_apres")," / 10"), src: v("m6_pilote")!==null ? "pilote après : "+v("m6_pilote")+" / 10" : null},
+      {label:"Mission 8 · sauts comptés pour 10 vrais sauts", v:v("m8_compte"), src: v("m8_pred")!==null ? "prédiction : "+v("m8_pred") : null}
+    ];
+  }
+};
+</script>
+<script src="../assets/atelier.js"></script>
+</body>
+</html>
