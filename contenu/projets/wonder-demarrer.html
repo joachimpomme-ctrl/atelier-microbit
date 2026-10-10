@@ -1,0 +1,114 @@
+<!--
+id: wonder-demarrer
+titre: Bien démarrer avec le kit Wonder
+resume: Préparer l'atelier, connaître la carte Wukong, installer les blocs du kit et apprendre le rituel du test.
+materiel: wonder
+niveau: 1
+type: guide
+duree: 20 min
+notions: matériel, sécurité
+parcours: wonder
+ordre: 0
+icone: engrenage
+-->
+<p class="goal"><b>À lire avant votre première machine.</b> Chaque projet Wonder se fait en trois temps : <b>construire</b> la machine avec la fiche de montage, <b>brancher</b> moteurs et capteurs sur la carte Wukong, puis <b>programmer</b>.</p>
+
+<div class="cols">
+  <div class="card"><h3>Le pilote</h3><p>Il assemble les briques et il tient la souris pour programmer.</p></div>
+  <div class="card"><h3>Le copilote</h3><p>Il suit la fiche de montage, il prépare les pièces, il vérifie chaque branchement.</p></div>
+  <div class="card"><h3>On échange</h3><p>Les rôles changent à chaque projet. Le choix du pilote est en haut de chaque page.</p></div>
+</div>
+
+<div class="m-part">
+  <h2>Préparer l'atelier</h2>
+  <ul class="steps">
+    <li>Une carte <b>micro:bit</b>, plantée dans la carte Wukong. Pour le chariot télécommandé, une deuxième carte et son boîtier de piles.</li>
+    <li>La carte Wukong <b>chargée à l'avance</b>, avec un adulte.</li>
+    <li>Un ordinateur avec <b>Chrome</b> ou <b>Edge</b>, MakeCode ouvert sur makecode.microbit.org.</li>
+    <li>Le câble USB branché sur la <b>micro:bit</b>. La prise USB de la carte Wukong sert seulement à la charger.</li>
+    <li>Des bols pour trier les briques par couleur et par forme.</li>
+    <li>De la place par terre pour les machines qui roulent. Jamais sur une table : elles ne voient pas le bord.</li>
+  </ul>
+</div>
+
+<div class="m-part">
+  <h2>La carte Wukong</h2>
+  <p>C'est la carte orange dans laquelle on plante la micro:bit. Elle donne du courant aux moteurs et des prises pour tout brancher.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Prise</th><th>On y branche</th><th>Dans le programme</th></tr></thead>
+    <tbody>
+      <tr><td class="n">M1 · M2</td><td>Les deux moteurs (ils tournent sans fin)</td><td>les blocs « motor »</td></tr>
+      <tr><td class="n">S0 · S1…</td><td>Les servos (ils vont à un angle précis)</td><td>le bloc « servo »</td></tr>
+      <tr><td class="n">P0 · P1 · P2</td><td>Les capteurs : ultrasons, suivi de ligne, niveau d'eau</td><td>le numéro de broche</td></tr>
+    </tbody>
+  </table></div>
+  <p class="tip"><b>La batterie est au lithium.</b> On la charge seulement avec un adulte, et jamais en même temps qu'on utilise la machine. On ne démonte pas la carte, on ne la mouille pas, on la tient loin de la chaleur. Si elle gonfle, chauffe ou sent bizarre : on arrête et on prévient un adulte.</p>
+  <p class="tip"><b>Les servos se règlent avant de construire.</b> Le fabricant le demande : sinon, le servo peut forcer contre les briques et casser. Le projet <a href="../wonder-testeur-servo/">« Le testeur de servo »</a> vous apprend à fabriquer le programme de réglage.</p>
+</div>
+
+<div class="m-part">
+  <h2>Installer les blocs du kit</h2>
+  <ol class="steps">
+    <li>Dans MakeCode, <span class="ui">Nouveau projet</span>.</li>
+    <li>Tout en bas de la liste des tiroirs, cliquez sur <span class="ui">Extensions</span>.</li>
+    <li>Tapez <b>Wukong</b> dans la recherche et choisissez-le. Un tiroir orange <span class="kw" style="--cat:var(--c-wukong)">wuKong</span> apparaît.</li>
+    <li>Pour les projets avec le capteur à ultrasons, ajoutez aussi l'extension du sonar : collez cette adresse dans la recherche.
+      <div class="urlbox"><code id="url-sonar">https://github.com/elecfreaks/pxt-sonarbit</code><button class="btn" type="button" data-copy="url-sonar">Copier</button></div></li>
+  </ol>
+  <p class="small">À refaire à chaque nouveau projet. Les blocs de ces tiroirs sont en anglais.</p>
+</div>
+
+<div class="m-part">
+  <h2>Les blocs du kit</h2>
+  <div class="ref">
+    <div class="ref-item"><div class="prog" data-prog="ref-motor"></div><p>Fait tourner <b>un moteur</b>. La vitesse va de <b>-100 à 100</b>. Négatif : le moteur tourne dans l'autre sens. 0 : il s'arrête.</p></div>
+    <div class="ref-item"><div class="prog" data-prog="ref-both"></div><p>Règle les <b>deux moteurs</b> d'un coup. Pratique pour les véhicules.</p></div>
+    <div class="ref-item"><div class="prog" data-prog="ref-stop"></div><p>Arrête un moteur, ou tous les moteurs.</p></div>
+    <div class="ref-item"><div class="prog" data-prog="ref-servo"></div><p>Envoie un <b>servo</b> à un angle. Choisissez <b>360°</b> pour les servos du kit, et la prise où il est branché.</p></div>
+    <div class="ref-item"><div class="prog" data-prog="ref-sonar"></div><p>Le capteur à <b>ultrasons</b>. Bloc rond : il donne la distance. Choisissez la broche où il est branché.</p></div>
+  </div>
+  <details class="hint"><summary>Petit dictionnaire anglais-français</summary><div class="body"><div class="tbl-wrap"><table>
+    <thead><tr><th>Dans le bloc</th><th>En français</th></tr></thead>
+    <tbody>
+      <tr><td>Set motor … speed to …</td><td>régler la vitesse du moteur</td></tr>
+      <tr><td>Stop motor / Stop all motor</td><td>arrêter le moteur / tous les moteurs</td></tr>
+      <tr><td>Set … servo … angle to …</td><td>mettre le servo à l'angle…</td></tr>
+      <tr><td>Ultrasonic distance in unit cm at pin P1</td><td>distance mesurée aux ultrasons, en cm, sur la broche P1</td></tr>
+      <tr><td>speed / angle / pin</td><td>vitesse / angle / broche</td></tr>
+    </tbody>
+  </table></div></div></details>
+</div>
+
+<div class="m-part">
+  <h2>Envoyer un programme et tester</h2>
+  <ol class="steps">
+    <li>Câble USB sur la micro:bit, bouton <span class="ui">Télécharger</span>. Plan B : glisser le fichier .hex sur le lecteur <b>MICROBIT</b>.</li>
+    <li>Débranchez le câble USB.</li>
+    <li>Machine qui roule : posez-la d'abord sur un bol, roues dans le vide. Ça tourne dans le bon sens ? Alors seulement, par terre.</li>
+    <li>Allumez la carte Wukong avec son interrupteur.</li>
+    <li>Un problème ? On éteint d'abord, on réfléchit ensuite.</li>
+  </ol>
+</div>
+
+<div class="m-part">
+  <h2>Les fiches de montage</h2>
+  <p>Elles viennent du fabricant, ELECFREAKS. Elles sont en anglais, mais ce sont surtout des images : suivez-les étape par étape, en comptant les trous des briques. Chaque projet donne le lien vers la bonne fiche.</p>
+</div>
+
+<details class="hint"><summary>Dépannage</summary><div class="body">
+  <p><b>Le tiroir wuKong n'existe pas :</b> ajoutez l'extension Wukong, à chaque nouveau projet.</p>
+  <p><b>Le programme ne s'envoie pas :</b> le câble doit être sur la micro:bit, pas sur la carte Wukong.</p>
+  <p><b>Les moteurs ne tournent pas :</b> la carte Wukong est-elle allumée et chargée ? Le bloc dit-il la bonne prise ?</p>
+  <p><b>Un servo force ou fait du bruit :</b> éteignez tout de suite, puis réglez l'angle avec le testeur de servo.</p>
+  <p><b>La carte Wukong ne s'allume pas :</b> la batterie est peut-être vide. Un adulte la recharge, machine éteinte.</p>
+</div></details>
+
+<script>
+Object.assign(PROJET.progs, {
+  "ref-motor": function(B){ return [K.motor(B,"M1",100)]; },
+  "ref-both":  function(B){ return [K.motors(B,100,100)]; },
+  "ref-stop":  function(B){ return [K.stopM(B,"M1"), K.stopAll(B)]; },
+  "ref-servo": function(B){ return [K.servo(B,"S0",90)]; },
+  "ref-sonar": function(B){ return [K.sonar(B,"P1")]; }
+});
+</script>

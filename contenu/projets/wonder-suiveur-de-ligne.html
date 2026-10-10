@@ -1,0 +1,56 @@
+<!--
+id: wonder-suiveur-de-ligne
+titre: Le suiveur de ligne
+resume: La voiture suit une ligne noire toute seule, grâce à un capteur à deux yeux.
+materiel: wonder
+niveau: 3
+aide: l1
+duree: 2 h
+notions: moteurs, suivi de ligne, conditions, construire
+parcours: wonder
+ordre: 8
+icone: ligne
+modele: 2
+-->
+<p class="goal"><b>Votre mission :</b> la voiture suit une ligne noire toute seule, du début à la fin de la piste.</p>
+<div class="build">
+  <p><b>Construire :</b> <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Case_02.html" target="_blank" rel="noopener">la fiche de montage de la voiture suiveuse de ligne (modèle 2)</a>. Piste : du ruban adhésif noir sur une grande feuille blanche, avec des virages doux.</p>
+  <div class="wire"><span>moteur → <b>M1</b></span><span>moteur → <b>M2</b></span><span>capteur de ligne → <b>P1</b> et <b>P2</b></span></div>
+</div>
+<div class="predict">
+  <p class="pt">Prédisez d'abord</p>
+  <p>Le capteur a deux yeux, chacun branché sur une broche. Sur le noir, une broche donne 0 ou 1 ?</p>
+  <textarea data-k="@pred" rows="2" placeholder="Notre prédiction…"></textarea>
+</div>
+<div class="carnet-form">
+  <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
+  <p>Mesurez avant de programmer : un petit programme affiche ce que lit chaque broche.</p>
+  <div class="q"><p>La broche <b>P1</b> regarde le côté…</p>
+    <span class="seg"><label><input type="radio" name="w_p1" data-k="w_p1" value="gauche"><span>gauche</span></label><label><input type="radio" name="w_p1" data-k="w_p1" value="droite"><span>droite</span></label></span></div>
+  <div class="q"><p>Sur le noir, une broche donne :</p>
+    <span class="seg"><label><input type="radio" name="w_noir" data-k="w_noir" value="0"><span>0</span></label><label><input type="radio" name="w_noir" data-k="w_noir" value="1"><span>1</span></label></span></div>
+  <p class="saved" hidden>Noté. La solution utilise vos mesures.</p>
+</div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Si seul l'œil gauche voit le noir, de quel côté est partie la ligne ? Et la voiture doit tourner de quel côté ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le tiroir <span class="kw" style="--cat:var(--c-pins)">Broches</span> (dans Avancé) a un bloc rond qui lit une broche numérique : il donne 0 ou 1. Il faut un <span class="kw" style="--cat:var(--c-logic)">si … sinon si … sinon</span> avec trois cas.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>La mission 9 de l'<a href="../../robot/#m9">atelier robot</a> avait le même plan, avec un bloc qui donnait un chiffre de 0 à 3. Ici, vous avez deux broches au lieu d'un chiffre : il faut regarder les deux à la fois.</p></div></details>
+<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden><div class="prog" data-prog="sol"></div><p class="small">La solution utilise vos mesures du carnet. Le programme officiel ajoute au démarrage un réglage de « tirage » des broches P1 et P2 vers le haut : si les lectures sont instables, ajoutez-le (tiroir Broches).</p></div></div>
+<div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+<div class="bonus">
+  <h3><span>Défi bonus</span>Le chrono</h3>
+  <p>Chronométrez un tour de piste. Réglez les vitesses pour gagner du temps, sans que la voiture sorte de la ligne.</p>
+</div>
+<script>
+Object.assign(PROJET.progs, {
+  "sol": function(B,v){ var c=K.cfg(v);
+    var pl=c.p1.v==="gauche"?"P1":"P2", pr=pl==="P1"?"P2":"P1", n=+c.noir.v, u=(c.p1.u||c.noir.u)?"val":null;
+    function voit(p){ return K.cmp(B,K.readPin(B,p,u),"=",B.num(n,u)); }
+    function voitPas(p){ return K.cmp(B,K.readPin(B,p,u),"≠",B.num(n,u)); }
+    return [
+      K.forever(B, K.sis(B,[
+        [K.and(B,voit(pl),voitPas(pr)), [K.drive(B,v,0,80)]],
+        [K.and(B,voit(pr),voitPas(pl)), [K.drive(B,v,80,0)]]
+      ],[K.drive(B,v,100,100)]))
+    ]; }
+});
+</script>

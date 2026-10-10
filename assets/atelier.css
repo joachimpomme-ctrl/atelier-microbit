@@ -264,3 +264,57 @@ label.inline{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 /* Blocs longs : le bloc au-dessus, l explication en dessous */
 #blocs .ref-item{grid-template-columns:minmax(0,1fr)}
 #blocs .ref-item .ws{padding:0}
+
+/* =========================================================
+   Banque de projets : pages projet
+   ========================================================= */
+:root{ --c-music:#E63022; --c-led:#7600A8; --c-neo:#2699BF; }
+.page.proj{max-width:920px;display:grid;gap:22px}
+.crumbs{font-size:14px;color:var(--ink-2);display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.crumbs a{font-weight:700;text-decoration:none}
+.crumbs a:hover{text-decoration:underline}
+.p-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px;align-items:center}
+.p-head h1{font:700 clamp(34px,6vw,58px)/1.02 var(--f-display);margin-top:4px;text-wrap:balance}
+.p-head .lead{margin-top:12px;font-size:18px;max-width:60ch}
+.p-head .learn{margin-top:14px}
+.led5.p-icon{--w:110px;--g:6px;--p:12px;border-radius:14px}
+@media (max-width:600px){ .p-head{grid-template-columns:minmax(0,1fr);gap:14px} .led5.p-icon{--w:72px;--g:4px;--p:8px} }
+.p-bar{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;justify-content:space-between;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+.crew-pick{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
+.p-main{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:clamp(18px,3vw,32px);display:grid;gap:18px;min-width:0}
+.p-main > *{min-width:0}
+.p-main h2{font:700 24px/1.2 var(--f-display)}
+.p-nav{display:grid;gap:18px}
+.p-links,.mini-cards{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));margin-top:8px}
+.p-link{display:grid;gap:4px;padding:14px 16px;border:1px solid var(--line);border-radius:10px;background:var(--panel);text-decoration:none;color:var(--ink)}
+.p-link.next{text-align:right}
+.p-link:hover,.mini-card:hover{border-color:var(--accent)}
+.mini-card{display:flex;gap:12px;align-items:center;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);text-decoration:none;color:var(--ink)}
+.mini-card .led5{--w:44px;--g:2px;--p:5px;border-radius:7px}
+.mini-card small{display:block;color:var(--ink-2);font-size:13px;margin-top:2px}
+.p-foot{text-align:center}
+.challenge{border:2px solid var(--accent);border-radius:12px;padding:14px 18px;display:grid;gap:8px}
+.challenge .pt{color:var(--accent)}
+
+/* ---------- Cartes de projet (banque, parcours, accueil) ---------- */
+.cards{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr))}
+.pcard{display:grid;grid-template-rows:auto auto 1fr auto;gap:8px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--panel);text-decoration:none;color:var(--ink);position:relative}
+.pcard:hover{border-color:var(--accent);box-shadow:0 6px 18px -12px rgba(0,0,0,.35)}
+.pcard .top{display:flex;gap:12px;align-items:center}
+.pcard .led5{--w:48px;--g:2px;--p:6px;border-radius:8px}
+.pcard h3{font:700 19px/1.15 var(--f-display)}
+.pcard .meta{font:500 12px/1.3 var(--f-mono);color:var(--ink-2);margin-top:3px}
+.pcard .res{font-size:15px;line-height:1.45}
+.pcard .tags{display:flex;flex-wrap:wrap;gap:5px;list-style:none;padding:0;margin:0}
+.pcard .tags li{margin:0;font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--ink-2)}
+.badge{position:absolute;top:10px;right:10px;font:700 12px/1 var(--f-body);padding:5px 8px;border-radius:999px}
+.badge.ok{background:var(--ok);color:var(--on-ok)}
+.badge.v2{background:var(--soft);color:var(--ink-2);border:1px solid var(--line);font-weight:600}
+.lv{display:inline-flex;gap:2px;vertical-align:middle;margin-left:2px}
+.lv i{width:7px;height:7px;border-radius:2px;background:var(--line)}
+.lv i.on{background:var(--led)}
+/* Barre de progression longue (plusieurs dizaines de projets) */
+.progress{flex-wrap:wrap}
+.board.wide{display:flex;flex-wrap:wrap;gap:5px;padding:7px 9px;border-radius:8px;background:var(--board);max-width:min(100%,330px)}
+.board.wide span{width:11px;height:11px;border-radius:3px;background:var(--board-off);box-shadow:none}
+.board.wide span.on{background:var(--led);box-shadow:0 0 8px var(--led)}

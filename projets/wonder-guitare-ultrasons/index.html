@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Une guitare sans cordes : la note change selon la distance de la main.">
+<title>La guitare à ultrasons · Banque de projets micro:bit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="../../assets/atelier.css">
+<script>window.PROJET={id:"wonder-guitare-ultrasons",progs:{},needs:{}};</script>
+</head>
+<body data-racine="../../">
+<!-- Page générée par outils/generer.py à partir de contenu/projets/wonder-guitare-ultrasons.html : modifier la source, pas cette page. -->
+<div class="page proj">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../../">Accueil</a> <span aria-hidden="true">›</span> <a href="../">Banque de projets</a> <span aria-hidden="true">›</span> <a href="../../wonder/">Parcours Wonder</a></nav>
+  <header class="p-head">
+    <div class="led5 p-icon" aria-hidden="true"><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div>
+    <div>
+      <p class="eyebrow">Kit Wonder · niveau 3 · Ingénieur · 1 h 30 · modèle 14</p>
+      <h1>La guitare à ultrasons</h1>
+      <p class="lead">Une guitare sans cordes : la note change selon la distance de la main.</p>
+      <ul class="learn"><li class="lbl">Notions</li><li>ultrasons</li><li>son</li><li>conditions</li><li>variables</li><li>construire</li></ul>
+    </div>
+  </header>
+  <div class="p-bar">
+    <div class="crew-pick" id="crew">
+      <span>Pilote :</span>
+      <span class="seg" role="radiogroup" aria-label="Qui pilote ce projet ?">
+        <label><input type="radio" name="pilot" value="1"><span data-pilot="1">Équipier 1</span></label>
+        <label><input type="radio" name="pilot" value="2"><span data-pilot="2">Équipier 2</span></label>
+      </span>
+      <span class="small">Copilote : <b id="copilot">Équipier 2</b></span>
+    </div>
+    <span class="lvl l1">Juste l'objectif</span>
+    <button class="done-btn" type="button" data-done-projet aria-pressed="false">Projet réussi ?</button>
+  </div>
+  <p class="tip">Ce projet a besoin d'une carte <b>micro:bit V2</b> (logo doré sur la face avant).</p>
+  <main class="p-main">
+<p class="goal"><b>Votre mission :</b> chaque distance entre la main et le capteur joue une note différente, comme une gamme.</p>
+<p class="small">Premier projet Wonder ? Commencez par <a href="../wonder-demarrer/">Bien démarrer avec le kit Wonder</a>, puis <a href="../wonder-helicoptere/">l'hélicoptère</a>.</p>
+<div class="build">
+  <p><b>Construire :</b> <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Case_14.html" target="_blank" rel="noopener">la fiche de montage (modèle 14)</a>.</p>
+  <div class="wire"><span>ultrasons → <b>P1</b></span></div>
+  <p class="small">Le son sort du haut-parleur de la micro:bit V2. Le programme officiel l'active au démarrage avec un bloc du tiroir Musique.</p>
+</div>
+<div class="predict">
+  <p class="pt">Prédisez d'abord</p>
+  <p>La main à 7 cm, puis à 19 cm : la deuxième note sera-t-elle plus aiguë ou plus grave ?</p>
+  <textarea data-k="wonder-guitare-ultrasons_pred" rows="2" placeholder="Notre prédiction…"></textarea>
+</div>
+<div class="challenge"><p class="pt">Votre défi en plus</p><h3>Votre air</h3><p>Notez les distances à jouer pour les premières notes d'« Au clair de la lune », puis jouez-le.</p></div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Combien de notes dans une gamme do, ré, mi… ? Combien de tranches de distance faut-il ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Une variable pour la distance, puis un <span class="kw" style="--cat:var(--c-logic)">si … sinon si</span> avec une condition « et » par tranche. Le bloc qui joue une note est dans le tiroir Musique.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Sur un piano, chaque touche à une place différente joue une note différente. Ici, les touches sont des distances.</p></div></details>
+<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden>
+  <p>Le programme officiel découpe la distance en tranches de 2 cm, de 6 à 20 cm. Chaque tranche joue une note de la gamme aiguë pendant un temps.</p>
+  <p class="small">Le programme du fabricant ELECFREAKS : <a href="https://makecode.microbit.org/_1YvYtE8RM8oL" target="_blank" rel="noopener">programme officiel</a>. Il fait la mission de base, sans le défi.</p>
+</div></div>
+<div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="wonder-guitare-ultrasons_res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+
+  </main>
+  <nav class="p-nav" aria-label="Et après ?"><div class="p-seq"><p class="eyebrow">Parcours Wonder · toutes les machines · 9 sur 24</p><div class="p-links"><a class="p-link" href="../wonder-bascule/"><span class="eyebrow">← Machine précédente</span><b>La bascule</b></a><a class="p-link next" href="../wonder-robot-marcheur/"><span class="eyebrow">Machine suivante →</span><b>Le robot marcheur</b></a></div></div><div class="p-related"><p class="eyebrow">Projets proches</p><div class="mini-cards"><a class="mini-card" href="../wonder-voiture-prudente/"><div class="led5" aria-hidden="true"><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span></div><span><b>La voiture prudente</b><small>Wonder · niveau 2</small></span></a><a class="mini-card" href="../wonder-compteur-paniers/"><div class="led5" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><span><b>Le compteur de paniers</b><small>Wonder · niveau 2</small></span></a><a class="mini-card" href="../wonder-bateau-pirate/"><div class="led5" aria-hidden="true"><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div><span><b>Le bateau pirate</b><small>Wonder · niveau 3</small></span></a></div></div></nav>
+  <footer class="p-foot small">Les prénoms se règlent sur l'<a href="../../">accueil</a>. Code parent, sécurité et remise à zéro : <a href="../../parents/">page des parents</a>.</footer>
+</div>
+<script src="../../assets/progression.js"></script>
+<script src="../../assets/blocs.js"></script>
+<script src="../../assets/projet.js"></script>
+</body>
+</html>

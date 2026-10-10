@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Un programme outil qui règle l&#x27;angle d&#x27;un servo avec les boutons, à faire avant chaque construction avec un servo.">
+<title>Le testeur de servo · Banque de projets micro:bit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="../../assets/atelier.css">
+<script>window.PROJET={id:"wonder-testeur-servo",progs:{},needs:{}};</script>
+</head>
+<body data-racine="../../">
+<!-- Page générée par outils/generer.py à partir de contenu/projets/wonder-testeur-servo.html : modifier la source, pas cette page. -->
+<div class="page proj">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../../">Accueil</a> <span aria-hidden="true">›</span> <a href="../">Banque de projets</a> <span aria-hidden="true">›</span> <a href="../../wonder/">Parcours Wonder</a></nav>
+  <header class="p-head">
+    <div class="led5 p-icon" aria-hidden="true"><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span></div>
+    <div>
+      <p class="eyebrow">Kit Wonder · niveau 1 · Découverte · 30 min</p>
+      <h1>Le testeur de servo</h1>
+      <p class="lead">Un programme outil qui règle l&#x27;angle d&#x27;un servo avec les boutons, à faire avant chaque construction avec un servo.</p>
+      <ul class="learn"><li class="lbl">Notions</li><li>servo</li><li>variables</li><li>boutons</li></ul>
+    </div>
+  </header>
+  <div class="p-bar">
+    <div class="crew-pick" id="crew">
+      <span>Pilote :</span>
+      <span class="seg" role="radiogroup" aria-label="Qui pilote ce projet ?">
+        <label><input type="radio" name="pilot" value="1"><span data-pilot="1">Équipier 1</span></label>
+        <label><input type="radio" name="pilot" value="2"><span data-pilot="2">Équipier 2</span></label>
+      </span>
+      <span class="small">Copilote : <b id="copilot">Équipier 2</b></span>
+    </div>
+    <span class="lvl l3">Tout est expliqué</span>
+    <button class="done-btn" type="button" data-done-projet aria-pressed="false">Projet réussi ?</button>
+  </div>
+  
+  <main class="p-main">
+<p class="goal"><b>Votre mission :</b> fabriquer un programme outil. Le bouton A tourne le servo de 10 degrés, le bouton B le ramène de 10 degrés, et l'écran affiche l'angle.</p>
+<div class="build">
+  <p><b>Pourquoi ?</b> Le fabricant demande de régler le servo <b>avant</b> de le monter dans les briques. Sinon, il peut forcer contre une pièce et casser. Ce programme vous servira pour la porte automatique, le chariot élévateur et toutes les machines avec un servo.</p>
+  <div class="wire"><span>servo → <b>S0</b></span></div>
+  <p class="small">Le servo est branché seul, sans briques autour.</p>
+</div>
+<div class="predict">
+  <p class="pt">Prédisez d'abord</p>
+  <p>Le servo démarre à 90°. Après 3 appuis sur A, à quel angle sera-t-il ?</p>
+  <label class="inline">Notre prédiction : <input class="numin wide" type="number" min="0" max="360" data-k="wonder-testeur-servo_pred"> °</label>
+</div>
+<div class="m-part">
+  <h3>Le programme outil</h3>
+  <p>C'est le programme de réglage proposé par le fabricant. Construisez-le bloc par bloc.</p>
+  <div class="prog" data-prog="testeur"></div>
+</div>
+<div class="m-part">
+  <h3>Pas à pas</h3>
+  <ol class="steps">
+    <li>Créez une variable <b>angle</b>. Au démarrage : <span class="kw" style="--cat:var(--c-vars)">définir angle à 90</span>, puis envoyez le servo à cet angle.</li>
+    <li>Dans <span class="kw" style="--cat:var(--c-base)">toujours</span> : <span class="kw" style="--cat:var(--c-base)">montrer nombre angle</span>.</li>
+    <li>Bouton A : ajouter 10 à angle, puis renvoyer le servo à l'angle.</li>
+    <li>Bouton B : pareil avec -10.</li>
+    <li>Testez. Laissez le servo à <b>90</b> avant de le monter dans une machine.</li>
+  </ol>
+</div>
+<details class="hint"><summary>Indice 1</summary><div class="body"><p>Le nombre change mais le servo ne bouge pas ? Après avoir changé la variable, qui dit au servo d'aller au nouvel angle ?</p></div></details>
+<details class="hint"><summary>Indice 2</summary><div class="body"><p>Dans chaque bouton, il faut deux blocs : un qui change le nombre, un qui envoie le servo à ce nombre.</p></div></details>
+<div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="wonder-testeur-servo_res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+<div class="bonus">
+  <h3><span>Défi bonus</span>Les limites</h3>
+  <p>Empêchez l'angle de descendre sous 0 et de dépasser 360, comme pour l'essuie-glace.</p>
+</div>
+<script>
+Object.assign(PROJET.progs, {
+  "testeur": function(B){ return [
+    K.onStart(B, K.setVar(B,"angle",B.num(90)), K.servo(B,"S0",K.vr(B,"angle"))),
+    K.forever(B, K.showNum(B,K.vr(B,"angle"))),
+    K.onBtn(B,"A", K.chg(B,"angle",10), K.servo(B,"S0",K.vr(B,"angle"))),
+    K.onBtn(B,"B", K.chg(B,"angle",-10), K.servo(B,"S0",K.vr(B,"angle")))
+  ]; }
+});
+</script>
+
+  </main>
+  <nav class="p-nav" aria-label="Et après ?"><div class="p-seq"><p class="eyebrow">Parcours Wonder · étape 6 sur 10</p><div class="p-links"><a class="p-link" href="../wonder-machine-a-dessiner/"><span class="eyebrow">← Étape précédente</span><b>La machine à dessiner</b></a><a class="p-link next" href="../wonder-porte-automatique/"><span class="eyebrow">Étape suivante →</span><b>La porte automatique</b></a></div></div><div class="p-related"><p class="eyebrow">Projets proches</p><div class="mini-cards"><a class="mini-card" href="../wonder-bateau-pirate/"><div class="led5" aria-hidden="true"><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div><span><b>Le bateau pirate</b><small>Wonder · niveau 3</small></span></a><a class="mini-card" href="../wonder-sechoir-pluie/"><div class="led5" aria-hidden="true"><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span></div><span><b>Le séchoir qui sent la pluie</b><small>Wonder · niveau 3</small></span></a><a class="mini-card" href="../microbit-plus-rapide/"><div class="led5" aria-hidden="true"><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span></div><span><b>Le jeu du plus rapide</b><small>micro:bit · niveau 3</small></span></a></div></div></nav>
+  <footer class="p-foot small">Les prénoms se règlent sur l'<a href="../../">accueil</a>. Code parent, sécurité et remise à zéro : <a href="../../parents/">page des parents</a>.</footer>
+</div>
+<script src="../../assets/progression.js"></script>
+<script src="../../assets/blocs.js"></script>
+<script src="../../assets/projet.js"></script>
+</body>
+</html>

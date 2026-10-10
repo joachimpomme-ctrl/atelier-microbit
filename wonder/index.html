@@ -4,771 +4,137 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="description" content="Huit machines à construire avec le kit ELECFREAKS Wonder 32 en 1 et à programmer avec MakeCode.">
-<title>L'atelier Wonder micro:bit</title>
+<meta name="description" content="Le parcours du kit Wonder 32 en 1 : dix étapes, puis les 32 machines du kit, une page par machine.">
+<title>Le parcours Wonder · Ateliers micro:bit</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <link rel="stylesheet" href="../assets/atelier.css">
+<style>
+.page.parc{max-width:1120px;display:grid;gap:26px}
+.parc .hero{padding-block:4px 0}
+.parc .hero h1{font-size:clamp(40px,7vw,72px)}
+.bars{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:20px}
+.next-box{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between;background:var(--soft);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:12px;padding:16px 20px}
+.next-box b{font:700 22px/1.2 var(--f-display);display:block}
+.how{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+.how div{border-left:4px solid var(--accent);padding:6px 12px;background:var(--soft);border-radius:0 8px 8px 0;font-size:15px}
+.how b{display:block;font-family:var(--f-display);font-size:18px}
+.sec-head{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;justify-content:space-between}
+.reg{width:100%;border-collapse:collapse;font-size:15px}
+.reg th,.reg td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.reg th{font:600 12px var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-2)}
+.reg .ok{color:var(--ok);font-weight:700}
+.reg .todo{color:var(--ink-2)}
+.cards .pcard.cur{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
+</style>
 </head>
 <body>
-<div class="page">
+<div class="page parc">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../">Accueil</a> <span aria-hidden="true">›</span> <a href="../projets/">Banque de projets</a> <span aria-hidden="true">›</span> <span>Parcours Wonder</span></nav>
   <header class="hero">
     <div>
-      <a class="back" href="../">&larr; Tous les ateliers</a>
       <p class="eyebrow">Kit Wonder 32 en 1 · carte Wukong · MakeCode</p>
-      <h1>L'atelier Wonder</h1>
+      <h1>Le parcours Wonder</h1>
       <p class="who">Construire des machines, puis les programmer</p>
-      <p class="lead">Huit machines à construire avec les briques du kit, puis à programmer vous-mêmes. On commence par une hélice. On finit avec un chariot élévateur piloté à distance par une deuxième carte.</p>
-      <div class="hero-bar">
-        <div class="progress" aria-live="polite">
-          <div class="board" id="progress-leds" aria-hidden="true"></div>
-          <span>Missions réussies : <strong id="progress-count">0 / 8</strong></span>
-        </div>
-        <div class="crew-set">
-          <span>L'équipe :</span>
-          <label class="namein"><span class="sr">Prénom de l'équipier 1</span><input type="text" id="name-1" maxlength="16" autocomplete="off" spellcheck="false" placeholder="Équipier 1"></label>
-          <label class="namein"><span class="sr">Prénom de l'équipier 2</span><input type="text" id="name-2" maxlength="16" autocomplete="off" spellcheck="false" placeholder="Équipier 2"></label>
-        </div>
-        <div class="pilot-pick">
-          <span>Pilote de la mission 1 :</span>
-          <span class="seg" role="radiogroup" aria-label="Pilote de la mission 1">
-            <label><input type="radio" name="first" id="first-1" value="1"><span id="first-1-l">Équipier 1</span></label>
-            <label><input type="radio" name="first" id="first-2" value="2"><span id="first-2-l">Équipier 2</span></label>
-          </span>
-        </div>
-        <p class="local-note">Les prénoms restent sur cet ordinateur, ils ne sont envoyés nulle part.</p>
+      <p class="lead">Dix étapes pour apprendre le kit, de l'hélice au chariot télécommandé. Ensuite, toutes les autres machines du kit, dans l'ordre que vous voulez. Une page par machine.</p>
+      <div class="bars" aria-live="polite">
+        <div class="progress"><div class="board" id="leds-steps" aria-hidden="true"></div><span>Étapes : <strong id="n-steps">0</strong></span></div>
+        <div class="progress"><div class="board wide" id="leds-free" aria-hidden="true"></div><span>Autres machines : <strong id="n-free">0</strong></span></div>
       </div>
     </div>
     <div class="hero-side" aria-hidden="true">
-      <div class="led5 big" data-icon="engrenage"></div>
+      <div class="led5 big" id="hero-icon"></div>
       <p class="cap">400 briques<br>2 moteurs · 2 servos</p>
     </div>
   </header>
 
-  <div class="layout">
-    <nav class="side" aria-label="Plan de route">
-      <p class="side-title">Plan de route</p>
-      <ul class="nav">
-        <li><a href="#atelier">Comment ça marche</a></li>
-        <li><a href="#preparer">Préparer l'atelier</a></li>
-        <li><a href="#wukong">La carte Wukong</a></li>
-        <li><a href="#blocs">Les blocs du kit</a></li>
-        <li><a href="#carnet">Carnet de bord</a></li>
-        <li class="sep" aria-hidden="true"></li>
-        <li><a href="#m1"><span class="dot" data-dot="m1"></span>1. L'hélicoptère</a></li>
-        <li><a href="#m2"><span class="dot" data-dot="m2"></span>2. La moto</a></li>
-        <li><a href="#m3"><span class="dot" data-dot="m3"></span>3. L'essuie-glace</a></li>
-        <li><a href="#m4"><span class="dot" data-dot="m4"></span>4. La machine à dessiner</a></li>
-        <li><a href="#m5"><span class="dot" data-dot="m5"></span>5. La porte automatique</a></li>
-        <li><a href="#m6"><span class="dot" data-dot="m6"></span>6. La voiture prudente</a></li>
-        <li><a href="#m7"><span class="dot" data-dot="m7"></span>7. Le suiveur de ligne</a></li>
-        <li><a href="#m8"><span class="dot" data-dot="m8"></span>8. Le chariot télécommandé</a></li>
-        <li class="sep" aria-hidden="true"></li>
-        <li><a href="#defis">Défis libres</a></li>
-        <li><a href="#depannage">Dépannage</a></li>
-        <li><a href="#parents">Pour les parents</a></li>
-      </ul>
-    </nav>
+  <div class="next-box" id="next"></div>
 
-    <main>
-      <!-- ============ Comment ça marche ============ -->
-      <section class="sec" id="atelier">
-        <h2>Comment marche l'atelier</h2>
-        <p class="intro">Chaque mission se fait en trois temps : <b>construire</b> la machine, <b>brancher</b> ses moteurs et capteurs, puis <b>programmer</b>. Vous êtes deux, et vous échangez les rôles à chaque mission.</p>
-        <div class="cols">
-          <div class="card"><h3>Le pilote</h3><p>Il assemble les briques et il tient la souris pour programmer.</p></div>
-          <div class="card"><h3>Le copilote</h3><p>Il suit la fiche de montage, il prépare les pièces, il vérifie chaque branchement et il remplit le carnet.</p></div>
-          <div class="card">
-            <h3>La méthode du chercheur</h3>
-            <ol class="steps">
-              <li>Lire la mission jusqu'au bout.</li>
-              <li>Prédire ce qui va se passer.</li>
-              <li>Construire, brancher, programmer.</li>
-              <li>Tester et comparer avec la prédiction.</li>
-              <li>Résumer en une phrase ce que vous avez appris.</li>
-            </ol>
-          </div>
-        </div>
-        <div class="cols">
-          <div class="info">
-            <h3>L'aide diminue au fil des missions</h3>
-            <ul class="levels">
-              <li><span class="lvl l3">Tout est expliqué</span> missions 1 à 3</li>
-              <li><span class="lvl l2">Juste le plan</span> missions 4 à 6</li>
-              <li><span class="lvl l1">Juste l'objectif</span> missions 7 et 8</li>
-            </ul>
-            <p style="margin-top:10px">Le montage et les branchements restent toujours expliqués.</p>
-          </div>
-          <div class="info">
-            <h3>Bloqués ?</h3>
-            <ol class="steps" style="margin-top:8px">
-              <li><b>Indice 1</b> : une question pour réfléchir.</li>
-              <li><b>Indice 2</b> : où chercher.</li>
-              <li><b>Indice 3</b> : un exemple sur un autre cas.</li>
-            </ol>
-            <p style="margin-top:8px">La solution est rangée chez les parents, avec un code.</p>
-          </div>
-        </div>
-        <p class="tip">Les fiches de montage sont celles du fabricant, ELECFREAKS. Elles sont en anglais, mais ce sont surtout des images : suivez-les étape par étape, en comptant les trous des briques.</p>
-      </section>
+  <section class="sec" aria-labelledby="t-how">
+    <h2 id="t-how">Comment ça marche</h2>
+    <div class="how">
+      <div><b>Construire, brancher, programmer</b>Chaque machine se monte avec la fiche du fabricant, puis on branche ses moteurs et capteurs sur la carte Wukong.</div>
+      <div><b>À deux</b>Le pilote assemble et tient la souris. Le copilote suit la fiche et vérifie les branchements. On échange à chaque machine.</div>
+      <div><b>L'aide diminue</b>Les premières étapes expliquent tout. Les dernières donnent juste l'objectif. Bloqués : trois indices, puis la solution chez les parents.</div>
+      <div><b>Le carnet suit la machine</b>Ce que vous mesurez sur une machine (sens des moteurs, angles) sert aux suivantes. Récapitulatif en bas de page.</div>
+    </div>
+  </section>
 
-      <!-- ============ Préparer ============ -->
-      <section class="sec" id="preparer">
-        <h2>Préparer l'atelier</h2>
-        <ul class="checklist" id="prep-list">
-          <li><label><input type="checkbox" id="prep-mb"><span>Une carte <b>micro:bit</b>, plantée dans la carte Wukong. Pour la mission 8, une <b>deuxième carte</b> et son boîtier de piles.</span></label></li>
-          <li><label><input type="checkbox" id="prep-charge"><span>La carte Wukong <b>chargée à l'avance</b>, avec un adulte (voir l'encadré sur la batterie).</span></label></li>
-          <li><label><input type="checkbox" id="prep-nav"><span>Un ordinateur avec <b>Chrome</b> ou <b>Edge</b>, MakeCode ouvert à l'adresse makecode.microbit.org.</span></label></li>
-          <li><label><input type="checkbox" id="prep-usb"><span>Le câble USB, branché sur la <b>micro:bit</b>. La prise USB de la carte Wukong sert seulement à la charger.</span></label></li>
-          <li><label><input type="checkbox" id="prep-tri"><span>Une boîte ou des bols pour trier les briques par couleur et par forme.</span></label></li>
-          <li><label><input type="checkbox" id="prep-sol"><span>De la place par terre pour les machines qui roulent. Jamais sur une table : elles ne voient pas le bord.</span></label></li>
-        </ul>
-        <h3>Installer les blocs du kit</h3>
-        <ol class="steps">
-          <li>Dans MakeCode, <span class="ui">Nouveau projet</span>.</li>
-          <li>Tout en bas de la liste des tiroirs, cliquez sur <span class="ui">Extensions</span>.</li>
-          <li>Tapez <b>Wukong</b> dans la recherche et choisissez-le. Un tiroir orange <span class="kw" style="--cat:var(--c-wukong)">wuKong</span> apparaît.</li>
-          <li>Pour les missions avec le capteur à ultrasons (5 et 6), ajoutez aussi l'extension du sonar : collez cette adresse dans la recherche.
-            <div class="urlbox"><code id="url-sonar">https://github.com/elecfreaks/pxt-sonarbit</code><button class="btn" type="button" data-copy="url-sonar">Copier</button></div></li>
-        </ol>
-        <p class="small">À refaire à chaque nouveau projet. Les blocs de ces deux tiroirs sont en anglais : le <a href="#blocs">petit dictionnaire</a> les traduit.</p>
-        <h3>Envoyer un programme</h3>
-        <p>Comme dans l'atelier robot : câble USB sur la micro:bit, bouton <span class="ui">Télécharger</span>. Plan B : glisser le fichier .hex sur le lecteur <b>MICROBIT</b>.</p>
-        <h3 id="rituel">Le rituel du test</h3>
-        <ol class="steps">
-          <li>Envoyez le programme, puis débranchez le câble USB.</li>
-          <li>Machine qui roule : posez-la d'abord sur un bol, roues dans le vide. Ça tourne dans le bon sens ? Alors seulement, par terre.</li>
-          <li>Allumez la carte Wukong avec son interrupteur.</li>
-          <li>Un problème ? On éteint d'abord, on réfléchit ensuite.</li>
-        </ol>
-      </section>
+  <section class="sec" aria-labelledby="t-steps">
+    <div class="sec-head"><h2 id="t-steps">Le parcours en 10 étapes</h2><p class="small">Dans l'ordre : chaque étape utilise ce que la précédente a appris.</p></div>
+    <div class="cards" id="steps"></div>
+  </section>
 
-      <!-- ============ Wukong ============ -->
-      <section class="sec" id="wukong">
-        <h2>La carte Wukong</h2>
-        <p class="intro">C'est la carte orange dans laquelle on plante la micro:bit. Elle donne du courant aux moteurs et des prises pour tout brancher.</p>
-        <div class="tbl-wrap"><table>
-          <thead><tr><th>Prise</th><th>On y branche</th><th>Dans le programme</th></tr></thead>
-          <tbody>
-            <tr><td class="n">M1 · M2</td><td>Les deux moteurs (ils tournent sans fin)</td><td>les blocs « motor »</td></tr>
-            <tr><td class="n">S0 · S1…</td><td>Les servos (ils vont à un angle précis)</td><td>le bloc « servo »</td></tr>
-            <tr><td class="n">P0 · P1 · P2</td><td>Les capteurs : ultrasons, suivi de ligne, niveau d'eau</td><td>le numéro de broche</td></tr>
-          </tbody>
-        </table></div>
-        <p class="tip"><b>La batterie est au lithium.</b> On la charge seulement avec un adulte, et jamais en même temps qu'on utilise la machine. On ne démonte pas la carte, on ne la mouille pas, on la tient loin de la chaleur. Si elle gonfle, chauffe ou sent bizarre : on arrête et on prévient un adulte.</p>
-        <p class="tip"><b>Les servos se règlent avant de construire.</b> Le fabricant le demande : sinon, le servo peut forcer contre les briques et casser. La mission 5 vous apprend à fabriquer le programme de réglage.</p>
-      </section>
+  <section class="sec" aria-labelledby="t-free">
+    <div class="sec-head"><h2 id="t-free">Toutes les autres machines du kit</h2><p class="small">Classées par numéro de modèle. Pour trier par niveau ou par notion : <a href="../projets/#materiel=wonder">la banque de projets</a>.</p></div>
+    <p class="small">Conseil : faites d'abord les étapes 1 et 2. Toutes ces machines utilisent la carte Wukong comme l'hélicoptère.</p>
+    <div class="cards" id="free"></div>
+  </section>
 
-      <!-- ============ Blocs ============ -->
-      <section class="sec" id="blocs">
-        <h2>Les blocs du kit</h2>
-        <p class="intro">Ils sont en anglais. Voici ce qu'ils font.</p>
-        <div class="ref">
-          <div class="ref-item"><div class="prog" data-prog="ref-motor"></div><p>Fait tourner <b>un moteur</b>. La vitesse va de <b>-100 à 100</b>. Négatif : le moteur tourne dans l'autre sens. 0 : il s'arrête.</p></div>
-          <div class="ref-item"><div class="prog" data-prog="ref-both"></div><p>Règle les <b>deux moteurs</b> d'un coup. Pratique pour les voitures.</p></div>
-          <div class="ref-item"><div class="prog" data-prog="ref-stop"></div><p>Arrête un moteur, ou tous les moteurs.</p></div>
-          <div class="ref-item"><div class="prog" data-prog="ref-servo"></div><p>Envoie un <b>servo</b> à un angle. Choisissez <b>360°</b> pour les servos du kit, et la prise où il est branché.</p></div>
-          <div class="ref-item"><div class="prog" data-prog="ref-sonar"></div><p>Le capteur à <b>ultrasons</b>. Bloc rond : il donne la distance. Choisissez la broche où il est branché.</p></div>
-        </div>
-        <details class="hint"><summary>Petit dictionnaire anglais-français</summary><div class="body"><div class="tbl-wrap"><table>
-          <thead><tr><th>Dans le bloc</th><th>En français</th></tr></thead>
-          <tbody>
-            <tr><td>Set motor … speed to …</td><td>régler la vitesse du moteur</td></tr>
-            <tr><td>Stop motor / Stop all motor</td><td>arrêter le moteur / tous les moteurs</td></tr>
-            <tr><td>Set … servo … angle to …</td><td>mettre le servo à l'angle…</td></tr>
-            <tr><td>Ultrasonic distance in unit cm at pin P1</td><td>distance mesurée aux ultrasons, en cm, sur la broche P1</td></tr>
-            <tr><td>speed / angle / pin</td><td>vitesse / angle / broche</td></tr>
-          </tbody>
-        </table></div></div></details>
-      </section>
+  <section class="sec" aria-labelledby="t-reg">
+    <h2 id="t-reg">Nos réglages Wonder</h2>
+    <p>Ce que vous avez noté dans les carnets. Les solutions s'en servent. Pas encore mesuré : c'est la valeur du fabricant qui est utilisée, à vérifier sur votre machine.</p>
+    <div class="tbl-wrap"><table class="reg"><thead><tr><th>Réglage</th><th>Notre valeur</th><th>Où le mesurer</th></tr></thead><tbody id="reg"></tbody></table></div>
+  </section>
 
-      <!-- ============ Carnet ============ -->
-      <section class="sec" id="carnet">
-        <h2>Le carnet de bord des machines</h2>
-        <p class="intro">Chaque machine est construite à la main, donc un peu différente. Vous mesurez vos réglages pendant les missions, et les solutions de cette page s'adaptent à <b>vos</b> machines.</p>
-        <div class="log" id="log"></div>
-        <h3>Ce que nous avons appris</h3>
-        <ol class="phrases" id="phrases"></ol>
-      </section>
-
-      <!-- ============ Mission 1 ============ -->
-      <section class="sec mission" id="m1">
-        <header class="m-head">
-          <div class="led5" data-icon="helice" aria-hidden="true"></div>
-          <div><p class="eyebrow">Mission 1 · <span class="lvl l3">Tout est expliqué</span></p><h2>L'hélicoptère</h2><p class="crew" data-crew="1"></p></div>
-          <button class="done-btn" type="button" data-done="m1" aria-pressed="false">Mission réussie ?</button>
-        </header>
-        <p class="goal"><b>Votre mission :</b> bouton A, l'hélice tourne et un cœur s'affiche. Bouton B, l'hélice s'arrête et l'écran s'efface.</p>
-        <ul class="learn"><li class="lbl">Vous apprenez</li><li>la carte Wukong</li><li>faire tourner un moteur</li></ul>
-        <div class="build">
-          <p><b>Construire :</b> <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Wonder-Building-Kit-case-22.html" target="_blank" rel="noopener">la fiche de montage de l'hélicoptère (modèle 22)</a>.</p>
-          <p><b>Brancher :</b></p>
-          <div class="wire"><span>moteur → <b>M2</b></span></div>
-        </div>
-        <div class="predict">
-          <p class="pt">Prédisez d'abord</p>
-          <p>Si on met la vitesse à <b>-100</b> au lieu de <b>100</b>, que fera l'hélice ?</p>
-          <textarea data-k="m1_pred" rows="2" placeholder="Notre prédiction…"></textarea>
-        </div>
-        <div class="m-part"><h3>Les blocs à utiliser</h3><div class="need" data-need="m1"></div></div>
-        <div class="m-part">
-          <h3>Pas à pas</h3>
-          <ol class="steps">
-            <li>Nouveau projet, puis l'extension <b>Wukong</b>.</li>
-            <li>Tiroir Entrées : posez <span class="kw" style="--cat:var(--c-input)">lorsque le bouton A est pressé</span>.</li>
-            <li>Dedans : <span class="kw" style="--cat:var(--c-base)">montrer l'icône</span>, choisissez le cœur.</li>
-            <li>En dessous : <span class="kw" style="--cat:var(--c-wukong)">Set motor M1 speed to 100</span>. Changez <b>M1</b> en <b>M2</b> : c'est là que le moteur est branché.</li>
-            <li>Dupliquez le bloc du bouton A, et changez A en <b>B</b>. Remplacez le contenu par <span class="kw" style="--cat:var(--c-base)">effacer l'écran</span> et <span class="kw" style="--cat:var(--c-wukong)">Stop motor M2</span>.</li>
-            <li>Envoyez le programme, débranchez, allumez la carte Wukong, appuyez sur A puis sur B.</li>
-            <li>Ensuite, testez votre prédiction : vitesse -100.</li>
-          </ol>
-        </div>
-        <details class="hint"><summary>Indice 1</summary><div class="body"><p>L'hélice ne tourne pas ? Regardez où est branché le câble du moteur, puis ce que dit le bloc.</p></div></details>
-        <details class="hint"><summary>Indice 2</summary><div class="body"><p>Le bloc doit dire <b>M2</b>, comme la prise. Et la carte Wukong doit être allumée : la micro:bit seule ne peut pas faire tourner un moteur.</p></div></details>
-        <div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden><div class="prog" data-prog="m1"></div></div></div>
-        <div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="m1_res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
-        <div class="bonus">
-          <h3><span>Défi bonus</span>Le décollage</h3>
-          <p>Bouton A : l'hélice démarre à 20, puis accélère toute seule jusqu'à 100. Piste : <span class="kw" style="--cat:var(--c-base)">pause (ms)</span> entre plusieurs vitesses.</p>
-        </div>
-      </section>
-
-      <!-- ============ Mission 2 ============ -->
-      <section class="sec mission" id="m2">
-        <header class="m-head">
-          <div class="led5" data-icon="moto" aria-hidden="true"></div>
-          <div><p class="eyebrow">Mission 2 · <span class="lvl l3">Tout est expliqué</span></p><h2>La moto</h2><p class="crew" data-crew="2"></p></div>
-          <button class="done-btn" type="button" data-done="m2" aria-pressed="false">Mission réussie ?</button>
-        </header>
-        <p class="goal"><b>Votre mission :</b> bouton A, la moto avance. Bouton B, elle recule. A et B ensemble, elle s'arrête.</p>
-        <ul class="learn"><li class="lbl">Vous apprenez</li><li>deux moteurs ensemble</li><li>les vitesses négatives</li></ul>
-        <div class="build">
-          <p><b>Construire :</b> <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Case_01.html" target="_blank" rel="noopener">la fiche de montage de la moto (modèle 1)</a>.</p>
-          <div class="wire"><span>moteur → <b>M1</b></span><span>moteur → <b>M2</b></span></div>
-        </div>
-        <div class="predict">
-          <p class="pt">Prédisez d'abord</p>
-          <p>Les moteurs sont montés face à face, un de chaque côté. Pour que la moto avance, la vitesse doit-elle être positive ou négative ?</p>
-          <span class="seg"><label><input type="radio" name="m2_pred" data-k="m2_pred" value="positive"><span>positive</span></label><label><input type="radio" name="m2_pred" data-k="m2_pred" value="négative"><span>négative</span></label></span>
-        </div>
-        <div class="m-part"><h3>Les blocs à utiliser</h3><div class="need" data-need="m2"></div></div>
-        <div class="m-part">
-          <h3>Pas à pas</h3>
-          <ol class="steps">
-            <li>Bouton A : <span class="kw" style="--cat:var(--c-wukong)">set motor M1 speed … M2 speed …</span> avec <b>100</b> et <b>100</b>.</li>
-            <li>Bouton B : le même bloc, avec <b>-100</b> et <b>-100</b>.</li>
-            <li>Bouton A+B (choisissez A+B dans le petit menu) : <span class="kw" style="--cat:var(--c-wukong)">Stop all motor</span>.</li>
-            <li>Rituel du test : sur un bol d'abord. Avec 100, la moto avance ou recule ?</li>
-            <li>Si elle recule, échangez les valeurs entre A et B. Notez le résultat dans le carnet.</li>
-          </ol>
-        </div>
-        <details class="hint"><summary>Indice 1</summary><div class="body"><p>Une roue tourne vers l'avant et l'autre vers l'arrière ? Les deux moteurs ne regardent pas dans le même sens. Que faut-il changer pour une seule des deux roues ?</p></div></details>
-        <details class="hint"><summary>Indice 2</summary><div class="body"><p>Le signe moins inverse le sens d'un moteur. On peut le mettre sur un seul moteur si besoin.</p></div></details>
-        <div class="carnet-form">
-          <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
-          <div class="q"><p>Avec les deux vitesses à 100, la moto…</p>
-            <span class="seg"><label><input type="radio" name="w_av" data-k="w_av" value="pos"><span>avance</span></label><label><input type="radio" name="w_av" data-k="w_av" value="neg"><span>recule</span></label></span></div>
-          <p class="small">Le fabricant fait avancer ses véhicules avec des vitesses négatives. Vérifiez sur le vôtre : vos réponses règlent les solutions des missions 6, 7 et 8.</p>
-        </div>
-        <div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden><div class="prog" data-prog="m2"></div></div></div>
-        <div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="m2_res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
-        <div class="bonus">
-          <h3><span>Défi bonus</span>Le mètre</h3>
-          <p>Combien de centimètres la moto parcourt-elle en 3 secondes à vitesse 50 ? Et à 100 ? Prédisez, puis mesurez avec un mètre.</p>
-        </div>
-      </section>
-
-      <!-- ============ Mission 3 ============ -->
-      <section class="sec mission" id="m3">
-        <header class="m-head">
-          <div class="led5" data-icon="essuie" aria-hidden="true"></div>
-          <div><p class="eyebrow">Mission 3 · <span class="lvl l3">Tout est expliqué</span></p><h2>L'essuie-glace</h2><p class="crew" data-crew="3"></p></div>
-          <button class="done-btn" type="button" data-done="m3" aria-pressed="false">Mission réussie ?</button>
-        </header>
-        <p class="goal"><b>Votre mission :</b> chaque appui sur A accélère l'essuie-glace, chaque appui sur B le ralentit. La vitesse ne dépasse jamais 100 et ne descend pas sous 0.</p>
-        <ul class="learn"><li class="lbl">Vous apprenez</li><li>une variable qui change</li><li>poser des limites</li></ul>
-        <div class="build">
-          <p><b>Construire :</b> <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Wonder-Building-Kit-case-28.html" target="_blank" rel="noopener">la fiche de montage de l'essuie-glace (modèle 28)</a>.</p>
-          <div class="wire"><span>moteur → <b>M1</b></span></div>
-        </div>
-        <div class="predict">
-          <p class="pt">Prédisez d'abord</p>
-          <p>On ajoute 25 à chaque appui sur A, en partant de 0. Après 5 appuis, la vitesse vaut combien ? Est-ce permis ?</p>
-          <textarea data-k="m3_pred" rows="2" placeholder="Notre prédiction…"></textarea>
-        </div>
-        <div class="m-part"><h3>Les blocs à utiliser</h3><div class="need" data-need="m3"></div></div>
-        <div class="m-part">
-          <h3>Pas à pas</h3>
-          <ol class="steps">
-            <li>Tiroir Variables : créez une variable <b>vitesse</b>. Dans <span class="kw" style="--cat:var(--c-base)">au démarrage</span> : <span class="kw" style="--cat:var(--c-vars)">définir vitesse à 0</span>.</li>
-            <li>Dans <span class="kw" style="--cat:var(--c-base)">toujours</span> : <span class="kw" style="--cat:var(--c-wukong)">Set motor M1 speed to</span>, avec la variable <span class="kw" style="--cat:var(--c-vars)">vitesse</span> dans le trou.</li>
-            <li>Bouton A : <span class="kw" style="--cat:var(--c-vars)">modifier vitesse de 25</span>.</li>
-            <li>Juste après : <span class="kw" style="--cat:var(--c-logic)">si vitesse &gt; 100 alors</span> <span class="kw" style="--cat:var(--c-vars)">définir vitesse à 100</span>.</li>
-            <li>Bouton B : pareil, avec <b>-25</b>, et une limite à <b>0</b>.</li>
-            <li>Bonus d'affichage : <span class="kw" style="--cat:var(--c-base)">montrer nombre vitesse</span> à la fin de chaque bouton.</li>
-          </ol>
-        </div>
-        <details class="hint"><summary>Indice 1</summary><div class="body"><p>Le moteur ne change pas de vitesse ? Qui lit la variable <b>vitesse</b> pour la donner au moteur, et à quel moment ?</p></div></details>
-        <details class="hint"><summary>Indice 2</summary><div class="body"><p>Le bloc <span class="kw" style="--cat:var(--c-base)">toujours</span> redonne la vitesse au moteur des dizaines de fois par seconde. Les boutons, eux, changent seulement le nombre rangé dans la variable.</p></div></details>
-        <div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden><div class="prog" data-prog="m3"></div></div></div>
-        <div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="m3_res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
-        <div class="bonus">
-          <h3><span>Défi bonus</span>Le mode pluie</h3>
-          <p>Secouez la carte : l'essuie-glace passe directement à 100. Cherchez le bloc qui réagit à une secousse dans le tiroir Entrées.</p>
-        </div>
-      </section>
-
-      <!-- ============ Mission 4 ============ -->
-      <section class="sec mission" id="m4">
-        <header class="m-head">
-          <div class="led5" data-icon="crayon" aria-hidden="true"></div>
-          <div><p class="eyebrow">Mission 4 · <span class="lvl l2">Juste le plan</span></p><h2>La machine à dessiner</h2><p class="crew" data-crew="4"></p></div>
-          <button class="done-btn" type="button" data-done="m4" aria-pressed="false">Mission réussie ?</button>
-        </header>
-        <p class="goal"><b>Votre mission :</b> découvrir comment les vitesses des deux moteurs changent le dessin. Vous devenez des scientifiques : une prédiction, un essai, un résultat.</p>
-        <ul class="learn"><li class="lbl">Vous apprenez</li><li>faire une expérience</li><li>une seule chose change à la fois</li></ul>
-        <div class="build">
-          <p><b>Construire :</b> <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Wonder-Building-Kit-case-31.html" target="_blank" rel="noopener">la fiche de montage de la machine à dessiner (modèle 31)</a>. Le feutre se fixe avec l'élastique du kit.</p>
-          <div class="wire"><span>moteur → <b>M1</b></span><span>moteur → <b>M2</b></span></div>
-          <p class="small">Un feutre lavable, et une grande feuille posée sur un carton.</p>
-        </div>
-        <div class="m-part">
-          <h3>Le plan</h3>
-          <ol class="steps">
-            <li>Bouton A : les deux moteurs démarrent. Bouton B : tout s'arrête.</li>
-            <li>Pour chaque essai du carnet : écrivez votre prédiction, puis lancez le dessin.</li>
-            <li>Changez une seule vitesse à la fois.</li>
-          </ol>
-        </div>
-        <div class="carnet-form">
-          <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
-          <div class="tbl-wrap"><table>
-            <thead><tr><th>Essai</th><th>M1</th><th>M2</th><th>Prédiction</th><th>Résultat</th></tr></thead>
-            <tbody>
-              <tr><td>1</td><td class="n">30</td><td class="n">20</td><td><input class="textin" type="text" maxlength="80" data-k="m4_p1" aria-label="Prédiction essai 1"></td><td><input class="textin" type="text" maxlength="80" data-k="m4_r1" aria-label="Résultat essai 1"></td></tr>
-              <tr><td>2</td><td class="n">30</td><td class="n">30</td><td><input class="textin" type="text" maxlength="80" data-k="m4_p2" aria-label="Prédiction essai 2"></td><td><input class="textin" type="text" maxlength="80" data-k="m4_r2" aria-label="Résultat essai 2"></td></tr>
-              <tr><td>3</td><td class="n">30</td><td class="n">-30</td><td><input class="textin" type="text" maxlength="80" data-k="m4_p3" aria-label="Prédiction essai 3"></td><td><input class="textin" type="text" maxlength="80" data-k="m4_r3" aria-label="Résultat essai 3"></td></tr>
-              <tr><td>4</td><td><input class="numin" type="number" min="-100" max="100" data-k="m4_m1" aria-label="Essai 4, vitesse M1"></td><td><input class="numin" type="number" min="-100" max="100" data-k="m4_m2" aria-label="Essai 4, vitesse M2"></td><td><input class="textin" type="text" maxlength="80" data-k="m4_p4" aria-label="Prédiction essai 4"></td><td><input class="textin" type="text" maxlength="80" data-k="m4_r4" aria-label="Résultat essai 4"></td></tr>
-            </tbody>
-          </table></div>
-        </div>
-        <details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Le dessin de l'essai 2 ressemble-t-il à celui de l'essai 1 ? Qu'est-ce qui a changé entre les deux, et seulement ça ?</p></div></details>
-        <details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le bloc <span class="kw" style="--cat:var(--c-wukong)">set motor M1 speed … M2 speed …</span> règle les deux vitesses d'un coup. Il suffit de changer ses deux nombres entre deux essais.</p></div></details>
-        <details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Pour savoir quel ingrédient rend un gâteau plus moelleux, un pâtissier ne change qu'un ingrédient à la fois. Sinon, il ne saurait pas lequel a compté.</p></div></details>
-        <div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden><div class="prog" data-prog="m4"></div><p>Le programme est court : tout l'intérêt est dans l'expérience. Quand les deux vitesses sont proches, les boucles se ressemblent. Quand elles sont opposées, la machine tourne sur place. Laissez les enfants formuler leur propre règle.</p></div></div>
-        <div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="m4_res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
-        <div class="bonus">
-          <h3><span>Défi bonus</span>Le dessin surprise</h3>
-          <p>Toutes les 3 secondes, la machine choisit de nouvelles vitesses au hasard. Cherchez le bloc du hasard dans le tiroir Maths.</p>
-        </div>
-      </section>
-
-      <!-- ============ Mission 5 ============ -->
-      <section class="sec mission" id="m5">
-        <header class="m-head">
-          <div class="led5" data-icon="porte" aria-hidden="true"></div>
-          <div><p class="eyebrow">Mission 5 · <span class="lvl l2">Juste le plan</span></p><h2>La porte automatique</h2><p class="crew" data-crew="5"></p></div>
-          <button class="done-btn" type="button" data-done="m5" aria-pressed="false">Mission réussie ?</button>
-        </header>
-        <p class="goal"><b>Votre mission :</b> quand quelqu'un s'approche à moins de 8 cm, l'écran montre ✓, la porte s'ouvre, puis se referme toute seule après 5 secondes. Sinon, l'écran montre ✗ et la porte reste fermée.</p>
-        <ul class="learn"><li class="lbl">Vous apprenez</li><li>le servo et les angles</li><li>un capteur qui décide</li></ul>
-        <div class="m-part">
-          <h3>Avant de construire : le testeur de servo</h3>
-          <p>Le fabricant demande de régler le servo <b>avant</b> de le monter. Branchez-le sur <b>S0</b>, sans briques autour, et construisez ce programme outil. Gardez-le : il resservira à la mission 8.</p>
-          <div class="prog" data-prog="testeur"></div>
-          <p>Le nombre affiché est l'angle du servo. A ajoute 10, B enlève 10. Laissez le servo à <b>90</b> pour le monter.</p>
-        </div>
-        <div class="build">
-          <p><b>Construire :</b> <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Case_09.html" target="_blank" rel="noopener">la fiche de montage de la porte automatique (modèle 9)</a>.</p>
-          <div class="wire"><span>servo → <b>S0</b></span><span>ultrasons → <b>P1</b></span></div>
-          <p class="small">Attention : la fiche dit P1, mais le programme officiel lit P0. Le bloc doit lire la broche où vous avez vraiment branché le câble.</p>
-        </div>
-        <div class="predict">
-          <p class="pt">Prédisez d'abord</p>
-          <p>Quelqu'un reste planté devant la porte. Que va-t-il se passer après les 5 secondes ?</p>
-          <textarea data-k="m5_pred" rows="2" placeholder="Notre prédiction…"></textarea>
-        </div>
-        <div class="m-part">
-          <h3>Le plan</h3>
-          <ol class="steps">
-            <li>Avec le testeur, trouvez l'angle « porte fermée » et l'angle « porte ouverte ». Notez-les.</li>
-            <li>Dans <span class="kw" style="--cat:var(--c-base)">toujours</span> : si la distance est plus petite que 8, alors ✓, ouvrir, attendre 5 secondes, fermer.</li>
-            <li>Sinon : ✗, porte fermée.</li>
-          </ol>
-        </div>
-        <div class="carnet-form">
-          <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
-          <div class="numrow">
-            <label>Porte fermée : <input class="numin wide" type="number" min="0" max="360" data-k="w_porte_f"> °</label>
-            <label>Porte ouverte : <input class="numin wide" type="number" min="0" max="360" data-k="w_porte_o"> °</label>
-          </div>
-          <div class="q"><p>Le capteur à ultrasons est branché sur :</p>
-            <span class="seg"><label><input type="radio" name="w_sonar" data-k="w_sonar" value="P0"><span>P0</span></label><label><input type="radio" name="w_sonar" data-k="w_sonar" value="P1"><span>P1</span></label><label><input type="radio" name="w_sonar" data-k="w_sonar" value="P2"><span>P2</span></label></span></div>
-        </div>
-        <details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>La porte ne s'ouvre jamais ? Mettez un bloc qui affiche la distance mesurée. Quel nombre voyez-vous quand votre main est tout près ?</p></div></details>
-        <details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le bloc <span class="kw" style="--cat:var(--c-sonar)">Ultrasonic distance</span> est rond : il se glisse dans un comparateur du tiroir Logique. Vérifiez sa broche.</p></div></details>
-        <details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Dans l'atelier robot, le robot prudent s'arrêtait si la distance était plus petite que 15. Ici, c'est la même question, mais la réponse ouvre une porte au lieu d'arrêter des roues.</p></div></details>
-        <div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden><div class="prog" data-prog="m5"></div></div></div>
-        <div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="m5_res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
-        <div class="bonus">
-          <h3><span>Défi bonus</span>Le compteur de visiteurs</h3>
-          <p>La porte compte combien de fois elle s'est ouverte. Le bouton A affiche le total.</p>
-        </div>
-      </section>
-
-      <!-- ============ Mission 6 ============ -->
-      <section class="sec mission" id="m6">
-        <header class="m-head">
-          <div class="led5" data-icon="stop" aria-hidden="true"></div>
-          <div><p class="eyebrow">Mission 6 · <span class="lvl l2">Juste le plan</span></p><h2>La voiture prudente</h2><p class="crew" data-crew="6"></p></div>
-          <button class="done-btn" type="button" data-done="m6" aria-pressed="false">Mission réussie ?</button>
-        </header>
-        <p class="goal"><b>Votre mission :</b> la voiture roule toute seule. Quand un obstacle est à moins de 20 cm, elle tourne, puis repart.</p>
-        <ul class="learn"><li class="lbl">Vous apprenez</li><li>réutiliser une idée</li><li>qui est la roue gauche ?</li></ul>
-        <div class="build">
-          <p><b>Construire :</b> <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Case_04.html" target="_blank" rel="noopener">la fiche de montage de la voiture qui évite les obstacles (modèle 4)</a>.</p>
-          <div class="wire"><span>moteur → <b>M1</b></span><span>moteur → <b>M2</b></span><span>ultrasons → <b>P1</b></span></div>
-        </div>
-        <div class="predict">
-          <p class="pt">Prédisez d'abord</p>
-          <p>Pour tourner à droite, quelle roue doit aller plus vite : celle de gauche ou celle de droite ?</p>
-          <span class="seg"><label><input type="radio" name="m6_pred" data-k="m6_pred" value="gauche"><span>la gauche</span></label><label><input type="radio" name="m6_pred" data-k="m6_pred" value="droite"><span>la droite</span></label></span>
-        </div>
-        <div class="m-part">
-          <h3>Le plan</h3>
-          <ol class="steps">
-            <li>Le test « qui est qui » : faites tourner seulement M1, voiture sur un bol. Quelle roue tourne ? Notez-le.</li>
-            <li>Dans <span class="kw" style="--cat:var(--c-base)">toujours</span> : mesurez la distance et rangez-la dans une variable.</li>
-            <li>Si l'obstacle est proche : tourner un moment. Sinon : avancer.</li>
-          </ol>
-        </div>
-        <div class="carnet-form">
-          <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
-          <div class="q"><p>Le moteur M1 fait tourner la roue…</p>
-            <span class="seg"><label><input type="radio" name="w_m1" data-k="w_m1" value="gauche"><span>de gauche</span></label><label><input type="radio" name="w_m1" data-k="w_m1" value="droite"><span>de droite</span></label></span></div>
-          <div class="q"><p>Avec les deux vitesses à 100, la voiture…</p>
-            <span class="seg"><label><input type="radio" name="w_av6" data-k="w_av" value="pos"><span>avance</span></label><label><input type="radio" name="w_av6" data-k="w_av" value="neg"><span>recule</span></label></span></div>
-          <p class="small">Gauche et droite, vues de derrière la voiture, comme si vous étiez assis dedans.</p>
-        </div>
-        <details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>La voiture s'arrête ou tourne sans raison ? Quel nombre donne le capteur quand il ne voit rien du tout ?</p></div></details>
-        <details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le bloc <span class="kw" style="--cat:var(--c-logic)">et</span> du tiroir Logique permet deux conditions : la distance est plus grande que 1 <b>et</b> plus petite que 20.</p></div></details>
-        <details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Les missions 6 et 7 de l'atelier robot font presque la même chose avec le robot MiniCar. Relisez-les : qu'est-ce qui change ici ? Seulement les blocs des moteurs et du capteur.</p></div></details>
-        <div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden><div class="prog" data-prog="m6"></div><p class="small">Les vitesses s'adaptent à ce que vous avez noté dans le carnet.</p></div></div>
-        <div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="m6_res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
-        <div class="bonus">
-          <h3><span>Défi bonus</span>Pile ou face</h3>
-          <p>À chaque obstacle, la voiture choisit au hasard de tourner à gauche ou à droite.</p>
-        </div>
-      </section>
-
-      <!-- ============ Mission 7 ============ -->
-      <section class="sec mission" id="m7">
-        <header class="m-head">
-          <div class="led5" data-icon="ligne" aria-hidden="true"></div>
-          <div><p class="eyebrow">Mission 7 · <span class="lvl l1">Juste l'objectif</span></p><h2>Le suiveur de ligne</h2><p class="crew" data-crew="7"></p></div>
-          <button class="done-btn" type="button" data-done="m7" aria-pressed="false">Mission réussie ?</button>
-        </header>
-        <p class="goal"><b>Votre mission :</b> la voiture suit une ligne noire toute seule, du début à la fin de la piste.</p>
-        <ul class="learn"><li class="lbl">Vous apprenez</li><li>lire une broche</li><li>mesurer avant de programmer</li></ul>
-        <div class="build">
-          <p><b>Construire :</b> <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Case_02.html" target="_blank" rel="noopener">la fiche de montage de la voiture suiveuse de ligne (modèle 2)</a>. Piste : du ruban adhésif noir sur une grande feuille blanche, avec des virages doux.</p>
-          <div class="wire"><span>moteur → <b>M1</b></span><span>moteur → <b>M2</b></span><span>capteur de ligne → <b>P1</b> et <b>P2</b></span></div>
-        </div>
-        <div class="predict">
-          <p class="pt">Prédisez d'abord</p>
-          <p>Le capteur a deux yeux, chacun branché sur une broche. Sur le noir, une broche donne 0 ou 1 ?</p>
-          <textarea data-k="m7_pred" rows="2" placeholder="Notre prédiction…"></textarea>
-        </div>
-        <div class="carnet-form">
-          <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
-          <p>Mesurez avant de programmer : un petit programme affiche ce que lit chaque broche.</p>
-          <div class="q"><p>La broche <b>P1</b> regarde le côté…</p>
-            <span class="seg"><label><input type="radio" name="w_p1" data-k="w_p1" value="gauche"><span>gauche</span></label><label><input type="radio" name="w_p1" data-k="w_p1" value="droite"><span>droite</span></label></span></div>
-          <div class="q"><p>Sur le noir, une broche donne :</p>
-            <span class="seg"><label><input type="radio" name="w_noir" data-k="w_noir" value="0"><span>0</span></label><label><input type="radio" name="w_noir" data-k="w_noir" value="1"><span>1</span></label></span></div>
-        </div>
-        <details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Si seul l'œil gauche voit le noir, de quel côté est partie la ligne ? Et la voiture doit tourner de quel côté ?</p></div></details>
-        <details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le tiroir <span class="kw" style="--cat:var(--c-pins)">Broches</span> (dans Avancé) a un bloc rond qui lit une broche numérique : il donne 0 ou 1. Il faut un <span class="kw" style="--cat:var(--c-logic)">si … sinon si … sinon</span> avec trois cas.</p></div></details>
-        <details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>La mission 9 de l'atelier robot avait le même plan, avec un bloc qui donnait un chiffre de 0 à 3. Ici, vous avez deux broches au lieu d'un chiffre : il faut regarder les deux à la fois.</p></div></details>
-        <div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden><div class="prog" data-prog="m7"></div><p class="small">La solution utilise vos mesures du carnet. Le programme officiel ajoute au démarrage un réglage de « tirage » des broches P1 et P2 vers le haut : si les lectures sont instables, ajoutez-le (tiroir Broches).</p></div></div>
-        <div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="m7_res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
-        <div class="bonus">
-          <h3><span>Défi bonus</span>Le chrono</h3>
-          <p>Chronométrez un tour de piste. Réglez les vitesses pour gagner du temps, sans que la voiture sorte de la ligne.</p>
-        </div>
-      </section>
-
-      <!-- ============ Mission 8 ============ -->
-      <section class="sec mission" id="m8">
-        <header class="m-head">
-          <div class="led5" data-icon="radio" aria-hidden="true"></div>
-          <div><p class="eyebrow">Mission 8 · <span class="lvl l1">Juste l'objectif</span></p><h2>Le chariot télécommandé</h2><p class="crew" data-crew="8"></p></div>
-          <button class="done-btn" type="button" data-done="m8" aria-pressed="false">Mission réussie ?</button>
-        </header>
-        <p class="goal"><b>Votre mission :</b> une deuxième carte devient la télécommande. A : le chariot avance. B : il recule. A et B ensemble : il s'arrête. Et la fourche monte ou descend quand on penche la télécommande à droite ou à gauche.</p>
-        <ul class="learn"><li class="lbl">Vous apprenez</li><li>la radio</li><li>deux programmes qui se parlent</li></ul>
-        <div class="build">
-          <p><b>Construire :</b> <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Case_12.html" target="_blank" rel="noopener">la fiche de montage du chariot élévateur (modèle 12)</a>. Pensez au testeur de servo avant de monter la fourche.</p>
-          <div class="wire"><span>moteur → <b>M1</b></span><span>moteur → <b>M2</b></span><span>servo → <b>S0</b></span></div>
-          <p class="small">La fiche officielle utilise une manette Joystick:bit, qui n'est pas dans le kit. Ici, une deuxième carte micro:bit la remplace.</p>
-        </div>
-        <div class="predict">
-          <p class="pt">Prédisez d'abord</p>
-          <p>Deux équipes jouent avec deux chariots dans la même pièce. Que va-t-il se passer ? Comment l'éviter ?</p>
-          <textarea data-k="m8_pred" rows="2" placeholder="Notre prédiction…"></textarea>
-        </div>
-        <div class="carnet-form">
-          <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
-          <div class="numrow">
-            <label>Fourche en bas : <input class="numin wide" type="number" min="0" max="360" data-k="w_f_bas"> °</label>
-            <label>Fourche en haut : <input class="numin wide" type="number" min="0" max="360" data-k="w_f_haut"> °</label>
-            <label>Groupe radio : <input class="numin" type="number" min="0" max="255" data-k="w_groupe"></label>
-          </div>
-        </div>
-        <details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>La télécommande ne peut pas faire tourner les moteurs du chariot : elle peut seulement envoyer un message. Quel message, pour chaque bouton ? Un nombre différent par ordre, peut-être ?</p></div></details>
-        <details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le tiroir <span class="kw" style="--cat:var(--c-radio)">Radio</span> : un bloc pour choisir le groupe (le même sur les deux cartes), un bloc pour envoyer un nombre, un bloc qui réagit quand un nombre arrive. Pour pencher la carte : le bloc des gestes, dans Entrées.</p></div></details>
-        <details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Au restaurant, le serveur ne cuisine pas : il apporte un numéro de commande en cuisine, et le cuisinier sait quel plat préparer. La télécommande est le serveur, le chariot est le cuisinier.</p></div></details>
-        <div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden>
-          <p><b>Programme de la télécommande</b> (la deuxième carte, avec son boîtier de piles) :</p>
-          <div class="prog" data-prog="m8-tele"></div>
-          <p><b>Programme du chariot</b> (la carte plantée dans la Wukong) :</p>
-          <div class="prog" data-prog="m8-chariot"></div>
-        </div></div>
-        <div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="m8_res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
-        <div class="bonus">
-          <h3><span>Défi bonus</span>Tourner</h3>
-          <p>Ajoutez deux ordres : tourner à gauche et tourner à droite. Quels gestes ou quels boutons de la télécommande allez-vous utiliser ?</p>
-        </div>
-      </section>
-
-      <!-- ============ Défis libres ============ -->
-      <section class="sec" id="defis">
-        <div style="display:flex;gap:16px;align-items:center"><div class="led5" data-icon="etoile" aria-hidden="true"></div><div><p class="eyebrow">Après la mission 8</p><h2>Défis libres</h2></div></div>
-        <p class="intro">Le kit permet 32 machines. Plus de plan : choisissez un modèle, lisez sa fiche, prédisez ce qui sera difficile, puis programmez-le à votre façon.</p>
-        <div class="ideas">
-          <div class="card"><h3>Le chien robot</h3><p>Il marche quand on appuie sur A. Et s'il s'arrêtait tout seul devant un obstacle ? <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Wonder-Building-Kit-case-32.html" target="_blank" rel="noopener">Modèle 32</a></p></div>
-          <div class="card"><h3>La poubelle intelligente</h3><p>Le couvercle s'ouvre quand une main approche. C'est la porte de la mission 5, en plus malin. <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Wonder-Building-Kit-case-27.html" target="_blank" rel="noopener">Modèle 27</a></p></div>
-          <div class="card"><h3>Le bras robot</h3><p>Pilotez-le avec la télécommande de la mission 8 : pince, montée, rotation. <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Case_08.html" target="_blank" rel="noopener">Modèle 8</a></p></div>
-          <div class="card"><h3>Le séchoir qui sent la pluie</h3><p>Le capteur de niveau d'eau sent les gouttes, et le séchoir rentre tout seul. <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Case_20.html" target="_blank" rel="noopener">Modèle 20</a></p></div>
-          <div class="card"><h3>La guitare à ultrasons</h3><p>La note change avec la distance de la main. <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/Case_14.html" target="_blank" rel="noopener">Modèle 14</a></p></div>
-          <div class="card"><h3>Le robot qui obéit aux gestes</h3><p>Avec l'atelier IA : la carte au poignet reconnaît coucou et envoie un ordre par radio à un robot Wonder. <a href="../ia/">Voir l'atelier IA</a></p></div>
-          <div class="card"><h3>Votre machine</h3><p>400 briques, deux moteurs, deux servos. Dessinez votre machine sur papier, construisez-la, programmez-la.</p></div>
-        </div>
-      </section>
-
-      <!-- ============ Dépannage ============ -->
-      <section class="sec" id="depannage">
-        <h2>Dépannage</h2>
-        <div class="faq">
-          <details class="hint"><summary>Le tiroir wuKong n'existe pas</summary><div class="body"><p>Ajoutez l'extension Wukong. À refaire à chaque nouveau projet.</p></div></details>
-          <details class="hint"><summary>Le programme ne s'envoie pas</summary><div class="body"><p>Le câble doit être branché sur la micro:bit, pas sur la carte Wukong. Utilisez Chrome ou Edge, ou glissez le fichier .hex sur le lecteur MICROBIT.</p></div></details>
-          <details class="hint"><summary>Les moteurs ne tournent pas</summary><div class="body"><p>La carte Wukong est-elle allumée et chargée ? Le bloc dit-il la bonne prise, M1 ou M2 ? La vitesse est-elle différente de 0 ?</p></div></details>
-          <details class="hint"><summary>La voiture tourne en rond</summary><div class="body"><p>Un moteur tourne à l'envers. Refaites le test de la mission 6 et corrigez le carnet.</p></div></details>
-          <details class="hint"><summary>Le servo force ou fait du bruit</summary><div class="body"><p>Éteignez tout de suite. L'angle demandé fait buter le servo contre les briques. Démontez la pièce, réglez l'angle avec le testeur, puis remontez.</p></div></details>
-          <details class="hint"><summary>Le capteur à ultrasons affiche 0 ou n'importe quoi</summary><div class="body"><p>Vérifiez que le bloc lit la même broche que celle où le câble est branché. L'objet est peut-être trop loin, trop petit ou trop mou.</p></div></details>
-          <details class="hint"><summary>La télécommande ne fait rien</summary><div class="body"><p>Les deux cartes doivent avoir le même groupe radio, et la télécommande doit avoir ses piles. Testez d'abord : la télécommande affiche le nombre qu'elle envoie, le chariot affiche le nombre qu'il reçoit.</p></div></details>
-          <details class="hint"><summary>La carte Wukong ne s'allume pas</summary><div class="body"><p>La batterie est peut-être vide. Demandez à un adulte de la recharger, machine éteinte.</p></div></details>
-        </div>
-      </section>
-
-      <!-- ============ Parents ============ -->
-      <section class="sec" id="parents">
-        <h2>Pour les parents</h2>
-        <div class="foot-note">
-          <p><b>Le kit.</b> ELECFREAKS Wonder Building Kit 32 en 1 (EF08239) : carte d'extension Wukong avec batterie lithium intégrée, deux moteurs, deux servos, capteur à ultrasons sonar:bit, capteur de suivi de ligne à deux voies, capteur de niveau d'eau, environ 400 briques. La micro:bit n'est pas fournie.</p>
-          <p><b>La batterie.</b> La Wukong contient une batterie lithium de 3,7 V, rechargée par sa prise micro-USB. Le fabricant demande de ne jamais utiliser la carte pendant la charge, de ne pas la démonter et de la tenir loin du feu. La charge se fait sous la surveillance d'un adulte.</p>
-          <p><b>La pédagogie.</b> Même principe que l'atelier IA : prédiction, résumé en une phrase, aide qui diminue (missions 1 à 3, 4 à 6, 7 et 8), indices du plus léger au plus précis. Les missions 6 et 7 reprennent volontairement des idées de l'atelier robot : réutiliser ce qu'on sait déjà est une compétence en soi.</p>
-          <p><b>Les libellés.</b> Les blocs Wukong et sonar:bit existent seulement en anglais ; leurs libellés viennent du code source des extensions. Les blocs de base entourés de pointillés jaunes n'ont pas pu être vérifiés en français : la couleur et la forme suffisent.</p>
-          <p><b>Les écarts avec les fiches officielles.</b> La fiche de la porte automatique indique P1, son programme lit P0. Les modèles 8, 12 et 18 demandent une manette Joystick:bit, absente du kit : la mission 8 la remplace par une deuxième micro:bit.</p>
-        </div>
-        <div class="lockbox"><button class="btn" type="button" data-unlock>Les programmes officiels d'ELECFREAKS (code parent)</button><div class="sol-body" hidden>
-          <ul class="phrases">
-            <li>Hélicoptère : <a href="https://makecode.microbit.org/_2zv14dduY6D7" target="_blank" rel="noopener">programme du modèle 22</a></li>
-            <li>Moto : <a href="https://makecode.microbit.org/_K6mFyJ16ofCj" target="_blank" rel="noopener">programme du modèle 1</a></li>
-            <li>Essuie-glace : <a href="https://makecode.microbit.org/_5RT3t9DX6Lv0" target="_blank" rel="noopener">programme du modèle 28</a></li>
-            <li>Machine à dessiner : <a href="https://makecode.microbit.org/_KRcLTWaab2sk" target="_blank" rel="noopener">programme du modèle 31</a></li>
-            <li>Porte automatique : <a href="https://makecode.microbit.org/_eUPf4XEudVKY" target="_blank" rel="noopener">programme du modèle 9</a></li>
-            <li>Voiture qui évite les obstacles : <a href="https://makecode.microbit.org/_7K4bgpCKv2WJ" target="_blank" rel="noopener">programme du modèle 4</a></li>
-            <li>Suiveur de ligne : <a href="https://makecode.microbit.org/_azffEJVztHiW" target="_blank" rel="noopener">programme du modèle 2</a></li>
-            <li>Chariot élévateur, côté chariot : <a href="https://makecode.microbit.org/_UoAP69ArTfyT" target="_blank" rel="noopener">programme du modèle 12</a> (la manette d'origine est une Joystick:bit)</li>
-          </ul>
-        </div></div>
-        <div class="codebox" id="codebox">
-          <h3>Le code parent</h3>
-          <div id="code-none">
-            <p>Choisissez un code. Il sert à ouvrir les solutions, dans tous les ateliers de cet ordinateur.</p>
-            <div class="urlbox"><label class="sr" for="code-new">Nouveau code</label><input class="textin short" type="password" id="code-new" autocomplete="new-password" placeholder="Votre code"><button class="btn solid" type="button" id="code-set">Enregistrer le code</button></div>
-          </div>
-          <div id="code-some" hidden>
-            <p>Un code parent est en place.</p>
-            <div class="urlbox"><label class="sr" for="code-old">Code actuel</label><input class="textin short" type="password" id="code-old" autocomplete="current-password" placeholder="Code actuel"><label class="sr" for="code-new2">Nouveau code</label><input class="textin short" type="password" id="code-new2" autocomplete="new-password" placeholder="Nouveau code"><button class="btn" type="button" id="code-change">Changer le code</button></div>
-          </div>
-          <p class="saved" id="code-msg" role="status"></p>
-        </div>
-        <p class="small">Sources : <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/index.html">documentation ELECFREAKS du kit Wonder</a> · <a href="https://github.com/elecfreaks/pxt-wukong">extension Wukong</a> · <a href="https://github.com/elecfreaks/pxt-sonarbit">extension sonar:bit</a></p>
-        <div><button class="btn" type="button" id="reset">Tout effacer (progression et carnet)</button>
-          <span id="reset-confirm" hidden> Sûr ? <button class="btn solid" type="button" id="reset-yes">Oui, tout effacer</button> <button class="btn" type="button" id="reset-no">Annuler</button></span></div>
-      </section>
-    </main>
-  </div>
+  <footer class="p-foot small">Les prénoms se règlent sur l'<a href="../">accueil</a>. Code parent, sécurité et remise à zéro : <a href="../parents/">page des parents</a>.</footer>
 </div>
 
+<script src="../assets/catalogue.js"></script>
+<script src="../assets/progression.js"></script>
+<script src="../assets/cartes.js"></script>
 <script>
 (function(){
-/* Réglages : valeur du carnet si elle existe, sinon la valeur des programmes officiels ELECFREAKS */
-function cfg(v){
-  function d(k,def){ var x=v(k); return x===null ? {v:def,u:"val"} : {v:x,u:null}; }
-  return {
-    av: d("w_av","neg"),          /* officiel : avancer = vitesses négatives */
-    m1: d("w_m1","gauche"),       /* officiel : M1 seul en avant = virage à droite, donc roue gauche */
-    pf: d("w_porte_f",0), po: d("w_porte_o",276), sonar: d("w_sonar","P1"),
-    p1: d("w_p1","droite"), noir: d("w_noir","0"),
-    fb: d("w_f_bas",0), fh: d("w_f_haut",60), g: d("w_groupe",1)
-  };
-}
-function drive(B,v,L,R){
-  var c=cfg(v), s=c.av.v==="pos"?1:-1, u=(c.av.u||c.m1.u)?"val":null;
-  var m1=(c.m1.v==="gauche"?L:R)*s, m2=(c.m1.v==="gauche"?R:L)*s;
-  return B.st("wukong",["set motor M1 speed",B.num(m1===0?0:m1,u),"M2 speed",B.num(m2===0?0:m2,u)]);
-}
-function onBtn(B,b){ return B.ev("input",["lorsque le bouton",B.dd(b),"est pressé"],[].slice.call(arguments,2)); }
-function onStart(B){ return B.ev("base",["au démarrage"],[].slice.call(arguments,1)); }
-function forever(B){ return B.ev("base",["toujours"],[].slice.call(arguments,1)); }
-function icon(B,n){ return B.st("base",["montrer l'icône",B.dd(n)],"lbl"); }
-function clear(B){ return B.st("base",["effacer l'écran"],"lbl"); }
-function showNum(B,r){ return B.st("base",["montrer nombre",r]); }
-function pause(B,ms,u){ return B.st("base",["pause (ms)",B.num(ms,u)]); }
-function vr(B,n){ return B.rep("vars",[n]); }
-function setVar(B,n,r){ return B.st("vars",["définir",B.dd(n),"à",r]); }
-function chg(B,n,k){ return B.st("vars",["modifier",B.dd(n),"de",B.num(k)],"lbl"); }
-function motor(B,m,s){ return B.st("wukong",["Set motor",B.dd(m),"speed to",s]); }
-function stopM(B,m){ return B.st("wukong",["Stop motor",B.dd(m)]); }
-function stopAll(B){ return B.st("wukong",["Stop all motor"]); }
-function servo(B,a){ return B.st("wukong",["Set",B.dd("360°"),"servo",B.dd("S0"),"angle to",a]); }
-function sonar(B,pin,u){ return B.rep("sonar",["Ultrasonic distance in unit",B.dd("cm"),"at pin",B.dd(pin,u)]); }
-function cmp(B,a,op,b){ return B.bool("logic",[a,B.dd(op),b]); }
-function and(B,a,b){ return B.bool("logic",[a,"et",b]); }
-function si(B,cond,body,els){ var arms=[[["si",cond,"alors"],body]]; if(els) arms.push([["sinon"],els]); return B.c("logic",arms); }
-function sis(B,list,els){ var arms=list.map(function(x,i){ return [[i?"sinon si":"si",x[0],"alors"],x[1]]; }); if(els) arms.push([["sinon"],els]); return B.c("logic",arms); }
-function readPin(B,p,u){ return B.rep("pins",["lecture numérique broche",B.dd(p,u)],"lbl"); }
-function radioGroup(B,g,u){ return B.st("radio",["radio définir groupe",B.num(g,u)],"lbl"); }
-function radioSend(B,n){ return B.st("radio",["radio envoyer nombre",B.num(n)],"lbl"); }
-function gesture(B,g){ return B.ev("input",["lorsque",B.dd(g)],[].slice.call(arguments,2),"lbl"); }
+"use strict";
+var C=window.CATALOGUE, CA=window.CARTES, S=CA.marquer(), esc=CA.esc;
+var all=C.projets.filter(function(p){ return p.parcours==="wonder" && p.ordre<900; });
+var steps=all.filter(function(p){ return p.ordre<100; }).sort(function(a,b){ return a.ordre-b.ordre; });
+var free=all.filter(function(p){ return p.ordre>=100; }).sort(function(a,b){ return a.ordre-b.ordre; });
+function leds(list){ return list.map(function(p){ return '<span'+(p._done?' class="on"':'')+'></span>'; }).join(""); }
+function nb(list){ return list.filter(function(p){ return p._done; }).length; }
 
-window.ATELIER = {
-  key: "atelier-wonder-v1",
-  missions: 8,
-  icons: {
-    engrenage: ".#.#.,#####,##.##,#####,.#.#.",
-    helice:    "#...#,.#.#.,..#..,.#.#.,#...#",
-    moto:      "...#.,..##.,#####,##.##,.#.#.",
-    essuie:    "#....,.#...,..#..,...#.,#####",
-    crayon:    "...##,..###,.###.,###..,#....",
-    porte:     "####.,#..#.,#..##,#..#.,####.",
-    stop:      "..#..,..#..,..#..,.....,..#..",
-    ligne:     "..##.,.#...,..#..,...#.,.##..",
-    radio:     "..#..,#.#.#,.###.,..#..,..#..",
-    etoile:    "..#..,#####,.###.,.#.#.,#...#",
-    carnet:    "####.,#..#.,####.,#..#.,####."
-  },
-  progs: {
-    "ref-motor": function(B){ return [motor(B,"M1",B.num(100))]; },
-    "ref-both":  function(B){ return [B.st("wukong",["set motor M1 speed",B.num(100),"M2 speed",B.num(100)])]; },
-    "ref-stop":  function(B){ return [stopM(B,"M1"), stopAll(B)]; },
-    "ref-servo": function(B){ return [servo(B,B.num(90))]; },
-    "ref-sonar": function(B){ return [sonar(B,"P1")]; },
-    "m1": function(B){ return [
-      onBtn(B,"A", icon(B,"cœur"), motor(B,"M2",B.num(100))),
-      onBtn(B,"B", clear(B), stopM(B,"M2"))
-    ]; },
-    "m2": function(B,v){ return [
-      onBtn(B,"A", drive(B,v,100,100)),
-      onBtn(B,"B", drive(B,v,-100,-100)),
-      onBtn(B,"A+B", stopAll(B))
-    ]; },
-    "m3": function(B){ return [
-      onStart(B, setVar(B,"vitesse",B.num(0))),
-      forever(B, motor(B,"M1",vr(B,"vitesse"))),
-      onBtn(B,"A", chg(B,"vitesse",25), si(B,cmp(B,vr(B,"vitesse"),">",B.num(100)),[setVar(B,"vitesse",B.num(100))]), showNum(B,vr(B,"vitesse"))),
-      onBtn(B,"B", chg(B,"vitesse",-25), si(B,cmp(B,vr(B,"vitesse"),"<",B.num(0)),[setVar(B,"vitesse",B.num(0))]), showNum(B,vr(B,"vitesse")))
-    ]; },
-    "m4": function(B){ return [
-      onBtn(B,"A", B.st("wukong",["set motor M1 speed",B.num(30),"M2 speed",B.num(20)])),
-      onBtn(B,"B", stopAll(B))
-    ]; },
-    "testeur": function(B){ return [
-      onStart(B, setVar(B,"angle",B.num(90)), servo(B,vr(B,"angle"))),
-      forever(B, showNum(B,vr(B,"angle"))),
-      onBtn(B,"A", chg(B,"angle",10), servo(B,vr(B,"angle"))),
-      onBtn(B,"B", chg(B,"angle",-10), servo(B,vr(B,"angle")))
-    ]; },
-    "m5": function(B,v){ var c=cfg(v); return [
-      forever(B, si(B, cmp(B,sonar(B,c.sonar.v,c.sonar.u),"<",B.num(8)),
-        [icon(B,"✓"), servo(B,B.num(c.po.v,c.po.u)), pause(B,5000), servo(B,B.num(c.pf.v,c.pf.u))],
-        [icon(B,"✗"), servo(B,B.num(c.pf.v,c.pf.u))]))
-    ]; },
-    "m6": function(B,v){ return [
-      forever(B,
-        setVar(B,"distance",sonar(B,"P1")),
-        si(B, and(B,cmp(B,vr(B,"distance"),">",B.num(1)),cmp(B,vr(B,"distance"),"<",B.num(20))),
-          [drive(B,v,50,-50), pause(B,400,"val")],
-          [drive(B,v,100,100)]))
-    ]; },
-    "m7": function(B,v){ var c=cfg(v);
-      var pl=c.p1.v==="gauche"?"P1":"P2", pr=pl==="P1"?"P2":"P1", n=+c.noir.v, u=(c.p1.u||c.noir.u)?"val":null;
-      function sees(p){ return cmp(B,readPin(B,p,u),"=",B.num(n,u)); }
-      function notSees(p){ return cmp(B,readPin(B,p,u),"≠",B.num(n,u)); }
-      return [
-        forever(B, sis(B,[
-          [and(B,sees(pl),notSees(pr)), [drive(B,v,0,80)]],
-          [and(B,sees(pr),notSees(pl)), [drive(B,v,80,0)]]
-        ],[drive(B,v,100,100)]))
-      ]; },
-    "m8-tele": function(B,v){ var c=cfg(v); return [
-      onStart(B, radioGroup(B,c.g.v,c.g.u)),
-      onBtn(B,"A", radioSend(B,1)),
-      onBtn(B,"B", radioSend(B,2)),
-      onBtn(B,"A+B", radioSend(B,0)),
-      gesture(B,"incliner à droite", radioSend(B,6)),
-      gesture(B,"incliner à gauche", radioSend(B,5))
-    ]; },
-    "m8-chariot": function(B,v){ var c=cfg(v); var rn=function(){ return B.rep("vars",["receivedNumber"]); }; return [
-      onStart(B, radioGroup(B,c.g.v,c.g.u)),
-      B.ev("radio",["quand une donnée est reçue par radio",B.rep("vars",["receivedNumber"])],[
-        sis(B,[
-          [cmp(B,rn(),"=",B.num(1)), [drive(B,v,100,100)]],
-          [cmp(B,rn(),"=",B.num(2)), [drive(B,v,-100,-100)]],
-          [cmp(B,rn(),"=",B.num(0)), [stopAll(B)]],
-          [cmp(B,rn(),"=",B.num(5)), [servo(B,B.num(c.fb.v,c.fb.u))]],
-          [cmp(B,rn(),"=",B.num(6)), [servo(B,B.num(c.fh.v,c.fh.u))]]
-        ])
-      ],"lbl")
-    ]; }
-  },
-  needs: {
-    "m1": function(B){ return [onBtn(B,"A"), icon(B,"cœur"), motor(B,"M1",B.num(100)), clear(B), stopM(B,"M1")]; },
-    "m2": function(B){ return [onBtn(B,"A+B"), B.st("wukong",["set motor M1 speed",B.num(100),"M2 speed",B.num(100)]), stopAll(B)]; },
-    "m3": function(B){ return [setVar(B,"vitesse",B.num(0)), chg(B,"vitesse",25), motor(B,"M1",vr(B,"vitesse")), si(B,cmp(B,vr(B,"vitesse"),">",B.num(100)),[]), showNum(B,vr(B,"vitesse"))]; }
-  },
-  log: function(v){
-    function lab(x,map){ return x===null?null:(map[x]||x); }
-    var essais=0; ["1","2","3","4"].forEach(function(i){ if(v("m4_r"+i)) essais++; });
-    return [
-      {label:"Pour avancer, les vitesses sont", v:lab(v("w_av"),{pos:"positives",neg:"négatives"}), def:"négatives", src:"missions 2 et 6"},
-      {label:"Le moteur M1 fait tourner la roue", v:v("w_m1")===null?null:"de "+v("w_m1"), def:"de gauche", src:"mission 6"},
-      {label:"Machine à dessiner : essais notés", v:essais?essais+" sur 4":null, src:"mission 4"},
-      {label:"Porte : angle fermée → ouverte", v:(v("w_porte_f")===null&&v("w_porte_o")===null)?null:(v("w_porte_f")===null?"?":v("w_porte_f")+"°")+" → "+(v("w_porte_o")===null?"?":v("w_porte_o")+"°"), def:"0° → 276°", src:"mission 5"},
-      {label:"Le capteur à ultrasons de la porte est sur", v:v("w_sonar"), def:"P1", src:"mission 5"},
-      {label:"Suivi de ligne : la broche P1 regarde à", v:v("w_p1"), def:"droite", src:"mission 7"},
-      {label:"Suivi de ligne : sur le noir, une broche donne", v:v("w_noir"), def:"0", src:"mission 7"},
-      {label:"Fourche : en bas → en haut", v:(v("w_f_bas")===null&&v("w_f_haut")===null)?null:(v("w_f_bas")===null?"?":v("w_f_bas")+"°")+" → "+(v("w_f_haut")===null?"?":v("w_f_haut")+"°"), def:"0° → 60°", src:"mission 8"},
-      {label:"Groupe radio", v:v("w_groupe"), def:"1", defsrc:"valeur par défaut, à changer s'il y a d'autres cartes", src:"mission 8"}
-    ];
-  }
-};
+document.getElementById("hero-icon").innerHTML=CA.led(".#.#.,#####,##.##,#####,.#.#.");
+document.getElementById("leds-steps").innerHTML=leds(steps);
+document.getElementById("leds-free").innerHTML=leds(free);
+document.getElementById("n-steps").textContent=nb(steps)+" / "+steps.length;
+document.getElementById("n-free").textContent=nb(free)+" / "+free.length;
+
+var cur=-1; steps.some(function(p,i){ if(!p._done){ cur=i; return true; } return false; });
+document.getElementById("steps").innerHTML=steps.map(function(p,i){
+  var h=CA.card(p,"../",{etape:i+1,sansTags:true});
+  return i===cur ? h.replace('class="pcard"','class="pcard cur"') : h;
+}).join("");
+document.getElementById("free").innerHTML=free.map(function(p){ return CA.card(p,"../",{modele:true,sansTags:true}); }).join("");
+
+var nx=document.getElementById("next");
+if(cur>=0){
+  var p=steps[cur];
+  nx.innerHTML='<div><p class="eyebrow">'+(nb(steps)?'Prochaine étape':'Pour commencer')+' · étape '+(cur+1)+' sur '+steps.length+'</p><b>'+esc(p.titre)+'</b><p>'+esc(p.resume)+'</p></div><a class="btn solid" href="../'+esc(p.url)+'">Ouvrir l\'étape '+(cur+1)+'</a>';
+} else {
+  var f=free.filter(function(p){ return !p._done; })[0];
+  nx.innerHTML='<div><p class="eyebrow">Parcours terminé</p><b>Les 10 étapes sont réussies.</b><p>'+(f?'À vous de choisir une machine. Pourquoi pas '+esc(f.titre.charAt(0).toLowerCase()+f.titre.slice(1))+' ?':'Toutes les machines du kit sont réussies. Inventez la vôtre !')+'</p></div>'+(f?'<a class="btn solid" href="../'+esc(f.url)+'">Ouvrir</a>':'');
+}
+
+/* Réglages notés dans les carnets */
+var REG=[
+  {k:"w_av",nom:"Vitesse 100 sur les deux moteurs : la machine…",def:"neg",fmt:function(v){ return v==="pos"?"avance":"recule"; },ou:"wonder-moto"},
+  {k:"w_m1",nom:"Le moteur M1 fait tourner la roue",def:"gauche",fmt:function(v){ return "de "+v; },ou:"wonder-voiture-prudente"},
+  {k:"w_porte_f",nom:"Porte fermée",def:0,fmt:function(v){ return v+"°"; },ou:"wonder-porte-automatique"},
+  {k:"w_porte_o",nom:"Porte ouverte",def:276,fmt:function(v){ return v+"°"; },ou:"wonder-porte-automatique"},
+  {k:"w_sonar",nom:"Capteur à ultrasons branché sur",def:"P1",fmt:String,ou:"wonder-porte-automatique"},
+  {k:"w_p1",nom:"Suivi de ligne : la broche P1 regarde le côté",def:"droite",fmt:String,ou:"wonder-suiveur-de-ligne"},
+  {k:"w_noir",nom:"Suivi de ligne : sur le noir, une broche donne",def:"0",fmt:String,ou:"wonder-suiveur-de-ligne"},
+  {k:"w_f_bas",nom:"Fourche du chariot en bas",def:0,fmt:function(v){ return v+"°"; },ou:"wonder-chariot-telecommande"},
+  {k:"w_f_haut",nom:"Fourche du chariot en haut",def:60,fmt:function(v){ return v+"°"; },ou:"wonder-chariot-telecommande"},
+  {k:"w_groupe",nom:"Groupe radio de la télécommande",def:1,fmt:String,ou:"wonder-chariot-telecommande"}
+];
+function titreDe(id){ var p=C.projets.filter(function(q){ return q.id===id; })[0]; return p?p.titre:id; }
+document.getElementById("reg").innerHTML=REG.map(function(r){
+  var v=S.c[r.k], has=!(v===undefined||v===null||v==="");
+  return '<tr><td>'+esc(r.nom)+'</td><td>'+(has?'<span class="ok">'+esc(r.fmt(v))+' ✓</span>':'<span class="todo">pas encore mesuré (fabricant : '+esc(r.fmt(r.def))+')</span>')+'</td><td><a href="../projets/'+r.ou+'/">'+esc(titreDe(r.ou))+'</a></td></tr>';
+}).join("");
 })();
 </script>
-<script src="../assets/atelier.js"></script>
 </body>
 </html>

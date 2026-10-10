@@ -1,0 +1,1357 @@
+/* Généré par outils/generer.py : ne pas modifier à la main. */
+window.CATALOGUE = {
+ "materiels": {
+  "microbit": {
+   "nom": "micro:bit seule",
+   "court": "micro:bit",
+   "desc": "La carte toute seule : écran, boutons, capteurs, radio, son."
+  },
+  "minicar": {
+   "nom": "Robot MiniCar",
+   "court": "MiniCar",
+   "desc": "Le robot à deux roues avec radar et suivi de ligne."
+  },
+  "wonder": {
+   "nom": "Kit Wonder",
+   "court": "Wonder",
+   "desc": "Les briques, moteurs, servos et capteurs du kit Wonder 32 en 1."
+  },
+  "createai": {
+   "nom": "IA CreateAI",
+   "court": "IA",
+   "desc": "Apprendre à la carte à reconnaître des mouvements."
+  }
+ },
+ "niveaux": {
+  "1": "Découverte",
+  "2": "Apprenti",
+  "3": "Ingénieur"
+ },
+ "parcours": {
+  "microbit": {
+   "titre": "Premiers pas micro:bit",
+   "url": "projets/#parcours=microbit"
+  },
+  "robot": {
+   "titre": "Parcours robot",
+   "url": "robot/"
+  },
+  "wonder": {
+   "titre": "Parcours Wonder",
+   "url": "wonder/",
+   "fiche": "Machine",
+   "fiches": "toutes les machines"
+  },
+  "ia": {
+   "titre": "Parcours IA",
+   "url": "ia/"
+  }
+ },
+ "notions": [
+  "construire",
+  "moteurs",
+  "conditions",
+  "boutons",
+  "variables",
+  "expérience",
+  "servo",
+  "IA",
+  "ultrasons",
+  "boucles",
+  "écran",
+  "son",
+  "capteurs",
+  "hasard",
+  "radio",
+  "accéléromètre",
+  "suivi de ligne",
+  "lumières",
+  "matériel",
+  "sécurité"
+ ],
+ "projets": [
+  {
+   "id": "microbit-badge",
+   "titre": "Le badge lumineux",
+   "resume": "Au démarrage, votre prénom défile. Bouton A, un cœur. Bouton B, un sourire.",
+   "materiel": "microbit",
+   "niveau": 1,
+   "notions": [
+    "écran",
+    "boutons"
+   ],
+   "ordre": 1,
+   "duree": "20 min",
+   "parcours": "microbit",
+   "url": "projets/microbit-badge/",
+   "icone": "#...#,##..#,#.#.#,#..##,#...#",
+   "stockage": "banque",
+   "modele": "",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "microbit-boite-a-musique",
+   "titre": "La boîte à musique",
+   "resume": "Chaque bouton joue une mélodie différente sur le haut-parleur de la carte.",
+   "materiel": "microbit",
+   "niveau": 1,
+   "notions": [
+    "son",
+    "boutons"
+   ],
+   "ordre": 4,
+   "duree": "30 min",
+   "parcours": "microbit",
+   "url": "projets/microbit-boite-a-musique/",
+   "icone": ".####,.#..#,.#..#,##.##,##.##",
+   "stockage": "banque",
+   "modele": "",
+   "v2": true,
+   "type": "projet"
+  },
+  {
+   "id": "microbit-boussole",
+   "titre": "La boussole",
+   "resume": "La carte indique le nord, le sud, l'est et l'ouest, comme une vraie boussole.",
+   "materiel": "microbit",
+   "niveau": 3,
+   "notions": [
+    "capteurs",
+    "conditions",
+    "variables"
+   ],
+   "ordre": 9,
+   "duree": "1 h",
+   "parcours": "microbit",
+   "url": "projets/microbit-boussole/",
+   "icone": "..#..,.###.,..#..,..#..,..#..",
+   "stockage": "banque",
+   "modele": "",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "microbit-de",
+   "titre": "Le dé électronique",
+   "resume": "Secouez la carte : elle tire un nombre de 1 à 6. Puis une expérience sur le hasard.",
+   "materiel": "microbit",
+   "niveau": 1,
+   "notions": [
+    "hasard",
+    "accéléromètre",
+    "expérience"
+   ],
+   "ordre": 2,
+   "duree": "30 min",
+   "parcours": "microbit",
+   "url": "projets/microbit-de/",
+   "icone": "#...#,.....,..#..,.....,#...#",
+   "stockage": "banque",
+   "modele": "",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "microbit-messager",
+   "titre": "Le messager radio",
+   "resume": "Deux cartes s'envoient des cœurs et des sourires par radio, d'une pièce à l'autre.",
+   "materiel": "microbit",
+   "niveau": 2,
+   "notions": [
+    "radio",
+    "conditions",
+    "boutons"
+   ],
+   "ordre": 8,
+   "duree": "45 min",
+   "parcours": "microbit",
+   "url": "projets/microbit-messager/",
+   "icone": "#####,##.##,#.#.#,#...#,#####",
+   "stockage": "banque",
+   "modele": "",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "microbit-pierre-feuille-ciseaux",
+   "titre": "Pierre, feuille, ciseaux",
+   "resume": "Secouez la carte : elle choisit au hasard pierre, feuille ou ciseaux, et affiche le dessin.",
+   "materiel": "microbit",
+   "niveau": 2,
+   "notions": [
+    "hasard",
+    "variables",
+    "conditions"
+   ],
+   "ordre": 5,
+   "duree": "45 min",
+   "parcours": "microbit",
+   "url": "projets/microbit-pierre-feuille-ciseaux/",
+   "icone": "##..#,##.#.,..#..,##.#.,##..#",
+   "stockage": "banque",
+   "modele": "",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "microbit-plus-rapide",
+   "titre": "Le jeu du plus rapide",
+   "resume": "Un jeu de réflexes à deux : le premier qui appuie après le signal gagne.",
+   "materiel": "microbit",
+   "niveau": 3,
+   "notions": [
+    "hasard",
+    "variables",
+    "conditions",
+    "boutons"
+   ],
+   "ordre": 10,
+   "duree": "1 h",
+   "parcours": "microbit",
+   "url": "projets/microbit-plus-rapide/",
+   "icone": "...#.,..#..,.###.,..#..,.#...",
+   "stockage": "banque",
+   "modele": "",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "microbit-podometre",
+   "titre": "Le compteur de pas",
+   "resume": "La carte dans la chaussette compte vos pas. Est-elle juste ?",
+   "materiel": "microbit",
+   "niveau": 2,
+   "notions": [
+    "accéléromètre",
+    "variables",
+    "expérience"
+   ],
+   "ordre": 6,
+   "duree": "45 min",
+   "parcours": "microbit",
+   "url": "projets/microbit-podometre/",
+   "icone": "..#..,.##..,..#..,..#..,.###.",
+   "stockage": "banque",
+   "modele": "",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "microbit-thermometre",
+   "titre": "Le thermomètre",
+   "resume": "La carte mesure la température. Où fait-il le plus chaud dans la maison ?",
+   "materiel": "microbit",
+   "niveau": 1,
+   "notions": [
+    "capteurs",
+    "expérience"
+   ],
+   "ordre": 3,
+   "duree": "30 min",
+   "parcours": "microbit",
+   "url": "projets/microbit-thermometre/",
+   "icone": "..#..,..#..,..#..,.###.,.###.",
+   "stockage": "banque",
+   "modele": "",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "microbit-veilleuse",
+   "titre": "La veilleuse",
+   "resume": "Quand la pièce devient sombre, l'écran s'allume tout seul.",
+   "materiel": "microbit",
+   "niveau": 2,
+   "notions": [
+    "capteurs",
+    "conditions",
+    "expérience"
+   ],
+   "ordre": 7,
+   "duree": "45 min",
+   "parcours": "microbit",
+   "url": "projets/microbit-veilleuse/",
+   "icone": "..##.,.##..,.##..,.##..,..##.",
+   "stockage": "banque",
+   "modele": "",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-araignee",
+   "titre": "L'araignée marcheuse",
+   "resume": "Une araignée à pattes qui marche, recule, et danse sur commande.",
+   "materiel": "wonder",
+   "niveau": 2,
+   "notions": [
+    "moteurs",
+    "boucles",
+    "construire"
+   ],
+   "ordre": 121,
+   "duree": "45 min",
+   "parcours": "wonder",
+   "url": "projets/wonder-araignee/",
+   "icone": "#...#,.#.#.,#####,.#.#.,#...#",
+   "stockage": "banque",
+   "modele": "21",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-balayeuse",
+   "titre": "La balayeuse",
+   "resume": "Une balayeuse qui avance et balaie, puis s'arrête toute seule à la fin du compte à rebours.",
+   "materiel": "wonder",
+   "niveau": 2,
+   "notions": [
+    "moteurs",
+    "boucles",
+    "écran",
+    "construire"
+   ],
+   "ordre": 116,
+   "duree": "45 min",
+   "parcours": "wonder",
+   "url": "projets/wonder-balayeuse/",
+   "icone": "..#..,..#..,..#..,.###.,#.#.#",
+   "stockage": "banque",
+   "modele": "16",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-bascule",
+   "titre": "La bascule",
+   "resume": "Une bascule qui monte et descend toute seule, puis qui se fatigue petit à petit.",
+   "materiel": "wonder",
+   "niveau": 2,
+   "notions": [
+    "moteurs",
+    "boucles",
+    "construire"
+   ],
+   "ordre": 113,
+   "duree": "45 min",
+   "parcours": "wonder",
+   "url": "projets/wonder-bascule/",
+   "icone": "....#,..##.,.###.,##...,..#..",
+   "stockage": "banque",
+   "modele": "13",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-base-gyroscope",
+   "titre": "La base à gyroscope",
+   "resume": "Une base qui fait tourner un gyroscope si vite qu'il tient debout tout seul.",
+   "materiel": "wonder",
+   "niveau": 1,
+   "notions": [
+    "moteurs",
+    "boutons",
+    "construire"
+   ],
+   "ordre": 103,
+   "duree": "45 min",
+   "parcours": "wonder",
+   "url": "projets/wonder-base-gyroscope/",
+   "icone": "..#..,.###.,#####,.###.,..#..",
+   "stockage": "banque",
+   "modele": "3",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-bateau-a-rames",
+   "titre": "Le bateau à rames",
+   "resume": "Un rameur qui avance au bouton A, recule au bouton B et s'arrête avec A et B ensemble.",
+   "materiel": "wonder",
+   "niveau": 1,
+   "notions": [
+    "moteurs",
+    "boutons",
+    "écran",
+    "construire"
+   ],
+   "ordre": 110,
+   "duree": "45 min",
+   "parcours": "wonder",
+   "url": "projets/wonder-bateau-a-rames/",
+   "icone": "..#..,..##.,..#..,#####,.###.",
+   "stockage": "banque",
+   "modele": "10",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-bateau-pirate",
+   "titre": "Le bateau pirate",
+   "resume": "Le bateau pirate de la fête foraine : A balance plus fort, B balance moins fort.",
+   "materiel": "wonder",
+   "niveau": 3,
+   "notions": [
+    "servo",
+    "variables",
+    "conditions",
+    "boucles",
+    "construire"
+   ],
+   "ordre": 126,
+   "duree": "1 h 30",
+   "parcours": "wonder",
+   "url": "projets/wonder-bateau-pirate/",
+   "icone": "..#..,.##..,..#..,#####,.###.",
+   "stockage": "banque",
+   "modele": "26",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-batteur",
+   "titre": "Le batteur à œufs",
+   "resume": "Un batteur à trois vitesses : chaque appui sur A passe à la vitesse suivante.",
+   "materiel": "wonder",
+   "niveau": 2,
+   "notions": [
+    "moteurs",
+    "variables",
+    "conditions",
+    "construire"
+   ],
+   "ordre": 125,
+   "duree": "45 min",
+   "parcours": "wonder",
+   "url": "projets/wonder-batteur/",
+   "icone": "..#..,..#..,.###.,#.#.#,.###.",
+   "stockage": "banque",
+   "modele": "25",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-bigfoot",
+   "titre": "Le monstre Bigfoot",
+   "resume": "Un monstre aux grosses roues qui avance au bouton A et s'arrête avec A et B ensemble.",
+   "materiel": "wonder",
+   "niveau": 1,
+   "notions": [
+    "moteurs",
+    "boutons",
+    "écran",
+    "construire"
+   ],
+   "ordre": 106,
+   "duree": "45 min",
+   "parcours": "wonder",
+   "url": "projets/wonder-bigfoot/",
+   "icone": ".#.#.,#####,#.#.#,#####,#...#",
+   "stockage": "banque",
+   "modele": "6",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-bras-robot",
+   "titre": "Le bras robot",
+   "resume": "Un bras robot qui tourne, monte et pince, piloté à distance par une deuxième carte.",
+   "materiel": "wonder",
+   "niveau": 3,
+   "notions": [
+    "moteurs",
+    "servo",
+    "radio",
+    "construire"
+   ],
+   "ordre": 108,
+   "duree": "2 h",
+   "parcours": "wonder",
+   "url": "projets/wonder-bras-robot/",
+   "icone": "##...,.#...,.####,....#,...##",
+   "stockage": "banque",
+   "modele": "8",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-camion-echelle",
+   "titre": "Le camion à grande échelle",
+   "resume": "Le camion des pompiers, avec une échelle qui se lève, piloté par une deuxième carte.",
+   "materiel": "wonder",
+   "niveau": 3,
+   "notions": [
+    "moteurs",
+    "servo",
+    "radio",
+    "construire"
+   ],
+   "ordre": 118,
+   "duree": "2 h",
+   "parcours": "wonder",
+   "url": "projets/wonder-camion-echelle/",
+   "icone": "#...#,#####,#...#,#####,#...#",
+   "stockage": "banque",
+   "modele": "18",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-catapulte",
+   "titre": "La catapulte",
+   "resume": "Une catapulte sur roues qui avance et lance des boules de papier.",
+   "materiel": "wonder",
+   "niveau": 2,
+   "notions": [
+    "moteurs",
+    "boutons",
+    "expérience",
+    "construire"
+   ],
+   "ordre": 129,
+   "duree": "1 h",
+   "parcours": "wonder",
+   "url": "projets/wonder-catapulte/",
+   "icone": "....#,...#.,..#..,####.,#..#.",
+   "stockage": "banque",
+   "modele": "29",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-chaises-volantes",
+   "titre": "Les chaises volantes",
+   "resume": "Un manège de chaises volantes qui démarre au bouton A, avec un démarrage en douceur.",
+   "materiel": "wonder",
+   "niveau": 2,
+   "notions": [
+    "moteurs",
+    "boucles",
+    "variables",
+    "construire"
+   ],
+   "ordre": 105,
+   "duree": "45 min",
+   "parcours": "wonder",
+   "url": "projets/wonder-chaises-volantes/",
+   "icone": "#####,#.#.#,..#..,..#..,#####",
+   "stockage": "banque",
+   "modele": "5",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-chariot-telecommande",
+   "titre": "Le chariot télécommandé",
+   "resume": "Une deuxième carte devient la télécommande du chariot élévateur, par radio.",
+   "materiel": "wonder",
+   "niveau": 3,
+   "notions": [
+    "moteurs",
+    "servo",
+    "radio",
+    "conditions",
+    "construire"
+   ],
+   "ordre": 9,
+   "duree": "2 h",
+   "parcours": "wonder",
+   "url": "projets/wonder-chariot-telecommande/",
+   "icone": "#....,#..##,#####,#####,.#.#.",
+   "stockage": "banque",
+   "modele": "12",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-chenille",
+   "titre": "La chenille",
+   "resume": "Une chenille qui rampe, et une expérience : sur quel sol avance-t-elle le mieux ?",
+   "materiel": "wonder",
+   "niveau": 1,
+   "notions": [
+    "moteurs",
+    "expérience",
+    "construire"
+   ],
+   "ordre": 119,
+   "duree": "45 min",
+   "parcours": "wonder",
+   "url": "projets/wonder-chenille/",
+   "icone": ".....,#####,#.#.#,#####,.....",
+   "stockage": "banque",
+   "modele": "19",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-chien-robot",
+   "titre": "Le chien robot",
+   "resume": "Un chien qui marche au bouton A et s'arrête au bouton B, et qui aboie en bonus.",
+   "materiel": "wonder",
+   "niveau": 1,
+   "notions": [
+    "moteurs",
+    "boutons",
+    "son",
+    "construire"
+   ],
+   "ordre": 132,
+   "duree": "45 min",
+   "parcours": "wonder",
+   "url": "projets/wonder-chien-robot/",
+   "icone": "#....,####.,.####,.#..#,.#..#",
+   "stockage": "banque",
+   "modele": "32",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-compteur-paniers",
+   "titre": "Le compteur de paniers",
+   "resume": "Un panier de basket qui compte tout seul les ballons qui passent dedans.",
+   "materiel": "wonder",
+   "niveau": 2,
+   "notions": [
+    "ultrasons",
+    "variables",
+    "conditions",
+    "construire"
+   ],
+   "ordre": 107,
+   "duree": "1 h",
+   "parcours": "wonder",
+   "url": "projets/wonder-compteur-paniers/",
+   "icone": "#...#,#####,.#.#.,..#..,.....",
+   "stockage": "banque",
+   "modele": "7",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-demarrer",
+   "titre": "Bien démarrer avec le kit Wonder",
+   "resume": "Préparer l'atelier, connaître la carte Wukong, installer les blocs du kit et apprendre le rituel du test.",
+   "materiel": "wonder",
+   "niveau": 1,
+   "notions": [
+    "matériel",
+    "sécurité"
+   ],
+   "ordre": 0,
+   "duree": "20 min",
+   "parcours": "wonder",
+   "url": "projets/wonder-demarrer/",
+   "icone": ".#.#.,#####,##.##,#####,.#.#.",
+   "stockage": "banque",
+   "modele": "",
+   "v2": false,
+   "type": "guide"
+  },
+  {
+   "id": "wonder-essuie-glace",
+   "titre": "L'essuie-glace",
+   "resume": "Chaque appui sur A accélère l'essuie-glace, chaque appui sur B le ralentit, sans dépasser les limites.",
+   "materiel": "wonder",
+   "niveau": 1,
+   "notions": [
+    "moteurs",
+    "variables",
+    "conditions",
+    "construire"
+   ],
+   "ordre": 3,
+   "duree": "1 h",
+   "parcours": "wonder",
+   "url": "projets/wonder-essuie-glace/",
+   "icone": "#....,.#...,..#..,...#.,#####",
+   "stockage": "banque",
+   "modele": "28",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-grande-roue",
+   "titre": "La petite grande roue",
+   "resume": "Une grande roue de fête foraine, et une expérience : la vitesse du moteur change-t-elle le temps d'un tour ?",
+   "materiel": "wonder",
+   "niveau": 2,
+   "notions": [
+    "moteurs",
+    "expérience",
+    "construire"
+   ],
+   "ordre": 111,
+   "duree": "1 h",
+   "parcours": "wonder",
+   "url": "projets/wonder-grande-roue/",
+   "icone": ".###.,#.#.#,#####,#.#.#,.###.",
+   "stockage": "banque",
+   "modele": "11",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-guitare-ultrasons",
+   "titre": "La guitare à ultrasons",
+   "resume": "Une guitare sans cordes : la note change selon la distance de la main.",
+   "materiel": "wonder",
+   "niveau": 3,
+   "notions": [
+    "ultrasons",
+    "son",
+    "conditions",
+    "variables",
+    "construire"
+   ],
+   "ordre": 114,
+   "duree": "1 h 30",
+   "parcours": "wonder",
+   "url": "projets/wonder-guitare-ultrasons/",
+   "icone": "..##.,..#.#,..#..,###..,###..",
+   "stockage": "banque",
+   "modele": "14",
+   "v2": true,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-helicoptere",
+   "titre": "L'hélicoptère",
+   "resume": "Bouton A, l'hélice tourne et un cœur s'affiche. Bouton B, tout s'arrête.",
+   "materiel": "wonder",
+   "niveau": 1,
+   "notions": [
+    "moteurs",
+    "boutons",
+    "construire"
+   ],
+   "ordre": 1,
+   "duree": "45 min",
+   "parcours": "wonder",
+   "url": "projets/wonder-helicoptere/",
+   "icone": "#...#,.#.#.,..#..,.#.#.,#...#",
+   "stockage": "banque",
+   "modele": "22",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-lanceur-toupie",
+   "titre": "Le lanceur de toupie",
+   "resume": "Gardez A appuyé pour lancer la toupie, lâchez pour la libérer.",
+   "materiel": "wonder",
+   "niveau": 2,
+   "notions": [
+    "moteurs",
+    "servo",
+    "conditions",
+    "construire"
+   ],
+   "ordre": 124,
+   "duree": "1 h",
+   "parcours": "wonder",
+   "url": "projets/wonder-lanceur-toupie/",
+   "icone": "#####,.###.,..#..,..#..,..#..",
+   "stockage": "banque",
+   "modele": "24",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-locomotive",
+   "titre": "La locomotive",
+   "resume": "Une locomotive qui part, recule et s'arrête, avec un départ en gare.",
+   "materiel": "wonder",
+   "niveau": 1,
+   "notions": [
+    "moteurs",
+    "boutons",
+    "son",
+    "construire"
+   ],
+   "ordre": 123,
+   "duree": "45 min",
+   "parcours": "wonder",
+   "url": "projets/wonder-locomotive/",
+   "icone": "#....,####.,#####,#####,.#.#.",
+   "stockage": "banque",
+   "modele": "23",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-lumiere-ambiance",
+   "titre": "La lumière d'ambiance",
+   "resume": "Les quatre LED de la carte Wukong changent de couleur à chaque appui sur A.",
+   "materiel": "wonder",
+   "niveau": 2,
+   "notions": [
+    "lumières",
+    "variables",
+    "conditions",
+    "construire"
+   ],
+   "ordre": 130,
+   "duree": "45 min",
+   "parcours": "wonder",
+   "url": "projets/wonder-lumiere-ambiance/",
+   "icone": "..#..,#.#.#,.###.,#.#.#,..#..",
+   "stockage": "banque",
+   "modele": "30",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-machine-a-dessiner",
+   "titre": "La machine à dessiner",
+   "resume": "Découvrir comment les vitesses des deux moteurs changent le dessin, essai après essai.",
+   "materiel": "wonder",
+   "niveau": 2,
+   "notions": [
+    "moteurs",
+    "expérience",
+    "construire"
+   ],
+   "ordre": 4,
+   "duree": "1 h",
+   "parcours": "wonder",
+   "url": "projets/wonder-machine-a-dessiner/",
+   "icone": "...##,..###,.###.,###..,#....",
+   "stockage": "banque",
+   "modele": "31",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-moto",
+   "titre": "La moto",
+   "resume": "Bouton A, la moto avance. Bouton B, elle recule. A et B ensemble, elle s'arrête.",
+   "materiel": "wonder",
+   "niveau": 1,
+   "notions": [
+    "moteurs",
+    "boutons",
+    "construire"
+   ],
+   "ordre": 2,
+   "duree": "45 min",
+   "parcours": "wonder",
+   "url": "projets/wonder-moto/",
+   "icone": "...#.,..##.,#####,##.##,.#.#.",
+   "stockage": "banque",
+   "modele": "1",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-porte-automatique",
+   "titre": "La porte automatique",
+   "resume": "Quand quelqu'un approche, la porte s'ouvre, puis se referme toute seule après 5 secondes.",
+   "materiel": "wonder",
+   "niveau": 2,
+   "notions": [
+    "servo",
+    "ultrasons",
+    "conditions",
+    "construire"
+   ],
+   "ordre": 6,
+   "duree": "1 h 30",
+   "parcours": "wonder",
+   "url": "projets/wonder-porte-automatique/",
+   "icone": "####.,#..#.,#..##,#..#.,####.",
+   "stockage": "banque",
+   "modele": "9",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-poubelle",
+   "titre": "La poubelle intelligente",
+   "resume": "Le couvercle s'ouvre tout seul quand une main approche, puis se referme.",
+   "materiel": "wonder",
+   "niveau": 2,
+   "notions": [
+    "servo",
+    "ultrasons",
+    "conditions",
+    "construire"
+   ],
+   "ordre": 127,
+   "duree": "1 h",
+   "parcours": "wonder",
+   "url": "projets/wonder-poubelle/",
+   "icone": "#####,.###.,.#.#.,.#.#.,.###.",
+   "stockage": "banque",
+   "modele": "27",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-pousse-pousse",
+   "titre": "Le pousse-pousse",
+   "resume": "Un pousse-pousse qui avance, recule et s'arrête, avec un klaxon en bonus.",
+   "materiel": "wonder",
+   "niveau": 1,
+   "notions": [
+    "moteurs",
+    "boutons",
+    "son",
+    "construire"
+   ],
+   "ordre": 117,
+   "duree": "45 min",
+   "parcours": "wonder",
+   "url": "projets/wonder-pousse-pousse/",
+   "icone": ".###.,#.#.#,#####,#.#.#,.###.",
+   "stockage": "banque",
+   "modele": "17",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-robot-marcheur",
+   "titre": "Le robot marcheur",
+   "resume": "Un robot qui marche sur des pattes, en avant ou en arrière.",
+   "materiel": "wonder",
+   "niveau": 1,
+   "notions": [
+    "moteurs",
+    "boutons",
+    "expérience",
+    "construire"
+   ],
+   "ordre": 115,
+   "duree": "45 min",
+   "parcours": "wonder",
+   "url": "projets/wonder-robot-marcheur/",
+   "icone": ".#...,###..,.#.#.,.#..#,#...#",
+   "stockage": "banque",
+   "modele": "15",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-sechoir-pluie",
+   "titre": "Le séchoir qui sent la pluie",
+   "resume": "Un séchoir à linge qui sort au soleil et rentre tout seul quand il pleut.",
+   "materiel": "wonder",
+   "niveau": 3,
+   "notions": [
+    "moteurs",
+    "servo",
+    "capteurs",
+    "variables",
+    "conditions",
+    "construire"
+   ],
+   "ordre": 120,
+   "duree": "2 h",
+   "parcours": "wonder",
+   "url": "projets/wonder-sechoir-pluie/",
+   "icone": "..#..,.###.,#####,..#..,.##..",
+   "stockage": "banque",
+   "modele": "20",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-suiveur-de-ligne",
+   "titre": "Le suiveur de ligne",
+   "resume": "La voiture suit une ligne noire toute seule, grâce à un capteur à deux yeux.",
+   "materiel": "wonder",
+   "niveau": 3,
+   "notions": [
+    "moteurs",
+    "suivi de ligne",
+    "conditions",
+    "construire"
+   ],
+   "ordre": 8,
+   "duree": "2 h",
+   "parcours": "wonder",
+   "url": "projets/wonder-suiveur-de-ligne/",
+   "icone": "..##.,.#...,..#..,...#.,.##..",
+   "stockage": "banque",
+   "modele": "2",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-testeur-servo",
+   "titre": "Le testeur de servo",
+   "resume": "Un programme outil qui règle l'angle d'un servo avec les boutons, à faire avant chaque construction avec un servo.",
+   "materiel": "wonder",
+   "niveau": 1,
+   "notions": [
+    "servo",
+    "variables",
+    "boutons"
+   ],
+   "ordre": 5,
+   "duree": "30 min",
+   "parcours": "wonder",
+   "url": "projets/wonder-testeur-servo/",
+   "icone": "##...,###..,.###.,..###,...##",
+   "stockage": "banque",
+   "modele": "",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "wonder-voiture-prudente",
+   "titre": "La voiture prudente",
+   "resume": "La voiture roule toute seule et tourne quand un obstacle est à moins de 20 cm.",
+   "materiel": "wonder",
+   "niveau": 2,
+   "notions": [
+    "moteurs",
+    "ultrasons",
+    "variables",
+    "conditions",
+    "construire"
+   ],
+   "ordre": 7,
+   "duree": "1 h 30",
+   "parcours": "wonder",
+   "url": "projets/wonder-voiture-prudente/",
+   "icone": "..#..,..#..,..#..,.....,..#..",
+   "stockage": "banque",
+   "modele": "4",
+   "v2": false,
+   "type": "projet"
+  },
+  {
+   "id": "robot-m1",
+   "titre": "Les phares",
+   "resume": "Au démarrage, les deux phares du robot s'allument en vert.",
+   "materiel": "minicar",
+   "niveau": 1,
+   "duree": "20 min",
+   "notions": [
+    "lumières"
+   ],
+   "parcours": "robot",
+   "ordre": 1,
+   "url": "robot/#m1",
+   "icone": ".###.,#.#.#,#####,.#.#.,##.##",
+   "stockage": "atelier-robot-v1",
+   "mission": "m1",
+   "type": "mission"
+  },
+  {
+   "id": "robot-m2",
+   "titre": "Qui est qui ?",
+   "resume": "Les boutons A et B font tourner chaque roue une seconde, pour savoir laquelle est où.",
+   "materiel": "minicar",
+   "niveau": 1,
+   "duree": "30 min",
+   "notions": [
+    "moteurs",
+    "boutons"
+   ],
+   "parcours": "robot",
+   "ordre": 2,
+   "url": "robot/#m2",
+   "icone": ".###.,#.#.#,#####,.#.#.,##.##",
+   "stockage": "atelier-robot-v1",
+   "mission": "m2",
+   "type": "mission"
+  },
+  {
+   "id": "robot-m3",
+   "titre": "En avant !",
+   "resume": "Le robot roule tout droit pendant 2 secondes, puis s'arrête.",
+   "materiel": "minicar",
+   "niveau": 1,
+   "duree": "30 min",
+   "notions": [
+    "moteurs",
+    "boutons"
+   ],
+   "parcours": "robot",
+   "ordre": 3,
+   "url": "robot/#m3",
+   "icone": ".###.,#.#.#,#####,.#.#.,##.##",
+   "stockage": "atelier-robot-v1",
+   "mission": "m3",
+   "type": "mission"
+  },
+  {
+   "id": "robot-m4",
+   "titre": "Le carré",
+   "resume": "Le robot dessine un carré par terre : un côté, un quart de tour, quatre fois.",
+   "materiel": "minicar",
+   "niveau": 2,
+   "duree": "45 min",
+   "notions": [
+    "moteurs",
+    "boucles",
+    "expérience"
+   ],
+   "parcours": "robot",
+   "ordre": 4,
+   "url": "robot/#m4",
+   "icone": ".###.,#.#.#,#####,.#.#.,##.##",
+   "stockage": "atelier-robot-v1",
+   "mission": "m4",
+   "type": "mission"
+  },
+  {
+   "id": "robot-m5",
+   "titre": "Le radar",
+   "resume": "L'écran affiche sans arrêt la distance entre le robot et l'obstacle devant lui.",
+   "materiel": "minicar",
+   "niveau": 2,
+   "duree": "30 min",
+   "notions": [
+    "ultrasons",
+    "écran"
+   ],
+   "parcours": "robot",
+   "ordre": 5,
+   "url": "robot/#m5",
+   "icone": ".###.,#.#.#,#####,.#.#.,##.##",
+   "stockage": "atelier-robot-v1",
+   "mission": "m5",
+   "type": "mission"
+  },
+  {
+   "id": "robot-m6",
+   "titre": "Le robot prudent",
+   "resume": "Le robot avance et s'arrête au rouge si un obstacle est à moins de 15 cm.",
+   "materiel": "minicar",
+   "niveau": 2,
+   "duree": "45 min",
+   "notions": [
+    "ultrasons",
+    "variables",
+    "conditions"
+   ],
+   "parcours": "robot",
+   "ordre": 6,
+   "url": "robot/#m6",
+   "icone": ".###.,#.#.#,#####,.#.#.,##.##",
+   "stockage": "atelier-robot-v1",
+   "mission": "m6",
+   "type": "mission"
+  },
+  {
+   "id": "robot-m7",
+   "titre": "L'explorateur",
+   "resume": "Devant un obstacle, le robot recule, tourne et repart : il explore la pièce tout seul.",
+   "materiel": "minicar",
+   "niveau": 3,
+   "duree": "45 min",
+   "notions": [
+    "ultrasons",
+    "conditions",
+    "hasard"
+   ],
+   "parcours": "robot",
+   "ordre": 7,
+   "url": "robot/#m7",
+   "icone": ".###.,#.#.#,#####,.#.#.,##.##",
+   "stockage": "atelier-robot-v1",
+   "mission": "m7",
+   "type": "mission"
+  },
+  {
+   "id": "robot-m8",
+   "titre": "Les yeux du dessous",
+   "resume": "Afficher ce que voient les deux capteurs de ligne et décoder leurs chiffres.",
+   "materiel": "minicar",
+   "niveau": 2,
+   "duree": "30 min",
+   "notions": [
+    "suivi de ligne",
+    "expérience"
+   ],
+   "parcours": "robot",
+   "ordre": 8,
+   "url": "robot/#m8",
+   "icone": ".###.,#.#.#,#####,.#.#.,##.##",
+   "stockage": "atelier-robot-v1",
+   "mission": "m8",
+   "type": "mission"
+  },
+  {
+   "id": "robot-m9",
+   "titre": "Le suiveur de ligne (MiniCar)",
+   "resume": "Le robot suit la ligne noire tout seul, du début à la fin de la piste.",
+   "materiel": "minicar",
+   "niveau": 3,
+   "duree": "1 h",
+   "notions": [
+    "suivi de ligne",
+    "conditions"
+   ],
+   "parcours": "robot",
+   "ordre": 9,
+   "url": "robot/#m9",
+   "icone": ".###.,#.#.#,#####,.#.#.,##.##",
+   "stockage": "atelier-robot-v1",
+   "mission": "m9",
+   "type": "mission"
+  },
+  {
+   "id": "ia-m1",
+   "titre": "Les courbes du mouvement",
+   "resume": "Connecter la carte à CreateAI et regarder ce que la carte « voit » quand on bouge.",
+   "materiel": "createai",
+   "niveau": 1,
+   "duree": "20 min",
+   "notions": [
+    "IA",
+    "accéléromètre"
+   ],
+   "parcours": "ia",
+   "ordre": 1,
+   "url": "ia/#m1",
+   "icone": "..#..,.#.#.,#...#,.#.#.,..#..",
+   "stockage": "atelier-ia-v1",
+   "mission": "m1",
+   "type": "mission",
+   "v2": true
+  },
+  {
+   "id": "ia-m2",
+   "titre": "Coucou et bravo",
+   "resume": "Apprendre à la carte deux mouvements, puis vérifier qu'elle les reconnaît.",
+   "materiel": "createai",
+   "niveau": 1,
+   "duree": "30 min",
+   "notions": [
+    "IA"
+   ],
+   "parcours": "ia",
+   "ordre": 2,
+   "url": "ia/#m2",
+   "icone": "..#..,.#.#.,#...#,.#.#.,..#..",
+   "stockage": "atelier-ia-v1",
+   "mission": "m2",
+   "type": "mission",
+   "v2": true
+  },
+  {
+   "id": "ia-m3",
+   "titre": "Plus d'exemples",
+   "resume": "Rendre la carte plus sûre d'elle avec 10 exemples de chaque mouvement au lieu de 3.",
+   "materiel": "createai",
+   "niveau": 1,
+   "duree": "30 min",
+   "notions": [
+    "IA",
+    "expérience"
+   ],
+   "parcours": "ia",
+   "ordre": 3,
+   "url": "ia/#m3",
+   "icone": "..#..,.#.#.,#...#,.#.#.,..#..",
+   "stockage": "atelier-ia-v1",
+   "mission": "m3",
+   "type": "mission",
+   "v2": true
+  },
+  {
+   "id": "ia-m4",
+   "titre": "Le piège",
+   "resume": "Ajouter un mouvement qui ressemble à coucou, comprendre pourquoi la carte se trompe, et réparer.",
+   "materiel": "createai",
+   "niveau": 2,
+   "duree": "45 min",
+   "notions": [
+    "IA",
+    "expérience"
+   ],
+   "parcours": "ia",
+   "ordre": 4,
+   "url": "ia/#m4",
+   "icone": "..#..,.#.#.,#...#,.#.#.,..#..",
+   "stockage": "atelier-ia-v1",
+   "mission": "m4",
+   "type": "mission",
+   "v2": true
+  },
+  {
+   "id": "ia-m5",
+   "titre": "Ne rien faire, c'est une action",
+   "resume": "Quand on ne bouge pas, la carte ne doit reconnaître aucun mouvement.",
+   "materiel": "createai",
+   "niveau": 2,
+   "duree": "30 min",
+   "notions": [
+    "IA"
+   ],
+   "parcours": "ia",
+   "ordre": 5,
+   "url": "ia/#m5",
+   "icone": "..#..,.#.#.,#...#,.#.#.,..#..",
+   "stockage": "atelier-ia-v1",
+   "mission": "m5",
+   "type": "mission",
+   "v2": true
+  },
+  {
+   "id": "ia-m6",
+   "titre": "L'IA des autres",
+   "resume": "Vérifier si l'IA marche avec quelqu'un d'autre, et la rendre bonne pour tout le monde.",
+   "materiel": "createai",
+   "niveau": 2,
+   "duree": "45 min",
+   "notions": [
+    "IA",
+    "expérience"
+   ],
+   "parcours": "ia",
+   "ordre": 6,
+   "url": "ia/#m6",
+   "icone": "..#..,.#.#.,#...#,.#.#.,..#..",
+   "stockage": "atelier-ia-v1",
+   "mission": "m6",
+   "type": "mission",
+   "v2": true
+  },
+  {
+   "id": "ia-m7",
+   "titre": "L'IA dans la carte",
+   "resume": "Faire tourner l'IA dans la carte, sans ordinateur, et ajouter une réaction au bouton A.",
+   "materiel": "createai",
+   "niveau": 3,
+   "duree": "45 min",
+   "notions": [
+    "IA",
+    "écran",
+    "boutons"
+   ],
+   "parcours": "ia",
+   "ordre": 7,
+   "url": "ia/#m7",
+   "icone": "..#..,.#.#.,#...#,.#.#.,..#..",
+   "stockage": "atelier-ia-v1",
+   "mission": "m7",
+   "type": "mission",
+   "v2": true
+  },
+  {
+   "id": "ia-m8",
+   "titre": "Le compteur de sauts",
+   "resume": "La carte compte vos sauts toute seule et affiche le total.",
+   "materiel": "createai",
+   "niveau": 3,
+   "duree": "1 h",
+   "notions": [
+    "IA",
+    "variables"
+   ],
+   "parcours": "ia",
+   "ordre": 8,
+   "url": "ia/#m8",
+   "icone": "..#..,.#.#.,#...#,.#.#.,..#..",
+   "stockage": "atelier-ia-v1",
+   "mission": "m8",
+   "type": "mission",
+   "v2": true
+  }
+ ]
+};

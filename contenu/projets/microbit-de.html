@@ -1,0 +1,47 @@
+<!--
+id: microbit-de
+titre: Le dé électronique
+resume: Secouez la carte : elle tire un nombre de 1 à 6. Puis une expérience sur le hasard.
+materiel: microbit
+niveau: 1
+aide: l3
+duree: 30 min
+notions: hasard, accéléromètre, expérience
+parcours: microbit
+ordre: 2
+icone: de
+-->
+<p class="goal"><b>Votre mission :</b> quand on secoue la carte, elle affiche un nombre au hasard entre 1 et 6, comme un dé.</p>
+<div class="predict">
+  <p class="pt">Prédisez d'abord</p>
+  <p>Sur 30 lancers, combien de fois tomberez-vous sur 6 ?</p>
+  <label class="inline">Notre prédiction : <input class="numin" type="number" min="0" max="30" data-k="@pred"> fois</label>
+</div>
+<div class="m-part"><h3>Les blocs à utiliser</h3><div class="need" data-need="b"></div></div>
+<div class="m-part">
+  <h3>Pas à pas</h3>
+  <ol class="steps">
+    <li>Tiroir Entrées : le bloc qui réagit quand on <b>secoue</b> la carte.</li>
+    <li>Dedans : <span class="kw" style="--cat:var(--c-base)">montrer nombre</span>.</li>
+    <li>Dans le trou rond de montrer nombre : le bloc du hasard du tiroir Maths. Réglez-le de <b>1</b> à <b>6</b>.</li>
+    <li>Dans le simulateur, cliquez sur le bouton « secouer » sous la carte. Puis envoyez sur la vraie carte.</li>
+    <li>Lancez 30 fois et comptez les 6.</li>
+  </ol>
+</div>
+<details class="hint"><summary>Indice 1</summary><div class="body"><p>Le dé affiche parfois 0 ? Quelles sont les deux valeurs écrites dans le bloc du hasard ?</p></div></details>
+<details class="hint"><summary>Indice 2</summary><div class="body"><p>Le bloc du hasard commence à 0 par défaut. Un dé commence à 1.</p></div></details>
+<div class="carnet-form">
+  <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
+  <div class="numrow"><label>Nombre de 6 sur 30 lancers : <input class="numin" type="number" min="0" max="30" data-k="@six"></label></div>
+  <p class="small">En moyenne, un 6 sort une fois sur six, donc environ 5 fois sur 30. Mais le hasard ne donne presque jamais exactement la moyenne.</p>
+</div>
+<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden><div class="prog" data-prog="sol"></div></div></div>
+<div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+<div class="bonus">
+  <h3><span>Défi bonus</span>Le vrai dé</h3>
+  <p>Au lieu d'un chiffre, dessinez les points du dé avec le bloc <span class="kw" style="--cat:var(--c-base)">montrer LEDs</span>. Il faut une variable et un si … sinon si.</p>
+</div>
+<script>
+Object.assign(PROJET.needs, { "b": function(B){ return [K.gesture(B,"secouer"), K.showNum(B,B.num(0)), K.random(B,0,10)]; } });
+Object.assign(PROJET.progs, { "sol": function(B){ return [ K.gesture(B,"secouer", K.showNum(B,K.random(B,1,6))) ]; } });
+</script>

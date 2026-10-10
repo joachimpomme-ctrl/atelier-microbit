@@ -4,43 +4,44 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="description" content="Des ateliers pour apprendre à programmer et à construire avec la carte micro:bit et MakeCode.">
+<meta name="description" content="Des projets pour apprendre à programmer et à construire avec la carte micro:bit et MakeCode.">
 <title>Les ateliers micro:bit</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Chakra+Petch:wght@600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <link rel="stylesheet" href="assets/atelier.css">
 <style>
-/* Page d'accueil : le hub des ateliers */
-.page{max-width:1080px;display:grid;gap:28px}
-.hub-hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:center;padding-block:12px 4px}
+/* Accueil : le hub */
+.page{max-width:1120px;display:grid;gap:28px}
+.hub-hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:center;padding-block:12px 0}
 .hub-hero h1{font:700 clamp(44px,8vw,80px)/.95 var(--f-display);letter-spacing:-.01em;margin-top:6px}
 .hub-hero .lead{max-width:58ch;margin-top:18px;font-size:18px}
-.total{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:22px}
-.total strong{font:700 20px var(--f-display);font-variant-numeric:tabular-nums;white-space:nowrap}
-@media (max-width:640px){ .hub-hero{grid-template-columns:minmax(0,1fr)} .led5.big{--w:120px;--g:7px;--p:12px} }
-.ateliers{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
-.atelier{border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:12px;align-content:start;background:var(--panel);position:relative}
+.hub-bar{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;margin-top:22px}
+@media (max-width:640px){ .hub-hero{grid-template-columns:minmax(0,1fr)} .hub-hero .led5.big{display:none} }
+.find{display:grid;gap:12px}
+.find form{display:flex;gap:10px}
+.find input{flex:1;min-width:0;font:400 18px var(--f-body);padding:12px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink)}
+.find input:focus{border-color:var(--accent);outline:none}
+.quick{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center}
+.quick a{font:700 14px/1 var(--f-body);padding:7px 11px;border-radius:999px;border:1.5px solid var(--line);background:var(--panel);color:var(--ink);text-decoration:none}
+.quick a:hover{border-color:var(--accent)}
+.quick a small{font:500 12px var(--f-mono);color:var(--ink-2);margin-left:4px}
+.quick .eyebrow{min-width:70px}
+.ateliers{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr))}
+.atelier{border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:12px;align-content:start;background:var(--panel)}
 .atelier .top{display:flex;gap:16px;align-items:center}
 .atelier h3{font:700 24px/1.15 var(--f-display)}
 .atelier .meta{font:500 13px/1.3 var(--f-mono);color:var(--ink-2);margin-top:4px}
-.atelier .order{font:600 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.1em;color:var(--ink-2)}
-.atelier .progress{display:grid;gap:6px;justify-items:start}
 .atelier .next{font-size:15px;color:var(--ink-2)}
 .atelier .next b{color:var(--ink)}
-.atelier .skills{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0}
-.atelier .skills li{margin:0;font-size:13px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--ink-2)}
-.board.wide{display:flex;flex-wrap:wrap;gap:5px;padding:7px 9px;border-radius:8px;background:var(--board);max-width:100%}
-.board.wide span{width:11px;height:11px;border-radius:3px;background:var(--board-off)}
-.board.wide span.on{background:var(--led);box-shadow:0 0 8px var(--led)}
-.btn.go{justify-self:start;text-decoration:none;font-size:16px;padding:12px 16px}
-.atelier.soon{border-style:dashed;background:transparent}
-.atelier.soon h3,.atelier.soon p{color:var(--ink-2)}
-.chip{justify-self:start;font:600 12px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;padding:7px 10px;border-radius:999px;border:1px solid var(--line);color:var(--ink-2)}
-.parcours{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));counter-reset:p}
-.parcours div{border-left:4px solid var(--accent);padding:6px 12px;background:var(--soft);border-radius:0 8px 8px 0}
-.parcours b{display:block;font-family:var(--f-display);font-size:18px}
-.parents ul{display:grid;gap:6px}
+.atelier .acts{display:flex;flex-wrap:wrap;gap:8px}
+.atelier .acts a{text-decoration:none}
+.mats{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+.mat{display:grid;gap:4px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);text-decoration:none}
+.mat:hover{border-color:var(--accent)}
+.mat b{font:700 20px/1.2 var(--f-display)}
+.mat span{font-size:14px;color:var(--ink-2)}
+.mat small{font:600 12px var(--f-mono);color:var(--accent);text-transform:uppercase;letter-spacing:.08em}
 </style>
 </head>
 <body>
@@ -49,35 +50,48 @@
     <div>
       <p class="eyebrow">micro:bit · MakeCode · robots · IA</p>
       <h1>Les ateliers micro:bit</h1>
-      <p class="lead">Des missions pour apprendre à programmer, à construire et à comprendre l'intelligence artificielle. Chaque atelier se fait une mission après l'autre, à deux, en prédisant avant d'essayer.</p>
-      <div class="total" aria-live="polite">
-        <div class="board wide" id="total-leds" aria-hidden="true"></div>
-        <span>Missions réussies, tous ateliers : <strong id="total-count">0</strong></span>
+      <p class="lead">Des projets pour apprendre à programmer, à construire des machines et à comprendre l'intelligence artificielle. À deux, en prédisant avant d'essayer.</p>
+      <div class="hub-bar">
+        <div class="progress" aria-live="polite"><div class="board wide" id="total-leds" aria-hidden="true"></div><span>Projets réussis : <strong id="total-count">0</strong></span></div>
+        <div class="crew-set">
+          <span>L'équipe :</span>
+          <label class="namein"><span class="sr">Prénom de l'équipier 1</span><input type="text" id="name-1" maxlength="16" autocomplete="off" spellcheck="false" placeholder="Équipier 1"></label>
+          <label class="namein"><span class="sr">Prénom de l'équipier 2</span><input type="text" id="name-2" maxlength="16" autocomplete="off" spellcheck="false" placeholder="Équipier 2"></label>
+        </div>
       </div>
+      <p class="local-note" style="margin-top:8px">Les prénoms restent sur cet ordinateur. Ils servent dans tous les projets.</p>
     </div>
-    <div class="led5 big" data-icon="face" aria-hidden="true"></div>
+    <div class="led5 big" id="hero-icon" aria-hidden="true"></div>
   </header>
 
-  <section class="sec" aria-labelledby="t-ateliers">
-    <h2 id="t-ateliers">Choisis ton atelier</h2>
-    <div class="ateliers" id="ateliers"></div>
+  <section class="sec find" aria-labelledby="t-find">
+    <h2 id="t-find">Trouver un projet</h2>
+    <form id="find" action="projets/">
+      <label class="sr" for="q">Chercher un projet</label>
+      <input id="q" type="search" placeholder="radar, servo, musique, chien, radio…" autocomplete="off">
+      <button class="btn solid" type="submit">Chercher</button>
+    </form>
+    <div class="quick" id="quick-niv"><span class="eyebrow">Niveau</span></div>
+    <div class="quick" id="quick-notions"><span class="eyebrow">Notion</span></div>
+    <p><a class="btn" href="projets/" style="text-decoration:none;display:inline-block">Voir toute la banque de projets</a></p>
   </section>
 
   <section class="sec" aria-labelledby="t-parcours">
-    <h2 id="t-parcours">Le parcours conseillé</h2>
-    <div class="parcours">
-      <div><b>1. Le robot</b>Les bases : moteurs, capteurs, conditions, variables.</div>
-      <div><b>2. Wonder</b>Construire ses machines, servos, télécommande radio.</div>
-      <div><b>3. L'IA</b>Apprendre à la carte par l'exemple, puis piloter un robot avec ses gestes.</div>
-    </div>
-    <p class="small">Ce n'est qu'un conseil : chaque atelier explique tout ce dont il a besoin.</p>
+    <h2 id="t-parcours">Les parcours</h2>
+    <p>Un parcours, ce sont des projets dans l'ordre : chacun utilise ce que le précédent a appris. L'ordre conseillé est celui des numéros, mais chaque parcours explique tout ce dont il a besoin.</p>
+    <div class="ateliers" id="parcours"></div>
+  </section>
+
+  <section class="sec" aria-labelledby="t-mat">
+    <h2 id="t-mat">Par matériel</h2>
+    <p>Ce que vous avez sous la main décide du projet.</p>
+    <div class="mats" id="mats"></div>
   </section>
 
   <section class="sec" aria-labelledby="t-methode">
     <h2 id="t-methode">La méthode du chercheur</h2>
-    <p>Elle marche pour tous les ateliers.</p>
     <ol class="steps">
-      <li>Lire la mission jusqu'au bout.</li>
+      <li>Lire le projet jusqu'au bout.</li>
       <li>Prédire ce qui va se passer, avant de toucher la souris.</li>
       <li>Construire le programme.</li>
       <li>Tester et comparer avec la prédiction.</li>
@@ -86,64 +100,84 @@
     <p class="tip">Un bug, c'est normal. La carte fait exactement ce que dit le programme. Ton travail : trouver l'endroit où le programme dit autre chose que ce que tu voulais.</p>
   </section>
 
-  <section class="sec parents" aria-labelledby="t-parents">
+  <section class="sec" aria-labelledby="t-parents">
     <h2 id="t-parents">Pour les parents</h2>
-    <ul>
-      <li>Matériel : des cartes micro:bit (V2 pour l'atelier IA), un ordinateur avec Chrome ou Edge, et le kit de chaque atelier.</li>
-      <li>Montages à piles ou en USB uniquement, jamais rien relié au secteur. La batterie lithium de la carte Wukong (atelier Wonder) se charge sous la surveillance d'un adulte.</li>
-      <li>Les ateliers IA et Wonder rangent leurs solutions derrière un code parent. Il se crée dans la partie « Pour les parents » de l'atelier, et sert ensuite dans tous les ateliers de l'ordinateur.</li>
-      <li>La progression, les carnets, les prénoms et le code parent restent dans le navigateur de l'ordinateur utilisé. Rien n'est envoyé.</li>
-    </ul>
+    <p>Code des solutions, règles de sécurité, rôle de l'adulte, sauvegarde de la progression : tout est sur la <a href="parents/">page des parents</a>.</p>
     <p class="small">Outils : <a href="https://makecode.microbit.org/">MakeCode pour micro:bit</a> · <a href="https://createai.microbit.org/">micro:bit CreateAI</a></p>
   </section>
 </div>
 
+<script src="assets/catalogue.js"></script>
+<script src="assets/progression.js"></script>
+<script src="assets/cartes.js"></script>
 <script>
 (function(){
 "use strict";
-/* Pour ajouter un atelier : une entrée de plus dans cette liste, et son dossier. */
-var ATELIERS = [
-  { href:"robot/", titre:"L'atelier robot", meta:"Robot MiniCar · 9 missions", key:"atelier-robot-v1", icon:"robot",
-    desc:"Allumer les phares, rouler, mesurer avec le radar, puis faire suivre une ligne noire au robot, tout seul.",
-    apprend:["moteurs","capteurs","si / sinon","variables"],
-    missions:["Les phares","Qui est qui ?","En avant !","Le carré","Le radar","Le robot prudent","L'explorateur","Les yeux du dessous","Le suiveur de ligne"] },
-  { href:"wonder/", titre:"L'atelier Wonder", meta:"Kit Wonder 32 en 1 · 8 missions", key:"atelier-wonder-v1", icon:"engrenage",
-    desc:"Construire avec les briques une hélice, une moto, une porte automatique, des voitures et un chariot télécommandé, puis les programmer.",
-    apprend:["construire","servos","expériences","radio"],
-    missions:["L'hélicoptère","La moto","L'essuie-glace","La machine à dessiner","La porte automatique","La voiture prudente","Le suiveur de ligne","Le chariot télécommandé"] },
-  { href:"ia/", titre:"L'atelier IA", meta:"micro:bit V2 · CreateAI · 8 missions", key:"atelier-ia-v1", icon:"ia",
-    desc:"Apprendre à la carte à reconnaître vos mouvements par l'exemple, et comprendre pourquoi elle se trompe.",
-    apprend:["données","entraîner un modèle","biais","IA dans la carte"],
-    missions:["Les courbes du mouvement","Coucou et bravo","Plus d'exemples","Le piège","Ne rien faire, c'est une action","L'IA des autres","L'IA dans la carte","Le compteur de sauts"] }
-];
-var ICONS = {
-  face:      ".....,.#.#.,.....,#...#,.###.",
-  robot:     ".###.,#.#.#,#####,.#.#.,##.##",
-  engrenage: ".#.#.,#####,##.##,#####,.#.#.",
-  ia:        "..#..,.#.#.,#...#,.#.#.,..#.."
-};
-function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
-function led(pat){ return pat.replace(/,/g,"").split("").map(function(c){ return '<span'+(c==="#"?' class="on"':'')+'></span>'; }).join(""); }
-function doneOf(key){ try{ var o=JSON.parse(localStorage.getItem(key)||"{}"); return (o&&o.done)||{}; }catch(e){ return {}; } }
+var C=window.CATALOGUE, CA=window.CARTES, ST=window.BANQUE_STORE, esc=CA.esc;
+var S=CA.marquer(), P=C.projets;
+function $(id){ return document.getElementById(id); }
+function nb(list){ return list.filter(function(p){ return p._done; }).length; }
+function leds(list){ return list.map(function(p){ return '<span'+(p._done?' class="on"':'')+'></span>'; }).join(""); }
+function minus(t){ return t.charAt(0).toLowerCase()+t.slice(1); }
 
-var total=0, totalMax=0, allLeds="";
-document.getElementById("ateliers").innerHTML = ATELIERS.map(function(a,idx){
-  var done=doneOf(a.key), n=0, leds="", next=-1;
-  a.missions.forEach(function(t,i){ var on=!!done["m"+(i+1)]; if(on) n++; else if(next<0) next=i; leds+='<span'+(on?' class="on"':'')+'></span>'; });
-  total+=n; totalMax+=a.missions.length; allLeds+=leds;
-  var nextTxt = next<0 ? "Toutes les missions sont réussies. Place aux défis libres !" : (n===0 ? "Pour commencer : <b>mission 1, "+esc(a.missions[0])+"</b>" : "Prochaine : <b>mission "+(next+1)+", "+esc(a.missions[next])+"</b>");
+$("hero-icon").innerHTML=CA.led(".....,.#.#.,.....,#...#,.###.");
+$("total-leds").innerHTML=leds(P);
+$("total-count").textContent=nb(P)+" / "+P.length;
+
+/* Prénoms : valent pour la banque et les parcours robot et IA */
+["1","2"].forEach(function(i){
+  var inp=$("name-"+i); inp.value=S.names[i]||"";
+  inp.addEventListener("input",function(){ ST.setNames($("name-1").value,$("name-2").value); });
+});
+
+/* Recherche */
+$("find").addEventListener("submit",function(e){
+  e.preventDefault(); var q=$("q").value.trim();
+  location.href="projets/"+(q?"#q="+encodeURIComponent(q):"");
+});
+$("quick-niv").innerHTML+=["1","2","3"].map(function(n){
+  return '<a href="projets/#niveau='+n+'">'+n+' · '+esc(C.niveaux[n])+'<small>'+P.filter(function(p){ return String(p.niveau)===n; }).length+'</small></a>';
+}).join("");
+var CACHEES=["construire","matériel","sécurité"];
+var notions=C.notions.filter(function(n){ return CACHEES.indexOf(n)<0; }).map(function(n){ return {n:n,c:P.filter(function(p){ return p.notions.indexOf(n)>=0; }).length}; });
+$("quick-notions").innerHTML+=notions.map(function(o){ return '<a href="projets/#notion='+encodeURIComponent(o.n)+'">'+esc(o.n)+'<small>'+o.c+'</small></a>'; }).join("");
+
+/* Parcours */
+var PARC=[
+  {id:"microbit", t:"Premiers pas micro:bit", meta:"La carte seule", icon:"..#..,.###.,#####,.###.,..#..",
+   desc:"Écran, boutons, capteurs, son et radio. Pas besoin de kit : une carte micro:bit et ses piles."},
+  {id:"robot", t:"Le robot", meta:"Robot MiniCar", icon:".###.,#.#.#,#####,.#.#.,##.##",
+   desc:"Allumer les phares, rouler, mesurer avec le radar, puis suivre une ligne noire tout seul."},
+  {id:"wonder", t:"Les machines Wonder", meta:"Kit Wonder 32 en 1", icon:".#.#.,#####,##.##,#####,.#.#.",
+   desc:"Construire des machines avec les briques, puis les programmer : moteurs, servos, capteurs, télécommande radio."},
+  {id:"ia", t:"L'IA par l'exemple", meta:"micro:bit V2 · CreateAI", icon:"..#..,.#.#.,#...#,.#.#.,..#..",
+   desc:"Apprendre à la carte à reconnaître vos mouvements par l'exemple, et comprendre pourquoi elle se trompe."}
+];
+$("parcours").innerHTML=PARC.map(function(a,idx){
+  var info=C.parcours[a.id];
+  var list=P.filter(function(p){ return p.parcours===a.id && p.ordre<900; }).sort(function(x,y){ return x.ordre-y.ordre; });
+  var steps=list.filter(function(p){ return p.ordre<100; }), extra=list.filter(function(p){ return p.ordre>=100; });
+  var next=steps.filter(function(p){ return !p._done; })[0] || extra.filter(function(p){ return !p._done; })[0];
+  var n=nb(steps), k=next?steps.indexOf(next):-1;
+  var nextTxt=!next ? "Tout est réussi. Place aux défis libres !"
+    : (k<0 ? "Étapes finies. Machine suivante : <b>"+esc(next.titre)+"</b>"
+    : (n===0 ? "Pour commencer : <b>"+(k+1)+". "+esc(next.titre)+"</b>" : "Prochaine étape : <b>"+(k+1)+". "+esc(next.titre)+"</b>"));
+  var extraTxt=extra.length?'<span class="small">Et '+extra.length+' autres machines : '+nb(extra)+' réussie'+(nb(extra)>1?"s":"")+'</span>':'';
   return '<article class="atelier">'
-    +'<div class="top"><div class="led5" aria-hidden="true">'+led(ICONS[a.icon]||ICONS.face)+'</div><div><p class="order">Étape '+(idx+1)+'</p><h3>'+esc(a.titre)+'</h3><p class="meta">'+esc(a.meta)+'</p></div></div>'
+    +'<div class="top"><div class="led5" aria-hidden="true">'+CA.led(a.icon)+'</div><div><p class="eyebrow">Parcours '+(idx+1)+'</p><h3>'+esc(a.t)+'</h3><p class="meta">'+esc(a.meta)+' · '+steps.length+' étapes</p></div></div>'
     +'<p>'+esc(a.desc)+'</p>'
-    +'<ul class="skills">'+a.apprend.map(function(s){ return '<li>'+esc(s)+'</li>'; }).join("")+'</ul>'
-    +'<div class="progress"><div class="board wide" aria-hidden="true">'+leds+'</div><span>Missions réussies : <strong>'+n+' / '+a.missions.length+'</strong></span></div>'
+    +'<div class="progress"><div class="board wide" aria-hidden="true">'+leds(steps)+'</div><span>Réussies : <strong>'+n+' / '+steps.length+'</strong></span>'+extraTxt+'</div>'
     +'<p class="next">'+nextTxt+'</p>'
-    +'<a class="btn solid go" href="'+esc(a.href)+'">Ouvrir '+esc(a.titre.replace(/^L'/,"l'"))+'</a>'
+    +'<div class="acts">'+(next?'<a class="btn solid" href="'+esc(next.url)+'">'+(n===0&&k===0?"Commencer":"Continuer")+'</a>':'')+'<a class="btn" href="'+esc(info.url)+'">Voir le parcours</a></div>'
     +'</article>';
 }).join("");
-document.getElementById("total-leds").innerHTML = allLeds;
-document.getElementById("total-count").textContent = total+" / "+totalMax;
-document.querySelectorAll(".led5[data-icon]").forEach(function(el){ el.innerHTML = led(ICONS[el.getAttribute("data-icon")]||""); });
+
+/* Matériel */
+var ORDRE=["microbit","minicar","wonder","createai"];
+$("mats").innerHTML=ORDRE.map(function(m){
+  var list=P.filter(function(p){ return p.materiel===m; }), M=C.materiels[m];
+  return '<a class="mat" href="projets/#materiel='+m+'"><b>'+esc(M.nom)+'</b><span>'+esc(M.desc)+'</span><small>'+list.length+' projets · '+nb(list)+' réussis</small></a>';
+}).join("");
 })();
 </script>
 </body>

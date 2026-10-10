@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Code parent, sécurité, rôle de l'adulte et sauvegarde de la progression.">
+<title>Pour les parents · Ateliers micro:bit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="../assets/atelier.css">
+<style>
+.par-head h1{font:700 clamp(38px,7vw,64px)/1 var(--f-display);margin-top:6px}
+.par-head .lead{margin-top:12px;font-size:18px;max-width:62ch}
+.toc{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:15px}
+.toc a{font-weight:700}
+.sec ul,.sec ol{display:grid;gap:4px}
+.rule{display:grid;gap:4px;border-left:4px solid var(--accent);padding:4px 0 4px 14px}
+.rule b{font-family:var(--f-display);font-size:18px}
+.rules{display:grid;gap:14px}
+.row-btns{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.levels-demo{display:flex;flex-wrap:wrap;gap:8px}
+.chk{display:flex;gap:8px;align-items:center;font-size:15px}
+</style>
+</head>
+<body>
+<div class="page proj">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../">Accueil</a> <span aria-hidden="true">›</span> <span>Pour les parents</span></nav>
+  <header class="par-head">
+    <p class="eyebrow">Adultes</p>
+    <h1>Pour les parents</h1>
+    <p class="lead">Le code qui garde les solutions, les règles de sécurité, votre rôle pendant les séances, et la sauvegarde de la progression.</p>
+  </header>
+  <nav class="toc" aria-label="Sur cette page"><a href="#code">Code parent</a><a href="#securite">Sécurité</a><a href="#role">Votre rôle</a><a href="#blocs">Blocs à vérifier</a><a href="#donnees">Progression</a><a href="#ajouter">Ajouter un projet</a></nav>
+
+  <section class="sec" id="code" aria-labelledby="t-code">
+    <h2 id="t-code">Le code parent</h2>
+    <p>Chaque projet range sa solution derrière ce code. Un seul code sert pour tous les projets et tous les ateliers de cet ordinateur.</p>
+    <div id="code-none">
+      <div class="urlbox"><label class="sr" for="code-new">Nouveau code</label><input class="textin short" type="password" id="code-new" autocomplete="new-password" placeholder="Votre code"><button class="btn solid" type="button" id="code-set">Enregistrer le code</button></div>
+    </div>
+    <div id="code-some" hidden>
+      <p>Un code parent est en place sur cet ordinateur.</p>
+      <div class="urlbox"><label class="sr" for="code-old">Code actuel</label><input class="textin short" type="password" id="code-old" autocomplete="current-password" placeholder="Code actuel"><label class="sr" for="code-new2">Nouveau code</label><input class="textin short" type="password" id="code-new2" autocomplete="new-password" placeholder="Nouveau code"><button class="btn" type="button" id="code-change">Changer le code</button></div>
+    </div>
+    <p class="saved" id="code-msg" role="status"></p>
+    <p class="tip">C'est une barrière douce, pas une sécurité. Le code reste dans ce navigateur, et un enfant curieux et habile peut le contourner. Il sert à rendre la solution moins tentante que l'indice suivant.</p>
+  </section>
+
+  <section class="sec" id="securite" aria-labelledby="t-secu">
+    <h2 id="t-secu">La sécurité</h2>
+    <div class="rules">
+      <div class="rule"><b>Piles ou USB, rien d'autre</b><p>Les montages marchent sur piles, sur la batterie du kit ou sur le câble USB de l'ordinateur. Jamais rien relié au secteur.</p></div>
+      <div class="rule"><b>La batterie lithium de la carte Wukong</b><p>Kit Wonder : la carte d'extension a une batterie lithium. Elle se charge sous la surveillance d'un adulte, machine éteinte. On ne la démonte pas, on ne la mouille pas, on la garde loin de la chaleur. Si elle gonfle, chauffe ou sent bizarre : on arrête tout.</p></div>
+      <div class="rule"><b>L'eau</b><p>Le séchoir qui sent la pluie utilise un capteur d'eau. Quelques gouttes sur le capteur seulement, avec un doigt mouillé. Jamais d'eau près des cartes ni de la batterie.</p></div>
+      <div class="rule"><b>Ce qui bouge</b><p>Robots qui roulent : sol dégagé, loin des escaliers et du bord de la table. Catapulte : petites boules de papier, jamais vers quelqu'un. Les doigts loin des engrenages quand un moteur tourne.</p></div>
+      <div class="rule"><b>Couper, souder, recharger</b><p>Découpe, soudure et recharge des batteries lithium : avec un adulte, toujours.</p></div>
+    </div>
+  </section>
+
+  <section class="sec" id="role" aria-labelledby="t-role">
+    <h2 id="t-role">Votre rôle pendant une séance</h2>
+    <p>Le but n'est pas un programme qui marche. C'est un enfant qui comprend pourquoi il marche, et qui sait chercher quand il ne marche pas.</p>
+    <ol class="steps">
+      <li><b>À deux.</b> Un pilote tient la souris, un copilote lit la mission et vérifie. On échange les rôles à chaque projet. Les prénoms se règlent sur l'<a href="../">accueil</a>.</li>
+      <li><b>Prédire avant d'essayer.</b> Chaque projet commence par une prédiction écrite. Comparer ensuite avec ce qui se passe vraiment, c'est là qu'on apprend.</li>
+      <li><b>Des questions plutôt que des réponses.</b> « Qu'est-ce que tu voulais ? Qu'est-ce qui se passe ? Où est la différence ? » Puis laissez chercher.</li>
+      <li><b>Les indices dans l'ordre.</b> Une question, puis où chercher, puis un exemple sur un autre cas. On n'ouvre le suivant que si le précédent n'a pas suffi.</li>
+      <li><b>La solution en dernier.</b> Après les trois indices. Une fois lue, on la referme et on refait sans regarder.</li>
+      <li><b>Résumer en une phrase.</b> Chaque projet se termine par « ce que nous avons appris ». Si la phrase est floue, la notion l'est aussi.</li>
+    </ol>
+    <p>L'aide diminue avec le niveau. Le badge en haut de chaque projet l'annonce :</p>
+    <div class="levels-demo"><span class="lvl l3">Tout est expliqué</span><span class="lvl l2">Juste le plan</span><span class="lvl l1">Juste l'objectif</span></div>
+    <p class="small">Si l'enfant utilise un assistant IA comme tuteur, donnez-lui la même règle : poser des questions et donner des indices, jamais écrire le programme à sa place.</p>
+  </section>
+
+  <section class="sec" id="blocs" aria-labelledby="t-blocs">
+    <h2 id="t-blocs">Les blocs à vérifier</h2>
+    <p>Certains blocs des solutions ont un contour <b>en pointillés jaunes</b>. Deux cas :</p>
+    <ul>
+      <li>Le nom du bloc n'a pas pu être vérifié dans l'interface française de MakeCode. La couleur et la forme, elles, sont justes.</li>
+      <li>La valeur vient du fabricant et doit être mesurée sur votre machine : sens des moteurs, angles des servos, seuils des capteurs. Les projets proposent un carnet pour la noter, et la solution se met à jour avec vos mesures.</li>
+    </ul>
+    <p>Les tiroirs des extensions (Wukong, Sonarbit) restent en anglais dans MakeCode. Les fiches officielles du kit Wonder ne sont pas toujours d'accord entre elles sur les ports. En cas de doute, le montage réel a raison : testez, puis notez.</p>
+  </section>
+
+  <section class="sec" id="donnees" aria-labelledby="t-donnees">
+    <h2 id="t-donnees">La progression</h2>
+    <p>Prénoms, projets réussis, carnets et code parent restent dans le navigateur de cet ordinateur. Rien n'est envoyé. Un autre ordinateur ou un autre navigateur repart de zéro.</p>
+    <h3>Sauvegarder ou changer d'ordinateur</h3>
+    <p>Le fichier contient la progression de tous les ateliers, sans le code parent.</p>
+    <div class="row-btns">
+      <button class="btn solid" type="button" id="export">Télécharger la sauvegarde</button>
+      <label class="btn" for="import-file">Reprendre une sauvegarde…</label>
+      <input type="file" id="import-file" accept="application/json,.json" class="sr">
+    </div>
+    <div id="import-confirm" class="tip" hidden><p id="import-txt"></p><div class="row-btns" style="margin-top:8px"><button class="btn solid" type="button" id="import-yes">Oui, remplacer</button><button class="btn" type="button" id="import-no">Annuler</button></div></div>
+    <p class="saved" id="data-msg" role="status"></p>
+    <h3>Tout recommencer</h3>
+    <p>Efface les projets réussis, les carnets et les mesures de la banque de projets. Les prénoms et le code parent restent.</p>
+    <label class="chk"><input type="checkbox" id="reset-all"> Effacer aussi les parcours robot et IA</label>
+    <div class="row-btns"><button class="btn" type="button" id="reset">Effacer la progression</button>
+      <span id="reset-confirm" hidden>Sûr ? <button class="btn solid" type="button" id="reset-yes">Oui, effacer</button> <button class="btn" type="button" id="reset-no">Annuler</button></span></div>
+  </section>
+
+  <section class="sec" id="ajouter" aria-labelledby="t-ajouter">
+    <h2 id="t-ajouter">Ajouter un projet</h2>
+    <p>Chaque projet est un petit fichier dans <code>contenu/projets/</code>. Un script fabrique ensuite sa page et l'ajoute à la banque, avec ses filtres et sa place dans le parcours. La marche à suivre est dans le <a href="https://github.com/joachimpomme-ctrl/atelier-microbit#readme">mode d'emploi du dépôt</a>.</p>
+  </section>
+
+  <section class="sec" aria-labelledby="t-sources">
+    <h2 id="t-sources">Sources</h2>
+    <ul class="small">
+      <li><a href="https://makecode.microbit.org/">MakeCode pour micro:bit</a> et <a href="https://createai.microbit.org/">micro:bit CreateAI</a></li>
+      <li><a href="https://wiki.elecfreaks.com/en/microbit/building-blocks/wonder-building-kit/">Wiki du kit Wonder (Elecfreaks)</a> et <a href="https://learn-en.readthedocs.io/en/latest/microbitKit/Wonder_Building_Kit/index.html">fiches de montage</a></li>
+      <li><a href="https://github.com/elecfreaks/pxt-wukong">Extension Wukong</a> · <a href="https://github.com/elecfreaks/pxt-sonarbit">extension Sonarbit</a></li>
+      <li><a href="https://microbit.org/get-started/user-guide/microbit-createai/">Guide de micro:bit CreateAI</a></li>
+    </ul>
+  </section>
+  <footer class="p-foot small"><a href="../">Accueil</a> · <a href="../projets/">Banque de projets</a></footer>
+</div>
+<script src="../assets/progression.js"></script>
+<script>
+(function(){
+"use strict";
+var ST=window.BANQUE_STORE, CODEKEY="ateliers-code-parent";
+function $(id){ return document.getElementById(id); }
+
+/* ---------- Code parent ---------- */
+function getCode(){ try{ return localStorage.getItem(CODEKEY)||""; }catch(e){ return ""; } }
+function setCode(c){ try{ localStorage.setItem(CODEKEY,c); return true; }catch(e){ return false; } }
+var cmsg=$("code-msg");
+function refreshCode(){ var has=!!getCode(); $("code-none").hidden=has; $("code-some").hidden=!has; }
+$("code-set").addEventListener("click",function(){
+  var v=$("code-new").value;
+  if(v.length<4){ cmsg.textContent="Choisissez un code d'au moins 4 caractères."; return; }
+  if(setCode(v)){ $("code-new").value=""; cmsg.textContent="Code enregistré sur cet ordinateur."; refreshCode(); }
+  else cmsg.textContent="Impossible d'enregistrer le code dans ce navigateur.";
+});
+$("code-change").addEventListener("click",function(){
+  var o=$("code-old").value, n=$("code-new2").value;
+  if(o!==getCode()){ cmsg.textContent="Le code actuel n'est pas le bon."; return; }
+  if(n.length<4){ cmsg.textContent="Le nouveau code doit avoir au moins 4 caractères."; return; }
+  setCode(n); $("code-old").value=""; $("code-new2").value=""; cmsg.textContent="Code changé.";
+});
+refreshCode();
+
+/* ---------- Sauvegarde ---------- */
+var dmsg=$("data-msg");
+$("export").addEventListener("click",function(){
+  var data={};
+  ST.cles.forEach(function(k){ var o=ST.read(k); if(o) data[k]=o; });
+  if(!data["banque-v1"]) data["banque-v1"]=ST.load();
+  var jour=new Date().toISOString().slice(0,10);
+  var blob=new Blob([JSON.stringify({format:"ateliers-microbit",version:1,date:jour,data:data},null,1)],{type:"application/json"});
+  var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="ateliers-microbit-"+jour+".json";
+  document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); },500);
+  dmsg.textContent="Sauvegarde téléchargée.";
+});
+var pending=null;
+$("import-file").addEventListener("change",function(e){
+  var f=e.target.files&&e.target.files[0]; e.target.value=""; if(!f) return;
+  if(f.size>500000){ dmsg.textContent="Ce fichier est trop gros pour être une sauvegarde."; return; }
+  var r=new FileReader();
+  r.onload=function(){
+    var o=null; try{ o=JSON.parse(r.result); }catch(err){}
+    if(!o||o.format!=="ateliers-microbit"||!o.data||typeof o.data!=="object"){ dmsg.textContent="Ce fichier n'est pas une sauvegarde des ateliers."; return; }
+    pending=o.data;
+    $("import-txt").textContent="Remplacer la progression de cet ordinateur par celle de la sauvegarde"+(o.date?" du "+String(o.date).slice(0,10).split("-").reverse().join("/"):"")+" ?";
+    $("import-confirm").hidden=false; dmsg.textContent="";
+  };
+  r.readAsText(f);
+});
+$("import-no").addEventListener("click",function(){ pending=null; $("import-confirm").hidden=true; });
+$("import-yes").addEventListener("click",function(){
+  if(!pending) return; var n=0;
+  ST.cles.forEach(function(k){ var v=pending[k]; if(v&&typeof v==="object"&&!Array.isArray(v)){ try{ localStorage.setItem(k,JSON.stringify(v)); n++; }catch(err){} } });
+  pending=null; $("import-confirm").hidden=true;
+  dmsg.textContent=n?"Sauvegarde reprise.":"Rien à reprendre dans ce fichier.";
+});
+
+/* ---------- Remise à zéro ---------- */
+$("reset").addEventListener("click",function(){ $("reset-confirm").hidden=false; });
+$("reset-no").addEventListener("click",function(){ $("reset-confirm").hidden=true; });
+$("reset-yes").addEventListener("click",function(){
+  var S=ST.load();
+  ST.save({names:S.names,pilot:{},done:{},c:{}});
+  if($("reset-all").checked) ["atelier-robot-v1","atelier-ia-v1"].forEach(function(k){
+    var o=ST.read(k)||{}; try{ localStorage.setItem(k,JSON.stringify({names:o.names||S.names,first:o.first||"1"})); }catch(err){}
+  });
+  $("reset-confirm").hidden=true; $("reset-all").checked=false;
+  dmsg.textContent="Progression effacée.";
+});
+})();
+</script>
+</body>
+</html>

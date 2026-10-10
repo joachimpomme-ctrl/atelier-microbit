@@ -1,0 +1,44 @@
+<!--
+id: microbit-pierre-feuille-ciseaux
+titre: Pierre, feuille, ciseaux
+resume: Secouez la carte : elle choisit au hasard pierre, feuille ou ciseaux, et affiche le dessin.
+materiel: microbit
+niveau: 2
+aide: l2
+duree: 45 min
+notions: hasard, variables, conditions
+parcours: microbit
+ordre: 5
+icone: ciseaux
+-->
+<p class="goal"><b>Votre mission :</b> quand on secoue la carte, elle choisit au hasard entre pierre, feuille et ciseaux, et affiche un dessin pour chacun.</p>
+<div class="predict">
+  <p class="pt">Prédisez d'abord</p>
+  <p>Pour choisir entre trois dessins, combien de nombres différents le hasard doit-il pouvoir donner ?</p>
+  <textarea data-k="@pred" rows="2" placeholder="Notre prédiction…"></textarea>
+</div>
+<div class="m-part">
+  <h3>Le plan</h3>
+  <ol class="steps">
+    <li>Quand on secoue : ranger un nombre au hasard dans une variable <b>choix</b>.</li>
+    <li>Si choix vaut le premier nombre : dessin de la pierre. Sinon si le deuxième : la feuille. Sinon : les ciseaux.</li>
+    <li>Jouez contre quelqu'un avec sa main.</li>
+  </ol>
+</div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Pourquoi ranger le nombre dans une variable, au lieu de tirer au hasard dans chaque « si » ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le hasard est dans le tiroir Maths, la variable dans Variables, le <span class="kw" style="--cat:var(--c-logic)">si … sinon si … sinon</span> dans Logique. Le petit + en bas du bloc si ajoute des « sinon si ».</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Un tirage au sort dans un chapeau : on tire un papier, on le lit, puis on regarde ce qui est écrit. On ne retire pas un papier à chaque question.</p></div></details>
+<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden><div class="prog" data-prog="sol"></div><p class="small">Avec un nouveau tirage dans chaque « si », la carte pourrait n'afficher aucun dessin : c'est pour ça qu'on range le nombre une seule fois.</p></div></div>
+<div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+<div class="bonus">
+  <h3><span>Défi bonus</span>Le tableau des scores</h3>
+  <p>Deux variables de score. A ajoute un point au joueur 1, B au joueur 2, A et B ensemble affichent les scores.</p>
+</div>
+<script>
+Object.assign(PROJET.progs, { "sol": function(B){ return [
+  K.gesture(B,"secouer", K.setVar(B,"choix",K.random(B,0,2)), K.sis(B,[
+    [K.cmp(B,K.vr(B,"choix"),"=",B.num(0)), [K.icon(B,"petit carré")]],
+    [K.cmp(B,K.vr(B,"choix"),"=",B.num(1)), [K.icon(B,"carré")]]
+  ],[K.icon(B,"ciseaux")]))
+]; } });
+</script>

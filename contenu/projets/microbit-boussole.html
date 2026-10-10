@@ -1,0 +1,38 @@
+<!--
+id: microbit-boussole
+titre: La boussole
+resume: La carte indique le nord, le sud, l'est et l'ouest, comme une vraie boussole.
+materiel: microbit
+niveau: 3
+aide: l1
+duree: 1 h
+notions: capteurs, conditions, variables
+parcours: microbit
+ordre: 9
+icone: boussole
+-->
+<p class="goal"><b>Votre mission :</b> la carte affiche N, E, S ou O selon la direction vers laquelle elle pointe.</p>
+<p class="tip">La première fois, la carte demande un réglage : elle affiche un message, puis il faut la pencher dans tous les sens pour allumer tout l'écran. C'est normal.</p>
+<div class="predict">
+  <p class="pt">Prédisez d'abord</p>
+  <p>La boussole donne un angle de 0 à 359. Le nord, c'est 0. À quel angle se trouve l'est ? Le sud ? L'ouest ?</p>
+  <textarea data-k="@pred" rows="2" placeholder="Notre prédiction…"></textarea>
+</div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Le nord, c'est un angle exact, ou une zone autour de 0 ? Jusqu'où s'étend la zone du nord ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>La direction est un bloc rond du tiroir Entrées. Rangez-la dans une variable, puis un si … sinon si avec quatre zones de 90 degrés. Pour le nord, il faut le bloc <span class="kw" style="--cat:var(--c-logic)">ou</span> : plus petit que 45 <b>ou</b> plus grand que 315.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Une horloge : « midi » ne dure pas une seconde, on dit « vers midi » pendant un moment. Chaque direction est une part de gâteau de 90 degrés.</p></div></details>
+<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden><div class="prog" data-prog="sol"></div><p class="small">Loin des aimants, des ordinateurs et des objets en fer : ils perturbent la boussole.</p></div></div>
+<div class="resume"><p class="pt">Résumez en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que nous avons appris…"></textarea></div>
+<div class="bonus">
+  <h3><span>Défi bonus</span>La chasse au trésor</h3>
+  <p>Cachez un objet. Écrivez le chemin en directions et en pas : « 10 pas au nord, 5 pas à l'est ». Un ami le suit avec la boussole.</p>
+</div>
+<script>
+Object.assign(PROJET.progs, { "sol": function(B){ var c=function(){ return K.vr(B,"cap"); }; return [
+  K.forever(B, K.setVar(B,"cap",K.compass(B)), K.sis(B,[
+    [K.or(B,K.cmp(B,c(),"<",B.num(45)),K.cmp(B,c(),">",B.num(315))), [K.text(B,"N")]],
+    [K.cmp(B,c(),"<",B.num(135)), [K.text(B,"E")]],
+    [K.cmp(B,c(),"<",B.num(225)), [K.text(B,"S")]]
+  ],[K.text(B,"O")]))
+]; } });
+</script>
