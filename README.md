@@ -75,13 +75,14 @@ Les pages enfant tutoient l'enfant (« Ta mission », « Prédis d'abord », « 
 1. `<p class="goal"><b>Ta mission :</b> …</p>` : la mission en une phrase.
 2. `<div class="build">` (projets à construire) : lien vers la fiche de montage, branchements dans `<div class="wire">`, consignes de sécurité.
 3. `<div class="predict">` : une question de prédiction, avec un champ `data-k="@pred"` (zone de texte ou boutons radio). La réponse ne doit apparaître nulle part sur la page avant que l'enfant ait répondu. Un élément qui la donne porte `data-apres="@pred"` : il reste caché tant que la prédiction est vide.
-4. Selon l'aide : `<div class="need" data-need="b">` (les blocs à utiliser), `<ol class="steps">` (le pas à pas ou le plan).
-5. `<div class="carnet-form">` si une mesure est utile.
-6. **Exactement trois indices**, sur la mission (pas sur le défi), avec ces titres : `Indice 1 · une question`, `Indice 2 · où chercher`, `Indice 3 · un exemple sur un autre cas`. Balise : `<details class="hint"><summary>…</summary><div class="body"><p>…</p></div></details>`. Aucun ne donne la solution complète.
-7. `<div class="lockbox">` : la solution, `<div class="prog" data-prog="sol">`. Le bouton ne s'active qu'une fois les indices ouverts, puis il demande le code parent.
-8. `<div class="resume">` avec `data-k="@res"`. La page y rappelle automatiquement la prédiction.
-9. `<div class="bonus"><h3><span>Défi bonus</span>Titre</h3>…</div>`, après le résumé. Un coup de pouce éventuel : `<details class="hint-defi">`.
-10. Un `<script>` qui dessine les programmes. Du code Python s'écrit dans `<pre class="py"><code>…</code></pre>` (la typographie automatique ne s'y applique pas) ; n'utiliser que des noms vérifiés dans MakeCode.
+4. Grands défis seulement : `<div class="cdc">`, le cahier des charges, juste après la prédiction. Deux parties : le critère de réussite (`data-k="@critere"`, il doit contenir un nombre), puis un compromis propre au défi, deux choix en boutons radio (`name="compromis" data-k="@compromis"`, chaque choix avec sa conséquence) et la raison (`data-k="@pourquoi"`). Aucun des deux choix n'est la bonne réponse, et aucun ne doit dévoiler la prédiction. Copier le bloc d'un défi existant.
+5. Selon l'aide : `<div class="need" data-need="b">` (les blocs à utiliser), `<ol class="steps">` (le pas à pas ou le plan).
+6. `<div class="carnet-form">` si une mesure est utile.
+7. **Exactement trois indices**, sur la mission (pas sur le défi), avec ces titres : `Indice 1 · une question`, `Indice 2 · où chercher`, `Indice 3 · un exemple sur un autre cas`. Balise : `<details class="hint"><summary>…</summary><div class="body"><p>…</p></div></details>`. Aucun ne donne la solution complète.
+8. `<div class="lockbox">` : la solution, `<div class="prog" data-prog="sol">`. Le bouton ne s'active qu'une fois les indices ouverts, puis il demande le code parent.
+9. `<div class="resume">` avec `data-k="@res"`. La page y rappelle automatiquement la prédiction et, dans les grands défis, le critère et le compromis : l'enfant coche s'ils sont atteints ou s'il referait le même choix.
+10. `<div class="bonus"><h3><span>Défi bonus</span>Titre</h3>…</div>`, après le résumé. Un coup de pouce éventuel : `<details class="hint-defi">`.
+11. Un `<script>` qui dessine les programmes. Du code Python s'écrit dans `<pre class="py"><code>…</code></pre>` (la typographie automatique ne s'y applique pas) ; n'utiliser que des noms vérifiés dans MakeCode.
 
 La page ajoute seule l'en-tête, la barre (pilote, aide, état, « Ouvrir MakeCode »), le bouton de fin « On a réussi ! Projet suivant » et les projets proches.
 
@@ -112,6 +113,7 @@ Un nom de bloc non vérifié dans l'interface française se marque `"lbl"`, une 
 
 - Un projet = une machine ou un objectif concret, testable, en une phrase.
 - Chaque projet commence par une prédiction et finit par une phrase de résumé.
+- Grands défis : un cahier des charges avant de coder (critère de réussite chiffré, compromis argumenté), vérifié à la fin.
 - L'aide diminue avec le niveau : tout expliqué, puis le plan, puis l'objectif seul.
 - Indices en trois niveaux : une question, où chercher, un exemple sur un autre cas. Jamais la solution dans un indice.
 - Solutions derrière le code parent.

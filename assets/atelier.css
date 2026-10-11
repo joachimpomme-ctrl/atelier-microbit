@@ -359,9 +359,19 @@ details.hint-defi > summary{color:var(--ink-2)}
 .fin-btns{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
 .btn.big{font-size:17px;padding:14px 20px;text-decoration:none;display:inline-block}
 .btn:disabled{opacity:.55;cursor:not-allowed;border-style:dashed}
-/* Rappel de la prédiction au résumé */
-.rappel{display:grid;gap:6px}
+/* Rappel de la prédiction, du critère et du compromis au résumé */
+.rappel{display:grid;gap:12px;border-bottom:1px dashed var(--line);padding-bottom:12px}
+.rappel .rp{display:grid;gap:6px}
+.rappel .rp + .rp{border-top:1px dashed var(--line);padding-top:12px}
 .rappel q{font-style:italic}
+/* Cahier des charges des grands défis : critère de réussite et compromis */
+.cdc{border:1.5px solid var(--field-line);border-radius:10px;padding:12px 16px;display:grid;gap:8px;background:var(--panel)}
+.cdc > p:not(.small){margin:0}
+.choix{display:grid;gap:8px}
+.choix label{display:flex;gap:10px;align-items:flex-start;border:1.5px solid var(--line);border-radius:8px;padding:8px 12px;background:var(--panel);cursor:pointer;font-size:15px}
+.choix input{flex:none;width:18px;height:18px;margin:3px 0 0;accent-color:var(--accent)}
+.choix label:has(input:checked){border-color:var(--accent);background:var(--soft)}
+.choix label:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:2px}
 /* Blocs longs : ils passent à la ligne au lieu d'être coupés */
 .ws .line{max-width:100%}
 .ws .blk{max-width:100%}

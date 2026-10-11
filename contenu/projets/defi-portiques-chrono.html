@@ -28,6 +28,20 @@ v2: oui
   <p>En courant, combien de secondes te faut-il pour parcourir les 2 m entre les deux portiques ?</p>
   <textarea data-k="@pred" rows="2" placeholder="Ma prédiction…"></textarea>
 </div>
+<div class="cdc">
+  <p class="pt">Ton cahier des charges</p>
+  <p class="small">À remplir avant de coder. À la fin, la page te le rappelle pour vérifier.</p>
+  <p><b>1. Ton critère de réussite.</b> Comment sauras-tu que c'est réussi ? Écris-le avec un nombre : une distance, un temps, ou un nombre d'essais réussis.</p>
+  <textarea data-k="@critere" rows="2" placeholder="C'est réussi si…" aria-label="Mon critère de réussite"></textarea>
+  <p class="small">Exemple sur un autre cas, le dé électronique. Mauvais critère : « il marche bien », on ne peut pas le vérifier. Bon critère : « je le secoue 10 fois, il affiche 10 fois un nombre de 1 à 6 ».</p>
+  <p><b>2. Ton compromis.</b> Ton portique doit-il voir loin, ou seulement tout près ?</p>
+  <div class="choix" role="radiogroup" aria-label="Ton compromis">
+    <label><input type="radio" name="compromis" data-k="@compromis" value="loin"><span><b>loin</b> : il ne rate personne, mais il peut voir un mur ou un spectateur.</span></label>
+    <label><input type="radio" name="compromis" data-k="@compromis" value="tout près"><span><b>tout près</b> : il ne compte que ce qui passe juste devant, mais un coureur un peu à l'écart n'est pas vu.</span></label>
+  </div>
+  <input class="textin" type="text" maxlength="120" data-k="@pourquoi" placeholder="Je choisis ça parce que…" aria-label="Pourquoi ce choix">
+  <p class="small">Il n'y a pas de bonne réponse : ce qui compte, c'est ta raison. Tu pourras changer d'avis après les tests.</p>
+</div>
 <div class="m-part">
   <h3>Le plan</h3>
   <ol class="steps">

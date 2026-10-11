@@ -54,6 +54,20 @@
   <p>Le robot est dans la pièce d'à côté, porte fermée. Les mesures qu'il envoie vont-elles arriver jusqu'à ta manette ?</p>
   <textarea data-k="defi-rover-martien_pred" rows="2" placeholder="Ma prédiction…"></textarea>
 </div>
+<div class="cdc">
+  <p class="pt">Ton cahier des charges</p>
+  <p class="small">À remplir avant de coder. À la fin, la page te le rappelle pour vérifier.</p>
+  <p><b>1. Ton critère de réussite.</b> Comment sauras-tu que c'est réussi ? Écris-le avec un nombre : une distance, un temps, ou un nombre d'essais réussis.</p>
+  <textarea data-k="defi-rover-martien_critere" rows="2" placeholder="C'est réussi si…" aria-label="Mon critère de réussite"></textarea>
+  <p class="small">Exemple sur un autre cas, le dé électronique. Mauvais critère : « il marche bien », on ne peut pas le vérifier. Bon critère : « je le secoue 10 fois, il affiche 10 fois un nombre de 1 à 6 ».</p>
+  <p><b>2. Ton compromis.</b> L'arrêt automatique doit-il se déclencher loin ou près de l'obstacle ?</p>
+  <div class="choix" role="radiogroup" aria-label="Ton compromis">
+    <label><input type="radio" name="compromis" data-k="defi-rover-martien_compromis" value="loin"><span><b>loin</b> : le robot ne touche jamais rien, mais il refuse de passer dans les endroits étroits.</span></label>
+    <label><input type="radio" name="compromis" data-k="defi-rover-martien_compromis" value="près"><span><b>près</b> : il passe partout, mais il risque de toucher l'obstacle.</span></label>
+  </div>
+  <input class="textin" type="text" maxlength="120" data-k="defi-rover-martien_pourquoi" placeholder="Je choisis ça parce que…" aria-label="Pourquoi ce choix">
+  <p class="small">Il n'y a pas de bonne réponse : ce qui compte, c'est ta raison. Tu pourras changer d'avis après les tests.</p>
+</div>
 <div class="m-part">
   <h2 class="h3">Le plan</h2>
   <ol class="steps">

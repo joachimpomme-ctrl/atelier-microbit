@@ -54,6 +54,20 @@
   <p>Tu poses ta carte de chasseur à 3 m de la balise, et plus personne ne bouge. Le nombre affiché va-t-il rester le même ?</p>
   <textarea data-k="defi-chasse-tresor_pred" rows="2" placeholder="Ma prédiction…"></textarea>
 </div>
+<div class="cdc">
+  <p class="pt">Ton cahier des charges</p>
+  <p class="small">À remplir avant de coder. À la fin, la page te le rappelle pour vérifier.</p>
+  <p><b>1. Ton critère de réussite.</b> Comment sauras-tu que c'est réussi ? Écris-le avec un nombre : une distance, un temps, ou un nombre d'essais réussis.</p>
+  <textarea data-k="defi-chasse-tresor_critere" rows="2" placeholder="C'est réussi si…" aria-label="Mon critère de réussite"></textarea>
+  <p class="small">Exemple sur un autre cas, le dé électronique. Mauvais critère : « il marche bien », on ne peut pas le vérifier. Bon critère : « je le secoue 10 fois, il affiche 10 fois un nombre de 1 à 6 ».</p>
+  <p><b>2. Ton compromis.</b> Ta barre de 5 lumières doit-elle couvrir toute la pièce, ou être précise tout près du trésor ?</p>
+  <div class="choix" role="radiogroup" aria-label="Ton compromis">
+    <label><input type="radio" name="compromis" data-k="defi-chasse-tresor_compromis" value="toute la pièce"><span><b>toute la pièce</b> : de loin, tu sais déjà si tu chauffes, mais près du trésor la barre est vite pleine.</span></label>
+    <label><input type="radio" name="compromis" data-k="defi-chasse-tresor_compromis" value="précise tout près"><span><b>précise tout près</b> : tu trouves la cachette exacte, mais de loin la barre reste éteinte.</span></label>
+  </div>
+  <input class="textin" type="text" maxlength="120" data-k="defi-chasse-tresor_pourquoi" placeholder="Je choisis ça parce que…" aria-label="Pourquoi ce choix">
+  <p class="small">Il n'y a pas de bonne réponse : ce qui compte, c'est ta raison. Tu pourras changer d'avis après les tests.</p>
+</div>
 <div class="m-part">
   <h2 class="h3">Le plan</h2>
   <ol class="steps">

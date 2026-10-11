@@ -90,6 +90,10 @@ function bindCrew(){
   document.querySelectorAll("#crew input[name=pilot]").forEach(function(r){ r.addEventListener("change",function(){ S.pilot[P.id]=r.value; save(); renderCrew(); }); });
 }
 
+/* Clés du carnet propres à ce projet */
+var PREDK=P.id+"_pred", VERK=P.id+"_verdict",
+    CRITK=P.id+"_critere", CRITOK=P.id+"_critere_ok", COMPK=P.id+"_compromis", COMPOK=P.id+"_compromis_ok";
+
 /* ---------- Réussi : un état en haut, un seul geste en bas ---------- */
 function esc2(s){ return esc(s); }
 function renderDone(){
@@ -98,7 +102,7 @@ function renderDone(){
   var fin=document.querySelector(".p-finish"); if(!fin) return;
   var nx=fin.getAttribute("data-suivant"), nxt=fin.getAttribute("data-suivant-titre"), end=fin.getAttribute("data-fin"), endt=fin.getAttribute("data-fin-titre");
   if(!on){
-    fin.innerHTML='<p class="pt">Fini ?</p><p>Quand la machine fait ce que demande la mission, et que tu as écrit ta phrase de résumé :</p>'
+    fin.innerHTML='<p class="pt">Fini ?</p><p>'+(document.querySelector('[data-k="'+CRITK+'"]')?'Quand ton critère de réussite est atteint':'Quand la machine fait ce que demande la mission')+', et que tu as écrit ta phrase de résumé :</p>'
       +'<div class="fin-btns"><button class="btn solid big" type="button" data-fini>'+(nx?'On a réussi ! Projet suivant →':'On a réussi !')+'</button></div>';
   } else {
     fin.innerHTML='<p class="pt ok">Projet réussi ✓</p>'
@@ -123,19 +127,35 @@ function renderApres(){
   });
 }
 
-/* ---------- Au résumé : rappeler la prédiction ---------- */
-var PREDK=P.id+"_pred", VERK=P.id+"_verdict";
+/* ---------- Au résumé : rappeler la prédiction, le critère et le compromis ---------- */
+function vide(v){ return v===undefined||v===null||String(v).trim()===""; }
+function aChamp(k){ return !!document.querySelector('[data-k="'+k+'"]'); }
+function seg(name,label,opts,key){
+  var cur=S.c[key]||"";
+  return '<span class="seg" role="radiogroup" aria-label="'+esc(label)+'">'
+    +opts.map(function(o){ return '<label><input type="radio" name="'+name+'" value="'+esc(o)+'" data-rk="'+key+'"'+(cur===o?' checked':'')+'><span>'+esc(o)+'</span></label>'; }).join("")+'</span>';
+}
 function renderRappel(){
-  var box=document.querySelector(".resume"); if(!box || !document.querySelector('[data-k="'+PREDK+'"]')) return;
+  var box=document.querySelector(".resume"); if(!box) return;
+  var parts=[];
+  if(aChamp(PREDK)){
+    var v=S.c[PREDK];
+    parts.push(vide(v) ? '<p class="small">Tu n\'avais pas noté de prédiction. La prochaine fois, prédis avant d\'essayer\u00a0: c\'est en comparant qu\'on apprend.</p>'
+      : '<p>Ta prédiction\u00a0: <q>'+esc(String(v))+'</q></p><p class="small">Elle était…</p>'+seg("verdict","Ta prédiction était",["juste","en partie","fausse"],VERK));
+  }
+  if(aChamp(CRITK)){
+    var c=S.c[CRITK];
+    parts.push(vide(c) ? '<p class="small">Tu n\'as pas écrit de critère de réussite. Remonte au cahier des charges, écris-le, puis refais le test.</p>'
+      : '<p>Ton critère\u00a0: <q>'+esc(String(c))+'</q></p><p class="small">Après tes tests, il est atteint\u00a0?</p>'+seg("critere_ok","Ton critère est atteint",["oui","presque","non"],CRITOK));
+  }
+  if(aChamp(COMPK) && !vide(S.c[COMPK])){
+    parts.push('<p>Ton compromis\u00a0: <q>'+esc(String(S.c[COMPK]))+'</q></p><p class="small">Après tes tests, tu referais le même choix\u00a0?</p>'+seg("compromis_ok","Tu referais le même choix",["oui","non"],COMPOK));
+  }
+  if(!parts.length) return;
   var r=box.querySelector(".rappel");
   if(!r){ r=document.createElement("div"); r.className="rappel"; box.insertBefore(r, box.querySelector("textarea")); }
-  var v=S.c[PREDK];
-  if(v===undefined||v===null||String(v).trim()===""){ r.innerHTML='<p class="small">Tu n\'avais pas noté de prédiction. La prochaine fois, prédis avant d\'essayer : c\'est en comparant qu\'on apprend.</p>'; return; }
-  var cur=S.c[VERK]||"";
-  r.innerHTML='<p>Ta prédiction : <q>'+esc(String(v))+'</q></p><p class="small">Elle était…</p>'
-    +'<span class="seg" role="radiogroup" aria-label="Ta prédiction était">'
-    +["juste","en partie","fausse"].map(function(o){ return '<label><input type="radio" name="verdict" value="'+o+'"'+(cur===o?' checked':'')+'><span>'+o+'</span></label>'; }).join("")+'</span>';
-  r.querySelectorAll("input").forEach(function(inp){ inp.addEventListener("change",function(){ S.c[VERK]=inp.value; save(); }); });
+  r.innerHTML=parts.map(function(p){ return '<div class="rp">'+p+'</div>'; }).join("");
+  r.querySelectorAll("input[data-rk]").forEach(function(inp){ inp.addEventListener("change",function(){ S.c[inp.getAttribute("data-rk")]=inp.value; save(); }); });
 }
 
 /* ---------- Champs du carnet ---------- */
@@ -153,7 +173,7 @@ function bindFields(){
       if(el.type==="radio"){ if(el.checked) S.c[k]=el.value; }
       else if(el.type==="number"){ var n=parseInt(el.value,10); var mn=el.min!==""?+el.min:-Infinity, mx=el.max!==""?+el.max:Infinity; S.c[k]=(isNaN(n)||n<mn||n>mx)?null:n; }
       else S.c[k]=el.value.slice(0,400);
-      save(); if(el.type==="radio") syncFields(); renderAllProgs(); renderSaved(el); renderApres(); if(k===PREDK) renderRappel();
+      save(); if(el.type==="radio") syncFields(); renderAllProgs(); renderSaved(el); renderApres(); if(k===PREDK||k===CRITK||k===COMPK) renderRappel();
     });
   });
 }

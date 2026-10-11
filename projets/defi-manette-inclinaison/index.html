@@ -54,6 +54,20 @@
   <p>La manette est posée bien à plat sur la table et ne bouge pas. Quel nombre va-t-elle afficher pour l'inclinaison vers l'avant ou l'arrière ?</p>
   <textarea data-k="defi-manette-inclinaison_pred" rows="2" placeholder="Ma prédiction…"></textarea>
 </div>
+<div class="cdc">
+  <p class="pt">Ton cahier des charges</p>
+  <p class="small">À remplir avant de coder. À la fin, la page te le rappelle pour vérifier.</p>
+  <p><b>1. Ton critère de réussite.</b> Comment sauras-tu que c'est réussi ? Écris-le avec un nombre : une distance, un temps, ou un nombre d'essais réussis.</p>
+  <textarea data-k="defi-manette-inclinaison_critere" rows="2" placeholder="C'est réussi si…" aria-label="Mon critère de réussite"></textarea>
+  <p class="small">Exemple sur un autre cas, le dé électronique. Mauvais critère : « il marche bien », on ne peut pas le vérifier. Bon critère : « je le secoue 10 fois, il affiche 10 fois un nombre de 1 à 6 ».</p>
+  <p><b>2. Ton compromis.</b> Ta manette doit-elle être très sensible ou plutôt douce ?</p>
+  <div class="choix" role="radiogroup" aria-label="Ton compromis">
+    <label><input type="radio" name="compromis" data-k="defi-manette-inclinaison_compromis" value="très sensible"><span><b>très sensible</b> : une petite inclinaison suffit pour aller vite, mais rouler lentement devient difficile.</span></label>
+    <label><input type="radio" name="compromis" data-k="defi-manette-inclinaison_compromis" value="plutôt douce"><span><b>plutôt douce</b> : rouler lentement est facile, mais il faut beaucoup pencher pour aller vite.</span></label>
+  </div>
+  <input class="textin" type="text" maxlength="120" data-k="defi-manette-inclinaison_pourquoi" placeholder="Je choisis ça parce que…" aria-label="Pourquoi ce choix">
+  <p class="small">Il n'y a pas de bonne réponse : ce qui compte, c'est ta raison. Tu pourras changer d'avis après les tests.</p>
+</div>
 <div class="m-part">
   <h2 class="h3">Le plan</h2>
   <ol class="steps">
