@@ -375,3 +375,4 @@ details.hint-defi > summary{color:var(--ink-2)}
 .pcard .aide{font:600 13px/1.3 var(--f-body);color:var(--ink-2)}
 .pcard .res{display:grid;gap:4px;align-content:start}
 .ws.defile{box-shadow:inset -14px 0 12px -12px rgba(0,0,0,.35)}
+.p-main code,.sec code{overflow-wrap:anywhere}

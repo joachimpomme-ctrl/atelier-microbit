@@ -1,0 +1,60 @@
+<!--
+id: defi-gestes-ia
+titre: Le robot qui obéit aux gestes
+resume: Une IA reconnaît tes gestes sur la manette et le robot obéit : avancer, tourner, s'arrêter.
+materiel: createai
+niveau: 2
+aide: l2
+duree: 2 h
+notions: IA, radio, conditions, moteurs
+parcours: defis
+ordre: 2
+icone: ia
+cartes: 2
+v2: oui
+-->
+<p class="goal"><b>Ta mission :</b> tu apprends à une IA trois gestes de ta main qui tient la manette : pousser, tourner le poignet, poing immobile. Le robot obéit : il avance, il tourne, il s'arrête. Cette fois, ce n'est pas toi qui écris les règles des gestes : l'IA les déduit de tes exemples.</p>
+<div class="build">
+  <p><b>Matériel :</b> le robot MiniCar avec sa carte micro:bit V2 et ses 3 piles AAA, et une deuxième carte micro:bit V2 pour la manette, avec son boîtier de piles. Les deux cartes doivent être des V2.</p>
+  <div class="wire"><span>carte 1 : <b>manette (l'IA)</b></span><span>carte 2 : <b>robot</b></span></div>
+  <p class="small">Tu réutilises la manette et le robot de <a href="../defi-manette-inclinaison/">la manette à inclinaison</a>. Pour entraîner l'IA, connecte la manette à CreateAI comme dans le <a href="../../ia/">parcours IA</a>.</p>
+  <p class="small">Le modèle reste sur la manette. L'extension MiniCar va seulement sur le robot : dans MakeCode, clique sur Extensions, puis colle l'adresse <code style="word-break:break-all">https://github.com/keyestudio2019/MiniCar</code>.</p>
+  <p class="small">Choisis un numéro de groupe radio et écris-le sur un post-it collé sur chaque carte.</p>
+  <p class="small"><b>Sécurité :</b> fais rouler le robot au sol, loin des escaliers. Choisis un geste stop très différent des deux autres, et garde le bouton A de la manette comme arrêt d'urgence.</p>
+</div>
+<div class="predict">
+  <p class="pt">Prédis d'abord</p>
+  <p>Tu fais 10 gestes devant le robot. Combien de fois va-t-il faire autre chose que ce que tu voulais ?</p>
+  <textarea data-k="@pred" rows="2" placeholder="Ma prédiction…"></textarea>
+</div>
+<div class="m-part">
+  <h3>Le plan</h3>
+  <ol class="steps">
+    <li>Dans CreateAI, crée trois actions : pousser, tourner le poignet, poing immobile. Enregistre plusieurs exemples de chacune, puis entraîne le modèle. Teste : fais chaque geste plusieurs fois. La carte trouve-t-elle le bon ?</li>
+    <li>Clique sur <span class="ui">Modifier dans MakeCode</span>. Pour chaque geste, montre une icône différente. Teste sur la manette seule, sans le robot : l'icône suit-elle ton geste ?</li>
+    <li>Dans chaque événement <span class="kw" style="--cat:var(--c-ml)">au démarrage de ML …</span>, envoie aussi un nombre par radio : 1, 2 ou 3. Sur le robot, affiche le nombre reçu, moteurs coupés. Teste : chaque geste fait apparaître son nombre sur le robot.</li>
+    <li>Programme le robot : 1, il avance ; 2, il tourne ; 3, il s'arrête. Teste au sol : fais 10 gestes, compte les erreurs et note-les dans le carnet.</li>
+    <li>N'envoie l'ordre que si la certitude du geste dépasse 80 %. Refais 10 gestes. Compare les erreurs avec ta première série.</li>
+  </ol>
+</div>
+<div class="carnet-form">
+  <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
+  <div class="numrow">
+    <label>Erreurs sur 10 gestes, sans seuil : <input class="numin" type="number" min="0" max="10" data-k="@err1"></label>
+    <label>Erreurs sur 10 gestes, avec le seuil de 80 % : <input class="numin" type="number" min="0" max="10" data-k="@err2"></label>
+  </div>
+  <p class="saved" hidden>Noté.</p>
+</div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Quand le robot fait autre chose que prévu, qui s'est trompé : l'IA de la manette, ou le programme du robot ? Qu'est-ce qui, sur la manette, peut te le dire ? Et si c'est l'IA : qu'est-ce qui se ressemble entre les deux gestes qu'elle confond ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le tiroir <span class="kw" style="--cat:var(--c-ml)">Apprentissage automatique</span> : les événements <span class="kw" style="--cat:var(--c-ml)">au démarrage de ML …</span> et le bloc rond <span class="kw" style="--cat:var(--c-ml)">certitude (%) ML …</span>. Le tiroir <span class="kw" style="--cat:var(--c-radio)">Radio</span> : envoyer un nombre, réagir quand un nombre arrive. Sur le robot : <span class="kw" style="--cat:var(--c-logic)">si … alors … sinon</span> et les blocs du tiroir de l'extension MiniCar.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Un arbitre de foot ne siffle que s'il est sûr d'avoir vu une faute. S'il doute, il laisse jouer. Et quand il siffle, un seul signal suffit : tous les joueurs comprennent.</p></div></details>
+<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden>
+  <p>La logique, en mots : sur la manette, on garde le programme préparé par CreateAI. Dans chaque événement « au démarrage de ML … » : si la certitude de ce geste dépasse 80 %, montrer son icône et envoyer son numéro par radio (pousser 1, tourner 2, immobile 3). Le bouton A envoie 3 lui aussi : c'est l'arrêt d'urgence. Sur le robot : quand un nombre arrive, si c'est 1, avancer ; sinon si c'est 2, tourner ; sinon si c'est 3, s'arrêter. Le même groupe radio sur les deux cartes.</p>
+  <p>Si l'IA confond deux gestes, on ne corrige pas le programme : on corrige les exemples. Plus d'exemples, plus variés, et des gestes plus différents les uns des autres.</p>
+  <p class="small">Pour aller plus loin : <a href="https://microbit.org/projects/make-it-code-it/ai-light-switch/" target="_blank" rel="noopener">le projet officiel AI light switch, un geste reconnu envoie un message radio (en anglais)</a> · <a href="https://microbit.org/get-started/user-guide/microbit-createai/" target="_blank" rel="noopener">le guide de micro:bit CreateAI</a>.</p>
+</div></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+<div class="bonus">
+  <h3><span>Défi bonus</span>L'IA de ton copain</h3>
+  <p>Ton copain fait les gestes avec ton modèle, sans rien changer. Compte ses erreurs sur 10. Ensuite, ajoute ses exemples à lui dans CreateAI, entraîne à nouveau et refais le test.</p>
+</div>

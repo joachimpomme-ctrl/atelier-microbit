@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Un clap fait démarrer le MiniCar, deux claps rapides le font faire demi-tour, trois claps le font danser avec ses phares.">
+<title>Le robot aux applaudissements · Banque de projets micro:bit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="../../assets/atelier.css">
+<script>window.PROJET={id:"defi-applaudissements",progs:{},needs:{}};</script>
+</head>
+<body data-racine="../../">
+<!-- Page générée par outils/generer.py à partir de contenu/projets/defi-applaudissements.html : modifier la source, pas cette page. -->
+<main class="page proj">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../../">Accueil</a> <span aria-hidden="true">›</span> <a href="../">Banque de projets</a> <span aria-hidden="true">›</span> <a href="../../defis/">Les grands défis</a></nav>
+  <header class="p-head">
+    <div class="led5 p-icon" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div>
+    <div>
+      <p class="eyebrow">Robot MiniCar · niveau 2 · Apprenti · 1 h 30 · 1 carte micro:bit</p>
+      <h1>Le robot aux applaudissements</h1>
+      <ul class="learn"><li class="lbl">Notions</li><li>son</li><li>variables</li><li>conditions</li><li>moteurs</li></ul>
+    </div>
+  </header>
+  <div class="p-bar">
+    <div class="crew-pick" id="crew">
+      <span>Pilote :</span>
+      <span class="seg" role="radiogroup" aria-label="Qui pilote ce projet ?">
+        <label><input type="radio" name="pilot" value="1"><span data-pilot="1">Équipier 1</span></label>
+        <label><input type="radio" name="pilot" value="2"><span data-pilot="2">Équipier 2</span></label>
+      </span>
+      <span class="small">Copilote : <b id="copilot">Équipier 2</b></span>
+    </div>
+    <div class="p-bar-r">
+      <span class="lvl l2">Juste le plan</span>
+      <span class="etat" data-etat>À faire</span>
+      <a class="btn mk" href="https://makecode.microbit.org/" target="_blank" rel="noopener">Ouvrir MakeCode <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+  <p class="tip">Ce projet a besoin d'une carte <b>micro:bit V2</b> (logo doré sur la face avant).</p>
+  <div class="p-main">
+<p class="goal"><b>Ta mission :</b> tu tapes une fois dans tes mains, le MiniCar démarre. Deux claps rapides, il fait demi-tour. Trois claps, il danse avec ses phares.</p>
+<p class="small">Premier projet avec le MiniCar ? Commence par <a href="../../robot/">le parcours robot</a>.</p>
+<div class="build">
+  <p><b>Matériel :</b> le robot MiniCar avec sa carte micro:bit V2 et ses 3 piles AAA. Une seule carte suffit : le micro qui entend les claps est sur la carte V2.</p>
+  <p class="small">Les blocs du robot sont dans le tiroir de l'extension MiniCar. Pour l'ajouter : dans MakeCode, clique sur Extensions, puis colle cette adresse dans la recherche.</p>
+  <div class="urlbox"><code id="url-minicar">https://github.com/keyestudio2019/MiniCar</code><button class="btn" type="button" data-copy="url-minicar">Copier</button></div>
+  <p class="small"><b>Sécurité :</b> prévois un arrêt d'urgence. Les boutons A et B appuyés ensemble arrêtent les moteurs.</p>
+</div>
+<div class="predict">
+  <p class="pt">Prédis d'abord</p>
+  <p>Quand le robot roule, ses moteurs font du bruit. À ton avis, peut-il « s'entendre » et croire que tu as tapé dans tes mains ?</p>
+  <textarea data-k="defi-applaudissements_pred" rows="2" placeholder="Ma prédiction…"></textarea>
+</div>
+<div class="m-part">
+  <h2 class="h3">Le plan</h2>
+  <ol class="steps">
+    <li>Montre le niveau sonore sur l'écran, sans arrêt. Note le nombre dans le silence, puis quand tu tapes dans tes mains.</li>
+    <li>Choisis un seuil entre ces deux nombres. À chaque clap, les phares s'allument un instant. Teste : un clap allume les phares, ta voix normale non.</li>
+    <li>Compte les claps : chaque clap ajoute 1 à un compteur, et les claps tapés en moins d'1 seconde comptent ensemble. Montre le compteur sur l'écran. Prédis : si tu tapes deux fois très lentement, combien la carte va-t-elle compter ?</li>
+    <li>Une action pour chaque nombre : 1 clap, il démarre ; 2 claps, demi-tour ; 3 claps, la danse des phares. Ensuite, le compteur revient à 0. Teste chaque nombre, robot posé au sol.</li>
+    <li>Lance le robot avec un clap, puis ne fais plus aucun bruit. Observe-le un moment. Compare avec ta prédiction.</li>
+  </ol>
+</div>
+<div class="carnet-form">
+  <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>Note dans le carnet</p>
+  <div class="numrow"><label>Niveau sonore dans le silence : <input class="numin wide" type="number" min="0" max="255" data-k="defi-applaudissements_silence"></label></div>
+  <div class="numrow"><label>Niveau sonore d'un clap : <input class="numin wide" type="number" min="0" max="255" data-k="defi-applaudissements_clap"></label></div>
+  <div class="numrow"><label>Seuil choisi : <input class="numin wide" type="number" min="0" max="255" data-k="defi-applaudissements_seuil"></label></div>
+  <p class="small">Le niveau sonore va de 0 à 255.</p>
+  <p class="saved" hidden>Noté.</p>
+</div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Deux claps rapides, c'est un seul ordre. Deux claps tapés à 5 secondes d'écart, ce sont deux ordres. Comment la carte peut-elle faire la différence ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le tiroir Entrées : le niveau sonore, le bloc qui réagit à un son fort, et le bloc qui règle à partir de quel niveau un son compte comme fort. Toujours dans Entrées, un bloc donne le temps écoulé depuis l'allumage de la carte, en millisecondes. Le compteur se fabrique dans le tiroir Variables. Les moteurs et les phares sont dans le tiroir de l'extension MiniCar.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>La souris d'un ordinateur : un clic sélectionne, un double-clic ouvre. Après le premier clic, l'ordinateur attend un tout petit moment pour voir si un deuxième arrive. Ensuite seulement, il décide.</p></div></details>
+<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden>
+  <p>La logique, en mots : au démarrage, règle le seuil du son fort avec la valeur notée dans le carnet. Quand un son fort arrive : ajoute 1 au compteur et range le temps écoulé dans une variable « dernier clap ». Dans « toujours » : si le compteur est plus grand que 0 et que plus de 1000 ms sont passées depuis le dernier clap, alors regarde le compteur (1, 2 ou 3), fais l'action, puis remets le compteur à 0. Une autre variable peut retenir si le robot roule ou s'il est arrêté.</p>
+  <p data-apres="defi-applaudissements_pred">Si le robot réagit tout seul pendant qu'il roule, le bruit de ses moteurs en est peut-être la cause. Deux pistes à essayer : monter le seuil, ou n'écouter les claps que quand le robot est arrêté.</p>
+  <p class="small">Pour aller plus loin : <a href="https://microbit.org/projects/make-it-code-it/clap-lights/" target="_blank" rel="noopener">le projet officiel Clap lights</a> et <a href="https://microbit.org/projects/make-it-code-it/clapometer/" target="_blank" rel="noopener">le projet officiel Clap-o-meter</a>.</p>
+</div></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="defi-applaudissements_res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+<div class="bonus">
+  <h2 class="h3"><span>Défi bonus</span>Le concours de claps</h2>
+  <p>La carte retient le niveau sonore le plus fort qu'elle a entendu. Le bouton A l'affiche. Qui tape le plus fort, toi ou ton copain ?</p>
+</div>
+
+  </div>
+  <section class="p-finish" aria-label="Fin du projet" data-suivant="../defi-lucioles/" data-suivant-titre="Les lucioles synchronisées"></section>
+  <nav class="p-nav" aria-label="Et après ?"><div class="p-seq"><p class="eyebrow">Les grands défis · étape 7 sur 18</p><div class="p-links"><a class="p-link" href="../defi-morse/"><span class="eyebrow">← Étape précédente</span><b>Le messager Morse</b></a><a class="p-link next" href="../defi-lucioles/"><span class="eyebrow">Étape suivante →</span><b>Les lucioles synchronisées</b></a></div></div><div class="p-related"><p class="eyebrow">Projets proches</p><div class="mini-cards"><a class="mini-card" href="../defi-suis-moi/"><div class="led5" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span></div><span><b>Suis-moi, avec laisse radio</b><small>MiniCar · niveau 2 · Juste le plan</small></span></a><a class="mini-card" href="../defi-manette-inclinaison/"><div class="led5" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span></div><span><b>La manette à inclinaison</b><small>MiniCar · niveau 1 · Juste le plan</small></span></a><a class="mini-card" href="../defi-rover-martien/"><div class="led5" aria-hidden="true"><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span></div><span><b>Le rover martien</b><small>MiniCar · niveau 2 · Juste le plan</small></span></a></div></div></nav>
+  <footer class="p-foot small">Les prénoms se règlent sur l'<a href="../../">accueil</a>. Code parent, sécurité et sauvegarde : <a href="../../parents/">page des parents</a>.</footer>
+</main>
+<script src="../../assets/progression.js"></script>
+<script src="../../assets/blocs.js"></script>
+<script src="../../assets/projet.js"></script>
+</body>
+</html>

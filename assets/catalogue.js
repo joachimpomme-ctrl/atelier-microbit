@@ -20,6 +20,11 @@ window.CATALOGUE = {
    "nom": "IA CreateAI",
    "court": "IA",
    "desc": "Apprendre à la carte à reconnaître des mouvements."
+  },
+  "multi": {
+   "nom": "Plusieurs kits",
+   "court": "Multi-kits",
+   "desc": "Le MiniCar et le kit Wonder ensemble, avec plusieurs cartes en radio."
   }
  },
  "niveaux": {
@@ -50,31 +55,468 @@ window.CATALOGUE = {
   "ia": {
    "titre": "Parcours IA",
    "url": "ia/"
+  },
+  "defis": {
+   "titre": "Les grands défis",
+   "url": "defis/"
   }
  },
  "notions": [
-  "construire",
   "moteurs",
+  "construire",
   "conditions",
-  "boutons",
   "variables",
+  "boutons",
+  "radio",
   "expérience",
+  "ultrasons",
   "servo",
   "IA",
-  "ultrasons",
   "boucles",
-  "écran",
   "son",
   "capteurs",
+  "écran",
   "hasard",
-  "radio",
-  "accéléromètre",
   "suivi de ligne",
+  "accéléromètre",
   "lumières",
+  "données",
+  "listes",
+  "fonctions",
+  "infrarouge",
   "matériel",
   "sécurité"
  ],
  "projets": [
+  {
+   "id": "defi-applaudissements",
+   "titre": "Le robot aux applaudissements",
+   "resume": "Un clap fait démarrer le MiniCar, deux claps rapides le font faire demi-tour, trois claps le font danser avec ses phares.",
+   "materiel": "minicar",
+   "niveau": 2,
+   "notions": [
+    "son",
+    "variables",
+    "conditions",
+    "moteurs"
+   ],
+   "ordre": 7,
+   "duree": "1 h 30",
+   "parcours": "defis",
+   "url": "projets/defi-applaudissements/",
+   "icone": "#...#,.#.#.,#...#,.....,.###.",
+   "stockage": "banque",
+   "modele": "",
+   "v2": true,
+   "type": "projet",
+   "aide": "l2",
+   "cartes": "1"
+  },
+  {
+   "id": "defi-bras-rejoue",
+   "titre": "Le bras qui apprend un geste",
+   "resume": "Tu guides le bras robot Wonder avec la télécommande, il enregistre ton geste dans une liste, puis il le rejoue tout seul en boucle.",
+   "materiel": "wonder",
+   "niveau": 3,
+   "notions": [
+    "listes",
+    "radio",
+    "servo",
+    "boucles"
+   ],
+   "ordre": 16,
+   "duree": "3 h",
+   "parcours": "defis",
+   "url": "projets/defi-bras-rejoue/",
+   "icone": "##...,.#...,.####,....#,...##",
+   "stockage": "banque",
+   "modele": "",
+   "v2": false,
+   "type": "projet",
+   "aide": "l2",
+   "cartes": "2"
+  },
+  {
+   "id": "defi-chasse-tresor",
+   "titre": "La chasse au trésor radio",
+   "resume": "Une balise cachée émet par radio ; la carte du chasseur affiche une jauge qui monte quand il s'approche.",
+   "materiel": "microbit",
+   "niveau": 1,
+   "notions": [
+    "radio",
+    "conditions",
+    "son"
+   ],
+   "ordre": 3,
+   "duree": "1 h",
+   "parcours": "defis",
+   "url": "projets/defi-chasse-tresor/",
+   "icone": ".###.,#####,#.#.#,#####,#####",
+   "stockage": "banque",
+   "modele": "",
+   "v2": false,
+   "type": "projet",
+   "aide": "l2",
+   "cartes": "2 à 4"
+  },
+  {
+   "id": "defi-convoi",
+   "titre": "Le convoi de robots",
+   "resume": "Tu pilotes le MiniCar avec la manette à inclinaison, et une voiture Wonder le suit toute seule à 20 cm grâce à son sonar:bit.",
+   "materiel": "multi",
+   "niveau": 3,
+   "notions": [
+    "ultrasons",
+    "radio",
+    "moteurs",
+    "variables"
+   ],
+   "ordre": 15,
+   "duree": "3 h",
+   "parcours": "defis",
+   "url": "projets/defi-convoi/",
+   "icone": ".....,##.##,##.##,.....,#.#.#",
+   "stockage": "banque",
+   "modele": "",
+   "v2": true,
+   "type": "projet",
+   "aide": "l2",
+   "cartes": "3"
+  },
+  {
+   "id": "defi-gestes-ia",
+   "titre": "Le robot qui obéit aux gestes",
+   "resume": "Une IA reconnaît tes gestes sur la manette et le robot obéit : avancer, tourner, s'arrêter.",
+   "materiel": "createai",
+   "niveau": 2,
+   "notions": [
+    "IA",
+    "radio",
+    "conditions",
+    "moteurs"
+   ],
+   "ordre": 2,
+   "duree": "2 h",
+   "parcours": "defis",
+   "url": "projets/defi-gestes-ia/",
+   "icone": "..#..,.#.#.,#...#,.#.#.,..#..",
+   "stockage": "banque",
+   "modele": "",
+   "v2": true,
+   "type": "projet",
+   "aide": "l2",
+   "cartes": "2"
+  },
+  {
+   "id": "defi-labyrinthe",
+   "titre": "La sortie de labyrinthe",
+   "resume": "La voiture Wonder regarde à gauche, devant et à droite avec son sonar:bit monté sur un servo, et sort toute seule d'un labyrinthe en carton.",
+   "materiel": "wonder",
+   "niveau": 3,
+   "notions": [
+    "fonctions",
+    "ultrasons",
+    "servo",
+    "conditions"
+   ],
+   "ordre": 18,
+   "duree": "4 h",
+   "parcours": "defis",
+   "url": "projets/defi-labyrinthe/",
+   "icone": "#####,#...#,#.#.#,#.#..,###.#",
+   "stockage": "banque",
+   "modele": "",
+   "v2": false,
+   "type": "projet",
+   "aide": "l2",
+   "cartes": "1 à 2"
+  },
+  {
+   "id": "defi-lucioles",
+   "titre": "Les lucioles synchronisées",
+   "resume": "Plusieurs cartes clignotent chacune à son rythme, puis finissent par clignoter ensemble en s'écoutant par radio.",
+   "materiel": "microbit",
+   "niveau": 2,
+   "notions": [
+    "radio",
+    "variables",
+    "boucles",
+    "lumières"
+   ],
+   "ordre": 8,
+   "duree": "1 h 30",
+   "parcours": "defis",
+   "url": "projets/defi-lucioles/",
+   "icone": "#...#,..#..,.#...,...#.,#.#..",
+   "stockage": "banque",
+   "modele": "",
+   "v2": false,
+   "type": "projet",
+   "aide": "l2",
+   "cartes": "3 ou plus"
+  },
+  {
+   "id": "defi-manette-inclinaison",
+   "titre": "La manette à inclinaison",
+   "resume": "Penche une carte comme un volant : le robot avance, recule et tourne, plus ou moins vite.",
+   "materiel": "minicar",
+   "niveau": 1,
+   "notions": [
+    "radio",
+    "accéléromètre",
+    "variables",
+    "moteurs"
+   ],
+   "ordre": 1,
+   "duree": "2 h",
+   "parcours": "defis",
+   "url": "projets/defi-manette-inclinaison/",
+   "icone": ".....,.###.,#.#.#,#####,.#.#.",
+   "stockage": "banque",
+   "modele": "",
+   "v2": true,
+   "type": "projet",
+   "aide": "l2",
+   "cartes": "2"
+  },
+  {
+   "id": "defi-morse",
+   "titre": "Le messager Morse",
+   "resume": "Tu tapes une lettre en Morse sur ta carte ; le robot la bipe, la décode et obéit.",
+   "materiel": "minicar",
+   "niveau": 2,
+   "notions": [
+    "radio",
+    "listes",
+    "son",
+    "lumières"
+   ],
+   "ordre": 6,
+   "duree": "2 h",
+   "parcours": "defis",
+   "url": "projets/defi-morse/",
+   "icone": ".....,#.###,.....,###.#,.....",
+   "stockage": "banque",
+   "modele": "",
+   "v2": true,
+   "type": "projet",
+   "aide": "l2",
+   "cartes": "2"
+  },
+  {
+   "id": "defi-peage",
+   "titre": "Le péage automatique",
+   "resume": "Une barrière Wonder repère le MiniCar qui arrive sur sa ligne, lui demande son badge par radio, puis se lève et lui donne le feu vert.",
+   "materiel": "multi",
+   "niveau": 3,
+   "notions": [
+    "radio",
+    "servo",
+    "suivi de ligne",
+    "conditions"
+   ],
+   "ordre": 14,
+   "duree": "3 h",
+   "parcours": "defis",
+   "url": "projets/defi-peage/",
+   "icone": "#####,....#,....#,....#,#...#",
+   "stockage": "banque",
+   "modele": "",
+   "v2": true,
+   "type": "projet",
+   "aide": "l2",
+   "cartes": "2 à 3"
+  },
+  {
+   "id": "defi-piege-intrus",
+   "titre": "Le piège anti-intrus",
+   "resume": "Une tour Wonder surveille la porte : si quelqu'un passe, elle lève un drapeau, sonne et prévient ta carte de poche par radio.",
+   "materiel": "wonder",
+   "niveau": 2,
+   "notions": [
+    "ultrasons",
+    "radio",
+    "servo",
+    "variables"
+   ],
+   "ordre": 9,
+   "duree": "2 h",
+   "parcours": "defis",
+   "url": "projets/defi-piege-intrus/",
+   "icone": "..#..,.###.,.###.,#####,..#..",
+   "stockage": "banque",
+   "modele": "",
+   "v2": true,
+   "type": "projet",
+   "aide": "l2",
+   "cartes": "2 à 3"
+  },
+  {
+   "id": "defi-portiques-chrono",
+   "titre": "Les portiques chronométrés",
+   "resume": "Deux portiques à 2 m l'un de l'autre détectent un passage, et une troisième carte affiche le temps et la vitesse.",
+   "materiel": "multi",
+   "niveau": 2,
+   "notions": [
+    "radio",
+    "ultrasons",
+    "variables",
+    "expérience"
+   ],
+   "ordre": 12,
+   "duree": "2 h",
+   "parcours": "defis",
+   "url": "projets/defi-portiques-chrono/",
+   "icone": ".###.,#.#.#,#.###,#...#,.###.",
+   "stockage": "banque",
+   "modele": "",
+   "v2": true,
+   "type": "projet",
+   "aide": "l2",
+   "cartes": "3"
+  },
+  {
+   "id": "defi-rover-martien",
+   "titre": "Le rover martien",
+   "resume": "Ramène le robot à la base sans le voir, seulement avec les mesures qu'il t'envoie par radio.",
+   "materiel": "minicar",
+   "niveau": 2,
+   "notions": [
+    "radio",
+    "ultrasons",
+    "capteurs",
+    "conditions"
+   ],
+   "ordre": 4,
+   "duree": "2 h",
+   "parcours": "defis",
+   "url": "projets/defi-rover-martien/",
+   "icone": "..#..,.###.,#####,.#.#.,#.#.#",
+   "stockage": "banque",
+   "modele": "",
+   "v2": true,
+   "type": "projet",
+   "aide": "l2",
+   "cartes": "2"
+  },
+  {
+   "id": "defi-station-meteo",
+   "titre": "La station météo qui enregistre",
+   "resume": "Une station mesure pendant des heures la lumière, le bruit, la température et la pluie, puis tu ouvres ses vraies courbes dans le navigateur.",
+   "materiel": "wonder",
+   "niveau": 2,
+   "notions": [
+    "données",
+    "capteurs",
+    "expérience"
+   ],
+   "ordre": 10,
+   "duree": "2 h",
+   "parcours": "defis",
+   "url": "projets/defi-station-meteo/",
+   "icone": ".##..,####.,#####,.....,#.#.#",
+   "stockage": "banque",
+   "modele": "",
+   "v2": true,
+   "type": "projet",
+   "aide": "l2",
+   "cartes": "1 à 2"
+  },
+  {
+   "id": "defi-suis-moi",
+   "titre": "Suis-moi, avec laisse radio",
+   "resume": "Le robot MiniCar suit ta main à distance constante, et s'arrête en réclamant si tu t'éloignes trop avec la carte laisse.",
+   "materiel": "minicar",
+   "niveau": 2,
+   "notions": [
+    "ultrasons",
+    "radio",
+    "moteurs",
+    "variables"
+   ],
+   "ordre": 13,
+   "duree": "2 h",
+   "parcours": "defis",
+   "url": "projets/defi-suis-moi/",
+   "icone": "#....,.#...,..#..,...##,...##",
+   "stockage": "banque",
+   "modele": "",
+   "v2": true,
+   "type": "projet",
+   "aide": "l2",
+   "cartes": "2"
+  },
+  {
+   "id": "defi-sumo",
+   "titre": "Le sumo des robots",
+   "resume": "Le MiniCar et une voiture Wonder s'affrontent tout seuls dans une arène bordée de noir, et une carte arbitre lance et arrête le combat par radio.",
+   "materiel": "multi",
+   "niveau": 3,
+   "notions": [
+    "capteurs",
+    "suivi de ligne",
+    "radio",
+    "conditions"
+   ],
+   "ordre": 17,
+   "duree": "4 h",
+   "parcours": "defis",
+   "url": "projets/defi-sumo/",
+   "icone": "##.##,##.##,.....,.###.,#...#",
+   "stockage": "banque",
+   "modele": "",
+   "v2": true,
+   "type": "projet",
+   "aide": "l2",
+   "cartes": "3"
+  },
+  {
+   "id": "defi-un-deux-trois-soleil",
+   "titre": "1, 2, 3 Soleil des robots",
+   "resume": "Une carte arbitre passe au vert ou au rouge ; tu pilotes le robot à la télécommande sans bouger au rouge.",
+   "materiel": "minicar",
+   "niveau": 2,
+   "notions": [
+    "radio",
+    "hasard",
+    "infrarouge",
+    "variables"
+   ],
+   "ordre": 5,
+   "duree": "1 h 30",
+   "parcours": "defis",
+   "url": "projets/defi-un-deux-trois-soleil/",
+   "icone": "#.#.#,.###.,##.##,.###.,#.#.#",
+   "stockage": "banque",
+   "modele": "",
+   "v2": true,
+   "type": "projet",
+   "aide": "l2",
+   "cartes": "2"
+  },
+  {
+   "id": "defi-vitesse-robot",
+   "titre": "La vraie vitesse du robot",
+   "resume": "Le MiniCar avance vers un mur en enregistrant sa distance, et sa courbe te donne sa vraie vitesse en centimètres par seconde.",
+   "materiel": "minicar",
+   "niveau": 2,
+   "notions": [
+    "données",
+    "ultrasons",
+    "expérience"
+   ],
+   "ordre": 11,
+   "duree": "2 h",
+   "parcours": "defis",
+   "url": "projets/defi-vitesse-robot/",
+   "icone": "..#..,...#.,#####,...#.,..#..",
+   "stockage": "banque",
+   "modele": "",
+   "v2": true,
+   "type": "projet",
+   "aide": "l2",
+   "cartes": "1"
+  },
   {
    "id": "microbit-badge",
    "titre": "Le badge lumineux",
@@ -94,7 +536,8 @@ window.CATALOGUE = {
    "modele": "",
    "v2": false,
    "type": "projet",
-   "aide": "l3"
+   "aide": "l3",
+   "cartes": ""
   },
   {
    "id": "microbit-boite-a-musique",
@@ -115,7 +558,8 @@ window.CATALOGUE = {
    "modele": "",
    "v2": true,
    "type": "projet",
-   "aide": "l3"
+   "aide": "l3",
+   "cartes": ""
   },
   {
    "id": "microbit-boussole",
@@ -137,7 +581,8 @@ window.CATALOGUE = {
    "modele": "",
    "v2": false,
    "type": "projet",
-   "aide": "l1"
+   "aide": "l1",
+   "cartes": ""
   },
   {
    "id": "microbit-de",
@@ -159,7 +604,8 @@ window.CATALOGUE = {
    "modele": "",
    "v2": false,
    "type": "projet",
-   "aide": "l3"
+   "aide": "l3",
+   "cartes": ""
   },
   {
    "id": "microbit-messager",
@@ -181,7 +627,8 @@ window.CATALOGUE = {
    "modele": "",
    "v2": false,
    "type": "projet",
-   "aide": "l2"
+   "aide": "l2",
+   "cartes": ""
   },
   {
    "id": "microbit-pierre-feuille-ciseaux",
@@ -203,7 +650,8 @@ window.CATALOGUE = {
    "modele": "",
    "v2": false,
    "type": "projet",
-   "aide": "l2"
+   "aide": "l2",
+   "cartes": ""
   },
   {
    "id": "microbit-plus-rapide",
@@ -226,7 +674,8 @@ window.CATALOGUE = {
    "modele": "",
    "v2": false,
    "type": "projet",
-   "aide": "l1"
+   "aide": "l1",
+   "cartes": ""
   },
   {
    "id": "microbit-podometre",
@@ -248,7 +697,8 @@ window.CATALOGUE = {
    "modele": "",
    "v2": false,
    "type": "projet",
-   "aide": "l2"
+   "aide": "l2",
+   "cartes": ""
   },
   {
    "id": "microbit-thermometre",
@@ -269,7 +719,8 @@ window.CATALOGUE = {
    "modele": "",
    "v2": false,
    "type": "projet",
-   "aide": "l3"
+   "aide": "l3",
+   "cartes": ""
   },
   {
    "id": "microbit-veilleuse",
@@ -291,7 +742,8 @@ window.CATALOGUE = {
    "modele": "",
    "v2": false,
    "type": "projet",
-   "aide": "l2"
+   "aide": "l2",
+   "cartes": ""
   },
   {
    "id": "wonder-araignee",
@@ -313,7 +765,8 @@ window.CATALOGUE = {
    "modele": "21",
    "v2": false,
    "type": "projet",
-   "aide": "l1"
+   "aide": "l1",
+   "cartes": ""
   },
   {
    "id": "wonder-balayeuse",
@@ -336,7 +789,8 @@ window.CATALOGUE = {
    "modele": "16",
    "v2": false,
    "type": "projet",
-   "aide": "l1"
+   "aide": "l1",
+   "cartes": ""
   },
   {
    "id": "wonder-bascule",
@@ -358,7 +812,8 @@ window.CATALOGUE = {
    "modele": "13",
    "v2": false,
    "type": "projet",
-   "aide": "l1"
+   "aide": "l1",
+   "cartes": ""
   },
   {
    "id": "wonder-base-gyroscope",
@@ -380,7 +835,8 @@ window.CATALOGUE = {
    "modele": "3",
    "v2": false,
    "type": "projet",
-   "aide": "l2"
+   "aide": "l2",
+   "cartes": ""
   },
   {
    "id": "wonder-bateau-a-rames",
@@ -403,7 +859,8 @@ window.CATALOGUE = {
    "modele": "10",
    "v2": false,
    "type": "projet",
-   "aide": "l2"
+   "aide": "l2",
+   "cartes": ""
   },
   {
    "id": "wonder-bateau-pirate",
@@ -427,7 +884,8 @@ window.CATALOGUE = {
    "modele": "26",
    "v2": false,
    "type": "projet",
-   "aide": "l1"
+   "aide": "l1",
+   "cartes": ""
   },
   {
    "id": "wonder-batteur",
@@ -450,7 +908,8 @@ window.CATALOGUE = {
    "modele": "25",
    "v2": false,
    "type": "projet",
-   "aide": "l1"
+   "aide": "l1",
+   "cartes": ""
   },
   {
    "id": "wonder-bigfoot",
@@ -473,7 +932,8 @@ window.CATALOGUE = {
    "modele": "6",
    "v2": false,
    "type": "projet",
-   "aide": "l2"
+   "aide": "l2",
+   "cartes": ""
   },
   {
    "id": "wonder-bras-robot",
@@ -496,7 +956,8 @@ window.CATALOGUE = {
    "modele": "8",
    "v2": false,
    "type": "projet",
-   "aide": "l1"
+   "aide": "l1",
+   "cartes": ""
   },
   {
    "id": "wonder-camion-echelle",
@@ -519,7 +980,8 @@ window.CATALOGUE = {
    "modele": "18",
    "v2": false,
    "type": "projet",
-   "aide": "l1"
+   "aide": "l1",
+   "cartes": ""
   },
   {
    "id": "wonder-catapulte",
@@ -542,7 +1004,8 @@ window.CATALOGUE = {
    "modele": "29",
    "v2": false,
    "type": "projet",
-   "aide": "l1"
+   "aide": "l1",
+   "cartes": ""
   },
   {
    "id": "wonder-chaises-volantes",
@@ -565,7 +1028,8 @@ window.CATALOGUE = {
    "modele": "5",
    "v2": false,
    "type": "projet",
-   "aide": "l1"
+   "aide": "l1",
+   "cartes": ""
   },
   {
    "id": "wonder-chariot-telecommande",
@@ -589,7 +1053,8 @@ window.CATALOGUE = {
    "modele": "12",
    "v2": false,
    "type": "projet",
-   "aide": "l1"
+   "aide": "l1",
+   "cartes": ""
   },
   {
    "id": "wonder-chenille",
@@ -611,7 +1076,8 @@ window.CATALOGUE = {
    "modele": "19",
    "v2": false,
    "type": "projet",
-   "aide": "l2"
+   "aide": "l2",
+   "cartes": ""
   },
   {
    "id": "wonder-chien-robot",
@@ -634,7 +1100,8 @@ window.CATALOGUE = {
    "modele": "32",
    "v2": false,
    "type": "projet",
-   "aide": "l2"
+   "aide": "l2",
+   "cartes": ""
   },
   {
    "id": "wonder-compteur-paniers",
@@ -657,7 +1124,8 @@ window.CATALOGUE = {
    "modele": "7",
    "v2": false,
    "type": "projet",
-   "aide": "l1"
+   "aide": "l1",
+   "cartes": ""
   },
   {
    "id": "wonder-demarrer",
@@ -678,7 +1146,8 @@ window.CATALOGUE = {
    "modele": "",
    "v2": false,
    "type": "guide",
-   "aide": ""
+   "aide": "",
+   "cartes": ""
   },
   {
    "id": "wonder-essuie-glace",
@@ -701,7 +1170,8 @@ window.CATALOGUE = {
    "modele": "28",
    "v2": false,
    "type": "projet",
-   "aide": "l3"
+   "aide": "l3",
+   "cartes": ""
   },
   {
    "id": "wonder-grande-roue",
@@ -723,7 +1193,8 @@ window.CATALOGUE = {
    "modele": "11",
    "v2": false,
    "type": "projet",
-   "aide": "l1"
+   "aide": "l1",
+   "cartes": ""
   },
   {
    "id": "wonder-guitare-ultrasons",
@@ -747,7 +1218,8 @@ window.CATALOGUE = {
    "modele": "14",
    "v2": true,
    "type": "projet",
-   "aide": "l1"
+   "aide": "l1",
+   "cartes": ""
   },
   {
    "id": "wonder-helicoptere",
@@ -769,7 +1241,8 @@ window.CATALOGUE = {
    "modele": "22",
    "v2": false,
    "type": "projet",
-   "aide": "l3"
+   "aide": "l3",
+   "cartes": ""
   },
   {
    "id": "wonder-lanceur-toupie",
@@ -792,7 +1265,8 @@ window.CATALOGUE = {
    "modele": "24",
    "v2": false,
    "type": "projet",
-   "aide": "l1"
+   "aide": "l1",
+   "cartes": ""
   },
   {
    "id": "wonder-locomotive",
@@ -815,7 +1289,8 @@ window.CATALOGUE = {
    "modele": "23",
    "v2": false,
    "type": "projet",
-   "aide": "l2"
+   "aide": "l2",
+   "cartes": ""
   },
   {
    "id": "wonder-lumiere-ambiance",
@@ -838,7 +1313,8 @@ window.CATALOGUE = {
    "modele": "30",
    "v2": false,
    "type": "projet",
-   "aide": "l1"
+   "aide": "l1",
+   "cartes": ""
   },
   {
    "id": "wonder-machine-a-dessiner",
@@ -860,7 +1336,8 @@ window.CATALOGUE = {
    "modele": "31",
    "v2": false,
    "type": "projet",
-   "aide": "l2"
+   "aide": "l2",
+   "cartes": ""
   },
   {
    "id": "wonder-moto",
@@ -882,7 +1359,8 @@ window.CATALOGUE = {
    "modele": "1",
    "v2": false,
    "type": "projet",
-   "aide": "l3"
+   "aide": "l3",
+   "cartes": ""
   },
   {
    "id": "wonder-porte-automatique",
@@ -905,7 +1383,8 @@ window.CATALOGUE = {
    "modele": "9",
    "v2": false,
    "type": "projet",
-   "aide": "l2"
+   "aide": "l2",
+   "cartes": ""
   },
   {
    "id": "wonder-poubelle",
@@ -928,7 +1407,8 @@ window.CATALOGUE = {
    "modele": "27",
    "v2": false,
    "type": "projet",
-   "aide": "l1"
+   "aide": "l1",
+   "cartes": ""
   },
   {
    "id": "wonder-pousse-pousse",
@@ -951,7 +1431,8 @@ window.CATALOGUE = {
    "modele": "17",
    "v2": false,
    "type": "projet",
-   "aide": "l2"
+   "aide": "l2",
+   "cartes": ""
   },
   {
    "id": "wonder-robot-marcheur",
@@ -974,7 +1455,8 @@ window.CATALOGUE = {
    "modele": "15",
    "v2": false,
    "type": "projet",
-   "aide": "l2"
+   "aide": "l2",
+   "cartes": ""
   },
   {
    "id": "wonder-sechoir-pluie",
@@ -999,7 +1481,8 @@ window.CATALOGUE = {
    "modele": "20",
    "v2": false,
    "type": "projet",
-   "aide": "l1"
+   "aide": "l1",
+   "cartes": ""
   },
   {
    "id": "wonder-suiveur-de-ligne",
@@ -1022,7 +1505,8 @@ window.CATALOGUE = {
    "modele": "2",
    "v2": false,
    "type": "projet",
-   "aide": "l1"
+   "aide": "l1",
+   "cartes": ""
   },
   {
    "id": "wonder-testeur-servo",
@@ -1044,7 +1528,8 @@ window.CATALOGUE = {
    "modele": "",
    "v2": false,
    "type": "projet",
-   "aide": "l3"
+   "aide": "l3",
+   "cartes": ""
   },
   {
    "id": "wonder-voiture-prudente",
@@ -1068,7 +1553,8 @@ window.CATALOGUE = {
    "modele": "4",
    "v2": false,
    "type": "projet",
-   "aide": "l2"
+   "aide": "l2",
+   "cartes": ""
   },
   {
    "id": "robot-m1",

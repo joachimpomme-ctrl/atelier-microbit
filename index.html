@@ -151,7 +151,9 @@ var PARC=[
   {id:"wonder", t:"Les machines Wonder", meta:"Kit Wonder 32 en 1", icon:".#.#.,#####,##.##,#####,.#.#.",
    desc:"Construire des machines avec les briques, puis les programmer : moteurs, servos, capteurs, télécommande radio."},
   {id:"ia", t:"L'IA par l'exemple", meta:"micro:bit V2 · CreateAI", icon:"..#..,.#.#.,#...#,.#.#.,..#..",
-   desc:"Apprendre à la carte à reconnaître tes mouvements par l'exemple, et comprendre pourquoi elle se trompe."}
+   desc:"Apprendre à la carte à reconnaître tes mouvements par l'exemple, et comprendre pourquoi elle se trompe."},
+  {id:"defis", t:"Les grands défis", meta:"MiniCar, Wonder et plusieurs cartes", icon:"##.##,##.##,.....,.###.,#...#",
+   desc:"Des projets plus ambitieux qui font travailler ensemble les robots et plusieurs cartes : manette, chasse au trésor, péage, sumo."}
 ];
 $("parcours").innerHTML=PARC.map(function(a,idx){
   var info=C.parcours[a.id];
@@ -173,7 +175,7 @@ $("parcours").innerHTML=PARC.map(function(a,idx){
 }).join("");
 
 /* Matériel */
-var ORDRE=["microbit","minicar","wonder","createai"];
+var ORDRE=["microbit","minicar","wonder","createai","multi"];
 $("mats").innerHTML=ORDRE.map(function(m){
   var list=P.filter(function(p){ return p.materiel===m; }), M=C.materiels[m];
   return '<a class="mat" href="projets/#materiel='+m+'"><b>'+esc(M.nom)+'</b><span>'+esc(M.desc)+'</span><small>'+list.length+' projets · '+nb(list)+' réussis</small></a>';

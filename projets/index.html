@@ -74,7 +74,7 @@
 "use strict";
 var C=window.CATALOGUE, S=window.BANQUE_STORE.load();
 var NIV=C.niveaux, MAT=C.materiels;
-var ORDRE_MAT=["microbit","minicar","wonder","createai"];
+var ORDRE_MAT=["microbit","minicar","wonder","createai","multi"];
 var NOTIONS_VISIBLES=10;
 var state={q:"",materiel:[],niveau:[],notion:[],etat:"",parcours:""};
 
@@ -84,7 +84,7 @@ function led(pat){ return pat.replace(/,/g,"").split("").map(function(c){ return
 
 /* ---------- Recherche tolérante : petits mots ignorés, singulier/pluriel, synonymes ---------- */
 var VIDES="a au aux avec ce cette de des du en et je la le les mon ma mes moi ou par pour projet projets qui que sur te tu ton ta tes un une veux voudrais faire fait carte cartes".split(" ");
-var SYN={ "servomoteur":["servo"], "telecommande":["radio","telecommande"], "telecommander":["radio","telecommande"], "manette":["radio","telecommande"],
+var SYN={ "servomoteur":["servo"], "telecommande":["radio","telecommande"], "telecommander":["radio","telecommande"], "manette":["manette","radio","telecommande"],
   "musique":["musique","son","melodie","note","guitare"], "melodie":["musique","son","melodie"], "chanson":["musique","son","melodie"], "son":["son","musique","melodie"],
   "lumiere":["lumiere","led","neopixel","veilleuse","phare"], "led":["led","lumiere","neopixel"], "lampe":["lumiere","led","veilleuse"],
   "jeu":["jeu","jouer","partie"], "jouer":["jeu","jouer","partie"], "voiture":["voiture","moto","chariot","camion","vehicule","robot"],

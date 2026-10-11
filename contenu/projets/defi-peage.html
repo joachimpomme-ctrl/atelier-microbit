@@ -1,0 +1,61 @@
+<!--
+id: defi-peage
+titre: Le péage automatique
+resume: Une barrière Wonder repère le MiniCar qui arrive sur sa ligne, lui demande son badge par radio, puis se lève et lui donne le feu vert.
+materiel: multi
+niveau: 3
+aide: l2
+duree: 3 h
+notions: radio, servo, suivi de ligne, conditions
+parcours: defis
+ordre: 14
+icone: peage
+cartes: 2 à 3
+v2: oui
+-->
+<p class="goal"><b>Ta mission :</b> le MiniCar suit une ligne noire jusqu'au péage. La barrière, construite avec le kit Wonder, le voit arriver et lui dit de s'arrêter. Elle lui demande son badge par radio. Si le code est bon, elle se lève et lui donne le feu vert.</p>
+<div class="build">
+  <p><b>Matériel :</b> le robot MiniCar (carte micro:bit V2, 3 piles AAA). Pour la barrière, le kit Wonder : la carte Wukong avec sa batterie, une deuxième carte micro:bit, un servo et le sonar:bit. En option, une troisième carte micro:bit avec un boîtier de piles (2 piles AAA) ou une batterie USB, pour le panneau compteur. La piste : du ruban adhésif noir sur une grande feuille blanche, avec la barrière au bord.</p>
+  <div class="wire"><span>carte 1 : <b>barrière</b></span><span>carte 2 : <b>MiniCar</b></span><span>servo → <b>S0</b></span><span>sonar:bit → <b>P1</b></span></div>
+  <p class="small">Règle le servo avec <a href="../wonder-testeur-servo/">le testeur de servo</a> avant de fixer le bras de la barrière. Pour la barrière seule, <a href="../wonder-porte-automatique/">la porte automatique</a> fait presque la même chose.</p>
+  <p class="small">Les blocs du robot sont dans le tiroir de l'extension MiniCar. Pour l'ajouter : dans MakeCode, ouvre Extensions et colle l'adresse <code style="word-break:break-all">https://github.com/keyestudio2019/MiniCar</code>.</p>
+  <p class="small">Choisis un numéro de groupe radio et écris-le sur un post-it collé sur chaque carte. La barrière et le robot ont le même.</p>
+  <p class="small"><b>Sécurité :</b> le bras de la barrière ne doit pas pincer les doigts. Fais-le bouger doucement, et garde les doigts hors de son chemin.</p>
+</div>
+<div class="predict">
+  <p class="pt">Prédis d'abord</p>
+  <p>Le robot suit la ligne dans une boucle <span class="kw" style="--cat:var(--c-base)">toujours</span>. Quand il reçoit « stop », tu arrêtes ses moteurs. À ton avis, va-t-il rester arrêté devant la barrière ?</p>
+  <textarea data-k="@pred" rows="2" placeholder="Ma prédiction…"></textarea>
+</div>
+<div class="m-part">
+  <h3>Le plan</h3>
+  <ol class="steps">
+    <li>La barrière seule : avec le testeur, trouve l'angle « baissée » et l'angle « levée ». Note-les. Puis : si le sonar:bit voit un objet à moins de 10 cm, la barrière se lève, attend, puis se baisse. Teste avec ta main.</li>
+    <li>Le robot seul : il suit la ligne, comme dans <a href="../../robot/#m9">le suiveur de ligne de l'atelier robot</a>. Ajoute : quand il reçoit « stop », il s'arrête. Teste avec la carte de la barrière, qui envoie « stop » quand tu appuies sur A. Compare avec ta prédiction.</li>
+    <li>La conversation : quand le sonar:bit voit le robot, la barrière envoie « stop », puis « badge ? ». Le robot répond avec son code. La barrière affiche le code reçu. Teste.</li>
+    <li>La réponse : si le code est le bon, la barrière se lève et envoie « go », et le robot repart. Sinon, elle reste baissée. Elle se baisse quand le robot est passé. Teste aussi avec un mauvais code, puis deux passages de suite.</li>
+  </ol>
+</div>
+<div class="carnet-form">
+  <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
+  <div class="numrow">
+    <label>Barrière baissée : <input class="numin wide" type="number" min="0" max="360" data-k="@bas"> °</label>
+    <label>Barrière levée : <input class="numin wide" type="number" min="0" max="360" data-k="@haut"> °</label>
+    <label>Code du badge : <input class="numin wide" type="number" min="0" max="9999" data-k="@code"></label>
+  </div>
+  <p class="saved" hidden>Noté.</p>
+</div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Le robot reçoit trois messages différents : « stop », « badge ? » et « go ». La barrière, elle, reçoit des codes. Comment chaque carte sait-elle ce qu'elle vient de recevoir, et quoi faire ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le tiroir <span class="kw" style="--cat:var(--c-radio)">Radio</span> : un bloc envoie un texte, un autre réagit quand un texte arrive. Le tiroir <span class="kw" style="--cat:var(--c-logic)">Logique</span> pour comparer ce qui est arrivé. Pour la barrière : <span class="kw" style="--cat:var(--c-wukong)">Set 360° servo S0 angle to …</span> (tiroir wuKong) et <span class="kw" style="--cat:var(--c-sonar)">Ultrasonic distance in unit cm at pin …</span> (tiroir sonar:bit). Pour le robot : les blocs du tiroir de l'extension MiniCar.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Un gardien devant une cabane. « Halte ! » : tu t'arrêtes. « Mot de passe ? » : tu réponds. Si c'est le bon, il ouvre et dit « Entre ! ». Chacun attend la phrase de l'autre avant de parler.</p></div></details>
+<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden>
+  <p>La logique, en mots : pour s'y retrouver, chaque message commence par une lettre qui dit qui parle, « B » pour la barrière et « R » pour le robot. Par exemple « Bstop », « Bbadge », « Bgo » et « R42 ».</p>
+  <p>Barrière : une variable état (libre, attend, ouverte). Dans <span class="kw" style="--cat:var(--c-base)">toujours</span>, si l'état est libre et que la distance est plus petite que 10 : envoyer « Bstop », puis « Bbadge », état = attend. Quand un texte arrive : si c'est « R » suivi du bon code, lever le bras, envoyer « Bgo », état = ouverte. Si l'état est ouverte et que le sonar:bit ne voit plus rien de proche : baisser le bras, état = libre.</p>
+  <p data-apres="@pred">Robot : une variable roule, vraie au départ. Dans <span class="kw" style="--cat:var(--c-base)">toujours</span>, si roule est vrai, il suit la ligne ; sinon, moteurs arrêtés. Sans cette variable, la boucle relance les moteurs juste après le « stop ». Quand « Bstop » arrive : roule = faux. Quand « Bbadge » arrive : il envoie « R » et son code. Quand « Bgo » arrive : roule = vrai.</p>
+  <p class="small">Les morceaux viennent de <a href="../wonder-porte-automatique/">la porte automatique</a> et du <a href="../../robot/#m9">suiveur de ligne de l'atelier robot</a>.</p>
+</div></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+<div class="bonus">
+  <h3><span>Défi bonus</span>Le panneau compteur</h3>
+  <p>Une troisième carte, sur piles, compte les passages. La barrière lui envoie un message chaque fois qu'elle se lève, et le panneau affiche le total.</p>
+</div>

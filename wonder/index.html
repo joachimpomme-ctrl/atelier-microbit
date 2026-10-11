@@ -103,7 +103,7 @@ document.getElementById("n-free").textContent=nb(free)+" / "+free.length;
 var cur=-1; steps.some(function(p,i){ if(!p._done){ cur=i; return true; } return false; });
 document.getElementById("steps").innerHTML=steps.map(function(p,i){
   var h=CA.card(p,"../",{etape:i+1,sansTags:true});
-  return i===cur ? h.replace('class="pcard"','class="pcard cur"') : h;
+  return i===cur ? h.replace('class="pcard','class="pcard cur') : h;
 }).join("");
 document.getElementById("free").innerHTML=free.map(function(p){ return CA.card(p,"../",{modele:true,sansTags:true}); }).join("");
 

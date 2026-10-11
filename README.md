@@ -13,16 +13,17 @@ Le site est publié avec GitHub Pages : https://joachimpomme-ctrl.github.io/atel
 | `wonder/` | Parcours Wonder | 10 étapes, puis les 24 autres machines du kit, réglages notés |
 | `robot/` | Parcours robot | robot Keyestudio MiniCar, 9 missions sur une page |
 | `ia/` | Parcours IA | micro:bit V2 et CreateAI, 8 missions sur une page |
+| `defis/` | Les grands défis | 18 projets qui combinent MiniCar, Wonder et plusieurs cartes, rangés en 5 blocs |
 | `parents/` | Pour les parents | code des solutions, sécurité, rôle de l'adulte, sauvegarde, remise à zéro |
 
-La banque compte 61 entrées : 44 pages projet, plus les 17 missions des parcours robot et IA (listées dans la banque, elles ouvrent leur page de parcours).
+La banque compte 79 entrées : 62 pages projet, plus les 17 missions des parcours robot et IA (listées dans la banque, elles ouvrent leur page de parcours).
 
 ### Le classement
 
-- **Matériel** : `microbit` (la carte seule), `minicar` (robot MiniCar), `wonder` (kit Wonder 32 en 1), `createai` (IA).
+- **Matériel** : `microbit` (la carte seule), `minicar` (robot MiniCar), `wonder` (kit Wonder 32 en 1), `createai` (IA), `multi` (MiniCar et Wonder ensemble).
 - **Niveau** : 1 Découverte, 2 Apprenti, 3 Ingénieur.
 - **Notions** : mots libres (`moteurs`, `radio`, `servo`…). Réutiliser les notions existantes avant d'en créer une. La liste est dans `assets/catalogue.js` après génération.
-- **Parcours** : `microbit`, `robot`, `wonder`, `ia`. Dans un parcours, `ordre` de 0 à 99 = les étapes dans l'ordre ; de 100 à 899 = les fiches libres (pour Wonder : 100 + numéro du modèle).
+- **Parcours** : `microbit`, `robot`, `wonder`, `ia`, `defis`. Dans un parcours, `ordre` de 0 à 99 = les étapes dans l'ordre ; de 100 à 899 = les fiches libres (pour Wonder : 100 + numéro du modèle).
 
 ## Ajouter un projet
 
@@ -64,6 +65,7 @@ icone: de
 | `parcours`, `ordre` | non | voir « Le classement » |
 | `icone` | non | un nom du dictionnaire `ICONES` dans `outils/generer.py` (motif 5×5, `#` = allumé) |
 | `v2` | non | `oui` si le projet a besoin d'une micro:bit V2 |
+| `cartes` | non | nombre de cartes micro:bit nécessaires, en texte (`2`, `2 à 4`, `3 ou plus`) |
 | `type` | non | `guide` pour une page de préparation |
 
 ### Le corps

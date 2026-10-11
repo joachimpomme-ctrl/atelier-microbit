@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Une carte arbitre passe au vert ou au rouge ; tu pilotes le robot à la télécommande sans bouger au rouge.">
+<title>1, 2, 3 Soleil des robots · Banque de projets micro:bit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="../../assets/atelier.css">
+<script>window.PROJET={id:"defi-un-deux-trois-soleil",progs:{},needs:{}};</script>
+</head>
+<body data-racine="../../">
+<!-- Page générée par outils/generer.py à partir de contenu/projets/defi-un-deux-trois-soleil.html : modifier la source, pas cette page. -->
+<main class="page proj">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../../">Accueil</a> <span aria-hidden="true">›</span> <a href="../">Banque de projets</a> <span aria-hidden="true">›</span> <a href="../../defis/">Les grands défis</a></nav>
+  <header class="p-head">
+    <div class="led5 p-icon" aria-hidden="true"><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span></div>
+    <div>
+      <p class="eyebrow">Robot MiniCar · niveau 2 · Apprenti · 1 h 30 · 2 cartes micro:bit</p>
+      <h1>1, 2, 3 Soleil des robots</h1>
+      <ul class="learn"><li class="lbl">Notions</li><li>radio</li><li>hasard</li><li>infrarouge</li><li>variables</li></ul>
+    </div>
+  </header>
+  <div class="p-bar">
+    <div class="crew-pick" id="crew">
+      <span>Pilote :</span>
+      <span class="seg" role="radiogroup" aria-label="Qui pilote ce projet ?">
+        <label><input type="radio" name="pilot" value="1"><span data-pilot="1">Équipier 1</span></label>
+        <label><input type="radio" name="pilot" value="2"><span data-pilot="2">Équipier 2</span></label>
+      </span>
+      <span class="small">Copilote : <b id="copilot">Équipier 2</b></span>
+    </div>
+    <div class="p-bar-r">
+      <span class="lvl l2">Juste le plan</span>
+      <span class="etat" data-etat>À faire</span>
+      <a class="btn mk" href="https://makecode.microbit.org/" target="_blank" rel="noopener">Ouvrir MakeCode <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+  <p class="tip">Ce projet a besoin d'une carte <b>micro:bit V2</b> (logo doré sur la face avant).</p>
+  <div class="p-main">
+<p class="goal"><b>Ta mission :</b> une carte arbitre passe du vert au rouge, puis au vert, à des moments tirés au hasard, et le dit au robot par radio. Tu pilotes le MiniCar avec sa télécommande infrarouge jusqu'à l'arrivée. Si tu le fais bouger au rouge, il est éliminé : ses phares restent rouges et il ne bouge plus.</p>
+<div class="build">
+  <p><b>Matériel :</b> le robot MiniCar avec sa carte micro:bit V2, ses 3 piles AAA et sa télécommande infrarouge, et une deuxième carte micro:bit pour l'arbitre, avec son boîtier de piles. Du ruban adhésif pour tracer le départ et l'arrivée.</p>
+  <div class="wire"><span>carte 1 : <b>arbitre</b></span><span>carte 2 : <b>robot</b></span></div>
+  <p class="small">Pour le programme du robot, ajoute l'extension MiniCar : dans MakeCode, clique sur Extensions, puis colle l'adresse <code style="word-break:break-all">https://github.com/keyestudio2019/MiniCar</code>. Les blocs de la télécommande sont probablement dans ce tiroir, ou dans un tiroir de télécommande infrarouge qui apparaît en même temps.</p>
+  <p class="small">La portée de la télécommande n'est pas connue. Pour un kit proche de celui-ci, on conseille de rester à moins de 5 m : trace l'arrivée plus près que ça.</p>
+  <p class="small">Choisis un numéro de groupe radio et écris-le sur un post-it collé sur chaque carte.</p>
+  <p class="small"><b>Sécurité :</b> fais rouler le robot au sol, loin des escaliers. Prévois un arrêt d'urgence sur le robot : A et B ensemble, les moteurs s'arrêtent.</p>
+</div>
+<div class="predict">
+  <p class="pt">Prédis d'abord</p>
+  <p>La télécommande parle au robot avec une lumière invisible, l'infrarouge. Si ton copain se met entre la télécommande et le robot, le robot va-t-il encore obéir ?</p>
+  <textarea data-k="defi-un-deux-trois-soleil_pred" rows="2" placeholder="Ma prédiction…"></textarea>
+</div>
+<div class="m-part">
+  <h2 class="h3">Le plan</h2>
+  <ol class="steps">
+    <li>L'arbitre alterne vert et rouge. Chaque feu dure un temps tiré au hasard. Son écran n'a qu'une couleur : il montre donc une icône différente pour chaque feu. Teste : observe 6 feux. Les durées changent-elles ?</li>
+    <li>L'arbitre diffuse l'état du feu par radio. Le robot le range dans une variable et allume ses phares de la même couleur. Teste : les phares suivent l'arbitre.</li>
+    <li>Pilote le robot avec la télécommande. D'abord, affiche sur le robot le code de chaque touche que tu presses, et note-les dans le carnet. Puis choisis tes touches pour avancer et tourner. Le plus simple : à chaque appui, un petit bond puis arrêt. Si un bloc te demande une broche, le récepteur infrarouge serait sur P16 (à vérifier). Teste de près, puis de plus loin, puis avec ton copain entre les deux.</li>
+    <li>Au rouge, une touche reçue = éliminé. Le robot s'arrête, garde ses phares rouges et ne bouge plus jusqu'à la fin de la partie. Une deuxième variable peut retenir s'il est éliminé. Teste : appuie exprès au rouge.</li>
+    <li>Lance une partie : le robot sur la ligne de départ, l'arbitre posé où tout le monde le voit. Le robot atteint-il l'arrivée sans être éliminé ? Change de pilote à chaque partie.</li>
+  </ol>
+</div>
+<div class="carnet-form">
+  <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>Note dans le carnet</p>
+  <div class="tbl-wrap"><table><thead><tr><th>Action</th><th>Touche de la télécommande</th><th>Code affiché</th></tr></thead><tbody><tr><td>Avancer</td><td><input class="textin" type="text" maxlength="60" data-k="defi-un-deux-trois-soleil_t1" aria-label="Touche, avancer"></td><td><input class="textin" type="text" maxlength="60" data-k="defi-un-deux-trois-soleil_c1" aria-label="Code, avancer"></td></tr><tr><td>Tourner à gauche</td><td><input class="textin" type="text" maxlength="60" data-k="defi-un-deux-trois-soleil_t2" aria-label="Touche, tourner à gauche"></td><td><input class="textin" type="text" maxlength="60" data-k="defi-un-deux-trois-soleil_c2" aria-label="Code, tourner à gauche"></td></tr><tr><td>Tourner à droite</td><td><input class="textin" type="text" maxlength="60" data-k="defi-un-deux-trois-soleil_t3" aria-label="Touche, tourner à droite"></td><td><input class="textin" type="text" maxlength="60" data-k="defi-un-deux-trois-soleil_c3" aria-label="Code, tourner à droite"></td></tr></tbody></table></div>
+  <div class="numrow"><label>Distance maximale où la télécommande marche encore : <input class="numin wide" type="number" min="0" max="50" step="0.5" data-k="defi-un-deux-trois-soleil_portee"> mètres</label></div>
+  <p class="saved" hidden>Noté.</p>
+</div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Quand une touche arrive, le robot doit savoir s'il a le droit de bouger. Qu'est-ce qu'il doit retenir pour ça, et qui le lui dit ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le tiroir <span class="kw" style="--cat:var(--c-math)">Maths</span> : <span class="kw" style="--cat:var(--c-math)">choisir au hasard de … à …</span> pour la durée du feu. Le tiroir <span class="kw" style="--cat:var(--c-vars)">Variables</span> pour l'état du feu. Le tiroir <span class="kw" style="--cat:var(--c-radio)">Radio</span> pour le diffuser. Sur le robot : les blocs de l'extension MiniCar pour les phares et les moteurs, et ceux de la télécommande infrarouge.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Au carrefour, le feu ne pousse pas les voitures. Il change de couleur, et chaque conducteur le regarde avant d'avancer. Celui qui passe au rouge est en faute.</p></div></details>
+<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden>
+  <p>La logique, en mots : l'arbitre, toujours : feu vert (une icône, envoyer 1 par radio), pause d'une durée tirée au hasard, par exemple de 1 à 5 secondes ; puis feu rouge (une autre icône, envoyer 0), pause tirée au hasard. Le robot a deux variables : feu (vert ou rouge) et éliminé (vrai ou faux). Quand un nombre arrive par radio : le ranger dans feu ; si le robot n'est pas éliminé, phares de la même couleur. Quand un code de la télécommande arrive : si le robot est éliminé, ne rien faire ; sinon si le feu est rouge, éliminé devient vrai, moteurs arrêtés, phares rouges ; sinon, faire le petit mouvement de cette touche.</p>
+  <p class="small">Pour aller plus loin : <a href="https://docs.keyestudio.com/projects/KS4036/en/latest/docs/4.MakecodeTutorial.html" target="_blank" rel="noopener">le tutoriel MakeCode du robot KS4036, pour les blocs du MiniCar (en anglais)</a>.</p>
+</div></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="defi-un-deux-trois-soleil_res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+<div class="bonus">
+  <h2 class="h3"><span>Défi bonus</span>La version humaine</h2>
+  <p>Cette fois, les joueurs sont des enfants. Chacun porte une carte avec son boîtier de piles, qui écoute le même arbitre. Au rouge, si la carte sent une secousse, elle montre une croix : éliminé. Joue dans un espace dégagé, sans obstacle autour.</p>
+</div>
+
+  </div>
+  <section class="p-finish" aria-label="Fin du projet" data-suivant="../defi-morse/" data-suivant-titre="Le messager Morse"></section>
+  <nav class="p-nav" aria-label="Et après ?"><div class="p-seq"><p class="eyebrow">Les grands défis · étape 5 sur 18</p><div class="p-links"><a class="p-link" href="../defi-rover-martien/"><span class="eyebrow">← Étape précédente</span><b>Le rover martien</b></a><a class="p-link next" href="../defi-morse/"><span class="eyebrow">Étape suivante →</span><b>Le messager Morse</b></a></div></div><div class="p-related"><p class="eyebrow">Projets proches</p><div class="mini-cards"><a class="mini-card" href="../defi-suis-moi/"><div class="led5" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span></div><span><b>Suis-moi, avec laisse radio</b><small>MiniCar · niveau 2 · Juste le plan</small></span></a><a class="mini-card" href="../defi-manette-inclinaison/"><div class="led5" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span></div><span><b>La manette à inclinaison</b><small>MiniCar · niveau 1 · Juste le plan</small></span></a><a class="mini-card" href="../defi-rover-martien/"><div class="led5" aria-hidden="true"><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span></div><span><b>Le rover martien</b><small>MiniCar · niveau 2 · Juste le plan</small></span></a></div></div></nav>
+  <footer class="p-foot small">Les prénoms se règlent sur l'<a href="../../">accueil</a>. Code parent, sécurité et sauvegarde : <a href="../../parents/">page des parents</a>.</footer>
+</main>
+<script src="../../assets/progression.js"></script>
+<script src="../../assets/blocs.js"></script>
+<script src="../../assets/projet.js"></script>
+</body>
+</html>

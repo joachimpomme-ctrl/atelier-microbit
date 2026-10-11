@@ -1,0 +1,59 @@
+<!--
+id: defi-applaudissements
+titre: Le robot aux applaudissements
+resume: Un clap fait démarrer le MiniCar, deux claps rapides le font faire demi-tour, trois claps le font danser avec ses phares.
+materiel: minicar
+niveau: 2
+aide: l2
+duree: 1 h 30
+notions: son, variables, conditions, moteurs
+parcours: defis
+ordre: 7
+icone: clap
+cartes: 1
+v2: oui
+-->
+<p class="goal"><b>Ta mission :</b> tu tapes une fois dans tes mains, le MiniCar démarre. Deux claps rapides, il fait demi-tour. Trois claps, il danse avec ses phares.</p>
+<p class="small">Premier projet avec le MiniCar ? Commence par <a href="../../robot/">le parcours robot</a>.</p>
+<div class="build">
+  <p><b>Matériel :</b> le robot MiniCar avec sa carte micro:bit V2 et ses 3 piles AAA. Une seule carte suffit : le micro qui entend les claps est sur la carte V2.</p>
+  <p class="small">Les blocs du robot sont dans le tiroir de l'extension MiniCar. Pour l'ajouter : dans MakeCode, clique sur Extensions, puis colle cette adresse dans la recherche.</p>
+  <div class="urlbox"><code id="url-minicar">https://github.com/keyestudio2019/MiniCar</code><button class="btn" type="button" data-copy="url-minicar">Copier</button></div>
+  <p class="small"><b>Sécurité :</b> prévois un arrêt d'urgence. Les boutons A et B appuyés ensemble arrêtent les moteurs.</p>
+</div>
+<div class="predict">
+  <p class="pt">Prédis d'abord</p>
+  <p>Quand le robot roule, ses moteurs font du bruit. À ton avis, peut-il « s'entendre » et croire que tu as tapé dans tes mains ?</p>
+  <textarea data-k="@pred" rows="2" placeholder="Ma prédiction…"></textarea>
+</div>
+<div class="m-part">
+  <h3>Le plan</h3>
+  <ol class="steps">
+    <li>Montre le niveau sonore sur l'écran, sans arrêt. Note le nombre dans le silence, puis quand tu tapes dans tes mains.</li>
+    <li>Choisis un seuil entre ces deux nombres. À chaque clap, les phares s'allument un instant. Teste : un clap allume les phares, ta voix normale non.</li>
+    <li>Compte les claps : chaque clap ajoute 1 à un compteur, et les claps tapés en moins d'1 seconde comptent ensemble. Montre le compteur sur l'écran. Prédis : si tu tapes deux fois très lentement, combien la carte va-t-elle compter ?</li>
+    <li>Une action pour chaque nombre : 1 clap, il démarre ; 2 claps, demi-tour ; 3 claps, la danse des phares. Ensuite, le compteur revient à 0. Teste chaque nombre, robot posé au sol.</li>
+    <li>Lance le robot avec un clap, puis ne fais plus aucun bruit. Observe-le un moment. Compare avec ta prédiction.</li>
+  </ol>
+</div>
+<div class="carnet-form">
+  <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
+  <div class="numrow"><label>Niveau sonore dans le silence : <input class="numin wide" type="number" min="0" max="255" data-k="@silence"></label></div>
+  <div class="numrow"><label>Niveau sonore d'un clap : <input class="numin wide" type="number" min="0" max="255" data-k="@clap"></label></div>
+  <div class="numrow"><label>Seuil choisi : <input class="numin wide" type="number" min="0" max="255" data-k="@seuil"></label></div>
+  <p class="small">Le niveau sonore va de 0 à 255.</p>
+  <p class="saved" hidden>Noté.</p>
+</div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Deux claps rapides, c'est un seul ordre. Deux claps tapés à 5 secondes d'écart, ce sont deux ordres. Comment la carte peut-elle faire la différence ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le tiroir Entrées : le niveau sonore, le bloc qui réagit à un son fort, et le bloc qui règle à partir de quel niveau un son compte comme fort. Toujours dans Entrées, un bloc donne le temps écoulé depuis l'allumage de la carte, en millisecondes. Le compteur se fabrique dans le tiroir Variables. Les moteurs et les phares sont dans le tiroir de l'extension MiniCar.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>La souris d'un ordinateur : un clic sélectionne, un double-clic ouvre. Après le premier clic, l'ordinateur attend un tout petit moment pour voir si un deuxième arrive. Ensuite seulement, il décide.</p></div></details>
+<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden>
+  <p>La logique, en mots : au démarrage, règle le seuil du son fort avec la valeur notée dans le carnet. Quand un son fort arrive : ajoute 1 au compteur et range le temps écoulé dans une variable « dernier clap ». Dans « toujours » : si le compteur est plus grand que 0 et que plus de 1000 ms sont passées depuis le dernier clap, alors regarde le compteur (1, 2 ou 3), fais l'action, puis remets le compteur à 0. Une autre variable peut retenir si le robot roule ou s'il est arrêté.</p>
+  <p data-apres="@pred">Si le robot réagit tout seul pendant qu'il roule, le bruit de ses moteurs en est peut-être la cause. Deux pistes à essayer : monter le seuil, ou n'écouter les claps que quand le robot est arrêté.</p>
+  <p class="small">Pour aller plus loin : <a href="https://microbit.org/projects/make-it-code-it/clap-lights/" target="_blank" rel="noopener">le projet officiel Clap lights</a> et <a href="https://microbit.org/projects/make-it-code-it/clapometer/" target="_blank" rel="noopener">le projet officiel Clap-o-meter</a>.</p>
+</div></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+<div class="bonus">
+  <h3><span>Défi bonus</span>Le concours de claps</h3>
+  <p>La carte retient le niveau sonore le plus fort qu'elle a entendu. Le bouton A l'affiche. Qui tape le plus fort, toi ou ton copain ?</p>
+</div>

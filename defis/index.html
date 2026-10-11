@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Dix-huit projets ambitieux qui font travailler ensemble le robot MiniCar, le kit Wonder et plusieurs cartes micro:bit.">
+<title>Les grands défis · Ateliers micro:bit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="../assets/atelier.css">
+<style>
+.page.parc{max-width:1120px;display:grid;gap:26px}
+.parc .hero{padding-block:4px 0}
+.parc .hero h1{font-size:clamp(40px,7vw,72px)}
+.bars{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:20px}
+.next-box{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between;background:var(--soft);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:12px;padding:16px 20px}
+.next-box b{font:700 22px/1.2 var(--f-display);display:block}
+.avant{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.avant div{border-left:4px solid var(--accent);padding:6px 12px;background:var(--soft);border-radius:0 8px 8px 0;font-size:15px}
+.avant b{display:block;font-family:var(--f-display);font-size:18px}
+.bloc-head{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;justify-content:space-between}
+.bloc-head .lettre{font:700 14px var(--f-mono);color:var(--accent);margin-right:6px}
+.cards .pcard.cur{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
+</style>
+</head>
+<body>
+<main class="page parc">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../">Accueil</a> <span aria-hidden="true">›</span> <a href="../projets/">Banque de projets</a> <span aria-hidden="true">›</span> <span>Les grands défis</span></nav>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">MiniCar · kit Wonder · plusieurs cartes micro:bit</p>
+      <h1>Les grands défis</h1>
+      <p class="who">Quand les robots et les cartes travaillent ensemble</p>
+      <p class="lead">Dix-huit projets plus ambitieux : une manette maison, une chasse au trésor radio, un péage où deux robots se parlent, un tournoi de sumo. Chaque projet a sa page. Ils se font dans l'ordre que tu veux, mais l'ordre proposé réutilise ce que tu as déjà construit.</p>
+      <div class="bars" aria-live="polite">
+        <div class="progress"><div class="board wide" id="leds" aria-hidden="true"></div><span>Défis réussis : <strong id="n">0</strong></span></div>
+      </div>
+    </div>
+    <div class="hero-side" aria-hidden="true">
+      <div class="led5 big" id="hero-icon"></div>
+    </div>
+  </header>
+
+  <div class="next-box" id="next"></div>
+
+  <section class="sec" aria-labelledby="t-avant">
+    <h2 id="t-avant">Avant de commencer</h2>
+    <div class="avant">
+      <div><b>Une alimentation par carte</b>Une carte qui n'est pas sur un robot (manette, balise, arbitre) a besoin d'un boîtier de 2 piles AAA ou d'une batterie USB. Sinon, elle reste branchée à l'ordinateur.</div>
+      <div><b>Un groupe radio par équipe</b>Au début d'un projet radio, choisis un numéro de groupe et écris-le sur un post-it collé sur chaque carte.</div>
+      <div><b>Un arrêt d'urgence</b>Dans chaque robot : les boutons A et B ensemble arrêtent tout. Programme-le en premier.</div>
+      <div><b>Radio ou Bluetooth</b>Les deux ne marchent pas en même temps. Dans ces défis, on n'utilise que la radio.</div>
+    </div>
+    <p class="small">Le robot MiniCar demande une carte micro:bit V2. Son extension MakeCode s'ajoute avec l'adresse <code style="word-break:break-all">https://github.com/keyestudio2019/MiniCar</code>.</p>
+  </section>
+
+  <div id="blocs" style="display:grid;gap:26px"></div>
+
+  <footer class="p-foot small">Les prénoms se règlent sur l'<a href="../">accueil</a>. Code parent, sécurité et sauvegarde : <a href="../parents/">page des parents</a>.</footer>
+</main>
+
+<script src="../assets/catalogue.js"></script>
+<script src="../assets/progression.js"></script>
+<script src="../assets/cartes.js"></script>
+<script>
+(function(){
+"use strict";
+var C=window.CATALOGUE, CA=window.CARTES, S=CA.marquer(), esc=CA.esc;
+var defis=C.projets.filter(function(p){ return p.parcours==="defis" && p.ordre<100; }).sort(function(a,b){ return a.ordre-b.ordre; });
+/* Blocs de compétences : chaque bloc réutilise ce que le précédent a construit */
+var BLOCS=[
+  {l:"A", t:"Radio et pilotage", d:"La manette, l'IA et la force du signal : les briques de tous les autres défis.", de:1, a:4},
+  {l:"B", t:"Jeux et événements", d:"Arbitre, Morse, applaudissements, lucioles : la carte réagit à ce qui se passe.", de:5, a:8},
+  {l:"C", t:"Capteurs et sciences", d:"Mesurer, enregistrer, chronométrer : des expériences avec de vraies données.", de:9, a:12},
+  {l:"D", t:"Robots qui coopèrent", d:"Suivre, se parler, rouler en convoi, apprendre un geste.", de:13, a:16},
+  {l:"E", t:"Les grands tournois", d:"Le sumo et le labyrinthe : à garder pour la fin.", de:17, a:18}
+];
+function leds(list){ return list.map(function(p){ return '<span'+(p._done?' class="on"':'')+'></span>'; }).join(""); }
+var nb=defis.filter(function(p){ return p._done; }).length;
+document.getElementById("hero-icon").innerHTML=CA.led("##.##,##.##,.....,.###.,#...#");
+document.getElementById("leds").innerHTML=leds(defis);
+document.getElementById("n").textContent=nb+" / "+defis.length;
+
+var cur=defis.filter(function(p){ return !p._done; })[0];
+document.getElementById("blocs").innerHTML=BLOCS.map(function(b){
+  var list=defis.filter(function(p){ return p.ordre>=b.de && p.ordre<=b.a; });
+  var fait=list.filter(function(p){ return p._done; }).length;
+  return '<section class="sec" aria-labelledby="t-'+b.l+'"><div class="bloc-head"><h2 id="t-'+b.l+'"><span class="lettre">'+b.l+'</span>'+esc(b.t)+'</h2><p class="small">'+esc(b.d)+' '+fait+' / '+list.length+' réussi'+(fait>1?'s':'')+'.</p></div>'
+    +'<div class="cards">'+list.map(function(p){
+      var h=CA.card(p,"../",{etape:p.ordre,sansTags:true});
+      return (cur && p.id===cur.id) ? h.replace('class="pcard','class="pcard cur') : h;
+    }).join("")+'</div></section>';
+}).join("");
+
+var nx=document.getElementById("next");
+if(cur){
+  nx.innerHTML='<div><p class="eyebrow">'+(nb?'Prochain défi':'Pour commencer')+' · '+cur.ordre+' sur '+defis.length+'</p><b>'+esc(cur.titre)+'</b><p>'+esc(cur.resume)+'</p></div><a class="btn solid" href="../'+esc(cur.url)+'">Ouvrir le défi '+cur.ordre+'</a>';
+} else {
+  nx.innerHTML='<div><p class="eyebrow">Tous les défis sont réussis</p><b>Bravo.</b><p>Invente le tien : combine deux défis, et écris son plan avant de coder.</p></div>';
+}
+})();
+</script>
+</body>
+</html>

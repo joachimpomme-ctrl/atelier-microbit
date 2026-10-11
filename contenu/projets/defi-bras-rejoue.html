@@ -1,0 +1,58 @@
+<!--
+id: defi-bras-rejoue
+titre: Le bras qui apprend un geste
+resume: Tu guides le bras robot Wonder avec la télécommande, il enregistre ton geste dans une liste, puis il le rejoue tout seul en boucle.
+materiel: wonder
+niveau: 3
+aide: l2
+duree: 3 h
+notions: listes, radio, servo, boucles
+parcours: defis
+ordre: 16
+icone: bras
+cartes: 2
+-->
+<p class="goal"><b>Ta mission :</b> tu pilotes le bras robot avec la télécommande. Tu appuies sur « enregistrer » et tu fais un mouvement de prise. Ensuite, le bras rejoue ce mouvement tout seul, en boucle. On appelle ça la programmation par démonstration : on montre le geste une fois au robot, comme à certains robots d'usine.</p>
+<div class="build">
+  <p><b>Matériel :</b> le kit Wonder, avec le bras construit et programmé dans <a href="../wonder-bras-robot/">le bras robot</a> : la carte Wukong avec sa batterie, deux moteurs, un servo. La télécommande : une deuxième carte micro:bit avec un boîtier de piles (2 piles AAA) ou une batterie USB.</p>
+  <div class="wire"><span>carte 1 : <b>télécommande</b></span><span>carte 2 : <b>bras</b></span><span>moteur → <b>M1</b></span><span>moteur → <b>M2</b></span><span>servo → <b>S0</b></span></div>
+  <p class="small">Combien de servos dans ta boîte ? Ouvre-la et compte. Le revendeur français en annonce 2, d'autres listes n'en donnent qu'un. S'il y en a un deuxième, il ira sur <b>S1</b>.</p>
+  <p class="small">Choisis un numéro de groupe radio et écris-le sur un post-it collé sur chaque carte.</p>
+  <p class="small"><b>Sécurité :</b> un servo bloqué force. Pas de doigts dans la pince ni dans le bras quand il bouge. Dans le code, garde les angles entre les limites trouvées avec <a href="../wonder-testeur-servo/">le testeur de servo</a>.</p>
+</div>
+<div class="predict">
+  <p class="pt">Prédis d'abord</p>
+  <p>Tu enregistres un geste pendant 10 secondes. La carte ajoute une valeur à la liste toutes les 200 ms. Combien de valeurs y aura-t-il dans la liste ?</p>
+  <textarea data-k="@pred" rows="2" placeholder="Ma prédiction…"></textarea>
+</div>
+<div class="m-part">
+  <h3>Le plan</h3>
+  <ol class="steps">
+    <li>Pars du bras robot et de sa télécommande. Sur la carte du bras, affiche chaque ordre reçu. Teste chaque bouton et chaque geste de la télécommande.</li>
+    <li>Enregistrer : un bouton de la carte du bras vide la liste et lance l'enregistrement. Toutes les 200 ms, la carte ajoute à la liste le dernier ordre reçu. Un nouvel appui arrête. Teste : enregistre 10 secondes, puis affiche la longueur de la liste.</li>
+    <li>Rejouer : un autre bouton lit la liste du début à la fin et refait chaque ordre, avec 200 ms entre deux. Puis il recommence. Teste avec un geste simple : ouvrir et fermer la pince.</li>
+    <li>Arrêter : A et B ensemble arrêtent la lecture et tous les moteurs. Teste cet arrêt avant de rejouer un long geste.</li>
+    <li>S'il y a un deuxième servo dans ta boîte : branche-le sur S1, ajoute ses ordres à la télécommande, et vérifie que le geste enregistré les rejoue aussi.</li>
+  </ol>
+</div>
+<div class="carnet-form">
+  <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
+  <div class="numrow">
+    <label>Servos dans ma boîte : <input class="numin" type="number" min="0" max="9" data-k="@servos"></label>
+    <label>Longueur de la liste après 10 s : <input class="numin wide" type="number" min="0" max="9999" data-k="@long"></label>
+  </div>
+  <p class="saved" hidden>Noté.</p>
+</div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Un geste, c'est une suite de petites positions, l'une après l'autre. Où ranger beaucoup de nombres, dans l'ordre, sans créer une variable pour chacun ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Dans Avancé, le tiroir <b>Tableaux</b> : c'est celui des listes. Un bloc ajoute une valeur à la fin, un autre donne la longueur, un autre lit la valeur à une position. Dans le tiroir <b>Boucles</b>, une boucle passe sur chaque valeur d'une liste, l'une après l'autre.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Un clavier de musique qui enregistre : il note chaque touche que tu joues, dans l'ordre. Ensuite, il rejoue toute la mélodie sans toi, note après note.</p></div></details>
+<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden>
+  <p>La logique, en mots : la carte du bras garde une liste geste, une variable dernier (le dernier ordre reçu) et une variable mode (piloter, enregistrer ou rejouer). Le plus simple est une fonction « faire l'ordre » qui contient le « si … sinon si » du bras robot. Quand un ordre arrive par radio : dernier = cet ordre, et en mode piloter ou enregistrer, le bras fait l'ordre.</p>
+  <p>Bouton A : vider la liste et passer en mode enregistrer ; un deuxième appui revient en mode piloter. Dans <span class="kw" style="--cat:var(--c-base)">toujours</span>, en mode enregistrer : ajouter dernier à la fin de la liste, puis pause de 200 ms. Bouton B : mode rejouer. En mode rejouer : pour chaque valeur de la liste, faire l'ordre, puis pause de 200 ms ; la boucle <span class="kw" style="--cat:var(--c-base)">toujours</span> recommence ensuite. A et B ensemble : mode piloter et <span class="kw" style="--cat:var(--c-wukong)">Stop all motor</span>.</p>
+  <p class="small">Le « si … sinon si » de départ est dans la solution du <a href="../wonder-bras-robot/">bras robot</a>.</p>
+</div></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+<div class="bonus">
+  <h3><span>Défi bonus</span>Plus vite, plus lentement</h3>
+  <p>Rejoue le geste avec 100 ms entre deux valeurs, puis avec 400 ms. Le bras fait-il le même geste, juste plus vite ou plus lentement ? Regarde bien jusqu'où il va.</p>
+</div>

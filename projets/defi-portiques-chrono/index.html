@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Deux portiques à 2 m l&#x27;un de l&#x27;autre détectent un passage, et une troisième carte affiche le temps et la vitesse.">
+<title>Les portiques chronométrés · Banque de projets micro:bit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="../../assets/atelier.css">
+<script>window.PROJET={id:"defi-portiques-chrono",progs:{},needs:{}};</script>
+</head>
+<body data-racine="../../">
+<!-- Page générée par outils/generer.py à partir de contenu/projets/defi-portiques-chrono.html : modifier la source, pas cette page. -->
+<main class="page proj">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../../">Accueil</a> <span aria-hidden="true">›</span> <a href="../">Banque de projets</a> <span aria-hidden="true">›</span> <a href="../../defis/">Les grands défis</a></nav>
+  <header class="p-head">
+    <div class="led5 p-icon" aria-hidden="true"><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div>
+    <div>
+      <p class="eyebrow">Plusieurs kits · niveau 2 · Apprenti · 2 h · 3 cartes micro:bit</p>
+      <h1>Les portiques chronométrés</h1>
+      <ul class="learn"><li class="lbl">Notions</li><li>radio</li><li>ultrasons</li><li>variables</li><li>expérience</li></ul>
+    </div>
+  </header>
+  <div class="p-bar">
+    <div class="crew-pick" id="crew">
+      <span>Pilote :</span>
+      <span class="seg" role="radiogroup" aria-label="Qui pilote ce projet ?">
+        <label><input type="radio" name="pilot" value="1"><span data-pilot="1">Équipier 1</span></label>
+        <label><input type="radio" name="pilot" value="2"><span data-pilot="2">Équipier 2</span></label>
+      </span>
+      <span class="small">Copilote : <b id="copilot">Équipier 2</b></span>
+    </div>
+    <div class="p-bar-r">
+      <span class="lvl l2">Juste le plan</span>
+      <span class="etat" data-etat>À faire</span>
+      <a class="btn mk" href="https://makecode.microbit.org/" target="_blank" rel="noopener">Ouvrir MakeCode <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+  <p class="tip">Ce projet a besoin d'une carte <b>micro:bit V2</b> (logo doré sur la face avant).</p>
+  <div class="p-main">
+<p class="goal"><b>Ta mission :</b> deux portiques, à 2 m l'un de l'autre, voient passer un coureur, une petite voiture ou un robot. Une troisième carte, le chrono, affiche le temps mis entre les deux, puis la vitesse.</p>
+<div class="build">
+  <p><b>Matériel :</b> 3 cartes. Le portique 1 est une tour Wonder avec le sonar:bit (carte Wukong et sa carte micro:bit). Le portique 2 est le MiniCar garé sur le côté : son capteur à ultrasons sert de cellule (carte V2). Le chrono est une 3e carte, avec son boîtier de piles. Un mètre ruban pour placer les portiques.</p>
+  <div class="wire"><span>carte 1 : <b>portique 1</b> (Wonder)</span><span>carte 2 : <b>portique 2</b> (MiniCar)</span><span>carte 3 : <b>chrono</b></span></div>
+  <div class="wire"><span>sonar:bit → <b>P1</b></span></div>
+  <p class="small">Chaque carte a son propre programme. Pour la tour, les blocs du sonar s'ajoutent comme dans <a href="../wonder-demarrer/">Bien démarrer avec le kit Wonder</a>. Pour le MiniCar, ses blocs sont dans le tiroir de l'extension MiniCar : dans MakeCode, clique sur Extensions, puis colle cette adresse dans la recherche.</p>
+  <div class="urlbox"><code id="url-minicar">https://github.com/keyestudio2019/MiniCar</code><button class="btn" type="button" data-copy="url-minicar">Copier</button></div>
+  <p class="small">Choisis un numéro de groupe radio et écris-le sur un post-it collé sur chaque carte.</p>
+  <p class="small"><b>Sécurité :</b> pour la course, un sol qui ne glisse pas. Les portiques sont posés à côté de la trajectoire, jamais dessus.</p>
+</div>
+<div class="predict">
+  <p class="pt">Prédis d'abord</p>
+  <p>En courant, combien de secondes te faut-il pour parcourir les 2 m entre les deux portiques ?</p>
+  <textarea data-k="defi-portiques-chrono_pred" rows="2" placeholder="Ma prédiction…"></textarea>
+</div>
+<div class="m-part">
+  <h2 class="h3">Le plan</h2>
+  <ol class="steps">
+    <li>Portique 1 : quand quelque chose passe à moins de 50 cm, il montre une croix. Teste avec ta main, puis en marchant devant. Si tu restes planté devant, il ne doit compter qu'un seul passage.</li>
+    <li>Il envoie « départ » par radio (un nombre suffit). Quand le chrono reçoit ce message, il range le temps écoulé dans une variable. Teste : le chrono montre une icône à chaque départ.</li>
+    <li>Portique 2, le MiniCar : même détection, il envoie « arrivée ». Le chrono range aussi ce temps. Teste en passant la main devant un portique, puis devant l'autre.</li>
+    <li>Le chrono calcule le temps : arrivée moins départ, en millisecondes. Puis la vitesse : 2 m divisés par le temps en secondes, en mètres par seconde. Prédis : quelle vitesse en km/h ? (Multiplie par 3,6.)</li>
+    <li>Le tableau des records : chacun passe à son tour. Note les temps et les vitesses dans le carnet.</li>
+  </ol>
+</div>
+<div class="carnet-form">
+  <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>Note dans le carnet</p>
+  <div class="tbl-wrap"><table><thead><tr><th>Qui ou quoi</th><th>Temps</th><th>Vitesse</th></tr></thead><tbody><tr><td><input class="textin" type="text" maxlength="60" data-k="defi-portiques-chrono_q1" aria-label="Qui ou quoi, ligne 1"></td><td><input class="textin" type="text" maxlength="60" data-k="defi-portiques-chrono_t1" aria-label="Temps, ligne 1"></td><td><input class="textin" type="text" maxlength="60" data-k="defi-portiques-chrono_s1" aria-label="Vitesse, ligne 1"></td></tr><tr><td><input class="textin" type="text" maxlength="60" data-k="defi-portiques-chrono_q2" aria-label="Qui ou quoi, ligne 2"></td><td><input class="textin" type="text" maxlength="60" data-k="defi-portiques-chrono_t2" aria-label="Temps, ligne 2"></td><td><input class="textin" type="text" maxlength="60" data-k="defi-portiques-chrono_s2" aria-label="Vitesse, ligne 2"></td></tr><tr><td><input class="textin" type="text" maxlength="60" data-k="defi-portiques-chrono_q3" aria-label="Qui ou quoi, ligne 3"></td><td><input class="textin" type="text" maxlength="60" data-k="defi-portiques-chrono_t3" aria-label="Temps, ligne 3"></td><td><input class="textin" type="text" maxlength="60" data-k="defi-portiques-chrono_s3" aria-label="Vitesse, ligne 3"></td></tr><tr><td><input class="textin" type="text" maxlength="60" data-k="defi-portiques-chrono_q4" aria-label="Qui ou quoi, ligne 4"></td><td><input class="textin" type="text" maxlength="60" data-k="defi-portiques-chrono_t4" aria-label="Temps, ligne 4"></td><td><input class="textin" type="text" maxlength="60" data-k="defi-portiques-chrono_s4" aria-label="Vitesse, ligne 4"></td></tr></tbody></table></div>
+  <p class="saved" hidden>Noté.</p>
+</div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Quand quelqu'un passe devant un portique, le capteur le voit pendant plusieurs mesures de suite. Combien de messages « départ » vont partir ? Combien en faut-il ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le tiroir <span class="kw" style="--cat:var(--c-radio)">Radio</span> : envoyer un nombre, réagir quand un nombre arrive. Le tiroir Entrées : le temps écoulé depuis l'allumage de la carte, en millisecondes. Le tiroir Variables : une variable pour l'heure du départ, une autre qui retient si quelque chose est déjà devant le portique. Le tiroir Maths pour soustraire et diviser.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Le tourniquet du métro compte une personne quand elle passe. Si tu restes coincé dedans, il ne te compte pas dix fois. Il attend que tu sois sorti pour compter la personne suivante.</p></div></details>
+<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden>
+  <p>La logique, en mots : sur chaque portique, dans « toujours », lire la distance. Une variable « devant » retient si quelque chose est déjà là. Si la distance passe sous 50 cm et que « devant » est faux : envoyer le nombre (1 pour départ, 2 pour arrivée) et mettre « devant » à vrai. Quand la distance repasse au-dessus de 50 cm, « devant » redevient faux. Sur le chrono : quand 1 arrive, ranger le temps écoulé dans « départ ». Quand 2 arrive, le temps vaut le temps écoulé moins « départ ». Montrer le temps, puis la vitesse : 2 divisé par (temps divisé par 1000), en mètres par seconde.</p>
+  <p>Les deux heures sont lues sur le chrono, parce que les horloges des cartes ne sont pas réglées ensemble. On suppose que le retard de la radio, quelques millisecondes, compte très peu (à vérifier). Un objet très rapide et très étroit peut passer entre deux mesures du capteur.</p>
+  <p class="small">Pour revoir la radio : <a href="../microbit-messager/">le messager radio</a>.</p>
+</div></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="defi-portiques-chrono_res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+<div class="bonus">
+  <h2 class="h3"><span>Défi bonus</span>Le record dans la carte</h2>
+  <p>Le chrono garde le meilleur temps dans une variable. Quand le record est battu, il joue un son et montre une icône. Le bouton A affiche le record.</p>
+</div>
+
+  </div>
+  <section class="p-finish" aria-label="Fin du projet" data-suivant="../defi-suis-moi/" data-suivant-titre="Suis-moi, avec laisse radio"></section>
+  <nav class="p-nav" aria-label="Et après ?"><div class="p-seq"><p class="eyebrow">Les grands défis · étape 12 sur 18</p><div class="p-links"><a class="p-link" href="../defi-vitesse-robot/"><span class="eyebrow">← Étape précédente</span><b>La vraie vitesse du robot</b></a><a class="p-link next" href="../defi-suis-moi/"><span class="eyebrow">Étape suivante →</span><b>Suis-moi, avec laisse radio</b></a></div></div><div class="p-related"><p class="eyebrow">Projets proches</p><div class="mini-cards"><a class="mini-card" href="../defi-convoi/"><div class="led5" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span></div><span><b>Le convoi de robots</b><small>Multi-kits · niveau 3 · Juste le plan</small></span></a><a class="mini-card" href="../defi-peage/"><div class="led5" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span></div><span><b>Le péage automatique</b><small>Multi-kits · niveau 3 · Juste le plan</small></span></a><a class="mini-card" href="../defi-sumo/"><div class="led5" aria-hidden="true"><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span></div><span><b>Le sumo des robots</b><small>Multi-kits · niveau 3 · Juste le plan</small></span></a></div></div></nav>
+  <footer class="p-foot small">Les prénoms se règlent sur l'<a href="../../">accueil</a>. Code parent, sécurité et sauvegarde : <a href="../../parents/">page des parents</a>.</footer>
+</main>
+<script src="../../assets/progression.js"></script>
+<script src="../../assets/blocs.js"></script>
+<script src="../../assets/projet.js"></script>
+</body>
+</html>

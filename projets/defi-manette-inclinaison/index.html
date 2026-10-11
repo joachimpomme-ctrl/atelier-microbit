@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Penche une carte comme un volant : le robot avance, recule et tourne, plus ou moins vite.">
+<title>La manette à inclinaison · Banque de projets micro:bit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="../../assets/atelier.css">
+<script>window.PROJET={id:"defi-manette-inclinaison",progs:{},needs:{}};</script>
+</head>
+<body data-racine="../../">
+<!-- Page générée par outils/generer.py à partir de contenu/projets/defi-manette-inclinaison.html : modifier la source, pas cette page. -->
+<main class="page proj">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../../">Accueil</a> <span aria-hidden="true">›</span> <a href="../">Banque de projets</a> <span aria-hidden="true">›</span> <a href="../../defis/">Les grands défis</a></nav>
+  <header class="p-head">
+    <div class="led5 p-icon" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span></div>
+    <div>
+      <p class="eyebrow">Robot MiniCar · niveau 1 · Découverte · 2 h · 2 cartes micro:bit</p>
+      <h1>La manette à inclinaison</h1>
+      <ul class="learn"><li class="lbl">Notions</li><li>radio</li><li>accéléromètre</li><li>variables</li><li>moteurs</li></ul>
+    </div>
+  </header>
+  <div class="p-bar">
+    <div class="crew-pick" id="crew">
+      <span>Pilote :</span>
+      <span class="seg" role="radiogroup" aria-label="Qui pilote ce projet ?">
+        <label><input type="radio" name="pilot" value="1"><span data-pilot="1">Équipier 1</span></label>
+        <label><input type="radio" name="pilot" value="2"><span data-pilot="2">Équipier 2</span></label>
+      </span>
+      <span class="small">Copilote : <b id="copilot">Équipier 2</b></span>
+    </div>
+    <div class="p-bar-r">
+      <span class="lvl l2">Juste le plan</span>
+      <span class="etat" data-etat>À faire</span>
+      <a class="btn mk" href="https://makecode.microbit.org/" target="_blank" rel="noopener">Ouvrir MakeCode <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+  <p class="tip">Ce projet a besoin d'une carte <b>micro:bit V2</b> (logo doré sur la face avant).</p>
+  <div class="p-main">
+<p class="goal"><b>Ta mission :</b> une carte micro:bit devient une manette. Penche-la en avant ou en arrière, le robot avance ou recule ; penche-la sur le côté, il tourne. Plus tu penches, plus il va vite.</p>
+<div class="build">
+  <p><b>Matériel :</b> le robot MiniCar avec sa carte micro:bit V2 et ses 3 piles AAA, et une deuxième carte micro:bit pour la manette, avec son boîtier de piles.</p>
+  <div class="wire"><span>carte 1 : <b>manette</b></span><span>carte 2 : <b>robot</b></span></div>
+  <p class="small">Pour le programme du robot, ajoute l'extension MiniCar : dans MakeCode, clique sur Extensions, puis colle l'adresse <code style="word-break:break-all">https://github.com/keyestudio2019/MiniCar</code>. C'est la même méthode que dans le <a href="../../robot/">parcours robot</a>.</p>
+  <p class="small">Choisis un numéro de groupe radio et écris-le sur un post-it collé sur chaque carte.</p>
+  <p class="small"><b>Sécurité :</b> fais rouler le robot au sol, loin des escaliers. Prévois un arrêt d'urgence sur le robot : A et B ensemble, les moteurs s'arrêtent.</p>
+</div>
+<div class="predict">
+  <p class="pt">Prédis d'abord</p>
+  <p>La manette est posée bien à plat sur la table et ne bouge pas. Quel nombre va-t-elle afficher pour l'inclinaison vers l'avant ou l'arrière ?</p>
+  <textarea data-k="defi-manette-inclinaison_pred" rows="2" placeholder="Ma prédiction…"></textarea>
+</div>
+<div class="m-part">
+  <h2 class="h3">Le plan</h2>
+  <ol class="steps">
+    <li>Sur la manette, affiche sans arrêt l'inclinaison vers l'avant ou l'arrière : c'est l'accélération sur l'axe y. Teste : pose la carte à plat, puis penche-la doucement vers l'avant, puis vers l'arrière. Note les nombres dans le carnet.</li>
+    <li>Envoie ce nombre par radio, avec un nom (par exemple « y »). Sur le robot, affiche le nombre reçu, moteurs coupés. Teste : tu penches la manette, le nombre change sur l'écran du robot.</li>
+    <li>Fais avancer et reculer le robot avec y seul : les deux roues reçoivent la même vitesse. Regarde comment les blocs moteurs de l'extension MiniCar choisissent le sens et quelles vitesses ils acceptent. Puis divise y pour rester dans ces limites. Teste au sol : penche un peu, puis beaucoup.</li>
+    <li>Ajoute x, l'inclinaison sur le côté, pour tourner : une roue doit aller plus vite que l'autre. Trouve le calcul. Prédis : si tu penches seulement sur le côté, que font les deux roues ? Teste.</li>
+    <li data-apres="defi-manette-inclinaison_pred">Ajoute une zone morte : quand la manette est presque à plat, le robot reste immobile. Choisis le seuil avec tes mesures du carnet. Teste : pose la manette sur la table, le robot ne doit plus bouger du tout.</li>
+  </ol>
+</div>
+<div class="carnet-form">
+  <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>Note dans le carnet</p>
+  <div class="numrow">
+    <label>Manette à plat : <input class="numin wide" type="number" min="-2048" max="2048" data-k="defi-manette-inclinaison_plat"></label>
+    <label>Penchée à fond en avant : <input class="numin wide" type="number" min="-2048" max="2048" data-k="defi-manette-inclinaison_avant"></label>
+    <label>Penchée à fond en arrière : <input class="numin wide" type="number" min="-2048" max="2048" data-k="defi-manette-inclinaison_arriere"></label>
+    <label>Seuil de la zone morte : <input class="numin wide" type="number" min="0" max="2048" data-k="defi-manette-inclinaison_seuil"></label>
+    <label>Groupe radio : <input class="numin" type="number" min="0" max="255" data-k="defi-manette-inclinaison_groupe"></label>
+  </div>
+  <p class="saved" hidden>Noté.</p>
+</div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Pencher en avant et pencher sur le côté : est-ce le même nombre qui change ? Combien de nombres la manette doit-elle envoyer au robot ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le tiroir <span class="kw" style="--cat:var(--c-input)">Entrées</span> : le bloc rond de l'accélération, où tu choisis x, y ou z. Le tiroir <span class="kw" style="--cat:var(--c-radio)">Radio</span> : le bloc qui envoie une valeur avec un nom, et celui qui réagit quand une valeur nommée arrive. Le tiroir <span class="kw" style="--cat:var(--c-vars)">Variables</span> pour garder x et y sur le robot, et <span class="kw" style="--cat:var(--c-math)">Maths</span> pour les calculs.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Dans une barque à deux rameurs, si les deux rament aussi fort, la barque va tout droit. Si celui de droite rame plus fort, elle tourne vers la gauche. Ton robot a deux roues : ce sont tes deux rameurs.</p></div></details>
+<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden>
+  <p>La logique, en mots : la manette lit sans arrêt l'accélération en x et en y. Elle les envoie par radio comme deux valeurs nommées, avec une petite pause entre deux envois. Le robot range chaque valeur reçue dans une variable, selon son nom. Il calcule ensuite gauche = y + x et droite = y - x, divise pour rester dans les vitesses acceptées par les moteurs, et bloque le résultat aux limites. Si x et y restent tous les deux sous le seuil de la zone morte, dans un sens comme dans l'autre, il s'arrête. Sinon, chaque roue reçoit sa vitesse : marche avant si le nombre est positif, marche arrière s'il est négatif. Si le robot recule au lieu d'avancer, ou tourne du mauvais côté, il suffit de changer un signe.</p>
+  <p class="small">Pour aller plus loin : <a href="https://www.elecfreaks.com/learn-en/microbitKit/smart_cutebot/cutebot_case12.html" target="_blank" rel="noopener">le même montage par ELECFREAKS, pour leur robot Cutebot (en anglais)</a>.</p>
+</div></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="defi-manette-inclinaison_res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+<div class="bonus">
+  <h2 class="h3"><span>Défi bonus</span>La manette perdue</h2>
+  <p>Pendant que le robot roule, enlève les piles de la manette. Prédis ce que fera le robot, puis teste. Ensuite, programme-le pour qu'il s'arrête tout seul si aucun message n'arrive pendant une demi-seconde.</p>
+</div>
+
+  </div>
+  <section class="p-finish" aria-label="Fin du projet" data-suivant="../defi-gestes-ia/" data-suivant-titre="Le robot qui obéit aux gestes"></section>
+  <nav class="p-nav" aria-label="Et après ?"><div class="p-seq"><p class="eyebrow">Les grands défis · étape 1 sur 18</p><div class="p-links"><a class="p-link next" href="../defi-gestes-ia/"><span class="eyebrow">Étape suivante →</span><b>Le robot qui obéit aux gestes</b></a></div></div><div class="p-related"><p class="eyebrow">Projets proches</p><div class="mini-cards"><a class="mini-card" href="../defi-suis-moi/"><div class="led5" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span></div><span><b>Suis-moi, avec laisse radio</b><small>MiniCar · niveau 2 · Juste le plan</small></span></a><a class="mini-card" href="../defi-un-deux-trois-soleil/"><div class="led5" aria-hidden="true"><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span></div><span><b>1, 2, 3 Soleil des robots</b><small>MiniCar · niveau 2 · Juste le plan</small></span></a><a class="mini-card" href="../defi-applaudissements/"><div class="led5" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div><span><b>Le robot aux applaudissements</b><small>MiniCar · niveau 2 · Juste le plan</small></span></a></div></div></nav>
+  <footer class="p-foot small">Les prénoms se règlent sur l'<a href="../../">accueil</a>. Code parent, sécurité et sauvegarde : <a href="../../parents/">page des parents</a>.</footer>
+</main>
+<script src="../../assets/progression.js"></script>
+<script src="../../assets/blocs.js"></script>
+<script src="../../assets/projet.js"></script>
+</body>
+</html>

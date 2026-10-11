@@ -20,6 +20,7 @@ MATERIELS = {
     "minicar":  {"nom": "Robot MiniCar", "court": "MiniCar", "desc": "Le robot à deux roues avec radar et suivi de ligne."},
     "wonder":   {"nom": "Kit Wonder", "court": "Wonder", "desc": "Les briques, moteurs, servos et capteurs du kit Wonder 32 en 1."},
     "createai": {"nom": "IA CreateAI", "court": "IA", "desc": "Apprendre à la carte à reconnaître des mouvements."},
+    "multi":    {"nom": "Plusieurs kits", "court": "Multi-kits", "desc": "Le MiniCar et le kit Wonder ensemble, avec plusieurs cartes en radio."},
 }
 NIVEAUX = {1: "Découverte", 2: "Apprenti", 3: "Ingénieur"}
 AIDES = {"l3": "Tout est expliqué", "l2": "Juste le plan", "l1": "Juste l'objectif"}
@@ -28,6 +29,7 @@ PARCOURS = {
     "robot":  {"titre": "Parcours robot", "url": "robot/"},
     "wonder": {"titre": "Parcours Wonder", "url": "wonder/", "fiche": "Machine", "fiches": "toutes les machines"},
     "ia":     {"titre": "Parcours IA", "url": "ia/"},
+    "defis":  {"titre": "Les grands défis", "url": "defis/"},
 }
 ICONES = {
     "face": ".....,.#.#.,.....,#...#,.###.", "robot": ".###.,#.#.#,#####,.#.#.,##.##",
@@ -56,6 +58,15 @@ ICONES = {
     "boussole": "..#..,.###.,..#..,..#..,..#..", "message": "#####,##.##,#.#.#,#...#,#####",
     "eclair": "...#.,..#..,.###.,..#..,.#...", "musique": ".####,.#..#,.#..#,##.##,##.##",
     "coeur": ".#.#.,#####,#####,.###.,..#..",
+    # Grands défis
+    "manette": ".....,.###.,#.#.#,#####,.#.#.", "tresor": ".###.,#####,#.#.#,#####,#####",
+    "rover": "..#..,.###.,#####,.#.#.,#.#.#", "soleil": "#.#.#,.###.,##.##,.###.,#.#.#",
+    "morse": ".....,#.###,.....,###.#,.....", "clap": "#...#,.#.#.,#...#,.....,.###.",
+    "lucioles": "#...#,..#..,.#...,...#.,#.#..", "alarme": "..#..,.###.,.###.,#####,..#..",
+    "meteo": ".##..,####.,#####,.....,#.#.#", "vitesse": "..#..,...#.,#####,...#.,..#..",
+    "chrono": ".###.,#.#.#,#.###,#...#,.###.", "laisse": "#....,.#...,..#..,...##,...##",
+    "peage": "#####,....#,....#,....#,#...#", "convoi": ".....,##.##,##.##,.....,#.#.#",
+    "sumo": "##.##,##.##,.....,.###.,#...#", "labyrinthe": "#####,#...#,#.#.#,#.#..,###.#",
 }
 DEFAUT_ICONE = "face"
 
@@ -111,6 +122,11 @@ def remplir_icones(corps):
     return re.sub(r'<(span|div) class="led5" data-icon="([a-z-]+)"([^>]*)></\1>', rempl, corps)
 
 
+def texte_cartes(c):
+    """« 2 » → « 2 cartes micro:bit » ; « 2 à 4 » → « 2 à 4 cartes micro:bit » ; « 1 » → « 1 carte micro:bit »."""
+    return f"{c} carte micro:bit" if c.strip() == "1" else f"{c} cartes micro:bit"
+
+
 def typographie(corps):
     """Espaces insécables avant ? ! : ; » et après « dans le texte (pas dans les balises ni les scripts)."""
     morceaux = re.split(r"(<script.*?</script>)", corps, flags=re.S)
@@ -132,6 +148,7 @@ def page_projet(p, tous):
     eyebrow = [mat["nom"], f'niveau {p["niveau"]} · {NIVEAUX[p["niveau"]]}']
     if p.get("duree"): eyebrow.append(p["duree"])
     if p.get("modele"): eyebrow.append(f'modèle {p["modele"]}')
+    if p.get("cartes"): eyebrow.append(texte_cartes(p["cartes"]))
     aide = p.get("aide")
     crumbs = ['<a href="../../">Accueil</a>', '<a href="../">Banque de projets</a>']
     par = p.get("parcours")
@@ -269,7 +286,7 @@ def main():
         entrees.append({k: p[k] for k in ("id", "titre", "resume", "materiel", "niveau", "notions", "ordre")} | {
             "duree": p.get("duree", ""), "parcours": p.get("parcours", ""), "url": f'projets/{p["id"]}/',
             "icone": ICONES.get(p.get("icone", DEFAUT_ICONE), ICONES[DEFAUT_ICONE]), "stockage": "banque",
-            "modele": p.get("modele", ""), "v2": p.get("v2") == "oui", "type": p.get("type", "projet"), "aide": p.get("aide", "")})
+            "modele": p.get("modele", ""), "v2": p.get("v2") == "oui", "type": p.get("type", "projet"), "aide": p.get("aide", ""), "cartes": p.get("cartes", "")})
     for e in externes:
         e = dict(e)
         e["icone"] = ICONES.get(e.get("icone", DEFAUT_ICONE), ICONES[DEFAUT_ICONE])

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Tu pilotes le MiniCar avec la manette à inclinaison, et une voiture Wonder le suit toute seule à 20 cm grâce à son sonar:bit.">
+<title>Le convoi de robots · Banque de projets micro:bit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="../../assets/atelier.css">
+<script>window.PROJET={id:"defi-convoi",progs:{},needs:{}};</script>
+</head>
+<body data-racine="../../">
+<!-- Page générée par outils/generer.py à partir de contenu/projets/defi-convoi.html : modifier la source, pas cette page. -->
+<main class="page proj">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../../">Accueil</a> <span aria-hidden="true">›</span> <a href="../">Banque de projets</a> <span aria-hidden="true">›</span> <a href="../../defis/">Les grands défis</a></nav>
+  <header class="p-head">
+    <div class="led5 p-icon" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span></div>
+    <div>
+      <p class="eyebrow">Plusieurs kits · niveau 3 · Ingénieur · 3 h · 3 cartes micro:bit</p>
+      <h1>Le convoi de robots</h1>
+      <ul class="learn"><li class="lbl">Notions</li><li>ultrasons</li><li>radio</li><li>moteurs</li><li>variables</li></ul>
+    </div>
+  </header>
+  <div class="p-bar">
+    <div class="crew-pick" id="crew">
+      <span>Pilote :</span>
+      <span class="seg" role="radiogroup" aria-label="Qui pilote ce projet ?">
+        <label><input type="radio" name="pilot" value="1"><span data-pilot="1">Équipier 1</span></label>
+        <label><input type="radio" name="pilot" value="2"><span data-pilot="2">Équipier 2</span></label>
+      </span>
+      <span class="small">Copilote : <b id="copilot">Équipier 2</b></span>
+    </div>
+    <div class="p-bar-r">
+      <span class="lvl l2">Juste le plan</span>
+      <span class="etat" data-etat>À faire</span>
+      <a class="btn mk" href="https://makecode.microbit.org/" target="_blank" rel="noopener">Ouvrir MakeCode <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+  <p class="tip">Ce projet a besoin d'une carte <b>micro:bit V2</b> (logo doré sur la face avant).</p>
+  <div class="p-main">
+<p class="goal"><b>Ta mission :</b> tu pilotes le MiniCar avec la manette à inclinaison. Derrière lui, une voiture Wonder le suit toute seule, en restant à 20 cm. Personne ne la pilote : elle n'a que son sonar:bit pour savoir où est le MiniCar.</p>
+<div class="build">
+  <p><b>Matériel :</b> trois cartes. La manette : une carte micro:bit avec un boîtier de piles (2 piles AAA) ou une batterie USB. La tête : le robot MiniCar (carte micro:bit V2, 3 piles AAA). Le suiveur : une voiture Wonder, avec la carte Wukong et sa batterie, deux moteurs et le sonar:bit tourné vers l'avant.</p>
+  <div class="wire"><span>carte 1 : <b>manette</b></span><span>carte 2 : <b>MiniCar</b></span><span>carte 3 : <b>suiveur</b></span><span>moteur → <b>M1</b></span><span>moteur → <b>M2</b></span><span>sonar:bit → <b>P1</b></span></div>
+  <p class="small">Pour la manette et le MiniCar, reprends tes programmes de <a href="../defi-manette-inclinaison/">la manette à inclinaison</a>. Pour le suiveur, construis la voiture comme <a href="../wonder-voiture-prudente/">la voiture prudente</a>.</p>
+  <p class="small">Choisis un numéro de groupe radio et écris-le sur un post-it collé sur chaque carte.</p>
+  <p class="small"><b>Sécurité :</b> roule au sol, loin des escaliers. Chaque robot a son arrêt d'urgence : A et B ensemble arrêtent ses moteurs.</p>
+</div>
+<div class="predict">
+  <p class="pt">Prédis d'abord</p>
+  <p>Le MiniCar prend un virage serré. À ton avis, que va faire la voiture Wonder qui le suit ?</p>
+  <textarea data-k="defi-convoi_pred" rows="2" placeholder="Ma prédiction…"></textarea>
+</div>
+<div class="m-part">
+  <h2 class="h3">Le plan</h2>
+  <ol class="steps">
+    <li>Le suiveur : construis la voiture Wonder avec le sonar:bit vers l'avant. Fais le test « qui est qui » des moteurs, comme dans la voiture prudente. Affiche la distance mesurée.</li>
+    <li>Garder ses distances : le suiveur avance si une boîte est à plus de 25 cm, recule si elle est à moins de 15 cm, et s'arrête entre les deux. Pousse la boîte à la main devant lui. Teste doucement, puis plus vite.</li>
+    <li>En douceur : la vitesse dépend de l'écart avec 20 cm, multiplié par un gain. Cherche le gain qui suit la boîte sans à-coups. Note-le.</li>
+    <li>Même vitesse ? Donne le même nombre de vitesse aux deux robots et chronomètre chacun sur 1 m. Prédis d'abord : lequel ira le plus vite ?</li>
+    <li>Le convoi : pose le suiveur derrière le MiniCar et pilote avec la manette. Commence tout droit et doucement, puis essaie un virage.</li>
+  </ol>
+</div>
+<div class="carnet-form">
+  <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>Note dans le carnet</p>
+  <div class="numrow">
+    <label>Mon gain : <input class="numin wide" type="number" data-k="defi-convoi_gain"></label>
+    <label>MiniCar sur 1 m : <input class="numin wide" type="number" min="0" max="120" step="0.1" data-k="defi-convoi_t1"> s</label>
+    <label>Voiture Wonder sur 1 m : <input class="numin wide" type="number" min="0" max="120" step="0.1" data-k="defi-convoi_t2"> s</label>
+  </div>
+  <p class="saved" hidden>Noté.</p>
+</div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Le suiveur ne connaît qu'un seul nombre : la distance devant lui. Que doit-il faire quand ce nombre est plus grand que 20 ? Plus petit ? Égal ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le tiroir sonar:bit : <span class="kw" style="--cat:var(--c-sonar)">Ultrasonic distance in unit cm at pin …</span>. Le tiroir wuKong : <span class="kw" style="--cat:var(--c-wukong)">Set motor M1 speed to …</span>, une fois pour M1 et une fois pour M2. Le tiroir <span class="kw" style="--cat:var(--c-math)">Maths</span> pour l'écart et la multiplication, le tiroir <span class="kw" style="--cat:var(--c-vars)">Variables</span> pour les ranger.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>En file indienne, les yeux sur le dos de celui qui marche devant toi : il s'éloigne, tu accélères ; il ralentit, tu ralentis ; il s'arrête, tu t'arrêtes juste derrière lui.</p></div></details>
+<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden>
+  <p>La logique, en mots : la manette et le MiniCar gardent leurs programmes de la manette à inclinaison. Le suiveur n'utilise pas la radio. Dans <span class="kw" style="--cat:var(--c-base)">toujours</span>, il range la distance dans une variable, calcule écart = distance moins 20, puis vitesse = écart multiplié par le gain, gardée entre -100 et 100. Il donne cette vitesse aux deux moteurs, dans le sens trouvé au test « qui est qui ».</p>
+  <p data-apres="defi-convoi_pred">Quand le capteur ne voit plus rien, par exemple quand le MiniCar sort de son champ dans un virage, le suiveur s'arrête au lieu de foncer.</p>
+  <p class="small">Pour aller plus loin : <a href="https://www.elecfreaks.com/learn-en/microbitKit/smart_cutebot/cutebot_case12.html" target="_blank" rel="noopener">le montage manette d'ELECFREAKS pour leur robot Cutebot</a> (en anglais), d'où vient le mélange de la manette.</p>
+</div></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="defi-convoi_res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+<div class="bonus">
+  <h2 class="h3"><span>Défi bonus</span>La tête prévient</h2>
+  <p data-apres="defi-convoi_pred">Version 2 : le MiniCar envoie aussi ses virages par radio au suiveur, qui tourne en même temps que lui. Attention, la manette parle déjà sur la radio. Comment le suiveur sait-il quels messages sont pour lui ?</p>
+</div>
+
+  </div>
+  <section class="p-finish" aria-label="Fin du projet" data-suivant="../defi-bras-rejoue/" data-suivant-titre="Le bras qui apprend un geste"></section>
+  <nav class="p-nav" aria-label="Et après ?"><div class="p-seq"><p class="eyebrow">Les grands défis · étape 15 sur 18</p><div class="p-links"><a class="p-link" href="../defi-peage/"><span class="eyebrow">← Étape précédente</span><b>Le péage automatique</b></a><a class="p-link next" href="../defi-bras-rejoue/"><span class="eyebrow">Étape suivante →</span><b>Le bras qui apprend un geste</b></a></div></div><div class="p-related"><p class="eyebrow">Projets proches</p><div class="mini-cards"><a class="mini-card" href="../defi-portiques-chrono/"><div class="led5" aria-hidden="true"><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div><span><b>Les portiques chronométrés</b><small>Multi-kits · niveau 2 · Juste le plan</small></span></a><a class="mini-card" href="../defi-peage/"><div class="led5" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span></div><span><b>Le péage automatique</b><small>Multi-kits · niveau 3 · Juste le plan</small></span></a><a class="mini-card" href="../defi-sumo/"><div class="led5" aria-hidden="true"><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span></div><span><b>Le sumo des robots</b><small>Multi-kits · niveau 3 · Juste le plan</small></span></a></div></div></nav>
+  <footer class="p-foot small">Les prénoms se règlent sur l'<a href="../../">accueil</a>. Code parent, sécurité et sauvegarde : <a href="../../parents/">page des parents</a>.</footer>
+</main>
+<script src="../../assets/progression.js"></script>
+<script src="../../assets/blocs.js"></script>
+<script src="../../assets/projet.js"></script>
+</body>
+</html>

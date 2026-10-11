@@ -10,6 +10,7 @@ function card(p, racine, opts){
   var C=window.CATALOGUE, MAT=C.materiels, NIV=C.niveaux;
   var meta=[MAT[p.materiel].court, NIV[String(p.niveau)]]; if(p.duree) meta.push(p.duree);
   if(opts.modele && p.modele) meta.unshift("modèle "+p.modele);
+  if(p.cartes) meta.push(p.cartes+(String(p.cartes).trim()==="1"?" carte":" cartes"));
   var badge=p._done?'<span class="badge ok">Réussi ✓</span>':(p.v2?'<span class="badge v2">V2</span>':'');
   var tags=p.notions.filter(function(n){return n!=="construire";}).slice(0,4).map(function(n){ return '<li>'+esc(n)+'</li>'; }).join("");
   var kind=p.type==="mission"?' · mission':(p.type==="guide"?' · guide':'');

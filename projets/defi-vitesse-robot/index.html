@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Le MiniCar avance vers un mur en enregistrant sa distance, et sa courbe te donne sa vraie vitesse en centimètres par seconde.">
+<title>La vraie vitesse du robot · Banque de projets micro:bit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="../../assets/atelier.css">
+<script>window.PROJET={id:"defi-vitesse-robot",progs:{},needs:{}};</script>
+</head>
+<body data-racine="../../">
+<!-- Page générée par outils/generer.py à partir de contenu/projets/defi-vitesse-robot.html : modifier la source, pas cette page. -->
+<main class="page proj">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../../">Accueil</a> <span aria-hidden="true">›</span> <a href="../">Banque de projets</a> <span aria-hidden="true">›</span> <a href="../../defis/">Les grands défis</a></nav>
+  <header class="p-head">
+    <div class="led5 p-icon" aria-hidden="true"><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span></div>
+    <div>
+      <p class="eyebrow">Robot MiniCar · niveau 2 · Apprenti · 2 h · 1 carte micro:bit</p>
+      <h1>La vraie vitesse du robot</h1>
+      <ul class="learn"><li class="lbl">Notions</li><li>données</li><li>ultrasons</li><li>expérience</li></ul>
+    </div>
+  </header>
+  <div class="p-bar">
+    <div class="crew-pick" id="crew">
+      <span>Pilote :</span>
+      <span class="seg" role="radiogroup" aria-label="Qui pilote ce projet ?">
+        <label><input type="radio" name="pilot" value="1"><span data-pilot="1">Équipier 1</span></label>
+        <label><input type="radio" name="pilot" value="2"><span data-pilot="2">Équipier 2</span></label>
+      </span>
+      <span class="small">Copilote : <b id="copilot">Équipier 2</b></span>
+    </div>
+    <div class="p-bar-r">
+      <span class="lvl l2">Juste le plan</span>
+      <span class="etat" data-etat>À faire</span>
+      <a class="btn mk" href="https://makecode.microbit.org/" target="_blank" rel="noopener">Ouvrir MakeCode <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+  <p class="tip">Ce projet a besoin d'une carte <b>micro:bit V2</b> (logo doré sur la face avant).</p>
+  <div class="p-main">
+<p class="goal"><b>Ta mission :</b> ton robot avance vers un mur et note sa distance toutes les 100 millisecondes. Avec la courbe, tu calcules sa vraie vitesse en centimètres par seconde. Puis tu cherches ce qui la change : la vitesse demandée, le sol, les piles.</p>
+<p class="small">Premier projet avec le MiniCar ? Commence par <a href="../../robot/">le parcours robot</a>. Première fois avec l'enregistreur de données ? Fais d'abord <a href="../defi-station-meteo/">la station météo</a>.</p>
+<div class="build">
+  <p><b>Matériel :</b> le MiniCar avec sa carte micro:bit V2, son module ultrasons et ses 3 piles AAA. Un mètre ruban. Un mur bien droit, ou une grande boîte bien droite.</p>
+  <p class="small">Les blocs du robot sont dans le tiroir de l'extension MiniCar. Pour l'ajouter : dans MakeCode, clique sur Extensions, puis colle cette adresse dans la recherche. Ajoute aussi l'extension datalogger.</p>
+  <div class="urlbox"><code id="url-minicar">https://github.com/keyestudio2019/MiniCar</code><button class="btn" type="button" data-copy="url-minicar">Copier</button></div>
+  <p class="small">Le capteur à ultrasons mesure jusqu'à environ 3 m. Sous 4 cm, il ne voit plus rien. Place le robot à moins de 3 m du mur, bien en face.</p>
+  <p class="small"><b>Sécurité :</b> le freinage automatique est obligatoire : le robot s'arrête tout seul à 10 cm du mur. Garde aussi un arrêt d'urgence avec les boutons A et B ensemble.</p>
+</div>
+<div class="predict">
+  <p class="pt">Prédis d'abord</p>
+  <p>Tu demandes au robot une vitesse, puis la moitié de cette vitesse. À ton avis, ira-t-il vraiment deux fois moins vite ?</p>
+  <textarea data-k="defi-vitesse-robot_pred" rows="2" placeholder="Ma prédiction…"></textarea>
+</div>
+<div class="m-part">
+  <h2 class="h3">Le plan</h2>
+  <ol class="steps">
+    <li>Robot à l'arrêt, face au mur. Montre la distance mesurée sur l'écran. Compare-la au mètre ruban et note les deux nombres.</li>
+    <li>Le freinage d'abord : le robot avance et s'arrête tout seul quand le mur est à moins de 10 cm. Teste avec une petite vitesse.</li>
+    <li>L'enregistrement : pendant 2 secondes d'avance, écris une ligne toutes les 100 ms, avec le temps et la distance. Ouvre le fichier MY_DATA et regarde la courbe. Prédis : sera-t-elle une ligne bien droite, du début à la fin ?</li>
+    <li>Calcule la vitesse avec deux points de la courbe : la distance parcourue en cm, divisée par le temps en secondes. Attention : 1000 ms font 1 seconde.</li>
+    <li>Change une seule chose à la fois : la vitesse demandée (prends la moitié), puis le sol, puis les piles. Refais chaque essai 3 fois et note les vitesses dans le carnet.</li>
+    <li>Conclus en une phrase : ta prédiction était juste ou fausse, parce que…</li>
+  </ol>
+</div>
+<div class="carnet-form">
+  <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>Note dans le carnet</p>
+  <div class="numrow"><label>Distance à l'arrêt, selon le capteur : <input class="numin wide" type="number" min="0" max="400" data-k="defi-vitesse-robot_capteur"> cm</label></div>
+  <div class="numrow"><label>Distance à l'arrêt, au mètre ruban : <input class="numin wide" type="number" min="0" max="400" data-k="defi-vitesse-robot_ruban"> cm</label></div>
+  <p class="small">Vitesses mesurées, en cm par seconde :</p>
+  <div class="tbl-wrap"><table><thead><tr><th>Ce que je change</th><th>Essai 1</th><th>Essai 2</th><th>Essai 3</th></tr></thead><tbody><tr><td><input class="textin" type="text" maxlength="60" data-k="defi-vitesse-robot_x1" aria-label="Réglage 1"></td><td><input class="numin" type="number" min="0" max="500" data-k="defi-vitesse-robot_v1a" aria-label="Réglage 1, essai 1"></td><td><input class="numin" type="number" min="0" max="500" data-k="defi-vitesse-robot_v1b" aria-label="Réglage 1, essai 2"></td><td><input class="numin" type="number" min="0" max="500" data-k="defi-vitesse-robot_v1c" aria-label="Réglage 1, essai 3"></td></tr><tr><td><input class="textin" type="text" maxlength="60" data-k="defi-vitesse-robot_x2" aria-label="Réglage 2"></td><td><input class="numin" type="number" min="0" max="500" data-k="defi-vitesse-robot_v2a" aria-label="Réglage 2, essai 1"></td><td><input class="numin" type="number" min="0" max="500" data-k="defi-vitesse-robot_v2b" aria-label="Réglage 2, essai 2"></td><td><input class="numin" type="number" min="0" max="500" data-k="defi-vitesse-robot_v2c" aria-label="Réglage 2, essai 3"></td></tr><tr><td><input class="textin" type="text" maxlength="60" data-k="defi-vitesse-robot_x3" aria-label="Réglage 3"></td><td><input class="numin" type="number" min="0" max="500" data-k="defi-vitesse-robot_v3a" aria-label="Réglage 3, essai 1"></td><td><input class="numin" type="number" min="0" max="500" data-k="defi-vitesse-robot_v3b" aria-label="Réglage 3, essai 2"></td><td><input class="numin" type="number" min="0" max="500" data-k="defi-vitesse-robot_v3c" aria-label="Réglage 3, essai 3"></td></tr><tr><td><input class="textin" type="text" maxlength="60" data-k="defi-vitesse-robot_x4" aria-label="Réglage 4"></td><td><input class="numin" type="number" min="0" max="500" data-k="defi-vitesse-robot_v4a" aria-label="Réglage 4, essai 1"></td><td><input class="numin" type="number" min="0" max="500" data-k="defi-vitesse-robot_v4b" aria-label="Réglage 4, essai 2"></td><td><input class="numin" type="number" min="0" max="500" data-k="defi-vitesse-robot_v4c" aria-label="Réglage 4, essai 3"></td></tr></tbody></table></div>
+  <p class="saved" hidden>Noté.</p>
+</div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Pour connaître une vitesse, de quelles deux mesures as-tu besoin ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le tiroir de l'extension MiniCar pour les moteurs et les ultrasons. Le tiroir de l'extension datalogger pour écrire une ligne. Le tiroir Entrées pour le temps écoulé depuis l'allumage de la carte, en millisecondes. Le tiroir Maths pour soustraire et diviser.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Un escargot avance de 10 cm en 5 secondes. Sa vitesse : 10 divisé par 5, soit 2 cm par seconde. Une voiture à 100 km/h fait 100 km en une heure : c'est le même calcul, avec d'autres unités.</p></div></details>
+<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden>
+  <p>La logique, en mots : au démarrage, nommer les colonnes temps et distance, ranger le temps écoulé dans une variable « départ », puis lancer les moteurs. Dans « toujours » : écrire une ligne (temps écoulé moins départ, distance), puis une pause de 100 ms. Si la distance est plus petite que 10 cm, ou si 2000 ms sont passées : arrêter les moteurs. Vitesse en cm/s : première distance moins dernière distance, divisée par le temps en secondes. Ne garde que les points entre 4 cm et 3 m.</p>
+  <p class="small">Pour aller plus loin : <a href="https://makecode.microbit.org/reference/datalogger" target="_blank" rel="noopener">la page de référence de l'extension datalogger</a>.</p>
+</div></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="defi-vitesse-robot_res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+<div class="bonus">
+  <h2 class="h3"><span>Défi bonus</span>Le mètre parfait</h2>
+  <p>Avec la vitesse que tu as mesurée, calcule combien de temps le robot doit rouler pour faire exactement 1 m. Programme-le, puis vérifie au mètre ruban.</p>
+</div>
+
+  </div>
+  <section class="p-finish" aria-label="Fin du projet" data-suivant="../defi-portiques-chrono/" data-suivant-titre="Les portiques chronométrés"></section>
+  <nav class="p-nav" aria-label="Et après ?"><div class="p-seq"><p class="eyebrow">Les grands défis · étape 11 sur 18</p><div class="p-links"><a class="p-link" href="../defi-station-meteo/"><span class="eyebrow">← Étape précédente</span><b>La station météo qui enregistre</b></a><a class="p-link next" href="../defi-portiques-chrono/"><span class="eyebrow">Étape suivante →</span><b>Les portiques chronométrés</b></a></div></div><div class="p-related"><p class="eyebrow">Projets proches</p><div class="mini-cards"><a class="mini-card" href="../defi-rover-martien/"><div class="led5" aria-hidden="true"><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span></div><span><b>Le rover martien</b><small>MiniCar · niveau 2 · Juste le plan</small></span></a><a class="mini-card" href="../defi-suis-moi/"><div class="led5" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span></div><span><b>Suis-moi, avec laisse radio</b><small>MiniCar · niveau 2 · Juste le plan</small></span></a></div></div></nav>
+  <footer class="p-foot small">Les prénoms se règlent sur l'<a href="../../">accueil</a>. Code parent, sécurité et sauvegarde : <a href="../../parents/">page des parents</a>.</footer>
+</main>
+<script src="../../assets/progression.js"></script>
+<script src="../../assets/blocs.js"></script>
+<script src="../../assets/projet.js"></script>
+</body>
+</html>

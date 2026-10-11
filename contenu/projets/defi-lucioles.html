@@ -1,0 +1,52 @@
+<!--
+id: defi-lucioles
+titre: Les lucioles synchronisées
+resume: Plusieurs cartes clignotent chacune à son rythme, puis finissent par clignoter ensemble en s'écoutant par radio.
+materiel: microbit
+niveau: 2
+aide: l2
+duree: 1 h 30
+notions: radio, variables, boucles, lumières
+parcours: defis
+ordre: 8
+icone: lucioles
+cartes: 3 ou plus
+-->
+<p class="goal"><b>Ta mission :</b> chaque carte est une luciole. Au début, elles clignotent chacune à son rythme. Elles s'écoutent par radio et, petit à petit, elles se mettent à clignoter ensemble. Personne ne donne le signal.</p>
+<div class="build">
+  <p><b>Matériel :</b> 3 cartes micro:bit ou plus, chacune avec son boîtier de piles. Toutes les cartes reçoivent le même programme.</p>
+  <p class="small">Choisis un numéro de groupe radio et écris-le sur un post-it collé sur chaque carte.</p>
+  <p class="small"><b>Sécurité :</b> ce projet fait clignoter des lumières. Préviens les personnes autour de toi : certaines y sont sensibles.</p>
+</div>
+<div class="predict">
+  <p class="pt">Prédis d'abord</p>
+  <p>Avec 3 cartes, combien de clignotements faudra-t-il avant qu'elles clignotent toutes en même temps ? Ou bien n'y arriveront-elles jamais ?</p>
+  <textarea data-k="@pred" rows="2" placeholder="Ma prédiction…"></textarea>
+</div>
+<div class="m-part">
+  <h3>Le plan</h3>
+  <ol class="steps">
+    <li>Chaque carte a un compteur qui monte de 0 à 8, un cran à chaque tour de <span class="kw" style="--cat:var(--c-base)">toujours</span>, avec une petite <span class="kw" style="--cat:var(--c-base)">pause (ms)</span>. À 8, elle clignote et repart à 0. Le compteur démarre à un nombre tiré au hasard. Teste avec 3 cartes : chacune clignote de son côté.</li>
+    <li>Quand elle clignote, la carte envoie un message « flash » par radio. Un nombre suffit. Teste : une autre carte montre une icône chaque fois qu'elle reçoit le message.</li>
+    <li>La règle des lucioles : quand une carte reçoit « flash », elle avance un peu son compteur. Teste d'abord avec 2 cartes. Prédis : que se passe-t-il si elle l'avance de beaucoup ?</li>
+    <li>Allume toutes les cartes en même temps. Compte les clignotements avant qu'elles soient d'accord. Note-le dans le carnet. Refais l'essai 3 fois.</li>
+    <li>Change une seule chose (le nombre de cartes, ou la taille du saut) et compte à nouveau.</li>
+  </ol>
+</div>
+<div class="carnet-form">
+  <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
+  <div class="tbl-wrap"><table><thead><tr><th>Essai</th><th>Nombre de cartes</th><th>Clignotements avant l'accord</th></tr></thead><tbody><tr><td class="n">1</td><td><input class="numin" type="number" min="0" max="50" data-k="@c1" aria-label="Nombre de cartes, essai 1"></td><td><input class="numin" type="number" min="0" max="500" data-k="@f1" aria-label="Clignotements, essai 1"></td></tr><tr><td class="n">2</td><td><input class="numin" type="number" min="0" max="50" data-k="@c2" aria-label="Nombre de cartes, essai 2"></td><td><input class="numin" type="number" min="0" max="500" data-k="@f2" aria-label="Clignotements, essai 2"></td></tr><tr><td class="n">3</td><td><input class="numin" type="number" min="0" max="50" data-k="@c3" aria-label="Nombre de cartes, essai 3"></td><td><input class="numin" type="number" min="0" max="500" data-k="@f3" aria-label="Clignotements, essai 3"></td></tr><tr><td class="n">4</td><td><input class="numin" type="number" min="0" max="50" data-k="@c4" aria-label="Nombre de cartes, essai 4"></td><td><input class="numin" type="number" min="0" max="500" data-k="@f4" aria-label="Clignotements, essai 4"></td></tr></tbody></table></div>
+  <p class="saved" hidden>Noté.</p>
+</div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Quand ta carte reçoit « flash », doit-elle clignoter tout de suite, ou seulement se rapprocher du moment où elle clignote ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Le tiroir <span class="kw" style="--cat:var(--c-radio)">Radio</span> : le bloc qui choisit le groupe, le bloc qui envoie un nombre, et celui qui réagit quand un nombre arrive. Le compteur se fabrique dans le tiroir Variables. Pour comparer le compteur à 8, le tiroir Logique. Pour le départ au hasard, <span class="kw" style="--cat:var(--c-math)">choisir au hasard de … à …</span> dans Maths.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>À la fin d'un concert, le public applaudit d'abord n'importe comment. Puis chacun cale un peu son rythme sur celui de ses voisins. Au bout d'un moment, toute la salle applaudit ensemble. Personne ne dirige.</p></div></details>
+<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden>
+  <p>La logique, en mots : au démarrage, choisir le groupe radio et mettre le compteur à un nombre au hasard de 0 à 8. Dans « toujours » : ajouter 1 au compteur, puis une petite pause. Si le compteur est plus grand ou égal à 8 : allumer l'écran un court instant, envoyer un nombre par radio, remettre le compteur à 0. Quand un nombre arrive : ajouter un petit saut au compteur (1, par exemple). Piège : avec la condition « égal à 8 », un compteur qui saute de 7 à 9 ne clignote jamais.</p>
+  <p class="small">Les projets multijoueurs de MakeCode ont un projet « Fireflies » sur la même idée. Sa règle exacte n'a pas été vérifiée ici : essaie plusieurs tailles de saut. Pour revoir la radio : <a href="../microbit-messager/">le messager radio</a>.</p>
+</div></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+<div class="bonus">
+  <h3><span>Défi bonus</span>La forêt de lucioles</h3>
+  <p>Ajoute d'autres lumières qui clignotent en même temps que l'écran. Sur la carte Wukong du kit Wonder : les 4 LED arc-en-ciel, avec le tiroir NeoPixel, broche P16. Sur le MiniCar (carte V2 obligatoire) : les deux phares, avec les blocs du tiroir de l'extension MiniCar. Pour ajouter cette extension : dans MakeCode, Extensions, colle l'adresse <code>https://github.com/keyestudio2019/MiniCar</code>.</p>
+</div>
