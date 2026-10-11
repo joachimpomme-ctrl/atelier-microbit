@@ -1,0 +1,50 @@
+<!--
+id: python-ecrire-messager
+titre: Écrire un morceau : la réception radio
+resume: Le messager radio, mais la partie qui reçoit les messages, tu l'écris toi-même en Python.
+materiel: microbit
+niveau: 2
+aide: l1
+duree: 45 min
+notions: python, radio, conditions
+parcours: python
+ordre: 4
+icone: message
+cartes: 2
+-->
+<p class="goal"><b>Ta mission :</b> refais le messager radio. Les boutons qui envoient un nombre, tu peux les faire en blocs. Mais le morceau qui reçoit un nombre et affiche le bon dessin, tu l'écris directement en Python, sans le construire en blocs avant.</p>
+<p class="small">Le projet en blocs : <a href="../microbit-messager/">le messager radio</a>. Ton dictionnaire de <a href="../python-demarrer/">Bien démarrer en Python</a> va servir. Il faut deux cartes, chacune avec son boîtier de piles.</p>
+<div class="predict">
+  <p class="pt">Prédis d'abord</p>
+  <p>Dans ton morceau, tu oublies le décalage sous un <code>if</code>. Que va faire MakeCode : rien de spécial, afficher une erreur, ou faire marcher le programme quand même ?</p>
+  <textarea data-k="@pred" rows="2" placeholder="Ma prédiction…"></textarea>
+</div>
+<div class="carnet-form">
+  <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
+  <div class="q"><p>La ligne qui relie la réception radio à ton morceau :</p><input class="textin" type="text" maxlength="100" data-k="@ligne" aria-label="La ligne qui relie la réception radio"></div>
+  <div class="q"><p>Le message d'erreur que tu as rencontré (s'il y en a eu un) :</p><input class="textin" type="text" maxlength="120" data-k="@erreur" aria-label="Le message d'erreur"></div>
+  <p class="saved" hidden>Noté.</p>
+</div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Un bouton a son <code>def</code> et une ligne qui le relie au bouton. La réception d'un nombre par radio, c'est aussi un événement qui attend. S'écrit-elle de la même façon ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>L'astuce du dictionnaire : mets dans les Blocs le bloc du tiroir Radio qui réagit quand un nombre est reçu, regarde ce qu'il devient en Python, puis efface-le et réécris-le de mémoire. Dedans : un <code>if</code> et un <code>elif</code>, comme dans pierre-feuille-ciseaux.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Le smiley de <a href="../python-demarrer/">Bien démarrer en Python</a> : un <code>def</code>, une ligne décalée par action, puis une ligne qui relie le <code>def</code> au bouton. Ton morceau suit le même modèle, avec une condition à l'intérieur.</p></div></details>
+<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden>
+  <div class="prog" data-prog="sol"></div>
+  <p>Construis cette solution en blocs dans un autre projet, puis passe en Python et compare avec ce que tu as écrit. Le morceau de réception reçoit le nombre dans <code>receivedNumber</code>. Les erreurs les plus fréquentes : un décalage oublié, les deux-points oubliés, ou deux <code>def</code> qui portent le même nom.</p>
+</div></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+<div class="bonus">
+  <h3><span>Défi bonus</span>Le troisième message</h3>
+  <p>Ajoute A et B ensemble, qui envoie le nombre 3, et un troisième dessin à la réception. Tout en Python, sans repasser par les blocs.</p>
+</div>
+<script>
+Object.assign(PROJET.progs, { "sol": function(B){ return [
+  K.onStart(B, K.radioGroup(B,1)),
+  K.onBtn(B,"A", K.radioSend(B,1)),
+  K.onBtn(B,"B", K.radioSend(B,2)),
+  K.onRadio(B, K.sis(B,[
+    [K.cmp(B,K.rn(B),"=",B.num(1)), [K.icon(B,"cœur")]],
+    [K.cmp(B,K.rn(B),"=",B.num(2)), [K.icon(B,"heureux")]]
+  ]))
+]; } });
+</script>

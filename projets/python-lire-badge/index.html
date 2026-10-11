@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Ton badge lumineux, en version texte : retrouve chaque bloc dans les lignes de Python.">
+<title>Lire : ton badge en Python · Banque de projets micro:bit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="../../assets/atelier.css">
+<script>window.PROJET={id:"python-lire-badge",progs:{},needs:{}};</script>
+</head>
+<body data-racine="../../">
+<!-- Page générée par outils/generer.py à partir de contenu/projets/python-lire-badge.html : modifier la source, pas cette page. -->
+<main class="page proj">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../../">Accueil</a> <span aria-hidden="true">›</span> <a href="../">Banque de projets</a> <span aria-hidden="true">›</span> <a href="../../projets/#parcours=python">Du bloc au Python</a></nav>
+  <header class="p-head">
+    <div class="led5 p-icon" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span></div>
+    <div>
+      <p class="eyebrow">micro:bit seule · niveau 1 · Découverte · 30 min</p>
+      <h1>Lire : ton badge en Python</h1>
+      <ul class="learn"><li class="lbl">Notions</li><li>python</li><li>boutons</li><li>écran</li></ul>
+    </div>
+  </header>
+  <div class="p-bar">
+    <div class="crew-pick" id="crew">
+      <span>Pilote :</span>
+      <span class="seg" role="radiogroup" aria-label="Qui pilote ce projet ?">
+        <label><input type="radio" name="pilot" value="1"><span data-pilot="1">Équipier 1</span></label>
+        <label><input type="radio" name="pilot" value="2"><span data-pilot="2">Équipier 2</span></label>
+      </span>
+      <span class="small">Copilote : <b id="copilot">Équipier 2</b></span>
+    </div>
+    <div class="p-bar-r">
+      <span class="lvl l3">Tout est expliqué</span>
+      <span class="etat" data-etat>À faire</span>
+      <a class="btn mk" href="https://makecode.microbit.org/" target="_blank" rel="noopener">Ouvrir MakeCode <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+  
+  <div class="p-main">
+<p class="goal"><b>Ta mission :</b> ouvrir ton badge lumineux en Python et retrouver, pour chaque bloc, la ligne qui lui correspond. Tu ne changes rien : tu lis, comme un détective.</p>
+<p class="small">Pas encore fait le badge ? Commence par <a href="../microbit-badge/">le badge lumineux</a>, en blocs. Et lis d'abord <a href="../python-demarrer/">Bien démarrer en Python</a>.</p>
+<div class="predict">
+  <p class="pt">Prédis d'abord</p>
+  <p>Ton badge a trois grands blocs : <span class="kw" style="--cat:var(--c-base)">au démarrage</span>, le bouton A et le bouton B. En Python, chaque bouton aura son <code>def</code>. Et le bloc <span class="kw" style="--cat:var(--c-base)">au démarrage</span>, aura-t-il un <code>def</code> lui aussi ?</p>
+  <span class="seg"><label><input type="radio" name="pred" data-k="python-lire-badge_pred" value="oui, un def"><span>oui, un def</span></label><label><input type="radio" name="pred" data-k="python-lire-badge_pred" value="non, pas de def"><span>non, pas de def</span></label></span>
+</div>
+<div class="m-part">
+  <h2 class="h3">Pas à pas</h2>
+  <ol class="steps">
+    <li>Ouvre ton badge dans MakeCode, ou refais-le vite en blocs.</li>
+    <li>Passe en Python avec le petit menu en haut de l'écran.</li>
+    <li>Compte les lignes qui commencent par <code>def</code>. Note le nombre dans le carnet.</li>
+    <li>Cherche la ligne qui contient ton prénom. Est-elle décalée vers la droite, ou collée au bord ?</li>
+    <li>Cherche la ligne qui relie le bouton B à son morceau de programme. Note le mot qui choisit le bouton.</li>
+    <li>Reviens aux blocs, puis encore au Python. Tout est-il resté pareil ?</li>
+  </ol>
+</div>
+<div class="carnet-form">
+  <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>Note dans le carnet</p>
+  <div class="numrow"><label>Nombre de lignes qui commencent par def : <input class="numin" type="number" min="0" max="20" data-k="python-lire-badge_nbdef"></label></div>
+  <div class="q"><p>La ligne qui montre ton prénom commence par :</p><input class="textin" type="text" maxlength="80" data-k="python-lire-badge_ligne_prenom" aria-label="La ligne qui montre ton prénom"></div>
+  <div class="q"><p>Le mot qui choisit le bouton B :</p><input class="textin" type="text" maxlength="40" data-k="python-lire-badge_mot_b" aria-label="Le mot qui choisit le bouton B"></div>
+  <p class="saved" hidden>Noté.</p>
+</div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Un <code>def</code>, c'est un morceau de programme qui attend quelque chose : un appui, une secousse. Le bloc <span class="kw" style="--cat:var(--c-base)">au démarrage</span> attend-il quelque chose ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Regarde les lignes collées au bord gauche, tout en haut et tout en bas du texte. Puis cherche les lignes qui contiennent <code>input.on_button_pressed</code> : ce sont elles qui relient chaque bouton à son morceau.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Dans une recette, certaines étapes se font tout de suite : « sors le beurre ». D'autres attendent un signal : « quand le four sonne, sors le gâteau ». Seules celles qui attendent ont besoin d'un « quand ».</p></div></details>
+<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden>
+  <p>Le bloc « au démarrage » n'a pas de <code>def</code> : ses lignes sont écrites collées au bord, hors de tout morceau, et la carte les exécute tout de suite. Chaque bouton a un <code>def</code>, puis une ligne décalée par bloc qu'il contient, puis une ligne <code>input.on_button_pressed(…)</code> qui relie le morceau au bouton. Le badge a donc 2 <code>def</code>. Le mot qui choisit le bouton B est <code>Button.B</code>.</p>
+</div></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="python-lire-badge_res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+<div class="bonus">
+  <h2 class="h3"><span>Défi bonus</span>Les commentaires</h2>
+  <p>Au-dessus de chaque <code>def</code>, ajoute une ligne qui commence par <code>#</code> et dit en français ce que fait ce morceau. Puis reviens aux blocs : où sont passés tes commentaires ?</p>
+</div>
+
+  </div>
+  <section class="p-finish" aria-label="Fin du projet" data-suivant="../python-modifier-de/" data-suivant-titre="Modifier : un dé à 12 faces en Python"></section>
+  <nav class="p-nav" aria-label="Et après ?"><div class="p-seq"><p class="eyebrow">Du bloc au Python · étape 2 sur 6</p><div class="p-links"><a class="p-link" href="../python-demarrer/"><span class="eyebrow">← Étape précédente</span><b>Bien démarrer en Python</b></a><a class="p-link next" href="../python-modifier-de/"><span class="eyebrow">Étape suivante →</span><b>Modifier : un dé à 12 faces en Python</b></a></div></div><div class="p-related"><p class="eyebrow">Projets proches</p><div class="mini-cards"><a class="mini-card" href="../microbit-badge/"><div class="led5" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span></div><span><b>Le badge lumineux</b><small>micro:bit · niveau 1 · Tout est expliqué</small></span></a><a class="mini-card" href="../python-demarrer/"><div class="led5" aria-hidden="true"><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div><span><b>Bien démarrer en Python</b><small>micro:bit · niveau 1 · Tout est expliqué</small></span></a><a class="mini-card" href="../microbit-boite-a-musique/"><div class="led5" aria-hidden="true"><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span></div><span><b>La boîte à musique</b><small>micro:bit · niveau 1 · Tout est expliqué</small></span></a></div></div></nav>
+  <footer class="p-foot small">Les prénoms se règlent sur l'<a href="../../">accueil</a>. Code parent, sécurité et sauvegarde : <a href="../../parents/">page des parents</a>.</footer>
+</main>
+<script src="../../assets/progression.js"></script>
+<script src="../../assets/blocs.js"></script>
+<script src="../../assets/projet.js"></script>
+</body>
+</html>

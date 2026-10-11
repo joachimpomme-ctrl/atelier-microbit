@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Ajoute le puits à pierre-feuille-ciseaux, en écrivant toi-même un « sinon si » en Python.">
+<title>Modifier : un 4e coup à pierre-feuille-ciseaux · Banque de projets micro:bit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="../../assets/atelier.css">
+<script>window.PROJET={id:"python-modifier-pfc",progs:{},needs:{}};</script>
+</head>
+<body data-racine="../../">
+<!-- Page générée par outils/generer.py à partir de contenu/projets/python-modifier-pfc.html : modifier la source, pas cette page. -->
+<main class="page proj">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../../">Accueil</a> <span aria-hidden="true">›</span> <a href="../">Banque de projets</a> <span aria-hidden="true">›</span> <a href="../../projets/#parcours=python">Du bloc au Python</a></nav>
+  <header class="p-head">
+    <div class="led5 p-icon" aria-hidden="true"><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span></div>
+    <div>
+      <p class="eyebrow">micro:bit seule · niveau 2 · Apprenti · 45 min</p>
+      <h1>Modifier : un 4e coup à pierre-feuille-ciseaux</h1>
+      <ul class="learn"><li class="lbl">Notions</li><li>python</li><li>conditions</li><li>hasard</li></ul>
+    </div>
+  </header>
+  <div class="p-bar">
+    <div class="crew-pick" id="crew">
+      <span>Pilote :</span>
+      <span class="seg" role="radiogroup" aria-label="Qui pilote ce projet ?">
+        <label><input type="radio" name="pilot" value="1"><span data-pilot="1">Équipier 1</span></label>
+        <label><input type="radio" name="pilot" value="2"><span data-pilot="2">Équipier 2</span></label>
+      </span>
+      <span class="small">Copilote : <b id="copilot">Équipier 2</b></span>
+    </div>
+    <div class="p-bar-r">
+      <span class="lvl l2">Juste le plan</span>
+      <span class="etat" data-etat>À faire</span>
+      <a class="btn mk" href="https://makecode.microbit.org/" target="_blank" rel="noopener">Ouvrir MakeCode <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+  
+  <div class="p-main">
+<p class="goal"><b>Ta mission :</b> en Python, ajoute un quatrième coup, le puits, avec son propre dessin. La carte doit pouvoir tirer les quatre coups au hasard.</p>
+<p class="small">Il te faut ton jeu <a href="../microbit-pierre-feuille-ciseaux/">pierre-feuille-ciseaux</a>, fait en blocs.</p>
+<div class="predict">
+  <p class="pt">Prédis d'abord</p>
+  <p>Tu ajoutes le puits dans les « si », mais tu oublies de changer le tirage au hasard. Le puits sortira-t-il quand tu secoues la carte ? Pourquoi ?</p>
+  <textarea data-k="python-modifier-pfc_pred" rows="2" placeholder="Ma prédiction…"></textarea>
+</div>
+<div class="m-part">
+  <h2 class="h3">Le plan</h2>
+  <ol class="steps">
+    <li>Ouvre ton jeu et passe en Python. Repère <code>if</code>, <code>elif</code> et <code>else</code> : ce sont « si », « sinon si » et « sinon ».</li>
+    <li>Ajoute un <code>elif</code> pour le puits, avec son dessin. Attention aux deux-points et au décalage : regarde comment sont écrits les autres.</li>
+    <li>Teste en secouant 10 fois. Note dans le carnet combien de fois le puits sort.</li>
+    <li data-apres="python-modifier-pfc_pred">Si le puits ne sort pas, trouve pourquoi et corrige, puis reteste 10 fois.</li>
+    <li>Reviens aux blocs : où est ton puits ?</li>
+  </ol>
+</div>
+<div class="carnet-form">
+  <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>Note dans le carnet</p>
+  <div class="numrow">
+    <label>Puits sur 10 secousses, premier essai : <input class="numin" type="number" min="0" max="10" data-k="python-modifier-pfc_avant"></label>
+    <label>Deuxième essai : <input class="numin" type="number" min="0" max="10" data-k="python-modifier-pfc_apres"></label>
+  </div>
+  <p class="saved" hidden>Noté.</p>
+</div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Combien de valeurs différentes ta variable peut-elle prendre en ce moment ? Et combien de coups veux-tu ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Deux endroits à changer : la ligne du tirage, avec <code>randint</code>, et la suite des <code>elif</code>. Un <code>elif</code> s'écrit au même décalage que le <code>if</code>, et finit par deux-points.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Un glacier ajoute un 4e parfum sur sa carte, mais sa machine n'a que 3 boutons. Personne ne pourra jamais choisir le nouveau parfum.</p></div></details>
+<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden>
+  <div class="prog" data-prog="sol"></div>
+  <p>Le tirage doit aller de 0 à 3, et un <code>elif</code> de plus teste la nouvelle valeur. Si le tirage reste de 0 à 2, le puits ne sort jamais : aucun nombre ne l'atteint. Ici, le puits est dessiné avec l'icône de la cible.</p>
+</div></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="python-modifier-pfc_res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+<div class="bonus">
+  <h2 class="h3"><span>Défi bonus</span>Le duel radio</h2>
+  <p>Deux cartes : chacune tire son coup et l'envoie à l'autre par radio. Chaque carte affiche si elle a gagné, perdu ou fait égalité. Écris la partie radio directement en Python.</p>
+</div>
+<script>
+Object.assign(PROJET.progs, { "sol": function(B){ return [
+  K.gesture(B,"secouer", K.setVar(B,"choix",K.random(B,0,3)), K.sis(B,[
+    [K.cmp(B,K.vr(B,"choix"),"=",B.num(0)), [K.icon(B,"petit carré")]],
+    [K.cmp(B,K.vr(B,"choix"),"=",B.num(1)), [K.icon(B,"carré")]],
+    [K.cmp(B,K.vr(B,"choix"),"=",B.num(2)), [K.icon(B,"ciseaux")]]
+  ],[K.icon(B,"cible")]))
+]; } });
+</script>
+
+  </div>
+  <section class="p-finish" aria-label="Fin du projet" data-suivant="../python-ecrire-messager/" data-suivant-titre="Écrire un morceau : la réception radio"></section>
+  <nav class="p-nav" aria-label="Et après ?"><div class="p-seq"><p class="eyebrow">Du bloc au Python · étape 4 sur 6</p><div class="p-links"><a class="p-link" href="../python-modifier-de/"><span class="eyebrow">← Étape précédente</span><b>Modifier : un dé à 12 faces en Python</b></a><a class="p-link next" href="../python-ecrire-messager/"><span class="eyebrow">Étape suivante →</span><b>Écrire un morceau : la réception radio</b></a></div></div><div class="p-related"><p class="eyebrow">Projets proches</p><div class="mini-cards"><a class="mini-card" href="../python-ecrire-plus-rapide/"><div class="led5" aria-hidden="true"><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span></div><span><b>Écrire tout : le jeu du plus rapide</b><small>micro:bit · niveau 3 · Juste l'objectif</small></span></a><a class="mini-card" href="../microbit-pierre-feuille-ciseaux/"><div class="led5" aria-hidden="true"><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span></div><span><b>Pierre, feuille, ciseaux</b><small>micro:bit · niveau 2 · Juste le plan</small></span></a><a class="mini-card" href="../python-modifier-de/"><div class="led5" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span></div><span><b>Modifier : un dé à 12 faces en Python</b><small>micro:bit · niveau 1 · Juste le plan</small></span></a></div></div></nav>
+  <footer class="p-foot small">Les prénoms se règlent sur l'<a href="../../">accueil</a>. Code parent, sécurité et sauvegarde : <a href="../../parents/">page des parents</a>.</footer>
+</main>
+<script src="../../assets/progression.js"></script>
+<script src="../../assets/blocs.js"></script>
+<script src="../../assets/projet.js"></script>
+</body>
+</html>

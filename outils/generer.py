@@ -30,6 +30,7 @@ PARCOURS = {
     "wonder": {"titre": "Parcours Wonder", "url": "wonder/", "fiche": "Machine", "fiches": "toutes les machines"},
     "ia":     {"titre": "Parcours IA", "url": "ia/"},
     "defis":  {"titre": "Les grands défis", "url": "defis/"},
+    "python": {"titre": "Du bloc au Python", "url": "projets/#parcours=python"},
 }
 ICONES = {
     "face": ".....,.#.#.,.....,#...#,.###.", "robot": ".###.,#.#.#,#####,.#.#.,##.##",
@@ -67,6 +68,7 @@ ICONES = {
     "chrono": ".###.,#.#.#,#.###,#...#,.###.", "laisse": "#....,.#...,..#..,...##,...##",
     "peage": "#####,....#,....#,....#,#...#", "convoi": ".....,##.##,##.##,.....,#.#.#",
     "sumo": "##.##,##.##,.....,.###.,#...#", "labyrinthe": "#####,#...#,#.#.#,#.#..,###.#",
+    "python": ".###.,#....,.###.,....#,###..",
 }
 DEFAUT_ICONE = "face"
 
@@ -129,13 +131,13 @@ def texte_cartes(c):
 
 def typographie(corps):
     """Espaces insécables avant ? ! : ; » et après « dans le texte (pas dans les balises ni les scripts)."""
-    morceaux = re.split(r"(<script.*?</script>)", corps, flags=re.S)
+    morceaux = re.split(r"(<script.*?</script>|<pre.*?</pre>)", corps, flags=re.S)
     def texte(m):
         t = m.group(1)
         t = re.sub(r" ([?!:;»])", "\u00a0\\1", t)
         t = re.sub(r"« ", "«\u00a0", t)
         return ">" + t + "<"
-    return "".join(x if x.startswith("<script") else re.sub(r">([^<>]+)<", texte, x) for x in morceaux)
+    return "".join(x if x.startswith(("<script", "<pre")) else re.sub(r">([^<>]+)<", texte, x) for x in morceaux)
 
 
 def page_projet(p, tous):

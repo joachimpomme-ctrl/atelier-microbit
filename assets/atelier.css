@@ -376,3 +376,8 @@ details.hint-defi > summary{color:var(--ink-2)}
 .pcard .res{display:grid;gap:4px;align-content:start}
 .ws.defile{box-shadow:inset -14px 0 12px -12px rgba(0,0,0,.35)}
 .p-main code,.sec code{overflow-wrap:anywhere}
+/* Code Python dans les pages projet */
+.p-main pre.py{margin:0;background:var(--board);color:#E6EAF4;border-radius:10px;padding:14px 16px;overflow-x:auto;font:500 15px/1.6 var(--f-mono);tab-size:4}
+.p-main pre.py code{font:inherit;color:inherit}
+.p-main :not(pre) > code{background:var(--soft);padding:1px 6px;border-radius:5px;font-size:.92em}
+@media (max-width:600px){ .p-main pre.py{font-size:13px;padding:12px} }

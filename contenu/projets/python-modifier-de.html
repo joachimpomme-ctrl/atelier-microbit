@@ -1,0 +1,53 @@
+<!--
+id: python-modifier-de
+titre: Modifier : un dé à 12 faces en Python
+resume: Ton dé électronique devient un dé à 12 faces, en changeant le Python et non les blocs.
+materiel: microbit
+niveau: 1
+aide: l2
+duree: 30 min
+notions: python, hasard
+parcours: python
+ordre: 2
+icone: de
+-->
+<p class="goal"><b>Ta mission :</b> sans toucher aux blocs, transforme ton dé de 1 à 6 en dé de 1 à 12, directement dans le Python. Puis reviens aux blocs pour vérifier ton changement.</p>
+<p class="small">Il te faut ton <a href="../microbit-de/">dé électronique</a>, fait en blocs.</p>
+<div class="predict">
+  <p class="pt">Prédis d'abord</p>
+  <p>Tu changes un nombre dans le Python, puis tu cliques sur Blocs. Le bloc du hasard aura-t-il changé tout seul ?</p>
+  <span class="seg"><label><input type="radio" name="pred" data-k="@pred" value="oui"><span>oui</span></label><label><input type="radio" name="pred" data-k="@pred" value="non"><span>non</span></label></span>
+</div>
+<div class="m-part">
+  <h3>Le plan</h3>
+  <ol class="steps">
+    <li>Ouvre ton dé et passe en Python.</li>
+    <li>Trouve la ligne qui tire le nombre au hasard. Recopie-la dans le carnet.</li>
+    <li>Change ce qu'il faut pour aller jusqu'à 12. Teste dans le simulateur : il a un bouton pour secouer la carte quand ton programme en a besoin.</li>
+    <li>Reviens aux blocs et retrouve ton changement.</li>
+    <li>Encore en Python : fais effacer l'écran 2 secondes après le nombre. Tu ne connais pas la ligne ? Utilise l'astuce du <a href="../python-demarrer/">dictionnaire</a>.</li>
+  </ol>
+</div>
+<div class="carnet-form">
+  <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Note dans le carnet</p>
+  <div class="q"><p>La ligne du hasard, avant :</p><input class="textin" type="text" maxlength="80" data-k="@avant" aria-label="La ligne du hasard avant"></div>
+  <div class="q"><p>La ligne du hasard, après :</p><input class="textin" type="text" maxlength="80" data-k="@apres" aria-label="La ligne du hasard après"></div>
+  <p class="saved" hidden>Noté.</p>
+</div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Dans la ligne du hasard, il y a deux nombres. Lequel décide du plus petit résultat possible, et lequel du plus grand ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Cherche le mot <code>randint</code> : c'est le bloc <span class="kw" style="--cat:var(--c-math)">choisir au hasard de … à …</span> écrit en Python. Les deux nombres sont entre ses parenthèses.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Pour couper un morceau de ruban sur un mètre de couturière, tu donnes le début et la fin. Changer la fin rallonge le morceau, sans toucher au début.</p></div></details>
+<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden>
+  <div class="prog" data-prog="sol"></div>
+  <p>En Python, seule la ligne du hasard change : le deuxième nombre passe de 6 à 12. Pour effacer l'écran, il faut une pause de 2000 ms puis la ligne qui efface l'écran, toutes deux décalées comme la ligne du nombre.</p>
+</div></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+<div class="bonus">
+  <h3><span>Défi bonus</span>Deux dés en un</h3>
+  <p>Un dé de 1 à 6 sur le bouton A, un dé de 1 à 12 sur le bouton B. Écris le deuxième en copiant le premier dans le Python, puis en changeant ce qu'il faut. Attention à donner un nom différent à chaque <code>def</code>.</p>
+</div>
+<script>
+Object.assign(PROJET.progs, { "sol": function(B){ return [
+  K.gesture(B,"secouer", K.showNum(B,K.random(B,1,12)), K.pause(B,2000), K.clear(B))
+]; } });
+</script>

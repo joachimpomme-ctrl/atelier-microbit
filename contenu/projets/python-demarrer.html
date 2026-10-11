@@ -1,0 +1,75 @@
+<!--
+id: python-demarrer
+titre: Bien démarrer en Python
+resume: Les mêmes programmes, écrits en texte : passer des blocs au Python dans MakeCode, ses règles, et ton propre dictionnaire.
+materiel: microbit
+niveau: 1
+aide: l3
+duree: 30 min
+notions: python, matériel
+parcours: python
+ordre: 0
+icone: python
+type: guide
+-->
+<p class="goal"><b>Ta mission :</b> découvrir la version en texte de tes programmes. Dans ce parcours, tu vas d'abord la lire, puis la modifier, puis l'écrire toi-même. Les blocs restent là : tu peux revenir à eux à tout moment.</p>
+<div class="m-part">
+  <h3>Pourquoi le Python ?</h3>
+  <ul>
+    <li>C'est un vrai langage de programmation. C'est celui qu'on utilise au lycée.</li>
+    <li>Un long programme s'écrit plus vite au clavier qu'en glissant des blocs.</li>
+    <li>Mais une seule faute de frappe peut tout bloquer. C'est pour ça qu'on y va pas à pas.</li>
+  </ul>
+</div>
+<div class="m-part">
+  <h3>Passer des blocs au Python</h3>
+  <ol class="steps">
+    <li>Ouvre dans MakeCode un projet qui marche, par exemple ton badge lumineux.</li>
+    <li>En haut, au milieu de l'écran, à côté du bouton <span class="ui">Blocs</span>, ouvre le petit menu de <span class="ui">JavaScript</span> et choisis <span class="ui">Python</span>.</li>
+    <li>Regarde : c'est le même programme, écrit en texte.</li>
+    <li>Clique sur <span class="ui">Blocs</span> pour revenir. Rien n'est perdu : MakeCode traduit dans les deux sens.</li>
+  </ol>
+  <p class="small">Le nom exact des boutons peut changer un peu selon la version de MakeCode.</p>
+</div>
+<div class="m-part">
+  <h3>Les règles du Python</h3>
+  <ul>
+    <li><b>Le décalage compte.</b> Une ligne décalée vers la droite (4 espaces) est « dans » la ligne du dessus. C'est la bouche des blocs.</li>
+    <li><b>Les deux-points</b> <code>:</code> annoncent un décalage, à la fin d'une ligne qui commence par <code>def</code>, <code>if</code>, <code>elif</code> ou <code>else</code>.</li>
+    <li><b><code>def</code> donne un nom à un morceau de programme.</b> Pour un bouton, MakeCode écrit un <code>def</code>, puis une ligne qui relie ce morceau au bouton.</li>
+    <li><b>Les majuscules comptent.</b> <code>Button.A</code> et <code>button.a</code>, ce n'est pas pareil.</li>
+    <li><b>Une ligne qui commence par <code>#</code></b> est un commentaire : la carte l'ignore. Écris-y ce que fait ton programme.</li>
+    <li><b>Souligné en rouge = erreur.</b> Passe la souris dessus pour lire le message.</li>
+  </ul>
+</div>
+<div class="m-part">
+  <h3>Un exemple, sur un autre programme</h3>
+  <p>Voici trois lignes du tutoriel officiel MakeCode « Smiley Buttons » : quand on appuie sur A, l'écran montre un visage content.</p>
+<pre class="py" tabindex="0" aria-label="Exemple de code Python"><code>def on_button_pressed_a():
+    basic.show_icon(IconNames.HAPPY)
+input.on_button_pressed(Button.A, on_button_pressed_a)</code></pre>
+  <ol class="steps">
+    <li>La 1<sup>re</sup> ligne donne un nom au morceau de programme.</li>
+    <li>La 2<sup>e</sup>, décalée, dit ce qui se passe : montrer l'icône du visage content.</li>
+    <li>La 3<sup>e</sup>, pas décalée, relie ce morceau au bouton A.</li>
+  </ol>
+  <p class="small">Petit clin d'œil : parmi les icônes de MakeCode, il y en a une qui s'appelle <code>IconNames.SNAKE</code>. Python, c'est aussi le nom d'un serpent.</p>
+</div>
+<div class="carnet-form">
+  <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"></span>Mon dictionnaire bloc → Python</p>
+  <p class="small">Dans un projet vide, glisse un bloc, passe en Python, et recopie ce que tu vois. Ce dictionnaire te servira dans tout le parcours : il est enregistré sur cet ordinateur.</p>
+  <div class="tbl-wrap"><table><thead><tr><th>Bloc</th><th>En Python</th></tr></thead><tbody>
+    <tr><td>au démarrage (avec un bloc dedans)</td><td><input class="textin" type="text" maxlength="80" data-k="py_demarrage" aria-label="au démarrage en Python"></td></tr>
+    <tr><td>toujours</td><td><input class="textin" type="text" maxlength="80" data-k="py_toujours" aria-label="toujours en Python"></td></tr>
+    <tr><td>lorsque le bouton A est pressé</td><td><input class="textin" type="text" maxlength="80" data-k="py_bouton" aria-label="bouton A en Python"></td></tr>
+    <tr><td>montrer nombre</td><td><input class="textin" type="text" maxlength="80" data-k="py_nombre" aria-label="montrer nombre en Python"></td></tr>
+    <tr><td>montrer l'icône</td><td><input class="textin" type="text" maxlength="80" data-k="py_icone" aria-label="montrer l'icône en Python"></td></tr>
+    <tr><td>pause (ms)</td><td><input class="textin" type="text" maxlength="80" data-k="py_pause" aria-label="pause en Python"></td></tr>
+    <tr><td>choisir au hasard de … à …</td><td><input class="textin" type="text" maxlength="80" data-k="py_hasard" aria-label="hasard en Python"></td></tr>
+    <tr><td>si … alors … sinon</td><td><input class="textin" type="text" maxlength="80" data-k="py_si" aria-label="si sinon en Python"></td></tr>
+    <tr><td>définir une variable à 0</td><td><input class="textin" type="text" maxlength="80" data-k="py_variable" aria-label="variable en Python"></td></tr>
+  </tbody></table></div>
+  <p class="saved" hidden>Noté.</p>
+</div>
+<p class="tip"><b>L'astuce qui sert tout le temps :</b> tu ne sais pas écrire une ligne en Python ? Mets le bloc dans l'onglet Blocs, regarde ce qu'il devient en Python, puis efface-le et réécris-le toi-même.</p>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="@res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>

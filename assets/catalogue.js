@@ -59,6 +59,10 @@ window.CATALOGUE = {
   "defis": {
    "titre": "Les grands défis",
    "url": "defis/"
+  },
+  "python": {
+   "titre": "Du bloc au Python",
+   "url": "projets/#parcours=python"
   }
  },
  "notions": [
@@ -73,18 +77,19 @@ window.CATALOGUE = {
   "servo",
   "IA",
   "boucles",
+  "hasard",
   "son",
   "capteurs",
   "écran",
-  "hasard",
+  "python",
   "suivi de ligne",
   "accéléromètre",
   "lumières",
   "données",
   "listes",
+  "matériel",
   "fonctions",
   "infrarouge",
-  "matériel",
   "sécurité"
  ],
  "projets": [
@@ -738,6 +743,143 @@ window.CATALOGUE = {
    "parcours": "microbit",
    "url": "projets/microbit-veilleuse/",
    "icone": "..##.,.##..,.##..,.##..,..##.",
+   "stockage": "banque",
+   "modele": "",
+   "v2": false,
+   "type": "projet",
+   "aide": "l2",
+   "cartes": ""
+  },
+  {
+   "id": "python-demarrer",
+   "titre": "Bien démarrer en Python",
+   "resume": "Les mêmes programmes, écrits en texte : passer des blocs au Python dans MakeCode, ses règles, et ton propre dictionnaire.",
+   "materiel": "microbit",
+   "niveau": 1,
+   "notions": [
+    "python",
+    "matériel"
+   ],
+   "ordre": 0,
+   "duree": "30 min",
+   "parcours": "python",
+   "url": "projets/python-demarrer/",
+   "icone": ".###.,#....,.###.,....#,###..",
+   "stockage": "banque",
+   "modele": "",
+   "v2": false,
+   "type": "guide",
+   "aide": "l3",
+   "cartes": ""
+  },
+  {
+   "id": "python-ecrire-messager",
+   "titre": "Écrire un morceau : la réception radio",
+   "resume": "Le messager radio, mais la partie qui reçoit les messages, tu l'écris toi-même en Python.",
+   "materiel": "microbit",
+   "niveau": 2,
+   "notions": [
+    "python",
+    "radio",
+    "conditions"
+   ],
+   "ordre": 4,
+   "duree": "45 min",
+   "parcours": "python",
+   "url": "projets/python-ecrire-messager/",
+   "icone": "#####,##.##,#.#.#,#...#,#####",
+   "stockage": "banque",
+   "modele": "",
+   "v2": false,
+   "type": "projet",
+   "aide": "l1",
+   "cartes": "2"
+  },
+  {
+   "id": "python-ecrire-plus-rapide",
+   "titre": "Écrire tout : le jeu du plus rapide",
+   "resume": "Un jeu entier écrit en Python, d'un projet vide jusqu'au vainqueur.",
+   "materiel": "microbit",
+   "niveau": 3,
+   "notions": [
+    "python",
+    "variables",
+    "hasard",
+    "conditions"
+   ],
+   "ordre": 5,
+   "duree": "1 h",
+   "parcours": "python",
+   "url": "projets/python-ecrire-plus-rapide/",
+   "icone": "...#.,..#..,.###.,..#..,.#...",
+   "stockage": "banque",
+   "modele": "",
+   "v2": false,
+   "type": "projet",
+   "aide": "l1",
+   "cartes": ""
+  },
+  {
+   "id": "python-lire-badge",
+   "titre": "Lire : ton badge en Python",
+   "resume": "Ton badge lumineux, en version texte : retrouve chaque bloc dans les lignes de Python.",
+   "materiel": "microbit",
+   "niveau": 1,
+   "notions": [
+    "python",
+    "boutons",
+    "écran"
+   ],
+   "ordre": 1,
+   "duree": "30 min",
+   "parcours": "python",
+   "url": "projets/python-lire-badge/",
+   "icone": "#...#,##..#,#.#.#,#..##,#...#",
+   "stockage": "banque",
+   "modele": "",
+   "v2": false,
+   "type": "projet",
+   "aide": "l3",
+   "cartes": ""
+  },
+  {
+   "id": "python-modifier-de",
+   "titre": "Modifier : un dé à 12 faces en Python",
+   "resume": "Ton dé électronique devient un dé à 12 faces, en changeant le Python et non les blocs.",
+   "materiel": "microbit",
+   "niveau": 1,
+   "notions": [
+    "python",
+    "hasard"
+   ],
+   "ordre": 2,
+   "duree": "30 min",
+   "parcours": "python",
+   "url": "projets/python-modifier-de/",
+   "icone": "#...#,.....,..#..,.....,#...#",
+   "stockage": "banque",
+   "modele": "",
+   "v2": false,
+   "type": "projet",
+   "aide": "l2",
+   "cartes": ""
+  },
+  {
+   "id": "python-modifier-pfc",
+   "titre": "Modifier : un 4e coup à pierre-feuille-ciseaux",
+   "resume": "Ajoute le puits à pierre-feuille-ciseaux, en écrivant toi-même un « sinon si » en Python.",
+   "materiel": "microbit",
+   "niveau": 2,
+   "notions": [
+    "python",
+    "conditions",
+    "hasard"
+   ],
+   "ordre": 3,
+   "duree": "45 min",
+   "parcours": "python",
+   "url": "projets/python-modifier-pfc/",
+   "icone": "##..#,##.#.,..#..,##.#.,##..#",
    "stockage": "banque",
    "modele": "",
    "v2": false,

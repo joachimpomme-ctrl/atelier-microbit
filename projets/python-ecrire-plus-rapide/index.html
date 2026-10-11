@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Un jeu entier écrit en Python, d&#x27;un projet vide jusqu&#x27;au vainqueur.">
+<title>Écrire tout : le jeu du plus rapide · Banque de projets micro:bit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="../../assets/atelier.css">
+<script>window.PROJET={id:"python-ecrire-plus-rapide",progs:{},needs:{}};</script>
+</head>
+<body data-racine="../../">
+<!-- Page générée par outils/generer.py à partir de contenu/projets/python-ecrire-plus-rapide.html : modifier la source, pas cette page. -->
+<main class="page proj">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../../">Accueil</a> <span aria-hidden="true">›</span> <a href="../">Banque de projets</a> <span aria-hidden="true">›</span> <a href="../../projets/#parcours=python">Du bloc au Python</a></nav>
+  <header class="p-head">
+    <div class="led5 p-icon" aria-hidden="true"><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span></div>
+    <div>
+      <p class="eyebrow">micro:bit seule · niveau 3 · Ingénieur · 1 h</p>
+      <h1>Écrire tout : le jeu du plus rapide</h1>
+      <ul class="learn"><li class="lbl">Notions</li><li>python</li><li>variables</li><li>hasard</li><li>conditions</li></ul>
+    </div>
+  </header>
+  <div class="p-bar">
+    <div class="crew-pick" id="crew">
+      <span>Pilote :</span>
+      <span class="seg" role="radiogroup" aria-label="Qui pilote ce projet ?">
+        <label><input type="radio" name="pilot" value="1"><span data-pilot="1">Équipier 1</span></label>
+        <label><input type="radio" name="pilot" value="2"><span data-pilot="2">Équipier 2</span></label>
+      </span>
+      <span class="small">Copilote : <b id="copilot">Équipier 2</b></span>
+    </div>
+    <div class="p-bar-r">
+      <span class="lvl l1">Juste l'objectif</span>
+      <span class="etat" data-etat>À faire</span>
+      <a class="btn mk" href="https://makecode.microbit.org/" target="_blank" rel="noopener">Ouvrir MakeCode <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+  
+  <div class="p-main">
+<p class="goal"><b>Ta mission :</b> dans un projet vide, passe tout de suite en Python et écris le jeu du plus rapide sans utiliser les blocs. La carte attend un temps au hasard, puis affiche un signal. Le premier joueur qui appuie sur son bouton après le signal gagne, et la carte affiche sa lettre. Les blocs ne servent qu'à la fin, pour vérifier.</p>
+<p class="small">Le jeu en blocs : <a href="../microbit-plus-rapide/">le jeu du plus rapide</a>. Si tu l'as déjà fait, essaie de ne pas le rouvrir.</p>
+<div class="predict">
+  <p class="pt">Prédis d'abord</p>
+  <p>Dans ton jeu, la variable qui dit si la partie est en cours change dans les deux boutons. En blocs, ça marchait tout seul. En Python, faudra-t-il écrire quelque chose de plus pour que les boutons aient le droit de la changer ?</p>
+  <textarea data-k="python-ecrire-plus-rapide_pred" rows="2" placeholder="Ma prédiction…"></textarea>
+</div>
+<div class="carnet-form">
+  <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>Note dans le carnet</p>
+  <div class="numrow"><label>Nombre de lignes de ton programme : <input class="numin wide" type="number" min="0" max="200" data-k="python-ecrire-plus-rapide_lignes"></label></div>
+  <div class="q"><p>L'erreur qui t'a pris le plus de temps :</p><input class="textin" type="text" maxlength="120" data-k="python-ecrire-plus-rapide_erreur" aria-label="L'erreur qui t'a pris le plus de temps"></div>
+  <p class="saved" hidden>Noté.</p>
+</div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Que doit valoir ta variable pendant l'attente ? Et une fois le signal affiché ? Et juste après qu'un joueur a gagné ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Ton dictionnaire : pause, hasard, icône, boutons, variable. Si ta variable est soulignée en rouge dans un <code>def</code>, fais un tout petit programme en blocs où un bouton change une variable, passe-le en Python, et regarde la première ligne dans le <code>def</code>.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Un arbitre de course compte dans sa tête un temps que lui seul connaît, puis tire le coup de départ. Avant le coup de départ, personne ne peut gagner, même en partant le premier.</p></div></details>
+<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden>
+  <div class="prog" data-prog="sol"></div>
+  <p>Construis cette solution en blocs dans un autre projet, puis passe-la en Python pour comparer. Dans chaque bouton qui change la variable <code>partie</code>, MakeCode ajoute une ligne <code>global partie</code> en tête du <code>def</code> : elle dit que la variable vient de l'extérieur du morceau. Sans elle, le programme ne fait pas ce que tu veux.</p>
+</div></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="python-ecrire-plus-rapide_res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+<div class="bonus">
+  <h2 class="h3"><span>Défi bonus</span>Le tricheur puni</h2>
+  <p>Si un joueur appuie avant le signal, il perd tout de suite et la carte affiche la lettre de l'autre. Ajoute-le en Python, avec un <code>else</code>.</p>
+</div>
+<script>
+Object.assign(PROJET.progs, { "sol": function(B){ return [
+  K.onStart(B, K.setVar(B,"partie",B.num(0)), B.st("base",["pause (ms)",K.random(B,2000,5000)]), K.icon(B,"cible"), K.setVar(B,"partie",B.num(1))),
+  K.onBtn(B,"A", K.si(B,K.cmp(B,K.vr(B,"partie"),"=",B.num(1)),[K.setVar(B,"partie",B.num(0)), K.text(B,"A")])),
+  K.onBtn(B,"B", K.si(B,K.cmp(B,K.vr(B,"partie"),"=",B.num(1)),[K.setVar(B,"partie",B.num(0)), K.text(B,"B")]))
+]; } });
+</script>
+
+  </div>
+  <section class="p-finish" aria-label="Fin du projet" data-fin="../../projets/#parcours=python" data-fin-titre="Du bloc au Python"></section>
+  <nav class="p-nav" aria-label="Et après ?"><div class="p-seq"><p class="eyebrow">Du bloc au Python · étape 6 sur 6</p><div class="p-links"><a class="p-link" href="../python-ecrire-messager/"><span class="eyebrow">← Étape précédente</span><b>Écrire un morceau : la réception radio</b></a></div></div><div class="p-related"><p class="eyebrow">Projets proches</p><div class="mini-cards"><a class="mini-card" href="../microbit-plus-rapide/"><div class="led5" aria-hidden="true"><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span></div><span><b>Le jeu du plus rapide</b><small>micro:bit · niveau 3 · Juste l'objectif</small></span></a><a class="mini-card" href="../python-modifier-pfc/"><div class="led5" aria-hidden="true"><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span></div><span><b>Modifier : un 4e coup à pierre-feuille-ciseaux</b><small>micro:bit · niveau 2 · Juste le plan</small></span></a><a class="mini-card" href="../microbit-pierre-feuille-ciseaux/"><div class="led5" aria-hidden="true"><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span></div><span><b>Pierre, feuille, ciseaux</b><small>micro:bit · niveau 2 · Juste le plan</small></span></a></div></div></nav>
+  <footer class="p-foot small">Les prénoms se règlent sur l'<a href="../../">accueil</a>. Code parent, sécurité et sauvegarde : <a href="../../parents/">page des parents</a>.</footer>
+</main>
+<script src="../../assets/progression.js"></script>
+<script src="../../assets/blocs.js"></script>
+<script src="../../assets/projet.js"></script>
+</body>
+</html>

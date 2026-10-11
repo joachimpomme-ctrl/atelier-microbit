@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Ton dé électronique devient un dé à 12 faces, en changeant le Python et non les blocs.">
+<title>Modifier : un dé à 12 faces en Python · Banque de projets micro:bit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="../../assets/atelier.css">
+<script>window.PROJET={id:"python-modifier-de",progs:{},needs:{}};</script>
+</head>
+<body data-racine="../../">
+<!-- Page générée par outils/generer.py à partir de contenu/projets/python-modifier-de.html : modifier la source, pas cette page. -->
+<main class="page proj">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../../">Accueil</a> <span aria-hidden="true">›</span> <a href="../">Banque de projets</a> <span aria-hidden="true">›</span> <a href="../../projets/#parcours=python">Du bloc au Python</a></nav>
+  <header class="p-head">
+    <div class="led5 p-icon" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span></div>
+    <div>
+      <p class="eyebrow">micro:bit seule · niveau 1 · Découverte · 30 min</p>
+      <h1>Modifier : un dé à 12 faces en Python</h1>
+      <ul class="learn"><li class="lbl">Notions</li><li>python</li><li>hasard</li></ul>
+    </div>
+  </header>
+  <div class="p-bar">
+    <div class="crew-pick" id="crew">
+      <span>Pilote :</span>
+      <span class="seg" role="radiogroup" aria-label="Qui pilote ce projet ?">
+        <label><input type="radio" name="pilot" value="1"><span data-pilot="1">Équipier 1</span></label>
+        <label><input type="radio" name="pilot" value="2"><span data-pilot="2">Équipier 2</span></label>
+      </span>
+      <span class="small">Copilote : <b id="copilot">Équipier 2</b></span>
+    </div>
+    <div class="p-bar-r">
+      <span class="lvl l2">Juste le plan</span>
+      <span class="etat" data-etat>À faire</span>
+      <a class="btn mk" href="https://makecode.microbit.org/" target="_blank" rel="noopener">Ouvrir MakeCode <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+  
+  <div class="p-main">
+<p class="goal"><b>Ta mission :</b> sans toucher aux blocs, transforme ton dé de 1 à 6 en dé de 1 à 12, directement dans le Python. Puis reviens aux blocs pour vérifier ton changement.</p>
+<p class="small">Il te faut ton <a href="../microbit-de/">dé électronique</a>, fait en blocs.</p>
+<div class="predict">
+  <p class="pt">Prédis d'abord</p>
+  <p>Tu changes un nombre dans le Python, puis tu cliques sur Blocs. Le bloc du hasard aura-t-il changé tout seul ?</p>
+  <span class="seg"><label><input type="radio" name="pred" data-k="python-modifier-de_pred" value="oui"><span>oui</span></label><label><input type="radio" name="pred" data-k="python-modifier-de_pred" value="non"><span>non</span></label></span>
+</div>
+<div class="m-part">
+  <h2 class="h3">Le plan</h2>
+  <ol class="steps">
+    <li>Ouvre ton dé et passe en Python.</li>
+    <li>Trouve la ligne qui tire le nombre au hasard. Recopie-la dans le carnet.</li>
+    <li>Change ce qu'il faut pour aller jusqu'à 12. Teste dans le simulateur : il a un bouton pour secouer la carte quand ton programme en a besoin.</li>
+    <li>Reviens aux blocs et retrouve ton changement.</li>
+    <li>Encore en Python : fais effacer l'écran 2 secondes après le nombre. Tu ne connais pas la ligne ? Utilise l'astuce du <a href="../python-demarrer/">dictionnaire</a>.</li>
+  </ol>
+</div>
+<div class="carnet-form">
+  <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>Note dans le carnet</p>
+  <div class="q"><p>La ligne du hasard, avant :</p><input class="textin" type="text" maxlength="80" data-k="python-modifier-de_avant" aria-label="La ligne du hasard avant"></div>
+  <div class="q"><p>La ligne du hasard, après :</p><input class="textin" type="text" maxlength="80" data-k="python-modifier-de_apres" aria-label="La ligne du hasard après"></div>
+  <p class="saved" hidden>Noté.</p>
+</div>
+<details class="hint"><summary>Indice 1 · une question</summary><div class="body"><p>Dans la ligne du hasard, il y a deux nombres. Lequel décide du plus petit résultat possible, et lequel du plus grand ?</p></div></details>
+<details class="hint"><summary>Indice 2 · où chercher</summary><div class="body"><p>Cherche le mot <code>randint</code> : c'est le bloc <span class="kw" style="--cat:var(--c-math)">choisir au hasard de … à …</span> écrit en Python. Les deux nombres sont entre ses parenthèses.</p></div></details>
+<details class="hint"><summary>Indice 3 · un exemple sur un autre cas</summary><div class="body"><p>Pour couper un morceau de ruban sur un mètre de couturière, tu donnes le début et la fin. Changer la fin rallonge le morceau, sans toucher au début.</p></div></details>
+<div class="lockbox"><button class="btn" type="button" data-unlock>Solution (code parent)</button><div class="sol-body" hidden>
+  <div class="prog" data-prog="sol"></div>
+  <p>En Python, seule la ligne du hasard change : le deuxième nombre passe de 6 à 12. Pour effacer l'écran, il faut une pause de 2000 ms puis la ligne qui efface l'écran, toutes deux décalées comme la ligne du nombre.</p>
+</div></div>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="python-modifier-de_res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+<div class="bonus">
+  <h2 class="h3"><span>Défi bonus</span>Deux dés en un</h2>
+  <p>Un dé de 1 à 6 sur le bouton A, un dé de 1 à 12 sur le bouton B. Écris le deuxième en copiant le premier dans le Python, puis en changeant ce qu'il faut. Attention à donner un nom différent à chaque <code>def</code>.</p>
+</div>
+<script>
+Object.assign(PROJET.progs, { "sol": function(B){ return [
+  K.gesture(B,"secouer", K.showNum(B,K.random(B,1,12)), K.pause(B,2000), K.clear(B))
+]; } });
+</script>
+
+  </div>
+  <section class="p-finish" aria-label="Fin du projet" data-suivant="../python-modifier-pfc/" data-suivant-titre="Modifier : un 4e coup à pierre-feuille-ciseaux"></section>
+  <nav class="p-nav" aria-label="Et après ?"><div class="p-seq"><p class="eyebrow">Du bloc au Python · étape 3 sur 6</p><div class="p-links"><a class="p-link" href="../python-lire-badge/"><span class="eyebrow">← Étape précédente</span><b>Lire : ton badge en Python</b></a><a class="p-link next" href="../python-modifier-pfc/"><span class="eyebrow">Étape suivante →</span><b>Modifier : un 4e coup à pierre-feuille-ciseaux</b></a></div></div><div class="p-related"><p class="eyebrow">Projets proches</p><div class="mini-cards"><a class="mini-card" href="../python-demarrer/"><div class="led5" aria-hidden="true"><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div><span><b>Bien démarrer en Python</b><small>micro:bit · niveau 1 · Tout est expliqué</small></span></a><a class="mini-card" href="../python-lire-badge/"><div class="led5" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span></div><span><b>Lire : ton badge en Python</b><small>micro:bit · niveau 1 · Tout est expliqué</small></span></a><a class="mini-card" href="../microbit-de/"><div class="led5" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span></div><span><b>Le dé électronique</b><small>micro:bit · niveau 1 · Tout est expliqué</small></span></a></div></div></nav>
+  <footer class="p-foot small">Les prénoms se règlent sur l'<a href="../../">accueil</a>. Code parent, sécurité et sauvegarde : <a href="../../parents/">page des parents</a>.</footer>
+</main>
+<script src="../../assets/progression.js"></script>
+<script src="../../assets/blocs.js"></script>
+<script src="../../assets/projet.js"></script>
+</body>
+</html>

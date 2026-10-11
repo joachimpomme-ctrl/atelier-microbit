@@ -16,14 +16,14 @@ Le site est publié avec GitHub Pages : https://joachimpomme-ctrl.github.io/atel
 | `defis/` | Les grands défis | 18 projets qui combinent MiniCar, Wonder et plusieurs cartes, rangés en 5 blocs |
 | `parents/` | Pour les parents | code des solutions, sécurité, rôle de l'adulte, sauvegarde, remise à zéro |
 
-La banque compte 79 entrées : 62 pages projet, plus les 17 missions des parcours robot et IA (listées dans la banque, elles ouvrent leur page de parcours).
+La banque compte 85 entrées : 68 pages projet, plus les 17 missions des parcours robot et IA (listées dans la banque, elles ouvrent leur page de parcours).
 
 ### Le classement
 
 - **Matériel** : `microbit` (la carte seule), `minicar` (robot MiniCar), `wonder` (kit Wonder 32 en 1), `createai` (IA), `multi` (MiniCar et Wonder ensemble).
 - **Niveau** : 1 Découverte, 2 Apprenti, 3 Ingénieur.
 - **Notions** : mots libres (`moteurs`, `radio`, `servo`…). Réutiliser les notions existantes avant d'en créer une. La liste est dans `assets/catalogue.js` après génération.
-- **Parcours** : `microbit`, `robot`, `wonder`, `ia`, `defis`. Dans un parcours, `ordre` de 0 à 99 = les étapes dans l'ordre ; de 100 à 899 = les fiches libres (pour Wonder : 100 + numéro du modèle).
+- **Parcours** : `microbit`, `python` (du bloc au Python, 6 étapes sur la carte seule), `robot`, `wonder`, `ia`, `defis`. Dans un parcours, `ordre` de 0 à 99 = les étapes dans l'ordre ; de 100 à 899 = les fiches libres (pour Wonder : 100 + numéro du modèle).
 
 ## Ajouter un projet
 
@@ -81,7 +81,7 @@ Les pages enfant tutoient l'enfant (« Ta mission », « Prédis d'abord », « 
 7. `<div class="lockbox">` : la solution, `<div class="prog" data-prog="sol">`. Le bouton ne s'active qu'une fois les indices ouverts, puis il demande le code parent.
 8. `<div class="resume">` avec `data-k="@res"`. La page y rappelle automatiquement la prédiction.
 9. `<div class="bonus"><h3><span>Défi bonus</span>Titre</h3>…</div>`, après le résumé. Un coup de pouce éventuel : `<details class="hint-defi">`.
-10. Un `<script>` qui dessine les programmes.
+10. Un `<script>` qui dessine les programmes. Du code Python s'écrit dans `<pre class="py"><code>…</code></pre>` (la typographie automatique ne s'y applique pas) ; n'utiliser que des noms vérifiés dans MakeCode.
 
 La page ajoute seule l'en-tête, la barre (pilote, aide, état, « Ouvrir MakeCode »), le bouton de fin « On a réussi ! Projet suivant » et les projets proches.
 

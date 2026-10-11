@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="description" content="Les mêmes programmes, écrits en texte : passer des blocs au Python dans MakeCode, ses règles, et ton propre dictionnaire.">
+<title>Bien démarrer en Python · Banque de projets micro:bit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="../../assets/atelier.css">
+<script>window.PROJET={id:"python-demarrer",progs:{},needs:{}};</script>
+</head>
+<body data-racine="../../">
+<!-- Page générée par outils/generer.py à partir de contenu/projets/python-demarrer.html : modifier la source, pas cette page. -->
+<main class="page proj">
+  <nav class="crumbs" aria-label="Fil d'Ariane"><a href="../../">Accueil</a> <span aria-hidden="true">›</span> <a href="../">Banque de projets</a> <span aria-hidden="true">›</span> <a href="../../projets/#parcours=python">Du bloc au Python</a></nav>
+  <header class="p-head">
+    <div class="led5 p-icon" aria-hidden="true"><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div>
+    <div>
+      <p class="eyebrow">micro:bit seule · niveau 1 · Découverte · 30 min</p>
+      <h1>Bien démarrer en Python</h1>
+      <ul class="learn"><li class="lbl">Notions</li><li>python</li><li>matériel</li></ul>
+    </div>
+  </header>
+  <div class="p-bar">
+    <div class="crew-pick" id="crew">
+      <span>Pilote :</span>
+      <span class="seg" role="radiogroup" aria-label="Qui pilote ce projet ?">
+        <label><input type="radio" name="pilot" value="1"><span data-pilot="1">Équipier 1</span></label>
+        <label><input type="radio" name="pilot" value="2"><span data-pilot="2">Équipier 2</span></label>
+      </span>
+      <span class="small">Copilote : <b id="copilot">Équipier 2</b></span>
+    </div>
+    <div class="p-bar-r">
+      <span class="lvl l3">Tout est expliqué</span>
+      <span class="etat" data-etat>À faire</span>
+      <a class="btn mk" href="https://makecode.microbit.org/" target="_blank" rel="noopener">Ouvrir MakeCode <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+  
+  <div class="p-main">
+<p class="goal"><b>Ta mission :</b> découvrir la version en texte de tes programmes. Dans ce parcours, tu vas d'abord la lire, puis la modifier, puis l'écrire toi-même. Les blocs restent là : tu peux revenir à eux à tout moment.</p>
+<div class="m-part">
+  <h2 class="h3">Pourquoi le Python ?</h2>
+  <ul>
+    <li>C'est un vrai langage de programmation. C'est celui qu'on utilise au lycée.</li>
+    <li>Un long programme s'écrit plus vite au clavier qu'en glissant des blocs.</li>
+    <li>Mais une seule faute de frappe peut tout bloquer. C'est pour ça qu'on y va pas à pas.</li>
+  </ul>
+</div>
+<div class="m-part">
+  <h2 class="h3">Passer des blocs au Python</h2>
+  <ol class="steps">
+    <li>Ouvre dans MakeCode un projet qui marche, par exemple ton badge lumineux.</li>
+    <li>En haut, au milieu de l'écran, à côté du bouton <span class="ui">Blocs</span>, ouvre le petit menu de <span class="ui">JavaScript</span> et choisis <span class="ui">Python</span>.</li>
+    <li>Regarde : c'est le même programme, écrit en texte.</li>
+    <li>Clique sur <span class="ui">Blocs</span> pour revenir. Rien n'est perdu : MakeCode traduit dans les deux sens.</li>
+  </ol>
+  <p class="small">Le nom exact des boutons peut changer un peu selon la version de MakeCode.</p>
+</div>
+<div class="m-part">
+  <h2 class="h3">Les règles du Python</h2>
+  <ul>
+    <li><b>Le décalage compte.</b> Une ligne décalée vers la droite (4 espaces) est « dans » la ligne du dessus. C'est la bouche des blocs.</li>
+    <li><b>Les deux-points</b> <code>:</code> annoncent un décalage, à la fin d'une ligne qui commence par <code>def</code>, <code>if</code>, <code>elif</code> ou <code>else</code>.</li>
+    <li><b><code>def</code> donne un nom à un morceau de programme.</b> Pour un bouton, MakeCode écrit un <code>def</code>, puis une ligne qui relie ce morceau au bouton.</li>
+    <li><b>Les majuscules comptent.</b> <code>Button.A</code> et <code>button.a</code>, ce n'est pas pareil.</li>
+    <li><b>Une ligne qui commence par <code>#</code></b> est un commentaire : la carte l'ignore. Écris-y ce que fait ton programme.</li>
+    <li><b>Souligné en rouge = erreur.</b> Passe la souris dessus pour lire le message.</li>
+  </ul>
+</div>
+<div class="m-part">
+  <h2 class="h3">Un exemple, sur un autre programme</h2>
+  <p>Voici trois lignes du tutoriel officiel MakeCode « Smiley Buttons » : quand on appuie sur A, l'écran montre un visage content.</p>
+<pre class="py" tabindex="0" aria-label="Exemple de code Python"><code>def on_button_pressed_a():
+    basic.show_icon(IconNames.HAPPY)
+input.on_button_pressed(Button.A, on_button_pressed_a)</code></pre>
+  <ol class="steps">
+    <li>La 1<sup>re</sup> ligne donne un nom au morceau de programme.</li>
+    <li>La 2<sup>e</sup>, décalée, dit ce qui se passe : montrer l'icône du visage content.</li>
+    <li>La 3<sup>e</sup>, pas décalée, relie ce morceau au bouton A.</li>
+  </ol>
+  <p class="small">Petit clin d'œil : parmi les icônes de MakeCode, il y en a une qui s'appelle <code>IconNames.SNAKE</code>. Python, c'est aussi le nom d'un serpent.</p>
+</div>
+<div class="carnet-form">
+  <p class="ct"><span class="led5" data-icon="carnet" style="--w:30px;--g:2px;--p:4px;border-radius:5px" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span>Mon dictionnaire bloc → Python</p>
+  <p class="small">Dans un projet vide, glisse un bloc, passe en Python, et recopie ce que tu vois. Ce dictionnaire te servira dans tout le parcours : il est enregistré sur cet ordinateur.</p>
+  <div class="tbl-wrap"><table><thead><tr><th>Bloc</th><th>En Python</th></tr></thead><tbody>
+    <tr><td>au démarrage (avec un bloc dedans)</td><td><input class="textin" type="text" maxlength="80" data-k="py_demarrage" aria-label="au démarrage en Python"></td></tr>
+    <tr><td>toujours</td><td><input class="textin" type="text" maxlength="80" data-k="py_toujours" aria-label="toujours en Python"></td></tr>
+    <tr><td>lorsque le bouton A est pressé</td><td><input class="textin" type="text" maxlength="80" data-k="py_bouton" aria-label="bouton A en Python"></td></tr>
+    <tr><td>montrer nombre</td><td><input class="textin" type="text" maxlength="80" data-k="py_nombre" aria-label="montrer nombre en Python"></td></tr>
+    <tr><td>montrer l'icône</td><td><input class="textin" type="text" maxlength="80" data-k="py_icone" aria-label="montrer l'icône en Python"></td></tr>
+    <tr><td>pause (ms)</td><td><input class="textin" type="text" maxlength="80" data-k="py_pause" aria-label="pause en Python"></td></tr>
+    <tr><td>choisir au hasard de … à …</td><td><input class="textin" type="text" maxlength="80" data-k="py_hasard" aria-label="hasard en Python"></td></tr>
+    <tr><td>si … alors … sinon</td><td><input class="textin" type="text" maxlength="80" data-k="py_si" aria-label="si sinon en Python"></td></tr>
+    <tr><td>définir une variable à 0</td><td><input class="textin" type="text" maxlength="80" data-k="py_variable" aria-label="variable en Python"></td></tr>
+  </tbody></table></div>
+  <p class="saved" hidden>Noté.</p>
+</div>
+<p class="tip"><b>L'astuce qui sert tout le temps :</b> tu ne sais pas écrire une ligne en Python ? Mets le bloc dans l'onglet Blocs, regarde ce qu'il devient en Python, puis efface-le et réécris-le toi-même.</p>
+<div class="resume"><p class="pt">Résume en une phrase</p><textarea data-k="python-demarrer_res" rows="2" placeholder="Ce que j'ai appris…"></textarea></div>
+
+  </div>
+  <section class="p-finish" aria-label="Fin du projet" data-suivant="../python-lire-badge/" data-suivant-titre="Lire : ton badge en Python"></section>
+  <nav class="p-nav" aria-label="Et après ?"><div class="p-seq"><p class="eyebrow">Du bloc au Python · étape 1 sur 6</p><div class="p-links"><a class="p-link next" href="../python-lire-badge/"><span class="eyebrow">Étape suivante →</span><b>Lire : ton badge en Python</b></a></div></div><div class="p-related"><p class="eyebrow">Projets proches</p><div class="mini-cards"><a class="mini-card" href="../python-modifier-de/"><div class="led5" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span></div><span><b>Modifier : un dé à 12 faces en Python</b><small>micro:bit · niveau 1 · Juste le plan</small></span></a><a class="mini-card" href="../python-modifier-pfc/"><div class="led5" aria-hidden="true"><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="on"></span></div><span><b>Modifier : un 4e coup à pierre-feuille-ciseaux</b><small>micro:bit · niveau 2 · Juste le plan</small></span></a><a class="mini-card" href="../python-ecrire-messager/"><div class="led5" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div><span><b>Écrire un morceau : la réception radio</b><small>micro:bit · niveau 2 · Juste l'objectif</small></span></a></div></div></nav>
+  <footer class="p-foot small">Les prénoms se règlent sur l'<a href="../../">accueil</a>. Code parent, sécurité et sauvegarde : <a href="../../parents/">page des parents</a>.</footer>
+</main>
+<script src="../../assets/progression.js"></script>
+<script src="../../assets/blocs.js"></script>
+<script src="../../assets/projet.js"></script>
+</body>
+</html>
